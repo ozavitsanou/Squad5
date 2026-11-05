@@ -1460,6 +1460,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .m-bs .bs-legs.gl{padding-top:8px}
 .m-bs .bs-leg.sb .bs-sub{margin-top:6px}
 :is(.m-bs,.m-mbp) .sqv.mini{margin:6px 0 0}
+/* Betslip SB / Squad strip (Figma 5894-13277): 40px, 1px #ffcbbd, #eaeefb → white, 24px jersey discs overlapping by 4px, count badge, grey names, Edit Squad tiny button */
+.m-bs .sqv,.m-bs .sqv.mini{overflow:visible;isolation:auto;height:40px;padding:0 6px 0 8px;gap:8px;border:1px solid var(--sem-border-primary-soft,#ffcbbd);border-radius:12px;background:linear-gradient(90deg,var(--sem-bg-container-medium-default,#eaeefb),var(--sem-bg-container-lowest-default,#fff));-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
+.m-bs .sqv::after{display:none}
+.m-bs .sqv-jr{height:24px;padding-left:6px}
+.m-bs .sqv-p,.m-bs .sqv.mini .sqv-p{width:24px;height:24px;margin:0 -4px 0 0;box-sizing:border-box;overflow:hidden;border:1px solid var(--sem-border-container-lowest,#e2e8f8);background:var(--sem-bg-container-low-default,#f7f9fc);box-shadow:none}
+.m-bs .sqv-n{margin-left:0}
+.m-bs .sqv-nm{font-weight:450;font-size:12px;line-height:16px;color:var(--sem-text-gray-soft,#60739f)}
+.m-bs .sqv .sqv-ed.sm{height:24px;padding:0 8px;border:1px solid #c2cee5;border-radius:12px;background:#f7f9fc;box-shadow:none;font-weight:550;font-size:11px;line-height:14px;color:#2a3346}
 .m-bs .bs-leg.sb .bs-sub .bs-lh{justify-content:space-between}
 
 /* ---- M: eligibility greyed-out (Agreed) */
@@ -2104,7 +2112,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #squad-u .u-sl .p-sx span{font-weight:450;font-size:11px;line-height:14px;color:var(--sem-text-gray-emphasis,#151923)}
 :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .p-in[hidden]{display:none}
 /* D entry point B: Popular CTA card (Figma 6319-56137) */
-#phone #squad-p .pe-cta{position:relative;display:flex;align-items:center;gap:16px;margin:4px 8px 8px;padding:16px;border:1px solid var(--sem-border-container-lowest,#e2e8f8);border-radius:12px;background:var(--sem-bg-off-gray-pale,#fcfcfd);filter:drop-shadow(1px 4px 2px rgba(21,25,35,.1));text-align:left;cursor:pointer}
+#phone #squad-p .pe-cta{position:relative;display:flex;align-items:center;gap:16px;margin:4px 8px 8px;padding:16px;border:1px solid var(--sem-border-container-lowest,#e2e8f8);border-radius:12px;background:var(--sem-bg-off-gray-pale,#fcfcfd);box-shadow:1px 4px 4px var(--sem-effect-shadow-subtle,rgba(21,25,35,.1));overflow:hidden;text-align:left;cursor:pointer}
+#phone #squad-p .pe-sw{position:absolute;left:0;top:0;width:231.13px;height:60.69px;pointer-events:none}
+#phone #squad-p .pe-sw img{display:block;width:231.13px;height:60.69px}
+#phone #squad-p .pe-t,#phone #squad-p .pe-av{position:relative}
 #phone #squad-p .pe-t{flex:1 1 0;min-width:0;font-family:var(--font-brand);font-weight:500;font-size:16px;line-height:20px;color:var(--sem-text-gray-emphasis,#151923);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #phone #squad-p .pe-av{flex:none;display:flex;align-items:center}
 #phone #squad-p .pe-a{position:relative;flex:none;width:30px;height:30px;margin-right:-7.826px}
@@ -2114,7 +2125,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone #squad-p .pe-j img{position:absolute;left:1.25px;top:3.75px;width:25px;height:30px;object-fit:cover;object-position:bottom;max-width:none}
 #phone #squad-p .pe-pl{position:absolute;left:1.25px;top:1.25px;width:27.5px;height:27.5px}
 #phone #squad-p .pe-pl img{display:block;width:27.5px;height:27.5px}
-#phone #squad-p .pe-new{position:absolute;top:-8px;right:8px;max-width:64px;padding:1px 4px;border-radius:8px;background:var(--sem-bg-secondary,#37a25c);color:#fff;font:700 9px/12px 'Ubuntu',sans-serif}
 /* D goals page header (Figma 6260-83425): orange-to-clear title block, then the match in a soft box */
 #phone #squad-p .p-gh2{display:flex;flex-direction:column;margin:0 0 4px;padding:0 8px;border-radius:0 0 8px 8px;background:linear-gradient(180deg,var(--sem-overlay-primary-alt-emphasis,#ff3c00) 0%,var(--sem-overlay-section-none,rgba(239,239,250,.01)) 43.807%);font-family:'Ubuntu',sans-serif}
 #phone #squad-p .p-gh2 .p-tt{gap:4px;height:32px}
@@ -2215,7 +2225,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .gl-r{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px;background:var(--sem-bg-container-lowest,#fff);border:1px dashed #c2cee5;border-radius:12px}
 :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .gl-r.set{border:1px solid var(--bg-primary,#ff3c00);padding:12px 14px}
 :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .gl-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
-:is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .gl-tx b{font-weight:450;font-size:14px;line-height:20px;color:var(--sem-text-gray-subtle,#526789)}
+:is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .gl-tx b{font-weight:450;font-size:14px;line-height:20px;color:var(--sem-text-gray-emphasis,#151923)}
 :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .gl-r.set .gl-tx b{font-weight:750;color:var(--sem-text-gray-emphasis,#151923)}
 :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .gl-tx span{font-weight:450;font-size:11px;line-height:14px;color:var(--sem-text-gray-subtle,#526789)}
 :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .gl-c{display:flex;align-items:center;gap:4px;flex:none}
@@ -2259,6 +2269,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* Card stats panel = Figma vector 6318:79193 (white, slanted top edge); live card = Figma 6318:79203 (#2a3046 card, #3b4863 border, #090d15 panels) */
 #phone.lv :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .p-t{background:#2a3046!important;border-color:#3b4863}
 #phone.lv :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .p-t.p-on{border-color:var(--bg-primary,#ff3c00)}
+#phone.lv :is(#squad-p,#squad-o) .p-t:not(.p-on){border-color:#3b4863} /* Figma 6368-82202: dark tile border = container/medium; outranks the light #c2cee5 rule */
 #phone.lv :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .p-t .p-bg{display:none}
 #phone.lv :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .p-t .p-vec{opacity:1}
 #phone.lv :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .p-t .p-nm b,#phone.lv :is(#squad-p,#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .p-t .p-hd i{color:#f5f7fa}
@@ -2412,11 +2423,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone.lv .m-lev .m-levi{color:#fff}
 #phone.lv :is(.m-bs,.m-mbp) .sqv{background:radial-gradient(120% 140% at 0% 0%,rgba(255,110,50,.18),transparent 55%),radial-gradient(120% 160% at 100% 100%,rgba(110,130,255,.16),transparent 60%),linear-gradient(135deg,#2a3046,#212536);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 0 0 1px rgba(255,90,30,.22),0 6px 16px -8px rgba(255,60,0,.35)}
 #phone.lv :is(.m-bs,.m-mbp) .sqv::after{background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.12) 48%,rgba(255,255,255,0) 62%)}
+#phone.lv .m-bs .sqv,#phone.lv .m-bs .sqv.mini{background:linear-gradient(90deg,#2d374d,#212536);border-color:rgba(255,99,51,.4);box-shadow:none}
+#phone.lv .m-bs .sqv-p,#phone.lv .m-bs .sqv.mini .sqv-p{background:#2a3046;border-color:#2d374d;box-shadow:none}
+#phone.lv .m-bs .sqv-nm{color:#a5b3cf}
+#phone.lv .m-bs .sqv .sqv-ed.sm{background:#2a3046;border-color:#3b4863;color:#cfd9ed}
 #phone.lv .m-gst :is(b,span){color:#f5f7fa}
 #phone.lv .m-rc .rc-a{color:#f5f7fa}
 #phone.lv #squad-p .n-bn{background:#212536;box-shadow:inset 0 0 0 1px #2d374d}
 #phone.lv #squad-p :is(.nbn-t,.nbn-s){color:#f5f7fa}
-#phone.lv #squad-p .pe-cta{background:#212536;border-color:#2d374d;filter:drop-shadow(1px 4px 2px rgba(0,0,0,.35))}
+#phone.lv #squad-p .pe-cta{background:#212536;border-color:#2d374d;box-shadow:1px 4px 4px rgba(0,0,0,.35)}
+#phone.lv #squad-p .pe-sw{opacity:.35}
 #phone.lv #squad-p .pe-t{color:#f5f7fa}
 #phone.lv .u-lpc{background:#212536;box-shadow:0 16px 40px rgba(0,0,0,.5)}
 #phone.lv .u-lpj{background:#2a3046;box-shadow:inset 0 0 0 1.917px #455573}
@@ -3735,7 +3751,7 @@ function make(v,root,host){
       return `<div class="sqv ${mini?'mini':''} ${an?'anim':''}" role="group" aria-label="${n} players: ${names}">
         <div class="sqv-jr" aria-hidden="true">${ps.map((p,i)=>`<span class="sqv-p" style="--i:${i};z-index:${10-i}" title="${p.name}">${KJ(p,mini?18:20)}</span>`).join('')}<span class="sqv-n" style="--i:${ps.length}">${n}</span></div>
         <span class="sqv-nm" aria-hidden="true">${names}</span>
-        ${mini?'':`<button class="sqv-ed sm" data-act="mBsEdit">${KI('fab_edit',12,12)}Edit Squad</button>`}</div>`;};
+        ${mini?'':`<button class="sqv-ed sm" data-act="mBsEdit">Edit Squad</button>`}</div>`;};
     // Squad Builder as a single selection
     const sbCard=(withAmt)=>`<div class="bs-card">${sel('Squad Builder',null,total(),'mSbRm','Remove Squad Builder')}
       ${match}${sqViz(false)}<div class="bs-legs gl" aria-label="${k} squad goals">${goalLegs(false)}</div>${withAmt?amt():''}${gsStrip}${howLink}</div>`;
@@ -3834,7 +3850,7 @@ function make(v,root,host){
     return `<div class="m-pop-page">${c1}${P&&S.pent==='cta'?pEcta():''}${c2}${prompts}${ou}</div>`;}
   // D entry point B (Figma 6319-56137): "Build your squad" CTA card under Match Result on Popular
   function pEcta(){ const av=i=>`<span class="pe-a" aria-hidden="true">${KI('ep_ring',30,30)}<span class="pe-j">${KI('ep_jersey',25,30,'png')}</span></span>`;
-    return `<button class="pe-cta" data-act="mNOpen" aria-label="Build your squad: open Squad Builder"><span class="pe-t">BUILD YOUR SQUAD</span><span class="pe-av">${av()}${av()}${av()}<span class="pe-a pe-p" aria-hidden="true">${KI('ep_ring2',30,30,'png')}<span class="pe-pl">${KI('ep_plus',27.5,27.5)}</span></span></span><span class="pe-new">NEW</span></button>`;}
+    return `<button class="pe-cta" data-act="mNOpen" aria-label="Build your squad: open Squad Builder"><span class="pe-sw" aria-hidden="true">${KI('ep_swoosh',231.13,60.69)}</span><span class="pe-t">BUILD YOUR SQUAD</span><span class="pe-av">${av()}${av()}${av()}<span class="pe-a pe-p" aria-hidden="true">${KI('ep_ring2',30,30,'png')}<span class="pe-pl">${KI('ep_plus',27.5,27.5)}</span></span></span></button>`;}
   function nCta(){
     return `<button class="n-bn" data-act="mNOpen" aria-label="Open Squad Builder. Pick 3 to 5 players, one set of odds."><span class="nbn-c"><span class="nbn-h"><span class="nbn-new">NEW</span><span class="nbn-t">Squad <i>Builder</i></span></span><span class="nbn-s">Pick 3–5 players and set targets they hit together, all in one bet.</span></span><span class="nbn-clip" aria-hidden="true"><span class="nbn-art"><svg width="280" height="72" viewBox="0 -.31 280 72" fill="none"><path d="M259.176 38.4124L265.942 -0.307617H6.76552L0 38.4124L20.8236 32.9724L14.0581 71.6924H273.234L280 32.9724L259.176 38.4124Z" fill="#FF3C00"/></svg></span></span><span class="nbn-jers" aria-hidden="true"><span class="nbn-j1">${KI('bn_newcastle_away',43,43,'png')}</span><span class="nbn-j2">${KI('bn_newcastle_home',43,43,'png')}</span><span class="nbn-j3">${KI('bn_brentford_away',64,64,'png')}</span></span></button>`;}
   const pStats=[['goals','Goals','Goals'],['assists','Assists','Assists'],['shots','Shots','Shots'],['sot','Shots on Target','Shots on Target'],['tackles','Tackles','Tackles'],DD?['cards','Cards','Cards']:['fouls','Fouls Committed','Fouls Committed']];
@@ -3937,7 +3953,9 @@ function make(v,root,host){
   };
   const nHead=()=>P?`<div class="p-gh2"><div class="p-tt"><b>Squad</b><span class="p-tr"><b>Builder</b>${KI('d_trail',237,38)}</span></div><div class="p-gm"><span class="p-gl"><i>${KI('logoHome',17,17,'png')}</i><i>${KI('logoAway',17,17,'png')}</i></span><span class="p-gt"><span>UEFA Champions League</span><b>Aston Villa - Juventus</b></span></div></div>`:`<div class="n-hd"><span class="n-ht"><b>Squad Builder</b><span class="n-hs"><span class="n-li"><i>${KI('logoHome',10.5,10.5,'png')}</i><i>${KI('logoAway',10.5,10.5,'png')}</i></span><span>Aston Villa - Juventus</span></span></span></div>`;
   function renderD(){
-    if(N&&!S.npage) return `<div class="n-ev">${P?'':nCta()}${window.__LV?livePopularHTML():popularHTML()}</div>`;
+    if(N&&!S.npage){ let pop=window.__LV?livePopularHTML():popularHTML();
+      if(window.__LV&&P&&S.pent==='cta') pop=pop.replace('</section>','</section>'+pEcta()); /* live: the CTA also sits under Match Result */
+      return `<div class="n-ev">${P?'':nCta()}${pop}</div>`; }
     if(M&&!N&&S.mtab==='popular') return `<div class="m-popw">${mOnb()}${window.__LV?livePopularHTML():popularHTML()}</div>`;
     if(G&&!S.done) return renderG();
     const E=v==='e', n=S.squad.length, sOK=n>=MIN, g=S.step==='goals'&&sOK, k=nG();
@@ -4273,7 +4291,9 @@ function make(v,root,host){
       case 'fabClearBs':S.targets=[];S.slip=false;S.modal=null;break;
       case 'mLegRm':{const ix=+d.i, sm=SAMEL().length; if(ix<sm) S.sels.splice(ix,1); else S.other=false; S.bsTab=null; break;}
       case 'mSbRm':S.targets=[];S.slip=false;S.modal=null;break;
-      case 'mBsEdit':bsClose(()=>{S.sheet=true;S.pick=[...S.squad];S.q='';});return;
+      case 'mBsEdit':bsClose(()=>{S.done=false;S.placed=false;S.page=null;S.sheet=false;S.adding=false;S.q='';S.step='squad'; /* same as 'edit': back to the first step of the flow */
+        if(N){if(!S.npage){S._evY=sc?sc.scrollTop:0;S.npage='sb';} if(P){S.pcont=false;S.psel=[...S.squad];}} else S.mtab=null;
+        if(O)S.focus='.oc-hd'; setTimeout(()=>{if(sc)sc.scrollTop=0},0);});return;
       case 'mBsSave':mToast('Betslip saved');return;
       case 'mBsShare':mToast('Betslip link copied');return;
       case 'mBsBet':if(S.bsEff==='sys'&&sysCalc(S.sysStk).stake<=0){mToast('Enter a stake on at least one line');return;}bsClose(()=>mPlace(),true);return;
@@ -4377,7 +4397,7 @@ window.__squads={};
 })();
 /* @@SCREEN-JS@@ */
 /* ---- sidebar footer: notes, build stamp, reload ---- */
-const BUILD='2026-11-04T19:30:00Z'; // stamped on every change
+const BUILD='2026-11-05T12:00:00Z'; // stamped on every change
 (function(){
   const nav=document.querySelector('.screen-list'), main=document.querySelector('.stage-main');
   const notes=document.createElement('section'); notes.className='notes'; notes.id='notes'; notes.setAttribute('aria-label','Exploration notes');
@@ -4409,6 +4429,7 @@ const BUILD='2026-11-04T19:30:00Z'; // stamped on every change
     <tr><td>1 · 2 targets list (Figma 6341-98238, 6341-98764)</td><td>"Set squad targets" is one card: the title, the target count ("1 Target") and a Reset button (clears all targets) sit inside it. Each target is its own tile. Not set: dashed border, grey name, "Median · avg/game" and a dark + button that adds it at the median. Set: orange border, bold name, − / value / + stepper (the value still opens the number pad) and a dark remove button. A target a squad player can't count towards shows "Swap Torres"-style buttons (one per player) instead of the +; tapping one removes that player and goes back to the player picker. The "Not applicable for…" line is gone, as in the design.</td></tr>
     <tr><td>Sidebar: C → 1, D → 2 (4 Nov)</td><td>The two versions shown by default are renamed in the sidebar: C (pitch view only) is now <b>Squad Builder · 1</b> and D (player cards) is now <b>Squad Builder · 2</b>. The code ids stay o and p; older notes still say C and D.</td></tr>
     <tr><td>D · Players not eligible (4 Nov)</td><td>The last section of the player cards, shown when a stat filter is on, is now called "PLAYERS NOT ELIGIBLE" (was "Players not available for X squad target"). Its cards are full opacity and can be picked like any other card.</td></tr>
+    <tr><td>5 Nov · CTA, betslip strip, dark tiles, Edit squad</td><td><b>Build your squad CTA</b> (Figma 6319-56137): #fcfcfd card, 1px #e2e8f8 border, r12, 1px 4px 4px shadow, the peach swoosh at the top left, jersey avatars + "+" avatar; the NEW tag is gone. <b>Betslip squad strip</b> (Figma 5894-13277): 40px, 1px #ffcbbd border, #eaeefb to white, 24px jersey discs overlapping by 4px, black count badge, grey names, "Edit Squad" tiny button without icon; the glass blur and sheen are removed (dark twin included). <b>Player tiles in the live (dark) theme</b> (Figma 6368-82202): unselected border is #3b4863; a light #c2cee5 rule was overriding it. <b>Betslip "Edit squad"</b> now behaves like Edit, in every version: it closes the betslip and returns to the first step of the flow (D–H: the player picker; A and B: the pitch step; C: the pitch lobby) instead of opening the players drawer. <b>Swap button icon</b> (Figma 6341-99635): the up/down swap arrows replace the old icon (assets/sbd/tg_swap.svg overwritten, old artwork discarded). <b>Targets step:</b> before a goal is selected, its name (Goals, Shots, Assists, Cards, Tackles, Shots on Target) is gray emphasis (#151923) instead of gray subtle.</td></tr>
     <tr><td>D · entry point switch (Figma 6319-56137)</td><td>Prototype controls › Entry point: Banner (the Squad Builder banner above the Markets tabs) or Popular CTA (a "Build your squad" card with jersey avatars, a + avatar and a NEW tag, 1px #e2e8f8 border, under Match Result on Popular). Both open the Squad Builder page. Banner sub text now reads "Pick 3–5 players and set targets they hit together, all in one bet."</td></tr>
     <tr><td>Player cards (Figma 6287-56586, 6318-79203)</td><td>The card is 230px high (175.5 wide); the stats block is 96px high at the bottom. The panel is the 313x109 vector rotated 180°, placed 27.75px left and 11px above the block, so the jersey stays visible. Stats order is Goals, Shots, Assists / Tackles, SoT, Cards; Cards shows the red and yellow counts with their card icons. Live is the same card in dark (#2a3046 body, #3b4863 border, #090d15 panels).</td></tr>
     <tr><td>Players view switch (Figma 6300-60996)</td><td>The jersey icon is replaced by four rounded rectangles for the card view, shown first and selected by default; the statistics icon is the table view. Live uses a dark track and light icons.</td></tr>
