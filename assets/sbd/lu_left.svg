@@ -1,0 +1,23 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="800" viewBox="0 0 48 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="left" clip-path="url(#clip0_0_10078)">
+<rect width="48" height="800" fill="#156930"/>
+<path id="Grass Line" opacity="0.32" d="M0 2H28C29.6569 2 31 3.34315 31 5V132H0V2Z" fill="white" fill-opacity="0.16"/>
+<g id="Grass Transparent" opacity="0.32">
+</g>
+<rect id="Grass Line_2" opacity="0.32" y="262" width="31" height="130" fill="white" fill-opacity="0.16"/>
+<g id="Grass Transparent_2" opacity="0.32">
+</g>
+<rect id="Grass Line_3" opacity="0.32" y="572" width="31" height="130" fill="white" fill-opacity="0.16"/>
+<g id="Grass Transparent_3" opacity="0.32">
+</g>
+<rect id="Grass Line_4" opacity="0.32" y="832" width="31" height="130" fill="white" fill-opacity="0.16"/>
+<path id="Horizontal Line L" opacity="0.32" d="M0 482L31 482" stroke-width="2" stroke="white"/>
+<path id="Horizontal Line L_2" opacity="0.32" d="M-4.05101e-05 1L28 0.999999C30.2091 0.999999 32 2.79083 32 5L32 800" stroke-width="2" stroke="white"/>
+<path id="Corner TR" opacity="0.32" d="M31 26C17.7452 26 7 15.2548 7 2" stroke-width="2" stroke="white"/>
+</g>
+<defs>
+<clipPath id="clip0_0_10078">
+<rect width="48" height="800" fill="white"/>
+</clipPath>
+</defs>
+</svg>

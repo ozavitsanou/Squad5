@@ -1,0 +1,22 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="35.4999" height="800" viewBox="0 0 35.4999 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="stretch" clip-path="url(#clip0_0_10055)">
+<rect width="35.4999" height="800" fill="#156930"/>
+<rect id="Grass Line" opacity="0.32" x="-0.500122" y="2" width="36" height="130" fill="white" fill-opacity="0.16"/>
+<g id="Grass Transparent" opacity="0.32">
+</g>
+<rect id="Grass Line_2" opacity="0.32" x="-0.500099" y="262" width="36" height="130" fill="white" fill-opacity="0.16"/>
+<g id="Grass Transparent_2" opacity="0.32">
+</g>
+<rect id="Grass Line_3" opacity="0.32" x="-0.500072" y="572" width="36" height="130" fill="white" fill-opacity="0.16"/>
+<g id="Grass Transparent_3" opacity="0.32">
+</g>
+<rect id="Grass Line_4" opacity="0.32" y="832" width="35" height="130" fill="white" fill-opacity="0.16"/>
+<path id="Horizontal Line L" opacity="0.32" d="M-0.50008 482L35.4999 482" stroke-width="2" stroke="white"/>
+<path id="Horizontal Line L_2" opacity="0.32" d="M-0.500122 1L35.4999 1" stroke-width="2" stroke="white"/>
+</g>
+<defs>
+<clipPath id="clip0_0_10055">
+<rect width="35.4999" height="800" fill="white"/>
+</clipPath>
+</defs>
+</svg>
