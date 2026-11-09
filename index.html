@@ -2953,12 +2953,32 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #squad-v .v-t .v-m{box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:3px 6px;border-radius:2px;background:var(--sem-overlay-gray-soft-medium,rgba(239,239,250,.4));font-family:var(--font-ui);font-weight:550;font-size:11px;line-height:14px;color:var(--sem-text-gray-emphasis,#151923)}
 #squad-v .v-t .v-m.last{border-bottom:2px solid var(--sem-border-absolute-black,#151923);padding-bottom:1px}
 /* live (dark) */
+/* selected: one border only (the generic card adds a second inset ring) */
+#phone #squad-v .p-t.v-t.p-on::after{display:none}
 #phone.lv #squad-v .p-t.v-t{background:var(--sem-bg-container-lowest,#212536)!important}
 #phone.lv #squad-v .p-t.v-t:not(.p-on){border-color:var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.2))}
 #phone.lv #squad-v .v-t .v-gl{background:rgba(9,13,21,.45)}
 #phone.lv #squad-v .v-t .v-m{background:rgba(239,239,250,.16)}
 #phone.lv #squad-v .v-t .v-m.last{border-bottom-color:#f5f7fa}
 #phone.lv #squad-v .v-t :is(.v-od,.v-ln,.v-m){color:#f5f7fa}
+
+/* ===== Squad Builder 3 · targets as a bottom sheet over the player picker ===== */
+#squad-v .v-sc{position:fixed;inset:0;z-index:60;background:rgba(9,13,21,.45)}
+#squad-v .v-sc.v-new{animation:vScrim .2s ease both}
+#squad-v .v-sh{position:fixed;left:0;right:0;bottom:calc(65px + var(--v-fab,0px));z-index:61;height:min(62%,calc(100% - 161px - var(--v-fab,0px)));display:flex;flex-direction:column;border-radius:20px 20px 0 0;background:var(--bg-layout,#eef1f9);box-shadow:0 -8px 24px rgba(9,13,21,.2)}
+#squad-v .v-sh.v-new{animation:vSheet .28s cubic-bezier(.2,.8,.2,1) both}
+#squad-v .v-gb{flex:none;align-self:center;width:36px;height:4px;margin:8px 0 4px;border-radius:2px;background:rgba(82,103,137,.4)}
+#squad-v .v-sb{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-bottom:16px}
+#phone.lv #squad-v .v-sh{background:#151923}
+/* Golden Sub stays on the left and touches the edge of the frame */
+#squad-v .v-sh .p-tg{margin-left:-25px}
+#squad-v .v-sh .p-top{overflow:visible}
+#squad-v .v-sb{overflow-x:hidden}
+#squad-v .v-sb{scrollbar-width:none}
+#squad-v .v-sb::-webkit-scrollbar{display:none}
+@keyframes vSheet{from{transform:translateY(100%)}to{transform:none}}
+@keyframes vScrim{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){#squad-v .v-sh.v-new,#squad-v .v-sc.v-new{animation:none}}
 </style>
 </head>
 <body>
@@ -3208,7 +3228,7 @@ const byIdL=Object.fromEntries(PLL.map(p=>[p.id,p]));
 SUBS.forEach(p=>byIdL[p.id]=LIVMAP[p.id]?{...p,name:LIVMAP[p.id][0],num:LIVMAP[p.id][1]}:p);
 const LVA={jerseyJuve:'jerseyLiverpool',logoAway:'logoLiverpool'};
 const LVN=Object.values(LIVMAP).length?Object.fromEntries(Object.entries(LIVMAP).map(([id,[n]])=>[(PL.concat(SUBS).find(p=>p.id===id)||{}).name,n])):{};
-const LVX=s=>{s=s.replace(/assets\/sbd\/(jerseyJuve|logoAway)\.png/g,(m,n)=>'assets/sbd/'+LVA[n]+'.png').replace(/Juventus FC/g,'Liverpool FC').replace(/Juventus/g,'Liverpool').replace(/\bJuve\b/g,'Liverpool').replace(/\bJUV\b/g,'LIV');
+const LVX=s=>{s=s.replace(/assets\/sbd\/(jerseyJuve|logoAway)\.png/g,(m,n)=>'assets/sbd/'+LVA[n]+'.png').replace(/Juventus FC/g,'Liverpool FC').replace(/Juventus/g,'Liverpool').replace(/\bJuve\b/g,'Liverpool').replace(/\bJUV\b/g,'LIV').replace(/Picks\s+\(/g,'My squad (');
   for(const k in LVN) if(k) s=s.split(k).join(LVN[k]); return s;};
 const PLUS=ico('<path d="M12 5v14M5 12h14"/>',14), CHECK=ico('<path d="m5 12 5 5 9-10"/>',14,'#fff'), CHEVR=ico('<path d="m9 6 6 6-6 6"/>',14);
 
@@ -3357,7 +3377,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
   if(M){Object.assign(S,{mode:'A',comb:'any',live:false,simOut:false,sort:'pop',combo:false,sels:[],other:false,sysStk:{},slipSig:'',bumped:false,modal:null,mbState:'live',mbView:'goal',showCode:false,code:'',restored:false,errStyle:'inline',ack:{},cmbAs:'bb',bsTab:null,bsExp:false,elig:'grey',gs:'void',scn:null,bub:null,bk:{},gsv:'all',gsSeen:false,avail:'open',ms:'pre',lch:'adjust',entry:'tab',offP:null,liveEv:null,onb:false,onbStep:0,srch:'off',op:'all',luOpen:false,coV:0,bet:null,page:null,mbExp:true,mbTab:null,pk2:null,npage:null,mtab:'popular'});
     try{localStorage.removeItem((V?'sbV:v2':U?'sbU:v2':T?'sbS:v2':R?'sbR:v2':Q?'sbQ:v2':P?'sbP:v2':N?'sbN:v2':O?'sbO:v2':'sbM:v2'))}catch(e){}}
   if(O) S.cView='grid'; // C opens on the player cards (tiles) view
-  if(PV) S.pview='cards'; // D too: tiles are the default, left option of the view switch
+  if(PV) S.pview='cards'; if(V) S.pstat='goals'; // 3: the first filter is always on // D too: tiles are the default, left option of the view switch
   const sq=()=>S.squad.map(id=>byId[id]);
   const tgt=id=>S.targets.find(t=>t.id===id);
   const reason=p=>{
@@ -4080,6 +4100,9 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     const naSec=()=>{ if(!DD||!st) return ''; const tmf=S.pteam&&S.pteam!=='all'?S.pteam:null, l=[...KORD,...SUBS.map(p=>p.id)].map(id=>byId[id]).filter(p=>p.pos!=='GK'&&pv(p,st)==null&&(!tmf||p.team===tmf)); if(!l.length) return '';
       const nm=((pStats.find(x=>x[0]===st)||[])[1]||stat(st).name).toUpperCase();
       return `<div class="u-lb"><span><b>PLAYERS NOT ELIGIBLE</b></span></div>`+l.map(V?vCard:card).join(''); };
+    if(V){ /* 3: one list, no section titles: players available for the selected filter first (best first), the rest after */
+      const tmf=S.pteam&&S.pteam!=='all'?S.pteam:null, all=[...KORD,...SUBS.map(p=>p.id)].map(id=>byId[id]).filter(p=>p.pos!=='GK'&&(!tmf||p.team===tmf));
+      return [...all.filter(p=>pv(p,st)!=null).sort((a,b)=>pv(b,st)-pv(a,st)),...all.filter(p=>pv(p,st)==null)].map(vCard).join(''); }
     return grp(KORD,22,S.announced?'ANNOUNCED':'EXPECTED',' LINEUPS',S.announced)+grp(SUBS.map(p=>p.id),16,'SUBSTITUTE',' LINEUPS')+naSec();
   };
   const qCols=DD?[['assists','Assist'],['goals','Goals'],['shots','Shots'],['sot','Shots on target'],['ycard','Yellow'],['rcard','Red'],['tackles','Tackles']]:[['assists','Assist'],['goals','Goals'],['shots','Shots'],['sot','Shots on target'],['fouls','Fouls'],['tackles','Tackles']];
@@ -4130,7 +4153,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     bar.classList.toggle('p-e',!sel.length);
     const it=root.querySelector('.p-it'); if(it) it.hidden=!!sel.length;
     const sb=bar.closest('.p-sb'); if(sb&&sb.classList.contains('p-hide')===!!sel.length){ sb.classList.toggle('p-hide',!sel.length); sb.classList.toggle('p-sbin',!!sel.length); }
-    const pk=root.querySelector('.u-pk'); if(pk) pk.textContent=`Picks  (${sel.length}/${MAX})`;
+    const pk=root.querySelector('.u-pk'); if(pk) pk.textContent=`${V?'My squad':'Picks '} (${sel.length}/${MAX})`;
     {const pi=root.querySelector('div.p-in'); if(pi) pi.hidden=!!sel.length;}
     const cta=root.querySelector(FB?'.p-sb .pf-cta':'.p-sb .p-cta'); cta.disabled=sel.length<MIN; cta.classList.toggle('on',sel.length>=MIN);
     if(added) requestAnimationFrame(()=>av.scrollTo({left:av.scrollWidth,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));
@@ -4370,6 +4393,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       if(!fabOn){fab.classList.remove('min'); fab.classList.add('enter'); setTimeout(()=>fab.classList.remove('enter'),400);} }
     fab.hidden=!show; fabOn=show; if(scr) scr.classList.toggle('has-fab',show); document.getElementById('phone').classList.toggle('fab-on',show);
   }
+  if(V&&fab&&window.ResizeObserver) new ResizeObserver(()=>document.getElementById('phone').style.setProperty('--v-fab',fab.offsetHeight+'px')).observe(fab); /* 3: the targets sheet stops above the betslip bar */
   const sc=root.closest('.screen');
   if(N){ document.getElementById('phone').addEventListener('click',e=>{ if(!e.target.closest('.k-back')) return; if(!(sc&&sc.classList.contains('active'))||!S.npage) return; act('mNBack',{}); }); }
   if(M&&!N&&sc){ document.addEventListener('screenchange',()=>setTimeout(()=>{ if(sc.classList.contains('active')&&!S._gT&&!S.glowDone) render(); },0)); }
@@ -4388,8 +4412,10 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     if(O) S.view='pitch';
     if(sc) sc.classList.toggle('n-sb',N&&!!S.npage);
     if(P&&sc){const bs=sc.querySelector('.p-bnslot'); if(bs){bs.innerHTML=S.npage||S.pent==='cta'?'':nCta(); if(!bs._on){bs._on=1; bs.addEventListener('click',onClick);}}}
+    if(V&&S.npage&&S.pcont) S.psel=[...S.squad];
     if(P&&S.npage&&S.pcont&&(S.step==='squad'||S.squad.length<MIN)){S.pcont=false;S.psel=[...S.squad];} /* never show A's pitch step in D/E/F/G: fall back to the picker */
-    {const _h=P&&S.npage&&!S.pcont?pPage():(N&&S.npage?nHead():'')+(v==='a'?renderA():v==='b'?renderB():FREE?renderD():renderC()); root.innerHTML=(window.__LV&&O&&S.mtab!=='popular'&&S.mtab!=='lineups'&&S.mtab!=='players')?`<div class="lv-lt">${_h}</div>`:_h;}
+    const vOpen=V&&S.npage&&S.pcont, vNew=vOpen&&!S._vsh, vsb0=root.querySelector('.v-sb'), vTop=vsb0?vsb0.scrollTop:0; S._vsh=!!vOpen; /* 3: slide the sheet in only when it opens, not on every re-render */
+    {const _h=V&&S.npage&&S.pcont?pPage()+`<div class="v-sc${vNew?' v-new':''}" data-act="pBackPick" aria-hidden="true"></div><div class="v-sh${vNew?' v-new':''}" role="dialog" aria-label="Set squad targets"><span class="v-gb" aria-hidden="true"></span><div class="v-sb">${(()=>{const dn=S.done; S.done=false; try{return renderD();}finally{S.done=dn;}})()}</div></div>`:P&&S.npage&&!S.pcont?pPage():(N&&S.npage?nHead():'')+(v==='a'?renderA():v==='b'?renderB():FREE?renderD():renderC()); root.innerHTML=(window.__LV&&O&&S.mtab!=='popular'&&S.mtab!=='lineups'&&S.mtab!=='players')?`<div class="lv-lt">${_h}</div>`:_h; if(vOpen){const nb=root.querySelector('.v-sb'); if(nb) nb.scrollTop=vTop;}}
     if(K) host.classList.add('k-sheet'); if(v==='d'||M) host.classList.add('dd-sheet');
     const oldPrev=host.querySelector('.k-prev'), wasOpen=host.classList.contains('open');
     host.innerHTML=v==='a'?sheetHTML():(M&&S.modal)?mModalHTML():(FREE&&S.sheet)?sheetDE():(FREE?host.innerHTML:'');
@@ -4473,8 +4499,8 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       case 'mSettle':S.modal={t:'settle',back:!!(S.modal&&S.modal.t==='slip')};break;
       case 'mElig':S.elig=d.el;S.bub=null;break;
       case 'mGs':S.gs=d.gs;break;
-      case 'pBackPick':{S.pcont=false;S.psel=[...S.squad];S.sheet=false;render();if(sc)sc.scrollTop=0;return;}
-      case 'pCont':{const a=S.psel||[]; if(a.length<MIN) return; S.squad=[...a]; S.targets=S.targets||[]; S.step='goals'; S.pcont=true; S.done=false; S.slip=false; S.adding=false; render(); if(sc) sc.scrollTop=0; return;}
+      case 'pBackPick':{S.pcont=false;S.psel=[...S.squad];S.sheet=false;render();if(sc&&!V)sc.scrollTop=0;return;}
+      case 'pCont':{const a=S.psel||[]; if(a.length<MIN) return; S.squad=[...a]; S.targets=S.targets||[]; S.step='goals'; S.pcont=true; S.done=false; S.slip=false; S.adding=false; render(); if(sc&&!V) sc.scrollTop=0; return;}
       case 'pPick':{if(O){const a=S.squad,i=a.indexOf(d.id); if(i>=0)a.splice(i,1); else{const r=reason(byId[d.id]); if(r&&r.k!=='in') return; if(a.length<MAX)a.push(d.id);} S.done=false; break;}
         const a=S.psel||(S.psel=[]),i=a.indexOf(d.id); if(i>=0)a.splice(i,1); else if(a.length<MAX)a.push(d.id); pSync(); return;}
       case 'pRemove':{const a=S.psel||[],i=a.indexOf(d.id); if(i>=0)a.splice(i,1); pSync(); return;}
@@ -4482,7 +4508,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       case 'qTeam':{S.qteam=S.qteam===d.t?null:d.t; const rw=root.querySelector('.q-rows'); if(!rw) break; root.querySelectorAll('.q-fl .q-ch').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.t===S.qteam))); rw.innerHTML=qRows(); return;}
       case 'qSort':{const c=d.c, cur=S.qsort; S.qsort=cur&&cur.id===c?{id:c,dir:cur.dir==='asc'?'desc':'asc'}:{id:c,dir:'asc'}; const rw=root.querySelector('.q-rows'); if(!rw) break; root.querySelectorAll('.q-hi').forEach(b=>{const on=b.dataset.c===c; b.className='q-hi'+(on?' on '+S.qsort.dir:'');}); rw.innerHTML=qRows(); return;}
       case 'pTeam':{S.pteam=S.pteam===d.t?'all':d.t;if(DD){const tl=root.querySelector('.p-tl'); if(!tl) break; root.querySelectorAll('.p-so [data-t]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.t===S.pteam))); const fp={}; tl.querySelectorAll('.p-t').forEach(e=>{const r=e.getBoundingClientRect(); fp[e.dataset.id]=[r.left,r.top];}); tl.innerHTML=pTiles(); if(!matchMedia('(prefers-reduced-motion: reduce)').matches) tl.querySelectorAll('.p-t').forEach(e=>{const o=fp[e.dataset.id]; if(!o) return; const r=e.getBoundingClientRect(), dx=o[0]-r.left, dy=o[1]-r.top; if(!dx&&!dy) return; e.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'none'}],{duration:450,easing:'cubic-bezier(.2,.8,.2,1)'});}); return;} const rw=root.querySelector('.q-rows,.r-rows'); if(!rw) break; root.querySelectorAll('.q-ch').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.t===S.pteam))); rw.innerHTML=R?rRows():qRows(); return;}
-      case 'pStat':{S.pstat=S.pstat===d.s?null:d.s; const tl=root.querySelector('.p-tl'); if(!tl) break; root.querySelectorAll('.p-so button[data-s]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.s===S.pstat))); const fp={}; tl.querySelectorAll('.p-t').forEach(e=>{const r=e.getBoundingClientRect(); fp[e.dataset.id]=[r.left,r.top];}); tl.innerHTML=pTiles(); if(!matchMedia('(prefers-reduced-motion: reduce)').matches) tl.querySelectorAll('.p-t').forEach(e=>{const o=fp[e.dataset.id]; if(!o) return; const r=e.getBoundingClientRect(), dx=o[0]-r.left, dy=o[1]-r.top; if(!dx&&!dy) return; e.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'none'}],{duration:450,easing:'cubic-bezier(.2,.8,.2,1)'});}); return;}
+      case 'pStat':{S.pstat=V?d.s:(S.pstat===d.s?null:d.s); const tl=root.querySelector('.p-tl'); if(!tl) break; root.querySelectorAll('.p-so button[data-s]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.s===S.pstat))); const fp={}; tl.querySelectorAll('.p-t').forEach(e=>{const r=e.getBoundingClientRect(); fp[e.dataset.id]=[r.left,r.top];}); tl.innerHTML=pTiles(); if(!matchMedia('(prefers-reduced-motion: reduce)').matches) tl.querySelectorAll('.p-t').forEach(e=>{const o=fp[e.dataset.id]; if(!o) return; const r=e.getBoundingClientRect(), dx=o[0]-r.left, dy=o[1]-r.top; if(!dx&&!dy) return; e.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'none'}],{duration:450,easing:'cubic-bezier(.2,.8,.2,1)'});}); return;}
       case 'mNOpen':S._evY=sc?sc.scrollTop:0;S.npage='sb';S.pcont=false;render();if(sc)sc.scrollTop=0;return;
       case 'mNBack':if(P&&S.pcont){S.pcont=false;S.sheet=false;S.psel=[...S.squad];render();if(sc)sc.scrollTop=0;return;}S.npage=null;S.sheet=false;render();if(sc)sc.scrollTop=S._evY||0;return;
       case 'mPk':{ if(S.comb==='none'){mToast("Squad Builder can't be combined with other selections");return;}
