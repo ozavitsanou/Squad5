@@ -3241,7 +3241,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #squad-x .vx-or b{font-family:var(--font-brand);font-weight:700;font-size:20px;line-height:24px;color:var(--sem-text-gray-emphasis,#151923)}
 #squad-x .vx-or small{font-family:var(--font-ui);font-weight:450;font-size:11px;line-height:14px;color:var(--sem-text-gray-strong,#2a3346)}
 #squad-x .vx-ln{max-width:100%;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-ui);font-weight:450;font-size:14px;line-height:20px;color:var(--sem-text-gray-strong,#2a3346)}
-#phone.lv #squad-x .p-t.vx-r{background:linear-gradient(90deg,color-mix(in srgb,var(--vm) 50%,#1b2233),#1b2233 23.77%)}
+#phone.lv #squad-x .p-t.vx-r{background:linear-gradient(90deg,color-mix(in srgb,var(--vm) 50%,#1b2233),#1b2233 23.77%)!important}
 #phone.lv #squad-x :is(.vx-nm b,.vx-or b){color:#f5f7fa}
 #phone.lv #squad-x :is(.vx-nm em,.vx-ln,.vx-cp,.vx-or small){color:#cfd9ed}
 
@@ -3257,6 +3257,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* Live: Set targets / Edit squad buttons use text/gray/inverted (dark on the light live button) */
 #phone.lv :is(#squad-v,#squad-x,#squad-w) :is(.pf-cta.on,.w-go,.w-ph .tiny){color:var(--sem-text-gray-inverted,#151923)}
+
+/* filters, avatars and summary docked at the bottom (3.1 / 3.2) */
+.m-pos{margin-top:8px}
+#phone.sb-bot:has(:is(#squad-x,#squad-v).active.n-sb) .bottom-nav{display:none}
+#phone.sb-bot:has(:is(#squad-x,#squad-v).active.n-sb) .k-chrome .k-nav{display:none}
+#phone.sb-bot:has(:is(#squad-x,#squad-v).active.n-sb) .k-fab{bottom:0}
+#phone.sb-bot :is(#squad-x,#squad-v) .p-pg{padding-bottom:calc(var(--v-sbh,0px) + var(--v-fab,0px) + 120px)}
+#phone.sb-bot :is(#squad-x,#squad-v) .p-sb{position:fixed;top:auto;left:0;right:0;bottom:var(--v-fab,0px);margin:0;z-index:30;border-radius:0 0 calc(44px - min(44px, var(--v-fab,0px) * 999)) calc(44px - min(44px, var(--v-fab,0px) * 999));box-sizing:border-box;padding:8px 8px 12px;background:var(--sem-bg-gray-emphasis-default,#151923);border-top:1px solid var(--sem-border-gray-emphasis,#151923);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+#phone.sb-bot :is(#squad-x,#squad-v) .p-so{position:fixed;left:0;right:0;bottom:calc(var(--v-fab,0px) + var(--v-sbh,0px));margin:0;gap:6px;padding:8px;z-index:30;box-sizing:border-box;background:var(--sem-bg-gray-emphasis-default,#151923);opacity:.9;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+#phone.sb-bot :is(#squad-x,#squad-v) .p-so button{box-sizing:border-box;height:24px;padding:4px 8px;border-radius:var(--sem-border-radius-8,8px);border:1px solid var(--sem-border-gray-strong,#8092b3);font-family:var(--font-ui);font-weight:550;font-size:12px;line-height:16px;color:var(--sem-text-gray-inverted,#fff);background:transparent}
+#phone.sb-bot :is(#squad-x,#squad-v) .p-so button[aria-pressed="true"]{background:var(--sem-bg-container-lowest,#fff);border-color:transparent;color:var(--sem-text-gray-emphasis,#151923)}
+#phone.sb-bot :is(#squad-x,#squad-v) .p-sb .u-pk{color:var(--sem-text-gray-inverted,#fff)}
+#phone.sb-bot :is(#squad-x,#squad-v) .p-sb .pf-cta.on{background:var(--sem-bg-gray-emphasis-active,#2a3046);color:var(--sem-text-gray-inverted,#fff)}
+#phone.lv.sb-bot :is(#squad-x,#squad-v) .p-sb .pf-cta.on{background:var(--sem-bg-gray-emphasis-active,#2a3046);color:#fff}
 </style>
 </head>
 <body>
@@ -3632,6 +3646,14 @@ window.lvoTick=function(){ const sc=document.querySelector('.screen.active'); if
 window.lvoToggle=function(on){ window.__lvoOn=on==null?!window.__lvoOn:!!on; clearInterval(window.__lvoT); window.__lvoT=null;
   if(window.__lvoOn){ window.__lvoT=setInterval(window.lvoTick,5000); window.lvoTick(); }
   document.querySelectorAll('.m-lvo').forEach(b=>b.setAttribute('aria-pressed',String(window.__lvoOn))); };
+/* Filters position: top (default) or docked at the bottom with the squad summary; the bottom nav is hidden and the dock sits above the betslip bar */
+window.__sbBot=false; let __sbEl=null, __sbRO=null;
+window.sbDock=function(){ const sb=document.querySelector('.screen.active .p-sb'); if(sb===__sbEl) return; if(__sbRO) __sbRO.disconnect(); __sbEl=sb;
+  const ph=document.getElementById('phone'); if(!sb){ ph.style.setProperty('--v-sbh','0px'); return; }
+  if(window.ResizeObserver){ __sbRO=new ResizeObserver(()=>ph.style.setProperty('--v-sbh',sb.offsetHeight+'px')); __sbRO.observe(sb); } else ph.style.setProperty('--v-sbh',sb.offsetHeight+'px'); };
+window.sbPos=function(bot){ window.__sbBot=!!bot; document.getElementById('phone').classList.toggle('sb-bot',!!bot);
+  document.querySelectorAll('.m-pos button').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.v==='bot')===!!bot))); window.sbDock(); };
+(function(){ let q=false; new MutationObserver(()=>{ if(q) return; q=true; requestAnimationFrame(()=>{ q=false; window.sbDock(); }); }).observe(document.getElementById('phone')||document.body,{childList:true,subtree:true}); })();
 window.setLive=function(on){ window.__LV=!!on; if(!on){ window.lvoToggle(false); window.__lvo={}; } const ph=document.getElementById('phone'); ph.classList.toggle('lv',!!on);
   if(on) for(const k of ['m','o']){const q=window.__squads&&window.__squads[k]; if(q) q.S.mtab='popular';}
   Object.values(window.__squads||{}).forEach(q=>q.render()); const sc=document.querySelector('.screen.active'); if(sc) sc.scrollTop=0; };
@@ -4045,6 +4067,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     return `<div class="m-sh"><b>Prototype controls</b><span>Squad Builder · ${V?'3':U?'H':T?'F':R?'G':Q?'E':P?'D':N?'B':O?'C':'A'} — not part of the product UI</span></div>
       <label class="m-allv"><input type="checkbox" data-allv${allV?' checked':''}><span>Show all versions<small>A, B, E, F, G and H in the sidebar</small></span></label>
       <div class="m-live" role="group" aria-label="Event state"><button data-act="mLive" data-v="pre" aria-pressed="${!window.__LV}">Pre event</button><button data-act="mLive" data-v="live" aria-pressed="${!!window.__LV}">Live event</button></div>
+      ${(V&&!W)?`<div class="m-live m-pos" role="group" aria-label="Filters position"><button data-act="mPos" data-v="top" aria-pressed="${!window.__sbBot}">Filters top</button><button data-act="mPos" data-v="bot" aria-pressed="${!!window.__sbBot}">Filters bottom</button></div>`:''}
       ${(window.__LV&&V&&!W)?`<button class="m-lvo" data-act="mLvo" aria-pressed="${!!window.__lvoOn}">⚡️Live odds change</button>`:''}
       ${sec('demo','Scenarios','One click sets up a whole situation')}
       <div class="k-chips m-scn">${SCN.map(([k,l])=>`<button class="k-chip" data-act="mScn" data-sc="${k}" aria-pressed="${S.scn===k}">${S.scn===k?KI('chipCheck',16,16):''}${l}</button>`).join('')}</div>
@@ -4983,6 +5006,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       case 'gTog':S.gcol=S.gcol||{};S.gcol[d.id]=!S.gcol[d.id];break;
       case 'mLive':window.setLive(d.v==='live');return;
       case 'mLvo':window.lvoToggle();return;
+      case 'mPos':window.sbPos(d.v==='bot');return;
       case 'tRm':glFlip();S.targets=S.targets.filter(t=>t.id!==d.id);S.done=false;if(M&&S.modal&&S.modal.t==='slip'&&!S.targets.length){S.modal=null;S.slip=false;}break;
       case 'tStep':{const t=tgt(d.id);t.line=Math.min(maxL(t.id),Math.max(M?LR(t.id).min:1,t.line+(+d.d)*stp(t.id)));break;}
       case 'tSet':tgt(d.id).line=+d.val;break;
