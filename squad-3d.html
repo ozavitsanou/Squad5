@@ -2939,46 +2939,86 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* ===== Squad Builder 3 · new player card (Figma 6481-93589) =====
    layers: container/lowest/default, team-colour gradient (bottom to top, transparent at the top), brand graphic on top of both;
    name, position, jersey and number keep their positions; odds + last 5 sit on a blurred panel */
-#phone #squad-v .p-t.v-t,#phone #squad-w .p-t.v-t{height:230px;border-radius:12px;background:var(--sem-bg-container-lowest,#fcfcfd)}
-#phone #squad-v .p-t.v-t:not(.p-on),#phone #squad-w .p-t.v-t:not(.p-on){border-color:var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.2))}
-#squad-v .v-t .v-gr,#squad-w .v-t .v-gr{position:absolute;inset:0;z-index:0;border-radius:11px;background:linear-gradient(0deg,var(--vg,#37a25c) 0%,var(--sem-bg-transparent-low-none,rgba(184,197,224,0)) 100%);pointer-events:none}
-#squad-v .v-t .v-vec,#squad-w .v-t .v-vec{position:absolute;left:-.29%;top:0;width:100.58%;height:100%;z-index:1;display:block;pointer-events:none}
-#squad-v .v-t .p-hd,#squad-v .v-t .p-j,#squad-v .v-t .p-nu,#squad-w .v-t .p-hd,#squad-w .v-t .p-j,#squad-w .v-t .p-nu{z-index:2}
-#squad-v .v-t .p-j,#squad-w .v-t .p-j{position:absolute;left:50%;transform:translateX(-50%);top:34px}
-#phone #squad-v .v-t .p-nu,#phone #squad-w .v-t .p-nu{color:#fff}
-#squad-v .v-t .v-gl,#squad-w .v-t .v-gl{position:absolute;left:-1px;right:-1px;bottom:-1px;z-index:3;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 12px 12px;border-radius:12px;background:var(--sem-overlay-gray-soft-medium,rgba(239,239,250,.4));-webkit-backdrop-filter:blur(3.6px);backdrop-filter:blur(3.6px);overflow:hidden}
-#squad-v .v-t .v-od,#squad-w .v-t .v-od{font-family:var(--font-brand);font-weight:700;font-size:20px;line-height:24px;color:var(--sem-text-gray-emphasis,#151923)}
-#squad-v .v-t .v-ln,#squad-w .v-t .v-ln{margin-top:-4px;font-family:var(--font-ui);font-weight:450;font-size:11px;line-height:14px;color:var(--sem-text-gray-emphasis,#151923);white-space:nowrap}
-#squad-v .v-t .v-l5,#squad-w .v-t .v-l5{display:flex;gap:2px;align-items:center}
-#squad-v .v-t .v-m,#squad-w .v-t .v-m{box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:3px 6px;border-radius:2px;background:var(--sem-overlay-gray-soft-medium,rgba(239,239,250,.4));font-family:var(--font-ui);font-weight:550;font-size:11px;line-height:14px;color:var(--sem-text-gray-emphasis,#151923)}
-#squad-v .v-t .v-m.last,#squad-w .v-t .v-m.last{border-bottom:2px solid var(--sem-border-absolute-black,#151923);padding-bottom:1px}
+#phone #squad-v .p-t.v-t{height:230px;border-radius:12px;background:var(--sem-bg-container-lowest,#fcfcfd)}
+#phone #squad-v .p-t.v-t:not(.p-on){border-color:var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.2))}
+#squad-v .v-t .v-gr{position:absolute;inset:0;z-index:0;border-radius:11px;background:linear-gradient(0deg,var(--vg,#37a25c) 0%,var(--sem-bg-transparent-low-none,rgba(184,197,224,0)) 100%);pointer-events:none}
+#squad-v .v-t .v-vec{position:absolute;left:-.29%;top:0;width:100.58%;height:100%;z-index:1;display:block;pointer-events:none}
+#squad-v .v-t .p-hd,#squad-v .v-t .p-j,#squad-v .v-t .p-nu{z-index:2}
+#squad-v .v-t .p-j{position:absolute;left:50%;transform:translateX(-50%);top:34px}
+#phone #squad-v .v-t .p-nu{color:#fff}
+#squad-v .v-t .v-gl{position:absolute;left:-1px;right:-1px;bottom:-1px;z-index:3;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 12px 12px;border-radius:12px;background:var(--sem-overlay-gray-soft-medium,rgba(239,239,250,.4));-webkit-backdrop-filter:blur(3.6px);backdrop-filter:blur(3.6px);overflow:hidden}
+#squad-v .v-t .v-od{font-family:var(--font-brand);font-weight:700;font-size:20px;line-height:24px;color:var(--sem-text-gray-emphasis,#151923)}
+#squad-v .v-t .v-ln{margin-top:-4px;font-family:var(--font-ui);font-weight:450;font-size:11px;line-height:14px;color:var(--sem-text-gray-emphasis,#151923);white-space:nowrap}
+#squad-v .v-t .v-l5{display:flex;gap:2px;align-items:center}
+#squad-v .v-t .v-m{box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:3px 6px;border-radius:2px;background:var(--sem-overlay-gray-soft-medium,rgba(239,239,250,.4));font-family:var(--font-ui);font-weight:550;font-size:11px;line-height:14px;color:var(--sem-text-gray-emphasis,#151923)}
+#squad-v .v-t .v-m.last{border-bottom:2px solid var(--sem-border-absolute-black,#151923);padding-bottom:1px}
 /* live (dark) */
 /* selected: one border only (the generic card adds a second inset ring) */
-#phone #squad-v .p-t.v-t.p-on::after,#phone #squad-w .p-t.v-t.p-on::after{display:none}
-#phone.lv #squad-v .p-t.v-t,#phone.lv #squad-w .p-t.v-t{background:var(--sem-bg-container-lowest,#212536)!important}
-#phone.lv #squad-v .p-t.v-t:not(.p-on),#phone.lv #squad-w .p-t.v-t:not(.p-on){border-color:var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.2))}
-#phone.lv #squad-v .v-t .v-gl,#phone.lv #squad-w .v-t .v-gl{background:rgba(9,13,21,.45)}
-#phone.lv #squad-v .v-t .v-m,#phone.lv #squad-w .v-t .v-m{background:rgba(239,239,250,.16)}
-#phone.lv #squad-v .v-t .v-m.last,#phone.lv #squad-w .v-t .v-m.last{border-bottom-color:#f5f7fa}
-#phone.lv #squad-v .v-t :is(.v-od,.v-ln,.v-m),#phone.lv #squad-w .v-t :is(.v-od,.v-ln,.v-m){color:#f5f7fa}
+#phone #squad-v .p-t.v-t.p-on::after{display:none}
+#phone.lv #squad-v .p-t.v-t{background:var(--sem-bg-container-lowest,#212536)!important}
+#phone.lv #squad-v .p-t.v-t:not(.p-on){border-color:var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.2))}
+#phone.lv #squad-v .v-t .v-gl{background:rgba(9,13,21,.45)}
+#phone.lv #squad-v .v-t .v-m{background:rgba(239,239,250,.16)}
+#phone.lv #squad-v .v-t .v-m.last{border-bottom-color:#f5f7fa}
+#phone.lv #squad-v .v-t :is(.v-od,.v-ln,.v-m){color:#f5f7fa}
 
 /* ===== Squad Builder 3 · targets as a bottom sheet over the player picker ===== */
-#squad-v .v-sc,#squad-w .v-sc{position:fixed;inset:0;z-index:60;background:rgba(9,13,21,.45)}
-#squad-v .v-sc.v-new,#squad-w .v-sc.v-new{animation:vScrim .2s ease both}
-#squad-v .v-sh,#squad-w .v-sh{position:fixed;left:0;right:0;bottom:calc(65px + var(--v-fab,0px));z-index:61;height:min(62%,calc(100% - 161px - var(--v-fab,0px)));display:flex;flex-direction:column;border-radius:20px 20px 0 0;background:var(--bg-layout,#eef1f9);box-shadow:0 -8px 24px rgba(9,13,21,.2)}
-#squad-v .v-sh.v-new,#squad-w .v-sh.v-new{animation:vSheet .28s cubic-bezier(.2,.8,.2,1) both}
-#squad-v .v-gb,#squad-w .v-gb{flex:none;align-self:center;width:36px;height:4px;margin:8px 0 4px;border-radius:2px;background:rgba(82,103,137,.4)}
-#squad-v .v-sb,#squad-w .v-sb{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-bottom:16px}
-#phone.lv #squad-v .v-sh,#phone.lv #squad-w .v-sh{background:#151923}
-/* Golden Sub stays on the left and touches the edge of the frame */
-#squad-v .v-sh .p-tg,#squad-w .v-sh .p-tg{margin-left:-25px}
-#squad-v .v-sh .p-top,#squad-w .v-sh .p-top{overflow:visible}
-#squad-v .v-sb,#squad-w .v-sb{overflow-x:hidden}
-#squad-v .v-sb,#squad-w .v-sb{scrollbar-width:none}
-#squad-v .v-sb::-webkit-scrollbar,#squad-w .v-sb::-webkit-scrollbar{display:none}
+#squad-v .v-sc{position:fixed;inset:0;z-index:60;background:rgba(9,13,21,.45)}
+#squad-v .v-sc.v-new{animation:vScrim .2s ease both}
+#squad-v .v-sh{position:fixed;left:0;right:0;bottom:calc(65px + var(--v-fab,0px));z-index:61;height:min(62%,calc(100% - 161px - var(--v-fab,0px)));display:flex;flex-direction:column;border-radius:20px 20px 0 0;background:var(--bg-layout,#eef1f9);box-shadow:0 -8px 24px rgba(9,13,21,.2)}
+#squad-v .v-sh.v-new{animation:vSheet .28s cubic-bezier(.2,.8,.2,1) both}
+#squad-v .v-gb{flex:none;align-self:center;width:36px;height:4px;margin:8px 0 4px;border-radius:2px;background:rgba(82,103,137,.4)}
+#squad-v .v-sb{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-bottom:16px}
+#phone.lv #squad-v .v-sh{background:#151923}
+/* Golden Sub: icon only (arrows, no wording), a secondary element next to Edit rather than a title */
+#squad-v .v-sh .p-tc{justify-content:flex-end;gap:8px}
+#squad-v .v-sh .p-tg{display:flex;align-items:center;margin:0}
+#squad-v .v-sh .p-tg .m-gsp{width:24px;height:24px}
+#squad-v .v-sh .p-tg .m-gsp img{width:24px;height:24px}
+#squad-v .v-sh .p-top{overflow:visible}
+#squad-v .v-sb{overflow-x:hidden}
+#squad-v .v-sb{scrollbar-width:none}
+#squad-v .v-sb::-webkit-scrollbar{display:none}
 @keyframes vSheet{from{transform:translateY(100%)}to{transform:none}}
 @keyframes vScrim{from{opacity:0}to{opacity:1}}
-@media (prefers-reduced-motion:reduce){#squad-v .v-sh.v-new,#squad-v .v-sc.v-new,#squad-w .v-sh.v-new,#squad-w .v-sc.v-new{animation:none}}
+@media (prefers-reduced-motion:reduce){#squad-v .v-sh.v-new,#squad-v .v-sc.v-new{animation:none}}
+
+/* 3 · players with their stats under each set target */
+#squad-v .v-pl{flex:0 0 100%;display:flex;flex-direction:column;gap:6px;margin-top:4px;padding-top:10px;border-top:1px solid var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.4))}
+#squad-v .v-pr{display:flex;align-items:center;gap:8px;min-height:28px}
+#squad-v .v-pj{flex:none;width:24px;height:24px;display:flex}
+#squad-v .v-pj img{width:24px;height:24px;object-fit:contain}
+#squad-v .v-pr>b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-ui);font-weight:550;font-size:12px;line-height:16px;color:var(--sem-text-gray-emphasis,#151923)}
+#squad-v .v-pn{flex:none;font-family:var(--font-ui);font-weight:450;font-size:11px;line-height:14px;color:var(--sem-text-gray-subtle,#526789)}
+#squad-v .v-po{flex:none;min-width:34px;text-align:right;font-style:normal;font-family:var(--font-brand);font-weight:700;font-size:16px;line-height:20px;color:var(--sem-text-gray-emphasis,#151923)}
+#squad-v .v-l5s .v-m{padding:2px 5px;font-size:10px;line-height:12px;background:var(--sem-overlay-gray-soft-medium,rgba(239,239,250,.7))}
+#squad-v .v-pr.na>b{flex:1}
+#phone.lv #squad-v .v-pr>b,#phone.lv #squad-v .v-po{color:#f5f7fa}
+
+/* 3 · odds read as odds (selection-button look), market wording, "Last 5 · league" caption */
+#squad-v .v-t .v-ln{margin-top:0;font-weight:550}
+#squad-v .v-t .v-l5c{font-family:var(--font-ui);font-weight:450;font-size:10px;line-height:12px;color:var(--sem-text-gray-subtle,#526789);margin-top:2px;white-space:nowrap}
+#squad-v .v-t .v-gl{gap:2px;padding:8px 12px 10px}
+#squad-v .v-t .v-m{padding:2px 6px}
+#squad-v .v-pt{flex:1;min-width:0;display:flex;flex-direction:column}
+#squad-v .v-pt b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-ui);font-weight:550;font-size:12px;line-height:16px;color:var(--sem-text-gray-emphasis,#151923)}
+#squad-v .v-pt i{font-style:normal;font-family:var(--font-ui);font-weight:450;font-size:10px;line-height:12px;color:var(--sem-text-gray-subtle,#526789)}
+#phone.lv #squad-v .v-t .v-l5c,#phone.lv #squad-v .v-pt i{color:#cfd9ed}
+#phone.lv #squad-v .v-pt b{color:#f5f7fa}
+
+/* 3 · odds back to plain bold text (not clickable-looking); in the target rows they carry the word "Odds" */
+#squad-v .v-po{flex:none;display:inline-flex;align-items:baseline;gap:4px;font-style:normal;font-family:var(--font-brand);font-weight:700;font-size:16px;line-height:20px;color:var(--sem-text-gray-emphasis,#151923)}
+#squad-v .v-po small{font-family:var(--font-ui);font-weight:450;font-size:10px;line-height:12px;color:var(--sem-text-gray-subtle,#526789)}
+#phone.lv #squad-v .v-po{color:#f5f7fa}
+#phone.lv #squad-v .v-po small{color:#cfd9ed}
+/* Golden Sub icon sits next to "My squad" */
+#squad-v .v-pkw{display:flex;align-items:center;gap:6px}
+#squad-v .v-pkw .m-gsp{width:24px;height:24px;margin:0;padding:0;line-height:0;background:none;border:0;display:grid;place-items:center}
+#squad-v .v-pkw .m-gsp img{width:24px;height:24px}
+
+/* 3 · a Reset on every set target (back to its default line); the all-targets Reset is gone */
+#squad-v .gl-r .v-rs{height:24px;padding:0 10px;align-self:flex-start;font-size:11px;line-height:16px}
+#squad-v .gl-r .v-rs:disabled{opacity:.4}
 /* ===== 4 · 3D pitch above the player cards, targets in the same page ===== */
 #squad-w .w-pg{padding:0 0 8px}
 #squad-w .w-pit{position:sticky;top:0;z-index:6;background:#eff2fa;padding:0 8px 6px;box-shadow:0 8px 12px -10px rgba(21,25,35,.25)}
@@ -3335,6 +3375,7 @@ const LIVMAP={j29:['Alisson',1],j4:['Konaté',5],j3:['Van Dijk',4],j27:['Roberts
 const PLL=PL.map(p=>LIVMAP[p.id]?{...p,name:LIVMAP[p.id][0],num:LIVMAP[p.id][1]}:p);
 const byIdL=Object.fromEntries(PLL.map(p=>[p.id,p]));
 SUBS.forEach(p=>byIdL[p.id]=LIVMAP[p.id]?{...p,name:LIVMAP[p.id][0],num:LIVMAP[p.id][1]}:p);
+const INLV={tg_minus:'data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBvdmVyZmxvdz0idmlzaWJsZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiB2aWV3Qm94PSIwIDAgMTQgMTQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGlkPSJpY29uIC8gaW50ZXJmYWNlIC8gbWludXMiPgo8cGF0aCBpZD0iSWNvbiIgZD0iTTExLjA4MzMgNy41ODMzM0gyLjkxNjY3QzIuNTk0NjcgNy41ODMzMyAyLjMzMzMzIDcuMzIyNTggMi4zMzMzMyA3QzIuMzMzMzMgNi42Nzc0MiAyLjU5NDY3IDYuNDE2NjcgMi45MTY2NyA2LjQxNjY3SDExLjA4MzNDMTEuNDA1OSA2LjQxNjY3IDExLjY2NjcgNi42Nzc0MiAxMS42NjY3IDdDMTEuNjY2NyA3LjMyMjU4IDExLjQwNTkgNy41ODMzMyAxMS4wODMzIDcuNTgzMzNaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iIzE1MTkyMyIvPgo8L2c+Cjwvc3ZnPgo=',tg_plus:'data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBvdmVyZmxvdz0idmlzaWJsZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiB2aWV3Qm94PSIwIDAgMTQgMTQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGlkPSJpY29uIC8gaW50ZXJmYWNlIC8gcGx1cyI+CjxwYXRoIGlkPSJJY29uIiBkPSJNMTEuMDgzMyA2LjQxNjY3SDcuNTgzMzNWMi45MTY2N0M3LjU4MzMzIDIuNTk0MDggNy4zMjIgMi4zMzMzMyA3IDIuMzMzMzNDNi42NzggMi4zMzMzMyA2LjQxNjY3IDIuNTk0MDggNi40MTY2NyAyLjkxNjY3VjYuNDE2NjdIMi45MTY2N0MyLjU5NDY3IDYuNDE2NjcgMi4zMzMzMyA2LjY3NzQyIDIuMzMzMzMgN0MyLjMzMzMzIDcuMzIyNTggMi41OTQ2NyA3LjU4MzMzIDIuOTE2NjcgNy41ODMzM0g2LjQxNjY3VjExLjA4MzNDNi40MTY2NyAxMS40MDU5IDYuNjc4IDExLjY2NjcgNyAxMS42NjY3QzcuMzIyIDExLjY2NjcgNy41ODMzMyAxMS40MDU5IDcuNTgzMzMgMTEuMDgzM1Y3LjU4MzMzSDExLjA4MzNDMTEuNDA1MyA3LjU4MzMzIDExLjY2NjcgNy4zMjI1OCAxMS42NjY3IDdDMTEuNjY2NyA2LjY3NzQyIDExLjQwNTMgNi40MTY2NyAxMS4wODMzIDYuNDE2NjciIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBmaWxsPSIjMTUxOTIzIi8+CjwvZz4KPC9zdmc+Cg==',tg_trash:'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNy4zODgzNiA2LjcxNTY0VjEwLjk5N0M3LjM4ODM2IDExLjg5NCA2LjA0Mjc5IDExLjg5NCA2LjA0Mjc5IDEwLjk5N1Y2LjcxNTY0QzYuMDQyNzkgNS44MTg1OSA3LjM4ODM2IDUuODE4NTkgNy4zODgzNiA2LjcxNTY0WiIgZmlsbD0iI0ZGRkZGRiIvPjxwYXRoIGQ9Ik05Ljk1NzE3IDEwLjk5N1Y2LjcxNTY0QzkuOTU3MTcgNS44MTg1OSA4LjYxMTYgNS44MTg1OSA4LjYxMTYgNi43MTU2NFYxMC45OTdDOC42MTE2IDExLjg5NCA5Ljk1NzE3IDExLjg5NCA5Ljk1NzE3IDEwLjk5N1oiIGZpbGw9IiNGRkZGRkYiLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjgxMzQgMi44NjI0M0MxMC44MTM0IDIuMDE3OTUgMTAuMTI4OSAxLjMzMzM3IDkuMjg0MzggMS4zMzMzN0g2LjcxNTU4QzUuODcxMSAxLjMzMzM3IDUuMTg2NTIgMi4wMTc5NSA1LjE4NjUyIDIuODYyNDNWMy4wNDU5MUgyLjAwNjFDMS42MzQ1MyAzLjA0NTkxIDEuMzMzMzEgMy4zNDcxMyAxLjMzMzMxIDMuNzE4N0MxLjMzMzMxIDQuMDkwMjYgMS42MzQ1MyA0LjM5MTQ4IDIuMDA2MSA0LjM5MTQ4SDIuNjcxNDdMMy40MTEyNCAxMy4yNjQzQzMuNDc2OTcgMTQuMDU2OSA0LjEzOTY1IDE0LjY2NjggNC45MzUxNyAxNC42NjY3SDExLjA2NTRDMTEuODYwOCAxNC42NjY4IDEyLjUyMzUgMTQuMDU2OSAxMi41ODkzIDEzLjI2NDJMMTMuMzI4NSA0LjM5MTQ4SDEzLjk5MzlDMTQuMzY1NCA0LjM5MTQ4IDE0LjY2NjYgNC4wOTAyNiAxNC42NjY2IDMuNzE4N0MxNC42NjY2IDMuMzQ3MTMgMTQuMzY1NCAzLjA0NTkxIDEzLjk5MzkgMy4wNDU5MUgxMC44MTM0VjIuODYyNDNaTTkuNDY3ODcgMy4wNDU5MVYyLjg2MjQzQzkuNDY3ODcgMi43NjEwOSA5LjM4NTcyIDIuNjc4OTQgOS4yODQzOCAyLjY3ODk0SDYuNzE1NThDNi42MTQyNCAyLjY3ODk0IDYuNTMyMDkgMi43NjEwOSA2LjUzMjA5IDIuODYyNDNWMy4wNDU5MUg5LjQ2Nzg3Wk0xMS45NzgzIDQuMzkxNDhINC4wMjE3MUw0Ljc1MjE3IDEzLjE1MjhDNC43NjAwNiAxMy4yNDggNC44Mzk1OCAxMy4zMjExIDQuOTM1MTEgMTMuMzIxMUgxMS4wNjU1QzExLjE2MDkgMTMuMzIxMSAxMS4yNDA1IDEzLjI0OCAxMS4yNDg0IDEzLjE1MjhMMTEuOTc4MyA0LjM5MTQ4WiIgZmlsbD0iI0ZGRkZGRiIvPjwvc3ZnPgo=',tg_add:'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMi42NjY2IDcuMzMzMjlIOC42NjY2M1YzLjMzMzI5QzguNjY2NjMgMi45NjQ2MyA4LjM2Nzk2IDIuNjY2NjMgNy45OTk5NiAyLjY2NjYzQzcuNjMxOTYgMi42NjY2MyA3LjMzMzI5IDIuOTY0NjMgNy4zMzMyOSAzLjMzMzI5VjcuMzMzMjlIMy4zMzMyOUMyLjk2NTI5IDcuMzMzMjkgMi42NjY2MyA3LjYzMTI5IDIuNjY2NjMgNy45OTk5NkMyLjY2NjYzIDguMzY4NjMgMi45NjUyOSA4LjY2NjYzIDMuMzMzMjkgOC42NjY2M0g3LjMzMzI5VjEyLjY2NjZDNy4zMzMyOSAxMy4wMzUzIDcuNjMxOTYgMTMuMzMzMyA3Ljk5OTk2IDEzLjMzMzNDOC4zNjc5NiAxMy4zMzMzIDguNjY2NjMgMTMuMDM1MyA4LjY2NjYzIDEyLjY2NjZWOC42NjY2M0gxMi42NjY2QzEzLjAzNDYgOC42NjY2MyAxMy4zMzMzIDguMzY4NjMgMTMuMzMzMyA3Ljk5OTk2QzEzLjMzMzMgNy42MzEyOSAxMy4wMzQ2IDcuMzMzMjkgMTIuNjY2NiA3LjMzMzI5WiIgZmlsbD0iI0ZGRkZGRiIvPgo8L3N2Zz4K'}; /* 3: target control icons embedded so they never depend on a separate file */
 const LVA={jerseyJuve:'jerseyLiverpool',logoAway:'logoLiverpool'};
 const LVN=Object.values(LIVMAP).length?Object.fromEntries(Object.entries(LIVMAP).map(([id,[n]])=>[(PL.concat(SUBS).find(p=>p.id===id)||{}).name,n])):{};
 const LVX=s=>{s=s.replace(/assets\/sbd\/(jerseyJuve|logoAway)\.png/g,(m,n)=>'assets/sbd/'+LVA[n]+'.png').replace(/Juventus FC/g,'Liverpool FC').replace(/Juventus/g,'Liverpool').replace(/\bJuve\b/g,'Liverpool').replace(/\bJUV\b/g,'LIV').replace(/Picks\s+\(/g,'My squad (');
@@ -3477,7 +3518,7 @@ function bumpSlip(msg='Your squad was added to the Betslip'){
   const t=document.createElement('div');t.className='d-toast';t.setAttribute('role','status');if(ph.classList.contains('kds')){t.innerHTML='<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M17.5 9.31V10a7.5 7.5 0 1 1-4.45-6.86" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="m17.5 4-7.5 7.51-2.25-2.25" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="tl">'+msg+'</span><button class="tx" aria-label="Dismiss"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="m3 3 6 6M9 3 3 9" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg></button>';t.querySelector('.tx').onclick=()=>t.remove();}else t.textContent=msg;ph.appendChild(t);setTimeout(()=>t.remove(),3200);
 }
 function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
-  const V=v==='v'||v==='w', W=v==='w', PV=v==='p'||V, PL=V?PLL:_PL, byId=V?byIdL:_byId, TEAMS=V?TEAMSL:_TEAMS, KI=V?(n,w,h,e,a)=>_KI(LVA[n]||n,w,h,e,a):_KI;
+  const V=v==='v'||v==='w', W=v==='w', PV=v==='p'||V, PL=V?PLL:_PL, byId=V?byIdL:_byId, TEAMS=V?TEAMSL:_TEAMS, KI=V?(n,w,h,e,a)=>INLV[n]?`<img src="${INLV[n]}" width="${w}" height="${h}" alt="${a||''}" ${a?'':'aria-hidden="true"'} draggable="false">`:_KI(LVA[n]||n,w,h,e,a):_KI;
   const LVT=V?LVX:(x=>x);
   if(V){ const d=Object.getOwnPropertyDescriptor(Element.prototype,'innerHTML'); [root,host].forEach(el=>Object.defineProperty(el,'innerHTML',{configurable:true,get(){return d.get.call(this);},set(x){d.set.call(this,LVX(x));}})); }
   const U=v==='u', T=v==='s', R=v==='r', Q=v==='q'||R, P=PV||Q||T||U, N=v==='n'||P, O=v==='o', M=v==='m'||N||O, FREE=v==='d'||v==='e'||v==='f'||v==='g'||v==='h'||v==='i'||v==='j'||M, K=v==='d'||v==='f'||v==='g'||v==='h'||v==='i'||v==='j'||M, F=v==='f'||v==='g', G=v==='g', H=v==='h', DV=v==='d'||M;
@@ -3715,12 +3756,21 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
   // FLIP: remember each tile's position before the re-render, then slide every tile from its old spot to its new one
   const glFlip=()=>{const pos={}; root.querySelectorAll('.gl-r[data-id]').forEach(el=>{pos[el.dataset.id]=el.getBoundingClientRect().top;}); if(!Object.keys(pos).length||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     queueMicrotask(()=>root.querySelectorAll('.gl-r[data-id]').forEach(el=>{const y=pos[el.dataset.id]; if(y==null) return; const dy=y-el.getBoundingClientRect().top; if(Math.abs(dy)<1) return; el.style.position='relative'; el.style.zIndex=el.classList.contains('set')?'2':'1'; el.animate([{transform:`translateY(${dy}px)`},{transform:'none'}],{duration:420,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>{el.style.zIndex='';el.style.position='';};}));};
+  /* 3: market wording as in the markets (Assists 2+, Shots On Target 2+, Goalscorer Anytime, To receive a card), odds and last 5 per player and stat.
+     Live (mock): goals read Score 2+ goals / Score Hat-Trick once a player has scored */
+  const vMk=(p,id)=>{const r=pv(p,id); if(r==null) return null; const h=[...(p.id+id)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7); let L=Math.max(1,Math.round(r)), lb=`${({goals:'Goals',shots:'Shots',sot:'Shots On Target',assists:'Assists',tackles:'Tackles',cards:'Cards'})[id]||stat(id).name} ${L}+`;
+    if(id==='goals'){const sc=window.__LV?(h%5===0?1:h%5===1?2:0):0; L=sc+1; lb=sc===0?'Goalscorer Anytime':sc===1?'Score 2+ goals':'Score Hat-Trick';}
+    else if(id==='cards'){L=1; lb='To receive a card';}
+    return {L,lb,od:fo(pOdds(p,id,L)),l5:[0,1,2,3,4].map(i=>Math.max(0,Math.round(r*(.3+(((h>>>(i*3))%9)/5)))))};};
   const glSection=()=>{const k=S.targets.length;
-    return `<section class="d-sec d-goals"><div class="gl-card"><div class="gl-top"><b>Set squad targets</b><span class="gl-cnt">${k} Target${k!==1?'s':''}</span><button class="gl-rst" data-act="gReset" ${k?'':'disabled'}>Reset</button></div>
+    return `<section class="d-sec d-goals"><div class="gl-card"><div class="gl-top"><b>Set squad targets</b><span class="gl-cnt">${k} Target${k!==1?'s':''}</span>${V&&!W?'':`<button class="gl-rst" data-act="gReset" ${k?'':'disabled'}>Reset</button>`}</div>
     <div class="gl-ls">${glOrder().map(id=>{const t=tgt(id), na=naFor(id), ln=glLine(id), mn=LR(id).min, mx=maxL(id), nm=stat(id).name;
-      const tx=`<div class="gl-tx"><b>${nm}</b><span>${W?'':'Median '+mdn(id)+' · '}avg ${fmtV(exp(id))}/game</span></div>`;
+      const tx=V&&!W?`<div class="gl-tx"><b>${nm}</b></div>`:`<div class="gl-tx"><b>${nm}</b><span>${W?'':'Median '+mdn(id)+' · '}avg ${fmtV(exp(id))}/game</span></div>`;
+      /* 3: under each set target, the squad players with their stat, odds and last 5 */
+      const vPl=(V&&!W&&t)?`<div class="v-pl">${S.squad.map(pid=>{const p=byId[pid], m=vMk(p,id), jr=`<span class="v-pj">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',24,24,'png')}</span>`; if(!m) return `<div class="v-pr na">${jr}<span class="v-pt"><b>${p.name}</b><i>Not available</i></span></div>`;
+        return `<div class="v-pr">${jr}<span class="v-pt"><b>${p.name}</b><i>${m.lb}</i></span><em class="v-po" aria-label="Odds ${m.od}"><small>Odds</small>${m.od}</em><span class="v-l5 v-l5s" aria-label="Last 5 matches">${m.l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span></div>`;}).join('')}</div>`:'';
       const sw=na.length?`<div class="gl-sw">${na.map(p=>`<button class="gl-swb" data-act="mSwap" data-id="${p.id}" data-g="${id}" aria-label="Swap ${p.name} to unlock ${nm}">${KI('tg_swap',20,20)}<span>Swap ${p.name}</span></button>`).join('')}</div>`:'';
-      if(t) return `<div class="gl-r set" data-id="${id}">${tx}<div class="gl-c"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="-1" ${ln<=mn?'disabled':''} aria-label="Decrease ${nm}">${KI('tg_minus',14,14)}</button><input class="gl-in" data-id="${id}" type="text" inputmode="none" readonly autocomplete="off" value="${ln}" aria-label="${nm} line (${mn} to ${mx})"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="1" ${ln>=mx?'disabled':''} aria-label="Increase ${nm}">${KI('tg_plus',14,14)}</button></div><button class="gl-x" data-act="tRm" data-id="${id}" aria-label="Remove ${nm} target">${KI('tg_trash',14,14)}</button>${sw}</div>`;
+      if(t) return `<div class="gl-r set" data-id="${id}">${V&&!W?`<div class="gl-tx"><b>${nm}</b><button class="gl-rst v-rs" data-act="gResetOne" data-id="${id}" ${ln===mdn(id)?'disabled':''} aria-label="Reset ${nm} to the default">Reset</button></div>`:tx}<div class="gl-c"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="-1" ${ln<=mn?'disabled':''} aria-label="Decrease ${nm}">${KI('tg_minus',14,14)}</button><input class="gl-in" data-id="${id}" type="text" inputmode="none" readonly autocomplete="off" value="${ln}" aria-label="${nm} line (${mn} to ${mx})"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="1" ${ln>=mx?'disabled':''} aria-label="Increase ${nm}">${KI('tg_plus',14,14)}</button></div><button class="gl-x" data-act="tRm" data-id="${id}" aria-label="Remove ${nm} target">${KI('tg_trash',14,14)}</button>${sw}${vPl}</div>`;
       if(na.length) return `<div class="gl-r na" data-id="${id}">${tx}${sw}</div>`;
       return `<div class="gl-r gl-tap" data-act="gAdd" data-id="${id}" role="button" tabindex="0" aria-label="Add ${nm} target">${tx}<span class="gl-x" aria-hidden="true">${KI('tg_add',14,14)}</span></div>`;}).join('')}</div></div></section>`;};
   const pGoal=t=>{const id=t.id, mx=sMax(id), mn=LR(id).min; t.line=Math.min(mx,Math.max(mn,t.line)); const st=stp(id)>1?stp(id):1, n=Math.max(2,Math.round((mx-mn)/st)+1), i=Math.min(n-1,Math.max(0,Math.round((t.line-mn)/st))), open=true, warn=false; // targets always open (no collapse)
@@ -3919,7 +3969,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
  <text x="22" y="92" font-family="Ubuntu,Arial" font-size="8" fill="#60739f">Shots 7+ · Squad total</text><rect x="130" y="82" width="56" height="16" rx="8" fill="#ff3c00"/><text x="158" y="93" text-anchor="middle" font-family="Ubuntu,Arial" font-size="8.5" font-weight="700" fill="#fff">Bet now</text></svg>`];
 
   const OBT=[['Build your squad','Pick 3–5 players from either team. Any positions work.'],['Set squad targets','Add at least one target, like 7+ shots, that your players hit together.'],['One set of odds for the squad','The odds cover the whole squad. If a player doesn\'t start, the bet is voided and your stake is returned.']];
-  function mOnb(){ if(!M||O||(N&&!S.npage)||(!N&&!S.onbReady)||S.onb||S.placed||S.avail==='window'||S.op==='none') return ''; const i=S.onbStep||0, last=i===OBT.length-1;
+  function mOnb(){ if(V||!M||O||(N&&!S.npage)||(!N&&!S.onbReady)||S.onb||S.placed||S.avail==='window'||S.op==='none') return ''; const i=S.onbStep||0, last=i===OBT.length-1;
     return `<div class="m-pop" role="dialog" aria-label="Squad Builder introduction, step ${i+1} of ${OBT.length}"><div class="m-pop-ptr"><svg width="224" height="6" viewBox="0 0 224 6" aria-hidden="true"><path d="M15.414 1.414L20 6H8L12.586 1.414C13.367.633 14.633.633 15.414 1.414Z" fill="#343f56"/></svg></div>
       <div class="m-pop-b"><div class="m-pop-c"><div class="m-pop-m">${(P?ILLD:ILL)[i]}</div><div class="m-pop-t"><div class="m-pop-top"><span class="m-pop-new">NEW</span><b>${OBT[i][0]}</b></div><p>${OBT[i][1]}</p></div></div>
       <div class="m-pop-bot"><span class="m-pop-pg">${i+1}/${OBT.length}</span><div class="m-pop-btns">${last?(P?`<span class="m-pop-ta"><button class="m-pop-o" data-act="mOnbB">Back</button></span>`:''):`<span class="m-pop-ta"><button class="m-pop-o" data-act="mOnbX">Skip</button></span>`}<span class="m-pop-ta"><button class="m-pop-f" data-act="${last?'mOnbX':'mOnbN'}">${last?'Done':'Next'}</button></span></div></div></div></div>`;}
@@ -4198,9 +4248,8 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     // 3 · new card (Figma 6481-93589): container-lowest + team-colour gradient + brand graphic, odds and last 5 on a blurred panel
     const vNames={goals:'Goals',shots:'Shots',sot:'Shots on target',assists:'Assists',tackles:'Tackles',cards:'Cards'};
     const vCol={villa:'#89CFF0',juve:'#37A25C'};
-    const vCard=pl=>{const on=sel.includes(pl.id), dis=!on&&sel.length>=MAX, vi=pl.team==='villa', id=st||'sot', r=pv(pl,id), L=r==null?0:Math.max(1,Math.round(r)), od=r==null?'–':fo(pOdds(pl,id,L)),
-      h=[...(pl.id+id)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7), l5=[0,1,2,3,4].map(i=>r==null?0:Math.max(0,Math.round((r||0)*(.3+(((h>>>(i*3))%9)/5)))));
-      return `<button class="p-t v-t${on?' p-on':''}" data-act="pPick" data-id="${pl.id}" aria-pressed="${on}"${dis?' aria-disabled="true"':''} style="--vg:${vCol[pl.team]}"><span class="v-gr" aria-hidden="true"></span><img class="v-vec" src="${KA}v3_brand.svg" alt="" aria-hidden="true" draggable="false"><span class="p-hd"><span class="p-nm">${KI(vi?'logoHome':'logoAway',20,20,'png')}<b>${pl.name}</b></span><i>${({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[pl.pos]||pl.pos}</i></span><span class="p-j">${KI(vi?'jerseyVilla':'jerseyJuve',118,118,'png')}</span><b class="p-nu">${pl.num}</b><span class="v-gl"><b class="v-od">${od}</b><span class="v-ln">${r==null?'Not available':`+${L} ${vNames[id]}`}</span><span class="v-l5" aria-label="Last 5 matches">${l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span></span></button>`};
+    const vCard=pl=>{const on=sel.includes(pl.id), dis=!on&&sel.length>=MAX, vi=pl.team==='villa', id=st||'goals', m=vMk(pl,id);
+      return `<button class="p-t v-t${on?' p-on':''}" data-act="pPick" data-id="${pl.id}" aria-pressed="${on}"${dis?' aria-disabled="true"':''} style="--vg:${vCol[pl.team]}"><span class="v-gr" aria-hidden="true"></span><img class="v-vec" src="${KA}v3_brand.svg" alt="" aria-hidden="true" draggable="false"><span class="p-hd"><span class="p-nm">${KI(vi?'logoHome':'logoAway',20,20,'png')}<b>${pl.name}</b></span><i>${({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[pl.pos]||pl.pos}</i></span><span class="p-j">${KI(vi?'jerseyVilla':'jerseyJuve',118,118,'png')}</span><b class="p-nu">${pl.num}</b><span class="v-gl">${m?`<b class="v-od" aria-label="Odds ${m.od}">${m.od}</b><span class="v-ln">${m.lb}</span><span class="v-l5c">Last 5 · Champions League</span><span class="v-l5" aria-label="Last 5 matches">${m.l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span>`:`<span class="v-ln">Not available</span>`}</span></button>`};
     // H, no stat filter: rank by overall output, each stat scaled by its squad-wide average so goals and tackles weigh the same
     const uAvg=U&&!st?Object.fromEntries(pCard.map(([id])=>{const v=PL.map(p=>pv(p,id)).filter(x=>x!=null); return [id,v.reduce((a,b)=>a+b,0)/(v.length||1)];})):null;
     const uScore=p=>pCard.reduce((t,[id])=>{const x=pv(p,id); return t+(x==null||!uAvg[id]?0:x/uAvg[id]);},0);
@@ -4270,7 +4319,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
   const pPage=()=>{
     const st=S.pstat||null, sel=S.psel||(S.psel=[]);
     const cta=`<button class="p-cta${sel.length>=MIN?' on':''}" data-act="pCont" ${sel.length>=MIN?'':'disabled'}>Targets${GARW}</button>`, av=`<div class="p-av">${sel.map(id=>pAvH(byId[id])).join('')}</div>`;
-    const fbar=`<div class="pf-bar"><div class="u-top"><span class="u-pk">Picks  (${sel.length}/${MAX})</span></div><div class="pf-sr"><div class="pf-av">${sel.map(id=>pAvF(byId[id],'pRemove',false)).join('')}</div><button class="pf-cta${sel.length>=MIN?' on':''}" data-act="pCont" ${sel.length>=MIN?'':'disabled'}>Continue</button></div></div>`;
+    const fbar=`<div class="pf-bar"><div class="u-top">${V?`<span class="v-pkw"><span class="u-pk">Picks  (${sel.length}/${MAX})</span>${GSON()?`<button class="m-gsp" data-act="mSettle" aria-label="Golden Sub: how it works">${KI('goldenSub32',24,24)}</button>`:''}</span>`:`<span class="u-pk">Picks  (${sel.length}/${MAX})</span>`}</div><div class="pf-sr"><div class="pf-av">${sel.map(id=>pAvF(byId[id],'pRemove',false)).join('')}</div><button class="pf-cta${sel.length>=MIN?' on':''}" data-act="pCont" ${sel.length>=MIN?'':'disabled'}>Continue</button></div></div>`;
     return `<div class="p-pg">
       <div class="p-in"${sel.length?' hidden':''}><div class="p-tt"><b>Squad</b><span class="p-tr"><b>Builder</b>${KI('d_trail',237,38)}</span></div><p class="p-it"${sel.length?' hidden':''}>Pick players, then set targets they must hit together.</p></div>
       <div class="p-sb u-sb${sel.length?'':' p-hide'}">${FB?fbar:`<div class="u-bar"><div class="u-top"><span class="u-pk">Picks  (${sel.length}/${MAX})</span>${cta}</div><div class="p-sr">${av}</div></div>`}</div>
@@ -4561,7 +4610,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     if(V&&S.npage&&S.pcont) S.psel=[...S.squad];
     if(P&&S.npage&&S.pcont&&(S.step==='squad'||S.squad.length<MIN)){S.pcont=false;S.psel=[...S.squad];} /* never show A's pitch step in D/E/F/G: fall back to the picker */
     const vOpen=V&&!W&&S.npage&&S.pcont, vNew=vOpen&&!S._vsh, vsb0=root.querySelector('.v-sb'), vTop=vsb0?vsb0.scrollTop:0; S._vsh=!!vOpen; /* 3: slide the sheet in only when it opens, not on every re-render */
-    {const _h=W&&S.npage?wPage():V&&S.npage&&S.pcont?pPage()+`<div class="v-sc${vNew?' v-new':''}" data-act="pBackPick" aria-hidden="true"></div><div class="v-sh${vNew?' v-new':''}" role="dialog" aria-label="Set squad targets"><span class="v-gb" aria-hidden="true"></span><div class="v-sb">${(()=>{const dn=S.done; S.done=false; try{return renderD();}finally{S.done=dn;}})()}</div></div>`:P&&S.npage&&!S.pcont?pPage():(N&&S.npage?nHead():'')+(v==='a'?renderA():v==='b'?renderB():FREE?renderD():renderC()); root.innerHTML=(window.__LV&&O&&S.mtab!=='popular'&&S.mtab!=='lineups'&&S.mtab!=='players')?`<div class="lv-lt">${_h}</div>`:_h; if(vOpen){const nb=root.querySelector('.v-sb'); if(nb) nb.scrollTop=vTop;}}
+    {const _h=W&&S.npage?wPage():V&&S.npage&&S.pcont?pPage()+`<div class="v-sc${vNew?' v-new':''}" data-act="pBackPick" aria-hidden="true"></div><div class="v-sh${vNew?' v-new':''}" role="dialog" aria-label="Set squad targets"><span class="v-gb" aria-hidden="true"></span><div class="v-sb">${(()=>{const dn=S.done; S.done=false; try{return renderD().replace(/<span class="p-tg">[\s\S]*?<\/span><button class="p-ed"/,'<span class="p-tg"></span><button class="p-ed"');}finally{S.done=dn;}})()}</div></div>`:P&&S.npage&&!S.pcont?pPage():(N&&S.npage?nHead():'')+(v==='a'?renderA():v==='b'?renderB():FREE?renderD():renderC()); root.innerHTML=(window.__LV&&O&&S.mtab!=='popular'&&S.mtab!=='lineups'&&S.mtab!=='players')?`<div class="lv-lt">${_h}</div>`:_h; if(vOpen){const nb=root.querySelector('.v-sb'); if(nb) nb.scrollTop=vTop;}}
     if(W) wAfter(); if(K) host.classList.add('k-sheet'); if(v==='d'||M) host.classList.add('dd-sheet');
     const oldPrev=host.querySelector('.k-prev'), wasOpen=host.classList.contains('open');
     host.innerHTML=v==='a'?sheetHTML():(M&&S.modal)?mModalHTML():(FREE&&S.sheet)?sheetDE():(FREE?host.innerHTML:'');
@@ -4748,6 +4797,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       case 'tAdd':{if((M&&S.elig==='grey'&&naFor(d.id).length))return;const p=presets(d.id);S.targets.push({id:d.id,line:K?Math.max(1,mdn(d.id)):(p[1]||p[0])[1]});S.adding=false;S.done=false;if(M&&naFor(d.id).length&&S.errStyle==='sheet')S.modal={t:'build',id:d.id};break;}
       case 'gStep':{const id=d.id; glSet(id,glLine(id)+(+d.d)*stp(id)); break;}
       case 'gAdd':glFlip();glSet(d.id,glLine(d.id));break;
+      case 'gResetOne':glSet(d.id,mdn(d.id));break;
       case 'gReset':glFlip();S.targets=[];S.done=false;break;
       case 'gTog':S.gcol=S.gcol||{};S.gcol[d.id]=!S.gcol[d.id];break;
       case 'mLive':window.setLive(d.v==='live');return;
