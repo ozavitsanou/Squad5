@@ -3168,6 +3168,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :is(#squad-v,#squad-w) .v-t .v-od small{font-family:var(--font-ui);font-weight:450;font-size:12px;line-height:16px}
 #squad-v .v-tt{cursor:pointer}
 #squad-v .gl-r.set.v-col .gl-c,#squad-v .gl-r.set.v-col .v-pl,#squad-v .gl-r.set.v-col .gl-sw{display:none}
+
+/* My squad badge (Figma 6515-97133): bg/off-gray/medium, micro-text/medium, text/gray/subtle */
+:is(#squad-v,#squad-w) .u-pk .v-bd{display:inline-flex;align-items:center;justify-content:center;margin-left:4px;padding:2px 6px;border-radius:4px;background:var(--sem-bg-off-gray-medium-default,#eaeefb);font-family:var(--font-ui);font-weight:550;font-size:11px;line-height:14px;color:var(--sem-text-gray-subtle,#526789);vertical-align:middle}
 </style>
 </head>
 <body>
@@ -4360,7 +4363,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     bar.classList.toggle('p-e',!sel.length);
     const it=root.querySelector('.p-it'); if(it) it.hidden=!!sel.length;
     const sb=bar.closest('.p-sb'); if(sb&&sb.classList.contains('p-hide')===!!sel.length){ sb.classList.toggle('p-hide',!sel.length); sb.classList.toggle('p-sbin',!!sel.length); }
-    const pk=root.querySelector('.u-pk'); if(pk) pk.textContent=`${V?'My squad':'Picks '} (${sel.length}/${MAX})`;
+    const pk=root.querySelector('.u-pk'); if(pk){ if(V) pk.innerHTML=`My squad<span class="v-bd">${sel.length} of ${MAX}</span>`; else pk.textContent=`Picks  (${sel.length}/${MAX})`; }
     {const pi=root.querySelector('div.p-in'); if(pi) pi.hidden=!!sel.length;}
     const cta=root.querySelector(FB?'.p-sb .pf-cta':'.p-sb .p-cta'); cta.disabled=sel.length<MIN; cta.classList.toggle('on',sel.length>=MIN);
     if(added) requestAnimationFrame(()=>av.scrollTo({left:av.scrollWidth,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));
@@ -4369,7 +4372,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
   const pPage=()=>{
     const st=S.pstat||null, sel=S.psel||(S.psel=[]);
     const cta=`<button class="p-cta${sel.length>=MIN?' on':''}" data-act="pCont" ${sel.length>=MIN?'':'disabled'}>${V?'Set targets':'Targets'}${GARW}</button>`, av=`<div class="p-av">${sel.map(id=>pAvH(byId[id])).join('')}</div>`;
-    const fbar=`<div class="pf-bar"><div class="u-top">${V?`<span class="v-pkw"><span class="u-pk">Picks  (${sel.length}/${MAX})</span>${GSON()?`<button class="m-gsp" data-act="mSettle" aria-label="Golden Sub: how it works">${KI('goldenSub32',24,24)}</button>`:''}</span>`:`<span class="u-pk">Picks  (${sel.length}/${MAX})</span>`}</div><div class="pf-sr"><div class="pf-av">${sel.map(id=>pAvF(byId[id],(V&&!W&&S.pcont)?'rm':'pRemove',false)).join('')}</div><button class="pf-cta${sel.length>=MIN?' on':''}" data-act="${(V&&!W&&S.pcont)?'pBackPick':'pCont'}" ${sel.length>=MIN?'':'disabled'}>${(V&&!W&&S.pcont)?'Edit squad':(V&&!W)?'Set targets':'Continue'}</button></div></div>`;
+    const fbar=`<div class="pf-bar"><div class="u-top">${V?`<span class="v-pkw"><span class="u-pk">My squad<span class="v-bd">${sel.length} of ${MAX}</span></span>${GSON()?`<button class="m-gsp" data-act="mSettle" aria-label="Golden Sub: how it works">${KI('goldenSub32',24,24)}</button>`:''}</span>`:`<span class="u-pk">Picks  (${sel.length}/${MAX})</span>`}</div><div class="pf-sr"><div class="pf-av">${sel.map(id=>pAvF(byId[id],(V&&!W&&S.pcont)?'rm':'pRemove',false)).join('')}</div><button class="pf-cta${sel.length>=MIN?' on':''}" data-act="${(V&&!W&&S.pcont)?'pBackPick':'pCont'}" ${sel.length>=MIN?'':'disabled'}>${(V&&!W&&S.pcont)?'Edit squad':(V&&!W)?'Set targets':'Continue'}</button></div></div>`;
     return `<div class="p-pg">
       <div class="p-in"${sel.length?' hidden':''}><div class="p-tt"><b>Squad</b><span class="p-tr"><b>Builder</b>${KI('d_trail',237,38)}</span></div><p class="p-it"${sel.length?' hidden':''}>Pick players, then set targets they must hit together.</p></div>
       <div class="p-sb u-sb${sel.length?'':' p-hide'}">${FB?fbar:`<div class="u-bar"><div class="u-top"><span class="u-pk">Picks  (${sel.length}/${MAX})</span>${cta}</div><div class="p-sr">${av}</div></div>`}</div>
