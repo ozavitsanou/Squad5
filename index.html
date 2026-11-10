@@ -3087,9 +3087,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #squad-w .w-go:active:not(:disabled){transform:scale(.96)}
 #squad-w .w-go:disabled{opacity:.4;cursor:default}
 /* ===== 4 · player card (Figma 6481:93661): gradient card, name row, big jersey with number, frosted stats panel, last 5 ===== */
-#squad-w .p-tl.w-car{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;margin:0;padding:8px 8px 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#squad-w .p-tl.w-car{flex-wrap:wrap;justify-content:center;gap:8px 6px;overflow-x:hidden;overflow-y:auto;margin:0;padding:8px 7px 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 #squad-w .p-tl.w-car::-webkit-scrollbar{display:none}
-#squad-w .w-car .p-t{flex:none;scroll-snap-align:start}
+#squad-w .w-car .p-t{flex:none}
 #squad-w .p-t.v-t .p-hd i{display:none}
 #squad-w .w-none{margin:24px auto;font:450 14px/20px var(--font-ui);color:var(--sem-text-gray-subtle)}
 #squad-w .w-fl{flex-wrap:nowrap}
@@ -3171,6 +3171,23 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* My squad badge (Figma 6515-97133): bg/off-gray/medium, micro-text/medium, text/gray/subtle */
 :is(#squad-v,#squad-w) .u-pk .v-bd{display:inline-flex;align-items:center;justify-content:center;margin-left:4px;padding:2px 6px;border-radius:4px;background:var(--sem-bg-off-gray-medium-default,#eaeefb);font-family:var(--font-ui);font-weight:550;font-size:11px;line-height:14px;color:var(--sem-text-gray-subtle,#526789);vertical-align:middle}
+
+/* 4 · pitch glow: night-stadium backdrop (FIFA / Xbox feel) in the brand orange + pitch green */
+#squad-w .w-stage{background:
+ radial-gradient(60% 55% at 50% 100%,rgba(255,106,43,.55),transparent 70%),
+ radial-gradient(38% 50% at 6% 0%,rgba(255,255,255,.38),transparent 70%),
+ radial-gradient(38% 50% at 94% 0%,rgba(255,255,255,.38),transparent 70%),
+ radial-gradient(70% 60% at 50% 55%,rgba(48,214,117,.30),transparent 75%),
+ linear-gradient(180deg,#0b1224 0%,#141f3d 55%,#1d1a3a 100%);
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 0 -26px 44px -20px rgba(255,106,43,.55),0 0 22px rgba(255,106,43,.28),0 0 40px rgba(48,214,117,.16)}
+#squad-w .w-stage::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background:
+ repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 4px),
+ conic-gradient(from 200deg at 6% -10%,transparent 0 8%,rgba(255,255,255,.14) 10%,transparent 14%),
+ conic-gradient(from 146deg at 94% -10%,transparent 0 8%,rgba(255,255,255,.14) 10%,transparent 14%)}
+#squad-w .w-stage::after{content:"";position:absolute;left:8%;right:8%;bottom:-10px;height:46px;pointer-events:none;border-radius:50%;background:radial-gradient(50% 50% at 50% 50%,rgba(255,138,76,.65),transparent 72%);filter:blur(6px);animation:wGlow 3.2s ease-in-out infinite}
+#squad-w .w-grass{box-shadow:0 0 0 3px rgba(120,255,176,.85),0 0 18px 4px rgba(48,214,117,.65),0 0 46px 8px rgba(48,214,117,.35),0 18px 26px rgba(0,0,0,.5)}
+@keyframes wGlow{0%,100%{opacity:.65}50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){#squad-w .w-stage::after{animation:none}}
 </style>
 </head>
 <body>
