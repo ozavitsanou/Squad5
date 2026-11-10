@@ -3218,7 +3218,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* 3.1 · list row (Figma 6579-85176) */
 #squad-x .p-tl{display:flex;flex-direction:column;flex-wrap:nowrap;gap:8px;padding:8px 8px 20px;margin:0}
-#phone #squad-x .p-t.vx-r{position:relative;flex:none;display:flex;align-items:flex-start;gap:8px;box-sizing:border-box;width:100%;height:auto;padding:8px 12px 8px 8px;border-radius:12px;border:1px solid var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.2));background:linear-gradient(90deg,color-mix(in srgb,var(--vg) 24%,var(--sem-bg-container-lowest,#fff)) 0%,var(--sem-bg-container-lowest,#fff) 23.77%);text-align:left;overflow:hidden}
+#phone #squad-x .p-t.vx-r{position:relative;flex:none;display:flex;align-items:flex-start;gap:8px;box-sizing:border-box;width:100%;height:auto;padding:8px 12px 8px 8px;border-radius:12px;border:1px solid var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.2));background:linear-gradient(90deg,color-mix(in srgb,var(--vm) 50%,var(--sem-bg-container-lowest,#fff)) 0%,var(--sem-bg-container-lowest,#fff) 23.77%);text-align:left;overflow:hidden}
 #phone #squad-x .p-t.vx-r.p-on{border:2px solid var(--sem-border-accent,#ee4b22);padding:7px 11px 7px 7px}
 #phone #squad-x .p-t.vx-r.p-on::after,#phone #squad-x .p-t.vx-r::before{display:none}
 #squad-x .vx-r[aria-disabled="true"]{opacity:.45}
@@ -3241,9 +3241,22 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #squad-x .vx-or b{font-family:var(--font-brand);font-weight:700;font-size:20px;line-height:24px;color:var(--sem-text-gray-emphasis,#151923)}
 #squad-x .vx-or small{font-family:var(--font-ui);font-weight:450;font-size:11px;line-height:14px;color:var(--sem-text-gray-strong,#2a3346)}
 #squad-x .vx-ln{max-width:100%;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-ui);font-weight:450;font-size:14px;line-height:20px;color:var(--sem-text-gray-strong,#2a3346)}
-#phone.lv #squad-x .p-t.vx-r{background:linear-gradient(90deg,color-mix(in srgb,var(--vg) 22%,#1b2233),#1b2233 23.77%)}
+#phone.lv #squad-x .p-t.vx-r{background:linear-gradient(90deg,color-mix(in srgb,var(--vm) 50%,#1b2233),#1b2233 23.77%)}
 #phone.lv #squad-x :is(.vx-nm b,.vx-or b){color:#f5f7fa}
 #phone.lv #squad-x :is(.vx-nm em,.vx-ln,.vx-cp,.vx-or small){color:#cfd9ed}
+
+/* live odds change */
+.m-lvo{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;height:32px;margin-top:8px;border:1px solid #d6dcf0;border-radius:100px;background:#fff;font:550 12px/16px 'Ubuntu',sans-serif;color:#2a3346;cursor:pointer;transition:background .2s,color .2s}
+.m-lvo[aria-pressed="true"]{background:#ee4b22;border-color:transparent;color:#fff}
+@keyframes lvoUp{0%{transform:translateY(10px);opacity:0;color:#ee4b22}45%{opacity:1;color:#ee4b22}}
+@keyframes lvoDn{0%{transform:translateY(-10px);opacity:0;color:#ee4b22}45%{opacity:1;color:#ee4b22}}
+.lvo-up{animation:lvoUp 1.1s cubic-bezier(.2,.8,.2,1)}
+.lvo-dn{animation:lvoDn 1.1s cubic-bezier(.2,.8,.2,1)}
+#phone .vx-or b.lvo-up,#phone .vx-or b.lvo-dn,#phone .vx-ln.lvo-up,#phone .vx-ln.lvo-dn{display:inline-block}
+@media (prefers-reduced-motion:reduce){.lvo-up,.lvo-dn{animation:none}}
+
+/* Live: Set targets / Edit squad buttons use text/gray/inverted (dark on the light live button) */
+#phone.lv :is(#squad-v,#squad-x,#squad-w) :is(.pf-cta.on,.w-go,.w-ph .tiny){color:var(--sem-text-gray-inverted,#151923)}
 </style>
 </head>
 <body>
@@ -3600,7 +3613,25 @@ function livePopularHTML(){
   document.addEventListener('mousedown',e=>{ if(inp&&!e.target.closest('.gl-kb')&&!e.target.closest('.gl-in')) hide(true); },true);
   document.addEventListener('keydown',e=>{ if(!inp) return; if(/^\d$/.test(e.key)){ e.preventDefault(); let v=fresh?'':inp.value; fresh=false; inp.value=(v+e.key).slice(0,3); } else if(e.key==='Backspace'){ e.preventDefault(); fresh=false; inp.value=inp.value.slice(0,-1); } else if(e.key==='Enter'||e.key==='Escape'){ e.preventDefault(); hide(e.key==='Enter'); } });
 })();
-window.setLive=function(on){ window.__LV=!!on; const ph=document.getElementById('phone'); ph.classList.toggle('lv',!!on);
+/* Live odds change: every 5 s the odds (and the line, when the market has one) of the first two players move with a short up/down animation in the brand colour */
+window.__lvo={}; window.__lvoOn=false; window.__lvoT=null;
+window.lvoTick=function(){ const sc=document.querySelector('.screen.active'); if(!sc||!window.__LV) return;
+  const st=((sc.querySelector('.p-so button[aria-pressed="true"][data-s]')||{}).dataset||{}).s||'goals';
+  [...sc.querySelectorAll('.p-tl .p-t[data-id]')].slice(0,2).forEach(t=>{
+    const oe=t.querySelector('.vx-or b, .v-od'), le=t.querySelector('.vx-ln, .v-ln'); if(!oe) return;
+    const key=t.dataset.id+'|'+st, cur=window.__lvo[key]||{}, od0=cur.od||parseFloat(oe.textContent.replace(/[^0-9.]/g,''))||2;
+    const lm=le&&/(\d+)\+/.exec(le.textContent); let L=cur.L!=null?cur.L:(lm?+lm[1]:null), od=od0, lineMoved=false;
+    if(L!=null&&Math.random()<.5){ const dl=(Math.random()<.5?-1:1); const nl=Math.max(1,Math.min(9,L+dl)); if(nl!==L){ od=od*(nl>L?1.3:1/1.3); L=nl; lineMoved=true; } }
+    if(!lineMoved) od=od*(1+(Math.random()<.5?-1:1)*(.04+Math.random()*.1));
+    od=Math.min(50,Math.max(1.05,od)); window.__lvo[key]={od,L};
+    const up=od>=od0, cls=up?'lvo-up':'lvo-dn';
+    const setT=(el,txt)=>{ const n=[...el.childNodes].reverse().find(x=>x.nodeType===3); if(n) n.textContent=txt; else el.textContent=txt; };
+    setT(oe,od.toFixed(2)); if(lineMoved&&le) setT(le,le.textContent.replace(/\d+\+/,L+'+'));
+    [oe,lineMoved?le:null].forEach(el=>{ if(!el) return; el.classList.remove('lvo-up','lvo-dn'); void el.offsetWidth; el.classList.add(cls); el.addEventListener('animationend',()=>el.classList.remove('lvo-up','lvo-dn'),{once:true}); }); }); };
+window.lvoToggle=function(on){ window.__lvoOn=on==null?!window.__lvoOn:!!on; clearInterval(window.__lvoT); window.__lvoT=null;
+  if(window.__lvoOn){ window.__lvoT=setInterval(window.lvoTick,5000); window.lvoTick(); }
+  document.querySelectorAll('.m-lvo').forEach(b=>b.setAttribute('aria-pressed',String(window.__lvoOn))); };
+window.setLive=function(on){ window.__LV=!!on; if(!on){ window.lvoToggle(false); window.__lvo={}; } const ph=document.getElementById('phone'); ph.classList.toggle('lv',!!on);
   if(on) for(const k of ['m','o']){const q=window.__squads&&window.__squads[k]; if(q) q.S.mtab='popular';}
   Object.values(window.__squads||{}).forEach(q=>q.render()); const sc=document.querySelector('.screen.active'); if(sc) sc.scrollTop=0; };
 function kdsTop(slot){
@@ -3877,7 +3908,8 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
   const vMk=(p,id)=>{const r=pv(p,id==='ycard'||id==='rcard'?'cards':id); if(r==null) return null; const h=[...(p.id+id)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7); let L=Math.max(1,Math.round(r)), lb=`${({goals:'Goals',shots:'Shots',sot:'Shots On Target',assists:'Assists',tackles:'Tackles',cards:'Cards'})[id]||(stat(id)||{}).name} ${L}+`;
     if(id==='goals'){const sc=window.__LV?(h%5===0?1:h%5===1?2:0):0; L=sc+1; lb=sc===0?'Goalscorer Anytime':sc===1?'Score 2+ goals':'Score Hat-Trick';}
     else if(id==='cards'||id==='ycard'){L=1; lb='To receive a card';} else if(id==='rcard'){L=1; lb='To get a red card';}
-    return {L,lb,od:fo(id==='rcard'?pOdds(p,'cards',L,.12):pOdds(p,id==='ycard'?'cards':id,L)),l5:[0,1,2,3,4].map(i=>Math.max(0,Math.round(r*(.3+(((h>>>(i*3))%9)/5)))))};};
+    let od0=id==='rcard'?pOdds(p,'cards',L,.12):pOdds(p,id==='ycard'?'cards':id,L); const ov=window.__LV&&window.__lvo&&window.__lvo[p.id+'|'+id]; if(ov){ od0=ov.od; if(ov.L!=null){ L=ov.L; lb=lb.replace(/\d+\+/,ov.L+'+'); } }
+    return {L,lb,od:fo(od0),l5:[0,1,2,3,4].map(i=>Math.max(0,Math.round(r*(.3+(((h>>>(i*3))%9)/5)))))};};
   const glSection=()=>{const k=S.targets.length;
     return `<section class="d-sec d-goals"><div class="gl-card"><div class="gl-top"><b>Set squad targets</b><span class="gl-cnt">${k} Target${k!==1?'s':''}</span>${V?'':`<button class="gl-rst" data-act="gReset" ${k?'':'disabled'}>Reset</button>`}</div>
     <div class="gl-ls">${glOrder().map(id=>{const t=tgt(id), na=naFor(id), ln=glLine(id), mn=LR(id).min, mx=maxL(id), nm=stat(id).name;
@@ -4012,6 +4044,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     return `<div class="m-sh"><b>Prototype controls</b><span>Squad Builder · ${V?'3':U?'H':T?'F':R?'G':Q?'E':P?'D':N?'B':O?'C':'A'} — not part of the product UI</span></div>
       <label class="m-allv"><input type="checkbox" data-allv${allV?' checked':''}><span>Show all versions<small>A, B, E, F, G and H in the sidebar</small></span></label>
       <div class="m-live" role="group" aria-label="Event state"><button data-act="mLive" data-v="pre" aria-pressed="${!window.__LV}">Pre event</button><button data-act="mLive" data-v="live" aria-pressed="${!!window.__LV}">Live event</button></div>
+      ${(window.__LV&&V&&!W)?`<button class="m-lvo" data-act="mLvo" aria-pressed="${!!window.__lvoOn}">⚡️Live odds change</button>`:''}
       ${sec('demo','Scenarios','One click sets up a whole situation')}
       <div class="k-chips m-scn">${SCN.map(([k,l])=>`<button class="k-chip" data-act="mScn" data-sc="${k}" aria-pressed="${S.scn===k}">${S.scn===k?KI('chipCheck',16,16):''}${l}</button>`).join('')}</div>
       ${sc?`<p class="m-ex2">${sc[2]}</p>`:''}
@@ -4368,7 +4401,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       return `<button class="p-t v-t${on?' p-on':''}" data-act="pPick" data-id="${pl.id}" aria-pressed="${on}"${dis?' aria-disabled="true"':''} style="--vg:${vCol[pl.team]}"><span class="v-gr" aria-hidden="true"></span><img class="v-vec" src="${KA}v3_brand.svg" alt="" aria-hidden="true" draggable="false"><span class="p-hd"><span class="p-nm">${KI(vi?'logoHome':'logoAway',20,20,'png')}<b>${pl.name}</b></span><i>${({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[pl.pos]||pl.pos}</i></span><span class="p-j">${KI(vi?'jerseyVilla':'jerseyJuve',118,118,'png')}</span><b class="p-nu">${pl.num}</b><span class="v-gl">${m?`<b class="v-od" aria-label="Odds ${m.od}"><small>Odds</small>${m.od}</b><span class="v-ln">${m.lb}</span><span class="v-l5c">Last 5 · Champions League</span><span class="v-l5" aria-label="Last 5 matches">${m.l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span>`:`<span class="v-ln">Not available</span>`}</span></button>`};
     // 3.1 · list row, Figma 6579-85176 (.Player row · list (3.1))
     const vRow=pl=>{const on=sel.includes(pl.id), dis=!on&&sel.length>=MAX, vi=pl.team==='villa', id=st||'goals', m=vMk(pl,id);
-      return `<button class="p-t vx-r${on?' p-on':''}${m?'':' vx-na'}" data-act="pPick" data-id="${pl.id}" aria-pressed="${on}"${dis?' aria-disabled="true"':''} style="--vg:${vCol[pl.team]}"><span class="vx-j">${KI(vi?'jerseyVilla':'jerseyJuve',56,56,'png')}<i class="vx-cr">${KI(vi?'logoHome':'logoAway',16,16,'png')}</i><b class="vx-nu">${pl.num}</b></span><span class="vx-t"><span class="vx-nm"><b>${pl.name}</b><em>${({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[pl.pos]||pl.pos}</em></span>${m?`<span class="vx-l5r"><span class="v-l5" aria-label="Last 5 matches">${m.l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span><span class="vx-cp">Champions League</span></span>`:''}</span><span class="vx-o">${m?`<span class="vx-or" aria-label="Odds ${m.od}"><b>${m.od}</b><small>Odds</small></span><span class="vx-ln">${m.lb}</span>`:`<span class="vx-ln">Not available</span>`}</span></button>`};
+      return `<button class="p-t vx-r${on?' p-on':''}${m?'':' vx-na'}" data-act="pPick" data-id="${pl.id}" aria-pressed="${on}"${dis?' aria-disabled="true"':''} style="--vg:${vCol[pl.team]};--vm:${vi?'#670E36':'#37A25C'}"><span class="vx-j">${KI(vi?'jerseyVilla':'jerseyJuve',56,56,'png')}<i class="vx-cr">${KI(vi?'logoHome':'logoAway',16,16,'png')}</i><b class="vx-nu">${pl.num}</b></span><span class="vx-t"><span class="vx-nm"><b>${pl.name}</b><em>${({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[pl.pos]||pl.pos}</em></span>${m?`<span class="vx-l5r"><span class="v-l5" aria-label="Last 5 matches">${m.l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span><span class="vx-cp">Champions League</span></span>`:''}</span><span class="vx-o">${m?`<span class="vx-or" aria-label="Odds ${m.od}"><b>${m.od}</b><small>Odds</small></span><span class="vx-ln">${m.lb}</span>`:`<span class="vx-ln">Not available</span>`}</span></button>`};
     // 4 · compact card (Figma 6575-1982): container-lowest to the team's soft colour, brand graphic over it, jersey + number + crest + name + position, stats and last 5 on a blurred panel
     const W4_BR='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc2IiBoZWlnaHQ9IjEzNyIgdmlld0JveD0iMCAwIDE3NiAxMzciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik00MS42MzIgMTM1LjI5TDM5Ljk5MDUgMTM3SDUuNjcxODhMNDEuNjMyIDEzNS4yOVoiIGZpbGw9IiNFRkVGRkEiIGZpbGwtb3BhY2l0eT0iMC4xNSIvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTc2IDEzMi44OTNIMTYzLjA0N0wxNzUuODUyIDExOS41NTNMMTM3LjQyNiAxMjEuMzgyTDIyLjY2OTcgMTI2Ljc0MUwzOS4zMTQ4IDEwOS4zOTlMMCAxMTEuMjdWODYuMzM5NUw0MS42MzE5IDg0LjM1OTlMMjQuOTg0MyAxMDEuNzAxTDEzNy40NzcgOTYuMzM5N0wxNzYuNDc2IDk0LjQ4MTVMMTU5LjIwNyAxMTIuNDcyTDE3NiAxMTEuNjc3VjEzMi44OTNaIiBmaWxsPSIjRUZFRkZBIiBmaWxsLW9wYWNpdHk9IjAuMTUiLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTIyLjY2OTcgMjUuMjIwNUwzOS4zMTQ4IDcuODc5MDhMMCA5Ljc0OTNWMEgyMS42MDc5SDI1LjE1NzRIMjguNzc4MkgzMi4xMDg4SDE2OS43MThMMTU5LjIwNyAxMC45NTE2TDE3NiAxMC4xNTYzVjM0LjU3ODdMMTU5LjIwNyAzNS4zNzRMMTc1Ljg1MiAxOC4wMzE3TDEzNy40MjYgMTkuODYxNUwyMi42Njk3IDI1LjIyMDVaIiBmaWxsPSIjRUZFRkZBIiBmaWxsLW9wYWNpdHk9IjAuMTUiLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE1OS4yMDcgNjEuODk1MUwxNzYgNjEuMDk5NlY4NS41MjEzTDE1OS4yMDcgODYuMzE2NkwxNzUuODUyIDY4Ljk3NTJMMTM3LjQyNiA3MC44MDQxTDIyLjY2OTcgNzYuMTY0TDM5LjMxNDggNTguODIyNkwwIDYwLjY5MjhWMzUuNzYyOEw0MS42MzE5IDMzLjc4MjJMMjQuOTg0MyA1MS4xMjM2TDEzNy40NzcgNDUuNzYyTDE3Ni40NzYgNDMuOTA0N0wxNTkuMjA3IDYxLjg5NTFaIiBmaWxsPSIjRUZFRkZBIiBmaWxsLW9wYWNpdHk9IjAuMTUiLz48L3N2Zz4=';
     const w4Cd=c=>`<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.25 2C2.25 1.44772 2.69772 1 3.25 1H8.75C9.30228 1 9.75 1.44772 9.75 2V10C9.75 10.5523 9.30228 11 8.75 11H3.25C2.69772 11 2.25 10.5523 2.25 10V2Z" fill="${c}"/></svg>`;
@@ -4948,6 +4981,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       case 'vTog':S.vcol=S.vcol||{};S.vcol[d.id]=!S.vcol[d.id];break;
       case 'gTog':S.gcol=S.gcol||{};S.gcol[d.id]=!S.gcol[d.id];break;
       case 'mLive':window.setLive(d.v==='live');return;
+      case 'mLvo':window.lvoToggle();return;
       case 'tRm':glFlip();S.targets=S.targets.filter(t=>t.id!==d.id);S.done=false;if(M&&S.modal&&S.modal.t==='slip'&&!S.targets.length){S.modal=null;S.slip=false;}break;
       case 'tStep':{const t=tgt(d.id);t.line=Math.min(maxL(t.id),Math.max(M?LR(t.id).min:1,t.line+(+d.d)*stp(t.id)));break;}
       case 'tSet':tgt(d.id).line=+d.val;break;
