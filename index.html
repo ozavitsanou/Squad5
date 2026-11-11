@@ -4938,7 +4938,11 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       if(tb==='Squad builder'){ if(S.npage) return; S.npage='sb'; S.mtab=null; }
       else if(tb==='Popular'||tb==='Line ups'||tb==='Players'){ S.npage=null; S.mtab=tb==='Line ups'?'lineups':tb==='Players'?'players':'popular'; }
       else return;
-      const y=sc.scrollTop; render(); sc.scrollTop=y; const row=t.parentElement; if(row) row.scrollTo({left:Math.max(0,t.offsetLeft-row.offsetLeft-24),behavior:'smooth'}); }); }
+      const y=sc.scrollTop; render(); sc.scrollTop=y; const row=t.parentElement; if(row) row.scrollTo({left:Math.max(0,t.offsetLeft-row.offsetLeft-24),behavior:'smooth'});
+      if(tb==='Squad builder'){ /* List: bring the tabs up right under the orange header */
+        const sm=sc.querySelector('.sec-menu'); if(!sm) return; sc.scrollTop=0; const y1=Math.min(sc.scrollHeight-sc.clientHeight,sm.offsetTop); sc.scrollTop=y;
+        if(Math.abs(y1-y)<2) return; if(matchMedia('(prefers-reduced-motion: reduce)').matches){ sc.scrollTop=y1; return; }
+        const t0=performance.now(), D=380, step=now=>{ const p=Math.min(1,(now-t0)/D), ez=1-Math.pow(1-p,3); sc.scrollTop=y+(y1-y)*ez; if(p<1) requestAnimationFrame(step); }; requestAnimationFrame(step); setTimeout(()=>{ if(performance.now()-t0>=D) sc.scrollTop=y1; },D+80); } }); }
   function render(){
     if(M){S.pk2=S.sels.length?S.sels[S.sels.length-1]:null; S.combo=XS().length>0;}
     if(M) S.elig='grey';
