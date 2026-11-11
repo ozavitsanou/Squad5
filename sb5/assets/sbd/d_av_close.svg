@@ -1,0 +1,24 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="close" clip-path="url(#clip0_0_18)">
+<g id="Vector">
+<use xlink:href="#stroke0_0_18" fill="white"/>
+<mask id="stroke1_0_18" fill="white">
+<use xlink:href="#stroke0_0_18"/>
+</mask>
+<path d="M15.4286 8C15.4286 12.1027 12.1027 15.4286 8 15.4286C3.89731 15.4286 0.571429 12.1027 0.571429 8C0.571429 3.89731 3.89731 0.571429 8 0.571429C12.1027 0.571429 15.4286 3.89731 15.4286 8Z" stroke-width="2" stroke="#B7C4DC" mask="url(#stroke1_0_18)"/>
+</g>
+<g id="icon / interface / close">
+<g id="Icon">
+<use xlink:href="#stroke2_0_18" fill="#1C2026"/>
+<use xlink:href="#stroke2_0_18" fill="#1C2026"/>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_18">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+<path id="stroke0_0_18" d="M8 15.4286C12.1027 15.4286 15.4286 12.1027 15.4286 8C15.4286 3.89731 12.1027 0.571429 8 0.571429C3.89731 0.571429 0.571429 3.89731 0.571429 8C0.571429 12.1027 3.89731 15.4286 8 15.4286Z"/>
+<path id="stroke2_0_18" d="M11.7709 10.8281L8.94245 7.99964L11.7709 5.17121C12.0316 4.91052 12.0311 4.48862 11.7709 4.2284C11.5107 3.96819 11.0888 3.96771 10.8281 4.2284L7.99964 7.05683L5.17121 4.2284C4.911 3.96819 4.48909 3.96771 4.2284 4.2284C3.96772 4.48909 3.96819 4.91099 4.2284 5.17121L7.05683 7.99964L4.2284 10.8281C3.96772 11.0888 3.96819 11.5107 4.2284 11.7709C4.48862 12.0311 4.91052 12.0316 5.17121 11.7709L7.99964 8.94245L10.8281 11.7709C11.0883 12.0311 11.5102 12.0316 11.7709 11.7709C12.0316 11.5102 12.0311 11.0883 11.7709 10.8281Z" fill-rule="evenodd" clip-rule="evenodd"/>
+</defs>
+</svg>
