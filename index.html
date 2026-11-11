@@ -4195,7 +4195,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     return `<div class="m-sh"><b>Prototype controls</b><span>Squad Builder · ${V?'3':U?'H':T?'F':R?'G':Q?'E':P?'D':N?'B':O?'C':'A'} — not part of the product UI</span></div>
       <label class="m-allv"><input type="checkbox" data-allv${allV?' checked':''}><span>Show all versions<small>A, B, E, F, G and H in the sidebar</small></span></label>
       <div class="m-live" role="group" aria-label="Event state"><button data-act="mLive" data-v="pre" aria-pressed="${!window.__LV}">Pre event</button><button data-act="mLive" data-v="live" aria-pressed="${!!window.__LV}">Live event</button></div>
-      ${(V&&!W)?`<div class="m-live m-pos" role="group" aria-label="Filters position"><button data-act="mPos" data-v="top" aria-pressed="${!window.__sbBot}">Filters top</button><button data-act="mPos" data-v="bot" aria-pressed="${!!window.__sbBot}">Filters bottom</button></div>`:''}
+      
       ${(window.__LV&&V&&!W)?`<button class="m-lvo" data-act="mLvo" aria-pressed="${!!window.__lvoOn}">⚡️Live odds change</button>`:''}
       ${sec('demo','Scenarios','One click sets up a whole situation')}
       <div class="k-chips m-scn">${SCN.map(([k,l])=>`<button class="k-chip" data-act="mScn" data-sc="${k}" aria-pressed="${S.scn===k}">${S.scn===k?KI('chipCheck',16,16):''}${l}</button>`).join('')}</div>
