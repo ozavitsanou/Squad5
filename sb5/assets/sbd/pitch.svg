@@ -1,0 +1,56 @@
+<svg width="325" height="240" viewBox="0 0 325 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_5571_2971)">
+<rect width="325" height="240" fill="#107030"/>
+<g clip-path="url(#clip1_5571_2971)">
+<rect width="48" height="800" transform="translate(48 224) rotate(-180)" fill="#107030"/>
+<path opacity="0.3" d="M48 222L20 222C18.3431 222 17 220.657 17 219L17 92L48 92L48 222Z" fill="white" fill-opacity="0.3"/>
+<path opacity="0.3" d="M48.0001 223L20 223C17.7909 223 16 221.209 16 219L16.0001 -576" stroke="white" stroke-width="2"/>
+<path opacity="0.3" d="M17 198C30.2548 198 41 208.745 41 222" stroke="white" stroke-width="2"/>
+</g>
+<g clip-path="url(#clip2_5571_2971)">
+<rect width="18.4999" height="800" transform="translate(66.4999 224) rotate(-180)" fill="#107030"/>
+<rect opacity="0.3" x="67.0001" y="222" width="19" height="130" transform="rotate(-180 67.0001 222)" fill="white" fill-opacity="0.3"/>
+<path opacity="0.3" d="M67.0001 223L48.0001 223" stroke="white" stroke-width="2"/>
+</g>
+<g clip-path="url(#clip3_5571_2971)">
+<rect width="192" height="800" transform="translate(258.5 224) rotate(-180)" fill="#107030"/>
+<rect opacity="0.3" x="258.5" y="222" width="192" height="130" transform="rotate(-180 258.5 222)" fill="white" fill-opacity="0.3"/>
+<path opacity="0.3" d="M258.5 223L66.5 223" stroke="white" stroke-width="2"/>
+<path opacity="0.3" d="M193.5 150C187.146 139.793 175.824 133 162.916 133C150.008 133 138.687 139.793 132.333 150" stroke="white" stroke-width="2"/>
+<path opacity="0.3" d="M254.5 222L254.5 154C254.5 151.791 252.709 150 250.5 150L74.5 150C72.2909 150 70.5 151.791 70.5 154L70.5 222" stroke="white" stroke-width="2"/>
+<circle opacity="0.3" cx="162.5" cy="170" r="4" transform="rotate(-180 162.5 170)" fill="white"/>
+<path opacity="0.3" d="M202.5 222L202.5 194C202.5 191.791 200.709 190 198.5 190L126.5 190C124.291 190 122.5 191.791 122.5 194L122.5 222" stroke="white" stroke-width="2"/>
+</g>
+<g clip-path="url(#clip4_5571_2971)">
+<rect width="18.4999" height="800" transform="translate(277 224) rotate(-180)" fill="#107030"/>
+<rect opacity="0.3" x="277.5" y="222" width="19" height="130" transform="rotate(-180 277.5 222)" fill="white" fill-opacity="0.3"/>
+<path opacity="0.3" d="M277.5 223L258.5 223" stroke="white" stroke-width="2"/>
+</g>
+<g clip-path="url(#clip5_5571_2971)">
+<rect width="48" height="800" transform="translate(325 224) rotate(-180)" fill="#107030"/>
+<path opacity="0.3" d="M308 219C308 220.657 306.657 222 305 222L277 222L277 92L308 92L308 219Z" fill="white" fill-opacity="0.3"/>
+<path opacity="0.3" d="M284 222C284 208.745 294.745 198 308 198" stroke="white" stroke-width="2"/>
+<path opacity="0.3" d="M277 223L305 223C307.209 223 309 221.209 309 219L309 -576" stroke="white" stroke-width="2"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_5571_2971">
+<rect width="325" height="240" fill="white"/>
+</clipPath>
+<clipPath id="clip1_5571_2971">
+<rect width="48" height="800" fill="white" transform="translate(48 224) rotate(-180)"/>
+</clipPath>
+<clipPath id="clip2_5571_2971">
+<rect width="18.4999" height="800" fill="white" transform="translate(66.4999 224) rotate(-180)"/>
+</clipPath>
+<clipPath id="clip3_5571_2971">
+<rect width="192" height="800" fill="white" transform="translate(258.5 224) rotate(-180)"/>
+</clipPath>
+<clipPath id="clip4_5571_2971">
+<rect width="18.4999" height="800" fill="white" transform="translate(277 224) rotate(-180)"/>
+</clipPath>
+<clipPath id="clip5_5571_2971">
+<rect width="48" height="800" fill="white" transform="translate(325 224) rotate(-180)"/>
+</clipPath>
+</defs>
+</svg>
