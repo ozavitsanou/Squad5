@@ -3353,7 +3353,7 @@ html:not(.pw-ok) body{visibility:hidden}
 #pwGate h1{margin:0;font-size:18px;font-weight:700}
 #pwGate p{margin:0;font-size:13px;color:#526789;line-height:1.4}
 #pwGate .pw-f{position:relative}
-#pwGate input{width:100%;box-sizing:border-box;height:44px;border:1px solid #c9d3e6;border-radius:10px;padding:0 64px 0 12px;font:inherit;font-size:15px;color:#151923;background:#fff}
+#pwGate input{width:100%;box-sizing:border-box;height:44px;border:1px solid #c9d3e6;border-radius:10px;padding:0 12px;font:inherit;font-size:15px;color:#151923;background:#fff}
 #pwGate input:focus-visible{outline:2px solid #ff3c00;outline-offset:1px}
 #pwGate .pw-sh{position:absolute;right:6px;top:6px;height:32px;padding:0 10px;border:0;border-radius:8px;background:#eef1f7;color:#151923;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
 #pwGate .pw-go{height:44px;border:0;border-radius:10px;background:#ff3c00;color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer}
@@ -3386,11 +3386,10 @@ html:not(.pw-ok) body{visibility:hidden}
     var g=document.createElement('div'); g.id='pwGate';
     g.innerHTML='<form novalidate><h1>Squad Builder prototype</h1><p>Enter the password to view this prototype.</p>'+
       '<label for="pwIn" class="pw-l" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Password</label>'+
-      '<div class="pw-f"><input id="pwIn" type="password" autocomplete="current-password" autofocus><button type="button" class="pw-sh" aria-pressed="false" aria-controls="pwIn">Show</button></div>'+
+      '<div class="pw-f"><input id="pwIn" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus></div>'+
       '<p class="pw-err" role="alert"></p><button type="submit" class="pw-go">Open prototype</button></form>';
     document.body.appendChild(g);
-    var f=g.querySelector('form'), inp=g.querySelector('input'), sh=g.querySelector('.pw-sh'), er=g.querySelector('.pw-err');
-    sh.addEventListener('click',function(){var on=inp.type==='password';inp.type=on?'text':'password';sh.textContent=on?'Hide':'Show';sh.setAttribute('aria-pressed',String(on));inp.focus();});
+    var f=g.querySelector('form'), inp=g.querySelector('input'), er=g.querySelector('.pw-err');
     f.addEventListener('submit',function(e){e.preventDefault();
       if(sha256(inp.value)===H){try{sessionStorage.setItem(K,H);}catch(x){} document.documentElement.classList.add('pw-ok'); g.remove(); window.dispatchEvent(new Event('resize'));}
       else{er.textContent='Wrong password. Try again.'; inp.select();}});
