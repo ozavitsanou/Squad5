@@ -3003,7 +3003,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :is(:is(#squad-v,#squad-x),#squad-w) .v-pt{flex:1;min-width:0;display:flex;flex-direction:column}
 :is(:is(#squad-v,#squad-x),#squad-w) .v-pt b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-ui);font-weight:550;font-size:12px;line-height:16px;color:var(--sem-text-gray-emphasis,#151923)}
 :is(:is(#squad-v,#squad-x),#squad-w) .v-pt i{font-style:normal;font-family:var(--font-ui);font-weight:450;font-size:10px;line-height:12px;color:var(--sem-text-gray-subtle,#526789)}
-#phone.lv :is(:is(#squad-v,#squad-x),#squad-w) .v-t .v-l5c,#phone.lv :is(:is(#squad-v,#squad-x),#squad-w) .v-pt i{color:#cfd9ed}
+#phone.lv :is(:is(#squad-v,#squad-x),#squad-w) .v-t .v-l5c,#phone.lv :is(:is(#squad-v,#squad-x),#squad-w) .v-pt i,#phone.lv #squad-x .vx-pm{color:#cfd9ed}
 #phone.lv :is(:is(#squad-v,#squad-x),#squad-w) .v-pt b{color:#f5f7fa}
 
 /* 3 · odds back to plain bold text (not clickable-looking); in the target rows they carry the word "Odds" */
@@ -3011,6 +3011,26 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :is(:is(#squad-v,#squad-x),#squad-w) .v-po small{font-family:var(--font-ui);font-weight:450;font-size:10px;line-height:12px;color:var(--sem-text-gray-subtle,#526789)}
 #phone.lv :is(:is(#squad-v,#squad-x),#squad-w) .v-po{color:#f5f7fa}
 #phone.lv :is(:is(#squad-v,#squad-x),#squad-w) .v-po small{color:#cfd9ed}
+
+/* 3.1 · expanded goal-line section, player rows (Figma 6633:63126 / 6633:63105) */
+#squad-x .gl-r.set{border-color:var(--sem-border-primary-subtle,#ff6333)}
+#squad-x .v-pl{margin-top:0;gap:6px;padding-top:10px;border-top:1px solid var(--sem-border-gray-pale,#e2e8f8)}
+#squad-x .vx-pr{position:relative;gap:4px;min-height:28px}
+#squad-x .vx-pr .v-pj{width:34px;height:34px}
+#squad-x .vx-pr .v-pj img{width:34px;height:34px;object-fit:contain}
+#squad-x .vx-pcr{position:absolute;left:16px;top:18px;width:16px;height:16px;box-sizing:border-box;display:grid;place-items:center;overflow:hidden;border-radius:16px;background:var(--sem-overlay-gray-soft-bold,rgba(239,239,250,.9));border:1px solid var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.2));font-style:normal}
+#squad-x .vx-pcr img{width:12px;height:12px}
+#squad-x .vx-pr .v-pt{gap:2px}
+#squad-x .vx-pr .v-pt b{font-family:var(--font-ui);font-weight:550;font-size:12px;line-height:16px;color:var(--sem-text-gray-emphasis,#151923)}
+#squad-x .vx-pl5{display:flex;align-items:stretch;gap:2px;width:119.5px}
+#squad-x .vx-plg{flex:none;position:relative;box-sizing:border-box;width:16px;height:16px;border-radius:16px;background:var(--sem-overlay-gray-soft-bold,rgba(239,239,250,.9));border:1px solid var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.2))}
+#squad-x .vx-plg img{position:absolute;left:.5px;top:.5px;width:13px;height:13px;display:block}
+#squad-x .vx-pr .v-l5s{display:flex;align-items:stretch;gap:2px}
+#squad-x .vx-pr .v-l5s .v-m{box-sizing:border-box;display:flex;align-items:center;justify-content:center;min-width:18px;padding:0 2px;border-radius:var(--sem-border-radius-2,2px);background:var(--sem-overlay-gray-soft-medium,rgba(239,239,250,.4));font-family:var(--font-ui);font-weight:550;font-size:11px;line-height:14px;color:var(--sem-text-gray-strong,#2a3346)}
+#squad-x .vx-pr .v-l5s .v-m.last{border-bottom:2px solid var(--sem-border-absolute-black,#151923)}
+#squad-x .vx-po{flex:none;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;white-space:nowrap}
+#squad-x .vx-po .v-po{min-width:34px;align-items:center;gap:4px;text-align:left}
+#squad-x .vx-pm{font-style:normal;font-family:var(--font-ui);font-weight:450;font-size:10px;line-height:12px;color:var(--sem-text-gray-subtle,#526789)}
 /* Golden Sub icon sits next to "My squad" */
 :is(:is(#squad-v,#squad-x),#squad-w) .v-pkw{display:flex;align-items:center;gap:6px}
 :is(:is(#squad-v,#squad-x),#squad-w) .v-pkw .m-gsp{width:24px;height:24px;margin:0;padding:0;line-height:0;background:none;border:0;display:grid;place-items:center}
@@ -3253,7 +3273,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes lvoDn{0%{transform:translateY(-10px);opacity:0;color:#ee4b22}45%{opacity:1;color:#ee4b22}}
 .lvo-up{animation:lvoUp 1.1s cubic-bezier(.2,.8,.2,1)}
 .lvo-dn{animation:lvoDn 1.1s cubic-bezier(.2,.8,.2,1)}
-#phone .vx-or b.lvo-up,#phone .vx-or b.lvo-dn,#phone .vx-ln.lvo-up,#phone .vx-ln.lvo-dn,#phone .v-po.lvo-up,#phone .v-po.lvo-dn,#phone .v-pt i.lvo-up,#phone .v-pt i.lvo-dn{display:inline-block}
+#phone .vx-or b.lvo-up,#phone .vx-or b.lvo-dn,#phone .vx-ln.lvo-up,#phone .vx-ln.lvo-dn,#phone .v-po.lvo-up,#phone .v-po.lvo-dn,#phone .v-pt i.lvo-up,#phone .v-pt i.lvo-dn,#phone .vx-pm.lvo-up,#phone .vx-pm.lvo-dn{display:inline-block}
 @media (prefers-reduced-motion:reduce){.lvo-up,.lvo-dn{animation:none}}
 
 /* Live: Set targets / Edit squad buttons use text/gray/inverted (dark on the light live button) */
@@ -3633,7 +3653,7 @@ window.__lvo={}; window.__lvoOn=false; window.__lvoT=null;
 window.lvoTick=function(){ const sc=document.querySelector('.screen.active'); if(!sc||!window.__LV) return;
   const st=((sc.querySelector('.p-so button[aria-pressed="true"][data-s]')||{}).dataset||{}).s||'goals', items=[];
   [...sc.querySelectorAll('.p-tl .p-t[data-id]')].slice(0,2).forEach(t=>items.push({pid:t.dataset.id,st,oe:t.querySelector('.vx-or b, .v-od'),le:t.querySelector('.vx-ln, .v-ln')}));
-  sc.querySelectorAll('.gl-r.set').forEach(g=>[...g.querySelectorAll('.v-pr[data-pid]')].slice(0,2).forEach(r=>items.push({pid:r.dataset.pid,st:r.dataset.sid,oe:r.querySelector('.v-po'),le:r.querySelector('.v-pt i')})));
+  sc.querySelectorAll('.gl-r.set').forEach(g=>[...g.querySelectorAll('.v-pr[data-pid]')].slice(0,2).forEach(r=>items.push({pid:r.dataset.pid,st:r.dataset.sid,oe:r.querySelector('.v-po'),le:r.querySelector('.v-pt i, .vx-pm')})));
   items.forEach(({pid,st,oe,le})=>{ if(!oe) return;
     const key=pid+'|'+st, cur=window.__lvo[key]||{}, od0=cur.od||parseFloat(oe.textContent.replace(/[^0-9.]/g,''))||2;
     const lm=le&&/(\d+)\+/.exec(le.textContent); let L=cur.L!=null?cur.L:(lm?+lm[1]:null), od=od0, lineMoved=false;
@@ -3939,7 +3959,8 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     <div class="gl-ls">${glOrder().map(id=>{const t=tgt(id), na=naFor(id), ln=glLine(id), mn=LR(id).min, mx=maxL(id), nm=stat(id).name;
       const tx=V?`<div class="gl-tx"><b>${nm}</b></div>`:`<div class="gl-tx"><b>${nm}</b><span>${W?'':'Median '+mdn(id)+' · '}avg ${fmtV(exp(id))}/game</span></div>`;
       /* 3: under each set target, the squad players with their stat, odds and last 5 */
-      const vPl=(V&&t)?`<div class="v-pl">${S.squad.map(pid=>{const p=byId[pid], m=vMk(p,id), jr=`<span class="v-pj">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',24,24,'png')}</span>`; if(!m) return `<div class="v-pr na">${jr}<span class="v-pt"><b>${p.name}</b><i>Not available</i></span></div>`;
+      const vPl=(V&&t)?`<div class="v-pl">${S.squad.map(pid=>{const p=byId[pid], m=vMk(p,id), jr=X?`<span class="v-pj">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',34,34,'png')}</span><i class="vx-pcr">${KI(p.team==='villa'?'logoHome':'logoAway',12,12,'png')}</i>`:`<span class="v-pj">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',24,24,'png')}</span>`; if(!m) return `<div class="v-pr na${X?' vx-pr':''}">${jr}<span class="v-pt"><b>${p.name}</b><i>Not available</i></span></div>`;
+        if(X) return `<div class="v-pr vx-pr" data-pid="${pid}" data-sid="${id}">${jr}<span class="v-pt"><b>${p.name}</b><span class="vx-pl5"><span class="vx-plg" role="img" aria-label="Champions League"><img src="${KA}vx_ucl.svg" alt="" aria-hidden="true" draggable="false"></span><span class="v-l5 v-l5s" aria-label="Last 5 matches">${m.l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span></span></span><span class="vx-po"><em class="v-po" aria-label="Odds ${m.od}">${m.od}<small>Odds</small></em><i class="vx-pm">${m.lb}</i></span></div>`;
         return `<div class="v-pr" data-pid="${pid}" data-sid="${id}">${jr}<span class="v-pt"><b>${p.name}</b><i>${m.lb}</i></span><em class="v-po" aria-label="Odds ${m.od}"><small>Odds</small>${m.od}</em><span class="v-l5 v-l5s" aria-label="Last 5 matches">${m.l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span></div>`;}).join('')}</div>`:'';
       const sw=na.length?`<div class="gl-sw">${na.map(p=>`<button class="gl-swb" data-act="mSwap" data-id="${p.id}" data-g="${id}" aria-label="Swap ${p.name} to unlock ${nm}">${KI('tg_swap',20,20)}<span>Swap ${p.name}</span></button>`).join('')}</div>`:'';
       if(t) return `<div class="gl-r set${V&&(S.vcol||{})[id]?' v-col':''}" data-id="${id}">${V?`<div class="gl-tx v-tt" data-act="vTog" data-id="${id}" role="button" tabindex="0" aria-expanded="${!(S.vcol||{})[id]}"><b>${nm}</b><button class="gl-rst v-rs" data-act="gResetOne" data-id="${id}" ${ln===mdn(id)?'disabled':''} aria-label="Reset ${nm} to the default">Reset</button></div>`:tx}<div class="gl-c"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="-1" ${ln<=mn?'disabled':''} aria-label="Decrease ${nm}">${KI('tg_minus',14,14)}</button><input class="gl-in" data-id="${id}" type="text" inputmode="none" readonly autocomplete="off" value="${ln}" aria-label="${nm} line (${mn} to ${mx})"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="1" ${ln>=mx?'disabled':''} aria-label="Increase ${nm}">${KI('tg_plus',14,14)}</button></div><button class="gl-x" data-act="tRm" data-id="${id}" aria-label="Remove ${nm} target">${KI('tg_trash',14,14)}</button>${sw}${vPl}</div>`;
