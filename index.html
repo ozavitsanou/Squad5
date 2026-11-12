@@ -5299,7 +5299,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       case 'mElig':S.elig=d.el;S.bub=null;break;
       case 'mGs':S.gs=d.gs;break;
       case 'pBackPick':{const y=sc?sc.scrollTop:0;S._wdir='b';S.pcont=false;S.psel=[...S.squad];S.sheet=false;render();if(sc&&(!V||!W))sc.scrollTop=X?(S._pkY!=null?S._pkY:y):0;return;}
-      case 'pCont':{const a=S.psel||[]; if(a.length<MIN) return; const y=sc?sc.scrollTop:0; if(X) S._pkY=y; S._wdir='f'; S.squad=[...a]; S.targets=S.targets||[]; S.step='goals'; S.pcont=true; S.done=false; S.slip=false; S.adding=false; render(); if(sc&&(!V||!W)) sc.scrollTop=X?y:0; return;}
+      case 'pCont':{const a=S.psel||[]; if(a.length<MIN) return; const y=sc?sc.scrollTop:0; if(X) S._pkY=y; S._wdir='f'; S.squad=[...a]; S.targets=S.targets||[]; S.step='goals'; S.pcont=true; S.done=false; S.slip=false; S.adding=false; render(); if(sc&&(!V||!W)){ if(window.__sbBot&&V){ /* filters bottom: Targets starts at the top of the list (the tab stays stuck if it was) */ const sm=sc.querySelector('.sec-menu'); sc.scrollTop=sm?Math.min(y,sm.offsetTop):0; } else sc.scrollTop=X?y:0; } return;}
       case 'pPick':{if(O){const a=S.squad,i=a.indexOf(d.id); if(i>=0)a.splice(i,1); else{const r=reason(byId[d.id]); if(r&&r.k!=='in') return; if(a.length<MAX)a.push(d.id);} S.done=false; break;}
         const a=S.psel||(S.psel=[]),i=a.indexOf(d.id); if(i>=0)a.splice(i,1); else if(a.length<MAX)a.push(d.id); pSync(); return;}
       case 'pRemove':{const a=S.psel||[],i=a.indexOf(d.id); if(i>=0)a.splice(i,1); pSync(); return;}
@@ -5709,8 +5709,9 @@ fit();
   .stage,html.embed .stage,.stage.with-ctl,html.embed .stage.with-ctl{display:block;height:100dvh}
   .stage>.screen-list,.stage>.m-side{display:none}
   .stage-main{position:fixed;inset:0;display:block}
-  .phone-scale{position:absolute;left:0;top:0;transform-origin:0 0}
-  .phone{border-radius:0;box-shadow:none;height:var(--mob-h,812px)}
+  /* no scaling: the phone frame is the real screen, so bottom bars sit on the screen's bottom edge whatever its height (dvh follows the browser toolbars) */
+  .phone-scale{position:fixed;inset:0;transform:none!important}
+  #phone.phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
   .mob-btn{display:flex;align-items:center;gap:6px;position:fixed;z-index:2147483000;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);height:28px;padding:0 12px;border-radius:99px;border:0;background:rgba(9,13,21,.72);color:#fff;font:600 12px/1 var(--font-ui,system-ui);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
   html.embed .mob-btn{left:auto;right:10px;transform:none}
   .stage.mob-open{position:fixed;inset:0;overflow:auto;z-index:2147482000;background:var(--panel-bg,#fff);padding-top:48px}
@@ -5735,8 +5736,8 @@ fit();
   }
   function mfit(){
     const sc=document.getElementById('phoneScale'), ph=document.getElementById('phone'); if(!sc||!ph) return;
-    if(!mq.matches){ ph.style.removeProperty('--mob-h'); if(typeof fit==='function') fit(); return; }
-    const k=innerWidth/375; ph.style.setProperty('--mob-h',Math.round(innerHeight/k)+'px'); sc.style.transform='scale('+k+')';
+    if(!mq.matches){ if(typeof fit==='function') fit(); return; }
+    sc.style.transform='none';
   }
   addEventListener('resize',mfit); mq.addEventListener('change',mfit); document.addEventListener('screenchange',()=>setTimeout(mfit,0)); mfit(); setTimeout(mfit,0);
 })();
