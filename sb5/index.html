@@ -3409,7 +3409,6 @@ html:not(.pw-ok) body{visibility:hidden}
 #phone.ar2 #squad-p .gl-ls .gl-r.set .gl-c .gl-in{box-sizing:border-box;width:36px;height:32px;padding:0;margin:0;border:0;border-radius:0;background:var(--sem-bg-container-lowest,#fff);box-shadow:none;outline:0;text-align:center;font-family:var(--font-ui);font-weight:700;font-size:14px;line-height:20px;color:var(--sem-text-gray-emphasis,#151923)}
 #phone.ar2 #squad-p .gl-ls .gl-r.set>.gl-x{flex:none;align-self:center;margin:0;box-sizing:border-box;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:6px;background:var(--sem-bg-gray-emphasis-active,#2a3046)}
 #phone.ar2 #squad-p .gl-ls .gl-r.set>.gl-x img{width:16px;height:16px;filter:none}
-#phone.ar2 #squad-p .gl-ls .gl-r.set.v-col .gl-ri{display:none}
 #phone.ar2.lv #squad-p .gl-ls .gl-r.set :is(.gl-ri,.gl-c,.gl-c .gl-b,.gl-c .gl-in){background:transparent;border-color:rgba(255,255,255,.3)}
 #phone.ar2.lv #squad-p .gl-ls .gl-r.set .gl-c .gl-in{color:#f5f7fa}
 #phone.ar2.lv #squad-p .gl-ls .gl-r.set :is(.gl-ri,.gl-c .gl-b) img{filter:brightness(0) invert(1)}
@@ -3429,7 +3428,6 @@ html:not(.pw-ok) body{visibility:hidden}
 .ar-w.v2c.lt.tgl .ar-c.tg.v5t :is(.ar-ri,.ar-rc,.ar-rc .ar-rb,.ar-rc .ar-rv){background:var(--sem-bg-container-lowest,#fff);border-color:var(--sem-border-gray-soft,#d1d9eb)}
 .ar-w.v2c.lt.tgl .ar-c.tg.v5t .ar-ri img{filter:none}
 .ar-w.v2c.lt.tgl .ar-c.tg.v5t>.ar-rx{background:var(--sem-bg-gray-emphasis-active,#2a3046)}
-.ar-w.v2c.tgl .ar-c.tg.v5t.v-col .ar-ri{display:none}
 .m-bs .bs-gsi{flex:none;display:grid;place-items:center;width:20px;height:20px;padding:0;margin:0 0 0 -2px;border:0;background:none;cursor:pointer}
 .m-bs .bs-gsi img{width:20px;height:20px}
 /* carousel card: shorter card, smaller jersey, "Last 5" under the form (Figma 6658-86476) */
@@ -3448,6 +3446,14 @@ html:not(.pw-ok) body{visibility:hidden}
 :is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-c.last{border-bottom:2px solid var(--sem-border-absolute-black,#151923);padding-bottom:0}
 :is(#phone.lv :is(#squad-v,#squad-x,#squad-w,#squad-p),.ar-w:not(.lt)) .v-pl .gp-c{background:rgba(239,239,250,.16);color:#f5f7fa}
 :is(#phone.lv :is(#squad-v,#squad-x,#squad-w,#squad-p),.ar-w:not(.lt)) .v-pl .gp-c.last{border-bottom-color:#f5f7fa}
+/* carousel team filter: crest chips on the counter row (same behaviour as the List and Cards) */
+.ar-w .ar-tf{position:relative;z-index:3;display:flex;justify-content:center;gap:4px;align-self:center} /* team chips centred above the counter */
+.ar-w .ar-tc{box-sizing:border-box;width:32px;height:24px;display:grid;place-items:center;padding:0;border:1px solid rgba(255,255,255,.3);border-radius:8px;background:transparent;cursor:pointer}
+.ar-w .ar-tc img{display:block;width:16px;height:16px;object-fit:contain}
+.ar-w .ar-tc[aria-pressed="true"]{border-color:#f5f7fa;box-shadow:inset 0 0 0 1px #f5f7fa}
+.ar-w.lt .ar-tc{border-color:var(--sem-border-gray-strong,#a5b3cf);background:var(--sem-bg-container-lowest,#fff)}
+.ar-w.lt .ar-tc[aria-pressed="true"]{border-color:var(--sem-bg-gray-emphasis,#151923);box-shadow:inset 0 0 0 1px var(--sem-bg-gray-emphasis,#151923)}
+.ar-w .ar-tc:focus-visible{outline:2px solid #ff3c00;outline-offset:2px}
 </style>
 <script>
 (function(){
@@ -4834,7 +4840,8 @@ function make(v,root,host){
      drag the centre card up to add it, down to remove it. Buttons and arrow keys do the same. Picks live in S.psel like version 2. */
   const AR=()=>v==='p'&&document.getElementById('phone').classList.contains('ar');
   const AR_SLOT=[[32,34],[68,34],[16,70],[50,64],[84,70]]; // % of the pitch: 2 up front, 3 behind
-  const arBase=()=>[...KORD,...SUBS.map(p=>p.id)].map(id=>byId[id]).filter(p=>p.pos!=='GK');
+  const arBase=()=>[...KORD,...SUBS.map(p=>p.id)].map(id=>byId[id]).filter(p=>p.pos!=='GK'&&(!S.arteam||S.arteam==='all'||p.team===S.arteam)); /* team filter, as in the List and Cards */
+  const arTeams=()=>`<div class="ar-tf" role="group" aria-label="Team">${[['villa','logoHome'],['juve','logoBarca']].map(([t,l])=>`<button type="button" class="ar-tc" data-ar="team" data-t="${t}" aria-pressed="${S.arteam===t}" aria-label="${TEAMS[t].name}">${KI(l,16,16,'png')}</button>`).join('')}</div>`;
   /* Version 5 (squad-p5 = version 4's arena with #phone.ar2): version 2's player cards with 3 stats, and a thumb stat dial that ranks the carousel */
   const AR2=()=>v==='p'&&(document.getElementById('phone').classList.contains('ar2')||/squad-p5/.test(location.hash));
   const AR_DIAL=[['goals','Goals'],['assists','Assists'],['shots','Shots'],['sot','Shots on target'],['tackles','Tackles'],['fouls','Fouls'],['cards','Cards']]; // version 5 stat filters (no Lineup)
@@ -4908,7 +4915,7 @@ function make(v,root,host){
     <div class="ar-top"><button class="ar-x" data-ar="close" aria-label="Back to the event"><span aria-hidden="true">✕</span></button><span class="ar-tt"><b>Squad</b> Builder<span>Aston Villa - Barcelona</span></span><i class="ar-sp0"></i></div>
     ${AR2()?`<div class="ar-gw" role="group" aria-label="Your squad"><div class="ar-gp"><i class="ar-gs" aria-hidden="true"></i>${arGlHead()}<div class="ar-p ar-gr">${arSlots()}</div><i class="ar-gf" aria-hidden="true"></i></div></div>`:`<div class="ar-pw" role="group" aria-label="Your squad on the pitch"><div class="ar-p"><i class="ar-l ar-l1"></i><i class="ar-l ar-l2"></i><i class="ar-l ar-l3"></i><i class="ar-l ar-l4"></i><i class="ar-l ar-l5"></i>${arSlots()}</div></div>`}
     <div class="ar-cw"><div class="ar-car" role="listbox" tabindex="0" aria-label="${TG()&&AR2()?'Squad targets':`${TG()?'Squad targets':'Players'}. Left and right arrows browse, up adds, down removes`}">${arList().map(arCard).join('')}</div></div>
-    ${AR2()&&!TG()?`<div class="ar-ctl ar-rw"><span class="ar-cnt" aria-hidden="true"></span><div class="ar-rl" role="group" aria-label="Jump to a player">${arRail()}</div></div>`:`<div class="ar-ctl"><button class="ar-ar" data-ar="prev" aria-label="Previous ${TG()?'target':'player'}">‹</button><button class="ar-ad" data-ar="tog"></button><span class="ar-cnt" aria-hidden="true"></span><button class="ar-ar" data-ar="next" aria-label="Next ${TG()?'target':'player'}">›</button></div>`}
+    ${AR2()&&!TG()?`<div class="ar-ctl ar-rw">${arTeams()}<span class="ar-cnt" aria-hidden="true"></span><div class="ar-rl" role="group" aria-label="Jump to a player">${arRail()}</div></div>`:`<div class="ar-ctl"><button class="ar-ar" data-ar="prev" aria-label="Previous ${TG()?'target':'player'}">‹</button><button class="ar-ad" data-ar="tog"></button><span class="ar-cnt" aria-hidden="true"></span><button class="ar-ar" data-ar="next" aria-label="Next ${TG()?'target':'player'}">›</button></div>`}
     <p class="ar-hint">${AR2()?`${TG()?'Tap a target to add it · − + changes the line':'Tap the centre card to add the player · drag the strip to jump'}`:`<span aria-hidden="true">↑</span> Drag a card up to add it · down to remove <span aria-hidden="true">↓</span>`}</p>${AR2()&&!TG()?arFilter():''}
     <div class="ar-bar">${arBar()}</div>
     <div class="ar-msg" role="status" aria-live="polite"></div>`;
@@ -5001,6 +5008,8 @@ function make(v,root,host){
         case 'trm':arTgRm({id:b.dataset.id,tg:1,name:stat(b.dataset.id).name},arW.querySelector(`.ar-c[data-id="${b.dataset.id}"]`));break;
         case 'slip':if(S.targets.length){S.arStep=null; S.squad=[...pSel()]; S.pcont=true; S.step='goals'; render(); act('slip',{}); act('mSlip',{});}break; case 'prev':arGo(arI-1);break; case 'jump':{const r=b.closest('.ar-rl'); if(r){r._u=false; clearTimeout(r._st);} arGo(+b.dataset.i); break;} case 'next':arGo(arI+1);break;
         case 'st':arSetSt(b.dataset.s,true);break;
+        case 'team':{ const t=b.dataset.t; S.arteam=S.arteam===t?'all':t; arW.querySelectorAll('.ar-tc').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.t===S.arteam)));
+          const car=arW.querySelector('.ar-car'); car.innerHTML=arList().map(arCard).join(''); arRlFill(); arI=0; arLay(0,false); arSay(S.arteam==='all'?'Showing both teams':`Showing ${TEAMS[S.arteam].name} players`); break;}
         case 'tog':pSel().includes(p.id)?arRm(p,card):arAdd(p,card);break; case 'rm':{const q=byId[b.dataset.id]; arRm(q,arW.querySelector(`.ar-c[data-id="${q.id}"]`));break;}}});
     arW.addEventListener('keydown',e=>{ if(e.key==='Escape'){act('mNBack',{});return;}
       if(e.target.closest('.ar-wh,.ar-fs')&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){e.preventDefault(); const n=AR_DIAL[Math.max(0,Math.min(AR_DIAL.length-1,arWi()+(e.key==='ArrowLeft'?-1:1)))]; arSetSt(n[0],true); arW.querySelector(`:is(.ar-wd,.ar-fs) [data-s="${n[0]}"]`)?.focus(); return;}
