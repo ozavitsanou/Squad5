@@ -3124,7 +3124,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* version 5 player card, Figma 6481-93781 (themeable: dark default, .lt = light) */
 .ar-w.v2c{--c5-base:#1f2536;--c5-tx:#f5f7fa;--c5-sub:#cfd9ed;--c5-ov:rgba(11,14,23,.5);--c5-ind:rgba(255,255,255,.1);--c5-bd:rgba(184,197,224,.28);--c5-bdc:rgba(255,255,255,.55);--c5-ink:#f5f7fa}
 .ar-w.v2c.lt{--c5-base:#f7f9fc;--c5-tx:#151923;--c5-sub:#2a3346;--c5-ov:rgba(239,239,250,.4);--c5-ind:rgba(239,239,250,.4);--c5-bd:rgba(21,25,35,.12);--c5-bdc:rgba(21,25,35,.22);--c5-ink:#151923}
-.ar-w.v2c:not(.tgl) .ar-c.a5{width:176px;height:230px;top:calc(50% - 115px);box-sizing:border-box;border-radius:12px;overflow:hidden;border:0;background:linear-gradient(180deg,rgba(184,197,224,.15) 0%,var(--c5-team) 100%),var(--c5-base)}
+.ar-w.v2c:not(.tgl) .ar-c.a5{width:176px;height:200px;top:calc(50% - 100px);box-sizing:border-box;border-radius:12px;overflow:hidden;border:0;background:linear-gradient(180deg,rgba(184,197,224,.15) 0%,var(--c5-team) 100%),var(--c5-base)}
 /* one continuous outline drawn above the contents (the frosted panel used to cover the real border at the sides and bottom) */
 .ar-c.a5::after{content:'';position:absolute;inset:0;z-index:5;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--c5-bd);pointer-events:none;transition:box-shadow .2s}
 .ar-c.a5.cur::after{box-shadow:inset 0 0 0 1px var(--c5-bdc)}
@@ -3333,6 +3333,121 @@ html:not(.pw-ok) body{visibility:hidden}
 #pwGate .pw-go{height:44px;border:0;border-radius:10px;background:#ff3c00;color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer}
 #pwGate .pw-go:focus-visible,#pwGate .pw-sh:focus-visible{outline:2px solid #151923;outline-offset:2px}
 #pwGate .pw-err{color:#c4161c;font-size:13px;min-height:18px;margin:0}
+
+/* carousel targets: expand / collapse, Reset per target, players with odds and last 5 (as 3.1 / 3.2) */
+:is(#squad-p,.ar-w) .v-pl{flex:0 0 100%;display:flex;flex-direction:column;gap:6px;margin-top:4px;padding-top:10px;border-top:1px solid var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.4))}
+:is(#squad-p,.ar-w) .v-pr{display:flex;align-items:center;gap:8px;min-height:28px}
+:is(#squad-p,.ar-w) .v-pj{flex:none;width:24px;height:24px;display:flex}
+:is(#squad-p,.ar-w) .v-pj img{width:24px;height:24px;object-fit:contain}
+:is(#squad-p,.ar-w) .v-pr>b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-ui);font-weight:550;font-size:12px;line-height:16px;color:var(--sem-text-gray-emphasis,#151923)}
+:is(#squad-p,.ar-w) .v-po{flex:none;min-width:34px;text-align:right;font-style:normal;font-family:var(--font-brand);font-weight:700;font-size:16px;line-height:20px;color:var(--sem-text-gray-emphasis,#151923)}
+:is(#squad-p,.ar-w) .v-l5s .v-m{padding:2px 5px;font-size:10px;line-height:12px;background:var(--sem-overlay-gray-soft-medium,rgba(239,239,250,.7))}
+:is(#squad-p,.ar-w) .v-pr.na>b{flex:1}
+:is(#phone.lv #squad-p,.ar-w:not(.lt)) .v-pr>b,:is(#phone.lv #squad-p,.ar-w:not(.lt)) .v-po{color:#f5f7fa}
+:is(#squad-p,.ar-w) .v-pt{flex:1;min-width:0;display:flex;flex-direction:column}
+:is(#squad-p,.ar-w) .v-pt b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-ui);font-weight:550;font-size:12px;line-height:16px;color:var(--sem-text-gray-emphasis,#151923)}
+:is(#squad-p,.ar-w) .v-pt i{font-style:normal;font-family:var(--font-ui);font-weight:450;font-size:10px;line-height:12px;color:var(--sem-text-gray-subtle,#526789)}
+:is(#phone.lv #squad-p,.ar-w:not(.lt)) .v-pt b{color:#f5f7fa}
+:is(#squad-p,.ar-w) .v-po{flex:none;display:inline-flex;align-items:baseline;gap:4px;font-style:normal;font-family:var(--font-brand);font-weight:700;font-size:16px;line-height:20px;color:var(--sem-text-gray-emphasis,#151923)}
+:is(#squad-p,.ar-w) .v-po small{font-family:var(--font-ui);font-weight:450;font-size:10px;line-height:12px;color:var(--sem-text-gray-subtle,#526789)}
+:is(#phone.lv #squad-p,.ar-w:not(.lt)) .v-po{color:#f5f7fa}
+:is(#phone.lv #squad-p,.ar-w:not(.lt)) .v-po small{color:#cfd9ed}
+:is(#squad-x,#squad-v) .v-pl{margin-top:0;gap:6px;padding-top:0;border-top:1px solid var(--sem-border-gray-pale,#e2e8f8)}
+#squad-p .gl-r .v-rs{height:24px;padding:0 10px;align-self:flex-start;font-size:11px;line-height:16px}
+#squad-p .gl-r .v-rs:disabled{opacity:.4}
+:is(#squad-p,.ar-w) .v-tt{cursor:pointer}
+#squad-p .gl-r.set.v-col .gl-c,#squad-p .gl-r.set.v-col .v-pl,#squad-p .gl-r.set.v-col .gl-sw{display:none}
+:is(#squad-p,.ar-w) .v-l5{display:flex;gap:2px;align-items:center}
+:is(#squad-p,.ar-w) .v-l5 .v-m{box-sizing:border-box;display:flex;align-items:center;justify-content:center;border-radius:2px;background:var(--sem-overlay-gray-soft-medium,rgba(239,239,250,.7));font-family:var(--font-ui);font-weight:550;font-size:10px;line-height:12px;color:var(--sem-text-gray-emphasis,#151923);padding:2px 5px}
+:is(#squad-p,.ar-w) .v-l5 .v-m.last{border-bottom:2px solid var(--sem-border-absolute-black,#151923)}
+#squad-p .gl-r.set{flex-wrap:wrap}
+:is(#phone.lv #squad-p,.ar-w:not(.lt)) .v-l5 .v-m{background:rgba(239,239,250,.16);color:#f5f7fa}
+
+/* set targets: the title stays where it sits on an unset target; Reset under it with 4px before the players */
+#phone.ar2 #squad-p .gl-r.set{align-items:flex-start;padding:12px}
+#phone.ar2 #squad-p .gl-r.set .gl-tx b{padding-top:2px}
+#phone.ar2 #squad-p .gl-r.set .gl-c{align-self:flex-start}
+#phone.ar2 #squad-p .gl-r.set>.gl-x{align-self:flex-start;margin-top:1px}
+#phone.ar2 #squad-p .gl-r.set .v-rs{margin-bottom:4px}
+/* carousel targets: same layout as the List / Cards targets */
+.ar-w.v2c.tgl .ar-c.tg.v5t{flex-wrap:wrap;align-items:flex-start;padding:12px;row-gap:0}
+.ar-w .ar-c.tg.v5t .ar-rt{gap:0;cursor:pointer}
+.ar-w .ar-c.tg.v5t>.ar-rx{margin-top:1px}
+.ar-w .ar-rs{align-self:flex-start;height:24px;margin:4px 0 4px;padding:0 10px;font:450 11px/16px var(--font-ui);color:#f5f7fa;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:8px;cursor:pointer}
+.ar-w .ar-rs:disabled{opacity:.4;cursor:default}
+.ar-w.lt .ar-rs{color:var(--sem-text-gray-emphasis,#151923);background:var(--sem-bg-container-lowest,#fff);border-color:var(--sem-border-off-gray-pale,#e2e8f8)}
+.ar-w:is(#_,.ar-w) .ar-c.tg.v5t .v-pl{margin-top:4px;padding-top:10px;border-top:1px solid rgba(184,197,224,.4)}
+.ar-w.lt:is(#_,.ar-w) .ar-c.tg.v5t .v-pl{border-top-color:var(--sem-border-gray-pale,#e2e8f8)}
+.ar-w .ar-c.tg.v5t.v-col .ar-rc,.ar-w:is(#_,.ar-w) .ar-c.tg.v5t.v-col .v-pl{display:none}
+.ar-w .ar-c.tg.v5t .ar-rv{width:auto;min-width:36px;padding:0 4px}
+/* target player rows: Figma 6633:63105 (jersey, name, market, odds) */
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .v-pr.gp-r{display:flex;align-items:center;gap:4px;min-height:28px}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-j{position:relative;flex:none;width:25px;height:25px;display:block}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-j img{position:absolute;top:0;left:8.33%;width:83.34%;height:100%;object-fit:contain}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-j b{position:absolute;top:5px;left:0;right:0;text-align:center;font-family:var(--font-ui);font-weight:700;font-size:10px;line-height:12px;color:#fff}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-n{flex:1 0 0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--font-ui);font-weight:550;font-size:12px;line-height:16px;color:var(--sem-text-gray-emphasis,#151923)}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-m{flex:none;display:flex;align-items:center;gap:8px;white-space:nowrap}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-m i{font-style:normal;font-family:var(--font-ui);font-weight:450;font-size:10px;line-height:12px}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-m i:not(.lvo-up):not(.lvo-dn){color:var(--sem-text-gray-subtle,#526789)}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-m .v-po{display:inline-flex;align-items:center;gap:4px;min-width:34px;margin:0;font-style:normal;font-family:var(--font-brand);font-weight:700;font-size:16px;line-height:20px}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-m .v-po:not(.lvo-up):not(.lvo-dn){color:var(--sem-text-gray-emphasis,#151923)}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-m .v-po small{order:0;font-family:var(--font-ui);font-weight:450;font-size:10px;line-height:12px;color:var(--sem-text-gray-subtle,#526789)}
+:is(#phone.lv :is(#squad-v,#squad-x,#squad-w,#squad-p),.ar-w:not(.lt)) .v-pl .gp-n,:is(#phone.lv :is(#squad-v,#squad-x,#squad-w,#squad-p),.ar-w:not(.lt)) .v-pl .gp-m .v-po:not(.lvo-up):not(.lvo-dn){color:#f5f7fa}
+:is(#phone.lv :is(#squad-v,#squad-x,#squad-w,#squad-p),.ar-w:not(.lt)) .v-pl .gp-m i:not(.lvo-up):not(.lvo-dn),:is(#phone.lv :is(#squad-v,#squad-x,#squad-w,#squad-p),.ar-w:not(.lt)) .v-pl .gp-m .v-po small{color:#cfd9ed}
+/* set target header: Figma 6658:63220 (title, reset icon button, joined stepper, trash) */
+#phone.ar2 #squad-p .gl-ls .gl-r.set{align-items:center;padding:7px 12px 12px;column-gap:8px}
+#phone.ar2 #squad-p .gl-ls .gl-r.set .gl-tx{flex:1 0 0;min-width:0;align-self:center}
+#phone.ar2 #squad-p .gl-ls .gl-r.set .gl-tx b{padding-top:0;font-family:var(--font-ui);font-weight:700;font-size:14px;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#phone.ar2 #squad-p .gl-ls .gl-r.set .gl-ri{flex:none;align-self:center;box-sizing:border-box;width:32px;height:32px;display:grid;place-items:center;padding:0;margin:0;border:1px solid var(--sem-border-gray-soft,#d1d9eb);border-radius:8px;background:var(--sem-bg-container-lowest,#fff);cursor:pointer}
+#phone.ar2 #squad-p .gl-ls .gl-r.set .gl-ri img{width:16px;height:16px}
+#phone.ar2 #squad-p .gl-ls .gl-r.set .gl-ri:disabled{opacity:.4;cursor:default}
+#phone.ar2 #squad-p .gl-ls .gl-r.set .gl-c{flex:none;align-self:center;display:flex;align-items:stretch;gap:0;box-sizing:border-box;height:34px;padding:0;margin:0;border:1px solid var(--sem-border-gray-soft,#d1d9eb);border-radius:8px;overflow:hidden;background:var(--sem-bg-container-lowest,#fff)}
+#phone.ar2 #squad-p .gl-ls .gl-r.set .gl-c .gl-b{box-sizing:border-box;width:32px;height:32px;min-width:0;padding:0;margin:0;display:grid;place-items:center;border:0;border-radius:0;background:var(--sem-bg-container-lowest,#fff);box-shadow:none}
+#phone.ar2 #squad-p .gl-ls .gl-r.set .gl-c .gl-b:first-child{border-right:1px solid var(--sem-border-gray-soft,#d1d9eb)}
+#phone.ar2 #squad-p .gl-ls .gl-r.set .gl-c .gl-b:last-child{border-left:1px solid var(--sem-border-gray-soft,#d1d9eb)}
+#phone.ar2 #squad-p .gl-ls .gl-r.set .gl-c .gl-b img{width:14px;height:14px}
+#phone.ar2 #squad-p .gl-ls .gl-r.set .gl-c .gl-in{box-sizing:border-box;width:36px;height:32px;padding:0;margin:0;border:0;border-radius:0;background:var(--sem-bg-container-lowest,#fff);box-shadow:none;outline:0;text-align:center;font-family:var(--font-ui);font-weight:700;font-size:14px;line-height:20px;color:var(--sem-text-gray-emphasis,#151923)}
+#phone.ar2 #squad-p .gl-ls .gl-r.set>.gl-x{flex:none;align-self:center;margin:0;box-sizing:border-box;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:6px;background:var(--sem-bg-gray-emphasis-active,#2a3046)}
+#phone.ar2 #squad-p .gl-ls .gl-r.set>.gl-x img{width:16px;height:16px;filter:none}
+#phone.ar2 #squad-p .gl-ls .gl-r.set.v-col .gl-ri{display:none}
+#phone.ar2.lv #squad-p .gl-ls .gl-r.set :is(.gl-ri,.gl-c,.gl-c .gl-b,.gl-c .gl-in){background:transparent;border-color:rgba(255,255,255,.3)}
+#phone.ar2.lv #squad-p .gl-ls .gl-r.set .gl-c .gl-in{color:#f5f7fa}
+#phone.ar2.lv #squad-p .gl-ls .gl-r.set :is(.gl-ri,.gl-c .gl-b) img{filter:brightness(0) invert(1)}
+/* carousel set target header: Figma 6658:63220 */
+.ar-w.v2c.tgl .ar-c.tg.v5t{align-items:center;padding:7px 12px 12px;column-gap:8px}
+.ar-w.v2c.tgl .ar-c.tg.v5t .ar-rt b{font-weight:700;font-size:14px;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ar-w.v2c.tgl .ar-c.tg.v5t>.ar-rx{margin:0;width:32px;height:32px;border-radius:6px}
+.ar-w.v2c.tgl .ar-c.tg.v5t>.ar-rx img{width:16px;height:16px}
+.ar-w.v2c.tgl .ar-c.tg.v5t .ar-ri{flex:none;box-sizing:border-box;width:32px;height:32px;display:grid;place-items:center;padding:0;margin:0;border:1px solid rgba(255,255,255,.3);border-radius:8px;background:transparent;cursor:pointer}
+.ar-w.v2c.tgl .ar-c.tg.v5t .ar-ri img{width:16px;height:16px;filter:brightness(0) invert(1)}
+.ar-w.v2c.tgl .ar-c.tg.v5t .ar-ri:disabled{opacity:.4;cursor:default}
+.ar-w.v2c.tgl .ar-c.tg.v5t .ar-rc{gap:0;box-sizing:border-box;height:34px;border:1px solid rgba(255,255,255,.3);border-radius:8px;overflow:hidden}
+.ar-w.v2c.tgl .ar-c.tg.v5t .ar-rc .ar-rb{box-sizing:border-box;width:32px;height:32px;padding:0;border:0;border-radius:0}
+.ar-w.v2c.tgl .ar-c.tg.v5t .ar-rc .ar-rb:first-child{border-right:1px solid rgba(255,255,255,.3)}
+.ar-w.v2c.tgl .ar-c.tg.v5t .ar-rc .ar-rb:last-child{border-left:1px solid rgba(255,255,255,.3)}
+.ar-w.v2c.tgl .ar-c.tg.v5t .ar-rc .ar-rv{width:36px;min-width:0;height:32px;padding:0;border:0;border-radius:0;font-weight:700;font-size:14px;line-height:20px}
+.ar-w.v2c.lt.tgl .ar-c.tg.v5t :is(.ar-ri,.ar-rc,.ar-rc .ar-rb,.ar-rc .ar-rv){background:var(--sem-bg-container-lowest,#fff);border-color:var(--sem-border-gray-soft,#d1d9eb)}
+.ar-w.v2c.lt.tgl .ar-c.tg.v5t .ar-ri img{filter:none}
+.ar-w.v2c.lt.tgl .ar-c.tg.v5t>.ar-rx{background:var(--sem-bg-gray-emphasis-active,#2a3046)}
+.ar-w.v2c.tgl .ar-c.tg.v5t.v-col .ar-ri{display:none}
+.m-bs .bs-gsi{flex:none;display:grid;place-items:center;width:20px;height:20px;padding:0;margin:0 0 0 -2px;border:0;background:none;cursor:pointer}
+.m-bs .bs-gsi img{width:20px;height:20px}
+/* carousel card: shorter card, smaller jersey, "Last 5" under the form (Figma 6658-86476) */
+.ar-c.a5 .a5-hd{top:7px}
+.ar-c.a5 .a5-j{top:36px;left:calc(50% + 1.5px);width:93px;height:92px}
+.ar-c.a5 .a5-j img{width:92px;height:92px}
+.ar-c.a5 .a5-nu{top:56.5px;font-weight:700;font-size:32px;line-height:40px}
+.ar-c.a5 .a5-ct{padding:8px}
+.a5-lw{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.a5-l5c{font-weight:450;font-size:11px;line-height:14px;color:var(--c5-sub)}
+.ar-w.v2c.lt .a5-l5c{color:var(--sem-text-gray-subtle,#526789)}
+/* target player row: jersey, name, last 5 (Figma 6633-63147) */
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-n{flex:1 0 0}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-l5{gap:2px;margin-left:2px;align-self:center}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-c{box-sizing:border-box;min-width:18px;min-height:16px;padding:1px 2px;display:flex;align-items:center;justify-content:center;border-radius:var(--sem-border-radius-2,2px);background:var(--sem-overlay-gray-soft-medium,rgba(239,239,250,.4));font-family:var(--font-ui);font-weight:550;font-size:11px;line-height:14px;color:var(--sem-text-gray-strong,#2a3346)}
+:is(#squad-v,#squad-x,#squad-w,#squad-p,.ar-w) .v-pl .gp-c.last{border-bottom:2px solid var(--sem-border-absolute-black,#151923);padding-bottom:0}
+:is(#phone.lv :is(#squad-v,#squad-x,#squad-w,#squad-p),.ar-w:not(.lt)) .v-pl .gp-c{background:rgba(239,239,250,.16);color:#f5f7fa}
+:is(#phone.lv :is(#squad-v,#squad-x,#squad-w,#squad-p),.ar-w:not(.lt)) .v-pl .gp-c.last{border-bottom-color:#f5f7fa}
 </style>
 <script>
 (function(){
@@ -3637,7 +3752,7 @@ function pitchLines(H){
 
 /* ===== Version D · KDS skin (matches Figma "Squad builder · D — flow", file xlI7xlzYKvAJycgX09uTOz) ===== */
 const KA='assets/sbd/';
-try{window.__ARTH=localStorage.getItem('sb:arth')||'dark'; window.__ARFL=localStorage.getItem('sb:arfl')||'wheel';}catch(x){window.__ARTH='dark'; window.__ARFL='wheel';} // version 5 page theme and stat filter
+try{window.__ARTH=localStorage.getItem('sb:arth2')||'light'; window.__ARFL=localStorage.getItem('sb:arfl')||'wheel';}catch(x){window.__ARTH='light'; window.__ARFL='wheel';} // version 5 page theme and stat filter
 const KI=(n,w,h,ext='svg',alt='')=>`<img src="${KA}${n}.${ext}" width="${w}" height="${h}" alt="${alt}" ${alt?'':'aria-hidden="true"'} draggable="false">`;
 const KJ=(p,s)=>`<span class="k-jer ${p.team}" style="width:${s}px;height:${s}px">${KI(p.team==='villa'?'jerseyVilla':'jerseyBarca',s,s,'png')}${s>=28&&p.num?`<b class="k-jn" style="font-size:${Math.round(s*.3)}px">${p.num}</b>`:''}</span>`; // shirt number sits on the jersey from 28px up
 /* mock per-player season averages (per game), derived from position rates with a stable per-player factor */
@@ -3984,16 +4099,24 @@ function make(v,root,host){
   const glSet=(id,line)=>{const mn=LR(id).min, mx=maxL(id); line=Math.min(mx,Math.max(mn,Math.round(line))); let t=tgt(id); if(!t){t={id,line};S.targets.push(t);} t.line=line; S.done=false;};
   // Targets list (Figma 6341-98238 empty, 6341-98764 one set): header with count + Reset inside the card; one tile per target, dashed with + until set, orange with stepper + remove once set, Swap CTAs when a squad player can't count
   // set targets sit on top in the order they were added (first on top); the rest keep GLORD order
-  const glOrder=()=>{const ids=GLORD.filter(id=>GS.some(x=>x.id===id)), on=S.targets.map(t=>t.id).filter(id=>ids.includes(id)); return [...on,...ids.filter(id=>!on.includes(id))];};
+  const glOrder=()=>{const ids=GLORD.filter(id=>GS.some(x=>x.id===id)), on=S.targets.map(t=>t.id).filter(id=>ids.includes(id)); if(AR2()) return ids; /* carousel: targets keep their place when set */ return [...on,...ids.filter(id=>!on.includes(id))];};
   // FLIP: remember each tile's position before the re-render, then slide every tile from its old spot to its new one
   const glFlip=()=>{const pos={}; root.querySelectorAll('.gl-r[data-id]').forEach(el=>{pos[el.dataset.id]=el.getBoundingClientRect().top;}); if(!Object.keys(pos).length||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     queueMicrotask(()=>root.querySelectorAll('.gl-r[data-id]').forEach(el=>{const y=pos[el.dataset.id]; if(y==null) return; const dy=y-el.getBoundingClientRect().top; if(Math.abs(dy)<1) return; el.style.position='relative'; el.style.zIndex=el.classList.contains('set')?'2':'1'; el.animate([{transform:`translateY(${dy}px)`},{transform:'none'}],{duration:420,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>{el.style.zIndex='';el.style.position='';};}));};
+  const vMk=(p,id)=>{const r=pv(p,id==='ycard'||id==='rcard'?'cards':id); if(r==null) return null; const h=[...(p.id+id)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7); let L=Math.max(1,Math.round(r)), lb=`${({goals:'Goals',shots:'Shots',sot:'Shots On Target',assists:'Assists',tackles:'Tackles',cards:'Cards'})[id]||(stat(id)||{}).name} ${L}+`;
+    if(id==='goals'){const sc=window.__LV?(h%5===0?1:h%5===1?2:0):0; L=sc+1; lb=sc===0?'Goalscorer Anytime':sc===1?'Score 2+ goals':'Score Hat-Trick';}
+    else if(id==='cards'||id==='ycard'){L=1; lb='To receive a card';} else if(id==='rcard'){L=1; lb='To get a red card';}
+    let od0=id==='rcard'?pOdds(p,'cards',L,.12):pOdds(p,id==='ycard'?'cards':id,L); const ov=window.__lvo&&window.__lvo[p.id+'|'+id]; if(ov){ od0=ov.od; if(ov.L!=null){ L=ov.L; lb=lb.replace(/\d+\+/,ov.L+'+'); } }
+    return {L,lb,od:fo(od0),l5:[0,1,2,3,4].map(i=>Math.max(0,Math.round(r*(.3+(((h>>>(i*3))%9)/5)))))};};
   const glSection=()=>{const k=S.targets.length;
-    return `<section class="d-sec d-goals"><div class="gl-card"><div class="gl-top"><b>Set squad targets</b><span class="gl-cnt">${k} Target${k!==1?'s':''}</span>${k?'<button class="gl-rst" data-act="gReset">Reset</button>':''}</div>
+    return `<section class="d-sec d-goals"><div class="gl-card"><div class="gl-top"><b>Set squad targets</b><span class="gl-cnt">${k} Target${k!==1?'s':''}</span>${k&&!AR2()?'<button class="gl-rst" data-act="gReset">Reset</button>':''}</div>
     <div class="gl-ls">${glOrder().map(id=>{const t=tgt(id), na=naFor(id), ln=glLine(id), mn=LR(id).min, mx=maxL(id), nm=stat(id).name;
-      const tx=`<div class="gl-tx"><b>${nm}</b><span>Median ${mdn(id)} · avg ${fmtV(exp(id))}/game</span></div>`;
+      const C5=AR2(), tx=C5?`<div class="gl-tx"><b>${nm}</b></div>`:`<div class="gl-tx"><b>${nm}</b><span>Median ${mdn(id)} · avg ${fmtV(exp(id))}/game</span></div>`;
+      /* carousel: under each set target, the squad players with their odds and last 5 (same as 3.1 / 3.2) */
+      const vPl=(C5&&t)?`<div class="v-pl">${S.squad.map(pid=>{const p=byId[pid], m=vMk(p,id); if(!m) return `<div class="v-pr gp-r na"><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyBarca',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><span class="gp-m"><i class="vx-pm">Not available</i></span></div>`;
+        return `<div class="v-pr gp-r" data-pid="${pid}" data-sid="${id}"><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyBarca',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><span class="gp-m gp-l5" aria-label="Last 5 matches">${m.l5.map((n,k)=>`<span class="gp-c${k===4?' last':''}">${n}</span>`).join('')}</span></div>`;}).join('')}</div>`:'';
       const sw=na.length?`<div class="gl-sw">${na.map(p=>`<button class="gl-swb" data-act="mSwap" data-id="${p.id}" data-g="${id}" aria-label="Swap ${p.name} to unlock ${nm}">${KI('tg_swap',20,20)}<span>Swap ${p.name}</span></button>`).join('')}</div>`:'';
-      if(t) return `<div class="gl-r set" data-id="${id}">${tx}<div class="gl-c"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="-1" ${ln<=mn?'disabled':''} aria-label="Decrease ${nm}">${KI('tg_minus',14,14)}</button><input class="gl-in" data-id="${id}" type="text" inputmode="none" readonly autocomplete="off" value="${ln}" aria-label="${nm} line (${mn} to ${mx})"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="1" ${ln>=mx?'disabled':''} aria-label="Increase ${nm}">${KI('tg_plus',14,14)}</button></div><button class="gl-x" data-act="tRm" data-id="${id}" aria-label="Remove ${nm} target">${KI('tg_trash',14,14)}</button>${sw}</div>`;
+      if(t) return `<div class="gl-r set${C5&&(S.vcol||{})[id]?' v-col':''}" data-id="${id}">${C5?`<div class="gl-tx v-tt" data-act="vTog" data-id="${id}" role="button" tabindex="0" aria-expanded="${!(S.vcol||{})[id]}"><b>${nm}</b></div>`:tx}<div class="gl-c"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="-1" ${ln<=mn?'disabled':''} aria-label="Decrease ${nm}">${KI('tg_minus',14,14)}</button><input class="gl-in" data-id="${id}" type="text" inputmode="none" readonly autocomplete="off" value="${ln}${C5?'+':''}" aria-label="${nm} line (${mn} to ${mx})"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="1" ${ln>=mx?'disabled':''} aria-label="Increase ${nm}">${KI('tg_plus',14,14)}</button></div><button class="gl-ri" data-act="gResetOne" data-id="${id}" ${ln===mdn(id)?'disabled':''} aria-label="Reset ${nm} to the default">${KI('tg_reset',16,16)}</button><button class="gl-x" data-act="tRm" data-id="${id}" aria-label="Remove ${nm} target">${KI('tg_trash',14,14)}</button>${sw}${vPl}</div>`;
       if(na.length) return `<div class="gl-r na" data-id="${id}">${tx}${sw}</div>`;
       return `<div class="gl-r gl-tap" data-act="gAdd" data-id="${id}" role="button" tabindex="0" aria-label="Add ${nm} target">${tx}<span class="gl-x" aria-hidden="true">${KI('tg_add',14,14)}</span></div>`;}).join('')}</div></div></section>`;};
   const pGoal=t=>{const id=t.id, mx=sMax(id), mn=LR(id).min; t.line=Math.min(mx,Math.max(mn,t.line)); const st=stp(id)>1?stp(id):1, n=Math.max(2,Math.round((mx-mn)/st)+1), i=Math.min(n-1,Math.max(0,Math.round((t.line-mn)/st))), open=true, warn=false; // targets always open (no collapse)
@@ -4316,10 +4439,12 @@ function make(v,root,host){
     const trash=(a,lab,extra='')=>`<button class="bs-x" data-act="${a}" ${extra} aria-label="${lab}">${KI('bs_trash',16,16)}</button>`;
     // goals as removable vertical bullets
     const goalLegs=(sub)=>S.targets.map(t=>`<div class="bs-leg ${sub?'sub':''}"><i class="bs-dot">${sub?KI('bs_dot_sm',6,6):KI('bs_dot',8,8)}</i><div class="bs-lt"><div class="bs-lh"><b>${stat(t.id).name} ${t.line}+</b>${trash('tRm','Remove '+stat(t.id).name+' goal',`data-id="${t.id}"`)}</div><span>Squad total</span></div></div>`).join('');
-    const sel=(title,pill,odds,rmAct,rmLab,ex='')=>`<div class="bs-sel">${KI('bs_soccer',22,22)}<b>${title}</b>${pill!=null?`<span class="bs-pill">${pill}</span>`:''}<div class="grow"></div><span class="bs-odds">${fo(odds)}</span>${trash(rmAct,rmLab,ex)}</div>`;
+    /* Golden Sub: icon next to the Squad Builder title instead of the betslip banner */
+    const gsIc=()=>!GSON()?'':`<button class="bs-gsi" data-act="mSettle" aria-label="Golden Sub: bet settlement info">${KI('goldenSub32',20,20)}</button>`;
+    const sel=(title,pill,odds,rmAct,rmLab,ex='')=>`<div class="bs-sel">${KI('bs_soccer',22,22)}<b>${title}</b>${title==='Squad Builder'?gsIc():''}${pill!=null?`<span class="bs-pill">${pill}</span>`:''}<div class="grow"></div><span class="bs-odds">${fo(odds)}</span>${trash(rmAct,rmLab,ex)}</div>`;
     const bkm=S.gs==='pick'?bkMap():null, bkn=bkm?Object.values(bkm).filter(Boolean).length:0;
     const howLink=GSON()?'':`<button class="bs-how" data-act="mSettle">How this bet settles</button>`;
-    const gsStrip=!GSON()?'':`<button class="bs-gs" data-act="mSettle" aria-label="Golden Sub. Opens bet settlement info.">${KI('goldenSub32',24,24)}<span class="m-gst"><span>${S.gs==='pick'?`<b>Golden Sub</b> backups set for ${bkn}/${n} players — a non-starter is replaced by his backup.`:S.gs==='combine'?`<b>Golden Sub</b> eligible — a subbed-off player's replacement counts too; a non-starter voids the bet.`:`<b>Golden Sub</b> is eligible. A non-starter voids the bet, stake returned.`}</span></span></button>`;
+    const gsStrip=''; // Golden Sub banner removed from the betslip: the icon sits next to the Squad Builder title
     const EVT={villa:{id:'avj',n:'Aston Villa - Barcelona',t:'16/06 · 21:00'},juve:{id:'avj',n:'Aston Villa - Barcelona',t:'16/06 · 21:00'}};
     const evs=[...new Map(sq().map(p=>[EVT[p.team].id,EVT[p.team]])).values()];
     const match=evs.map(e=>{const c=sq().filter(p=>EVT[p.team].id===e.id).length; return `<div class="bs-tm">${e.n}</div><div class="bs-dt">${e.t} · ${c} player${c!==1?'s':''}</div>`;}).join('');
@@ -4342,7 +4467,7 @@ function make(v,root,host){
       ${match}
       <div class="bs-legs">
         ${SM.map((x,ix)=>`<div class="bs-leg"><i class="bs-dot">${KI('bs_dot',8,8)}</i><div class="bs-lt"><div class="bs-lh"><b>${x.n}</b>${trash('mLegRm','Remove '+x.n,`data-i="${ix}"`)}</div><span>${x.m}</span></div></div>`).join('')}
-        <div class="bs-leg sb"><i class="bs-dot">${KI('bs_dot',8,8)}</i><div class="bs-lt"><div class="bs-lh"><b>Squad Builder</b><span class="grow"></span><button class="sqv-ed sm" data-act="mBsEdit">${KI('fab_edit',12,12)}Edit Squad</button>${trash('mSbRm','Remove Squad Builder')}</div>${sqViz(true)}<div class="bs-sub">${goalLegs(true)}</div></div></div>
+        <div class="bs-leg sb"><i class="bs-dot">${KI('bs_dot',8,8)}</i><div class="bs-lt"><div class="bs-lh"><b>Squad Builder</b>${gsIc()}<span class="grow"></span><button class="sqv-ed sm" data-act="mBsEdit">${KI('fab_edit',12,12)}Edit Squad</button>${trash('mSbRm','Remove Squad Builder')}</div>${sqViz(true)}<div class="bs-sub">${goalLegs(true)}</div></div></div>
       </div>${withAmt?amt():''}${gsStrip}${howLink}</div>`;
     const note=S.comb==='none'?`<div class="bs-note">${KI('warnOutlined',16,16)}<span>Squad Builder can't be combined with other selections. It's always placed as a single.</span></div>`
       :S.comb==='one'?`<div class="bs-note">${KI('warnOutlined',16,16)}<span>1 Squad Builder per betslip. Building another one replaces this.</span></div>`:'';
@@ -4711,13 +4836,13 @@ function make(v,root,host){
   const AR_SLOT=[[32,34],[68,34],[16,70],[50,64],[84,70]]; // % of the pitch: 2 up front, 3 behind
   const arBase=()=>[...KORD,...SUBS.map(p=>p.id)].map(id=>byId[id]).filter(p=>p.pos!=='GK');
   /* Version 5 (squad-p5 = version 4's arena with #phone.ar2): version 2's player cards with 3 stats, and a thumb stat dial that ranks the carousel */
-  const AR2=()=>v==='p'&&document.getElementById('phone').classList.contains('ar2');
+  const AR2=()=>v==='p'&&(document.getElementById('phone').classList.contains('ar2')||/squad-p5/.test(location.hash));
   const AR_DIAL=[['goals','Goals'],['assists','Assists'],['shots','Shots'],['sot','Shots on target'],['tackles','Tackles'],['fouls','Fouls'],['cards','Cards']]; // version 5 stat filters (no Lineup)
   const AR2_DEF=[['goals','Goals'],['shots','Shots'],['assists','Assists']];
   const ar2St=()=>AR2()&&S.arst||null;
   const ar2Stats=st=>{const f=st&&pCard.find(x=>x[0]===st); return f?[f,...AR2_DEF.filter(x=>x[0]!==st)].slice(0,3):AR2_DEF;};
   const TG=()=>AR2()&&S.arStep==='tg';
-  const arTgs=()=>{const all=GLORD.filter(id=>GS.some(x=>x.id===id)), on=(S.targets||[]).map(t=>t.id).filter(id=>all.includes(id)); return [...on,...all.filter(id=>!on.includes(id))].map(id=>({id,tg:1,name:stat(id).name}));}; // set targets float to the top
+  const arTgs=()=>{const all=GLORD.filter(id=>GS.some(x=>x.id===id)), on=(S.targets||[]).map(t=>t.id).filter(id=>all.includes(id)); return all.map(id=>({id,tg:1,name:stat(id).name}));}; // targets keep their place when set (same as 3.1 / 3.2)
   const arList=()=>{ if(TG()) return arTgs(); const l=arBase(), st=ar2St(); if(!st) return l; return l.map((p,i)=>[p,i]).sort((a,b)=>{const x=pv(a[0],st), y=pv(b[0],st); if(x==null&&y==null) return a[1]-b[1]; if(x==null) return 1; if(y==null) return -1; return y-x||a[1]-b[1];}).map(x=>x[0]);};
   const arPos=p=>({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[p.pos]||p.pos;
   const arN=(p,id)=>pv(p,id)==null?'–':Math.max(1,Math.round(pv(p,id)*30));
@@ -4730,11 +4855,15 @@ function make(v,root,host){
   // target card: the squad line for one stat, its odds and a stepper; drag up (or Add) sets it as a squad target
   const arTL=id=>{const t=tgt(id); return t?t.line:Math.min(maxL(id),Math.max(LR(id).min,(S.arLn||{})[id]??mdn(id)));};
   // version 5 target rows, same structure as version 2's targets list: set = orange outline, bold name, − value + stepper and remove; unset = dashed, + to add
-  const arTgCard=(p,i)=>{const id=p.id, t=tgt(id), ln=arTL(id), mn=LR(id).min, mx=maxL(id), na=naFor(id), nm=p.name;
-    const tx=`<span class="ar-rt"><b>${nm}</b><span>${na.length?`${na.map(x=>x.name).join(', ')} can't count`:`Median ${mdn(id)} · avg ${fmtV(exp(id))}/game`}</span></span>`;
-    if(t) return `<div class="ar-c tg on" style="--i:${i}" data-i="${i}" data-id="${id}" role="option" aria-selected="true" aria-label="${nm}, ${ln} or more, target set">${tx}
-      <span class="ar-rc"><button class="ar-rb" data-ar="tm" data-id="${id}"${ln<=mn?' disabled':''} aria-label="Decrease ${nm}">${KI('tg_minus',14,14)}</button><span class="ar-rv" aria-live="polite">${ln}</span><button class="ar-rb" data-ar="tp" data-id="${id}"${ln>=mx?' disabled':''} aria-label="Increase ${nm}">${KI('tg_plus',14,14)}</button></span>
-      <button class="ar-rx" data-ar="trm" data-id="${id}" aria-label="Remove ${nm} target">${KI('tg_trash',14,14)}</button></div>`;
+  const arTgCard=(p,i)=>{const id=p.id, t=tgt(id), ln=arTL(id), mn=LR(id).min, mx=maxL(id), na=naFor(id), nm=p.name, col=!!(S.vcol||{})[id];
+    /* same target UI as 3.1 / 3.2: name only; a set target has Reset under the title, the "xx+" stepper, and the squad players with odds and last 5 */
+    const tx=`<span class="ar-rt"><b>${nm}</b>${na.length?`<span>${na.map(x=>x.name).join(', ')} can't count</span>`:''}</span>`;
+    if(t){ const pl=`<div class="v-pl">${pSel().map(pid=>{const q=byId[pid], m=vMk(q,id); if(!m) return `<div class="v-pr gp-r na"><span class="gp-j" aria-hidden="true">${KI(q.team==='villa'?'jerseyVilla':'jerseyBarca',25,25,'png')}<b>${q.num}</b></span><span class="gp-n">${q.name}</span><span class="gp-m"><i class="vx-pm">Not available</i></span></div>`;
+        return `<div class="v-pr gp-r" data-pid="${pid}" data-sid="${id}"><span class="gp-j" aria-hidden="true">${KI(q.team==='villa'?'jerseyVilla':'jerseyBarca',25,25,'png')}<b>${q.num}</b></span><span class="gp-n">${q.name}</span><span class="gp-m gp-l5" aria-label="Last 5 matches">${m.l5.map((n,k)=>`<span class="gp-c${k===4?' last':''}">${n}</span>`).join('')}</span></div>`;}).join('')}</div>`;
+      return `<div class="ar-c tg on v5t${col?' v-col':''}" style="--i:${i}" data-i="${i}" data-id="${id}" role="option" aria-selected="true" aria-label="${nm}, ${ln} or more, target set">
+      <span class="ar-rt v-tt" data-ar="vtog" data-id="${id}" role="button" tabindex="0" aria-expanded="${!col}"><b>${nm}</b></span>
+      <span class="ar-rc"><button class="ar-rb" data-ar="tm" data-id="${id}"${ln<=mn?' disabled':''} aria-label="Decrease ${nm}">${KI('tg_minus',14,14)}</button><span class="ar-rv" aria-live="polite">${ln}+</span><button class="ar-rb" data-ar="tp" data-id="${id}"${ln>=mx?' disabled':''} aria-label="Increase ${nm}">${KI('tg_plus',14,14)}</button></span>
+      <button class="ar-ri" data-ar="rs1" data-id="${id}"${ln===mdn(id)?' disabled':''} aria-label="Reset ${nm} to the default">${KI('tg_reset',16,16)}</button><button class="ar-rx" data-ar="trm" data-id="${id}" aria-label="Remove ${nm} target">${KI('tg_trash',14,14)}</button>${pl}</div>`; }
     return `<div class="ar-c tg${na.length?' na':''}" style="--i:${i}" data-i="${i}" data-id="${id}" role="option" aria-selected="false" aria-label="Add ${nm} target${na.length?', not available for this squad':''}">${tx}${na.length?`<span class="ar-sw">${na.map(x=>`<button class="ar-swb" data-ar="swap" data-id="${x.id}" aria-label="Swap ${x.name} to unlock ${nm}">${KI('tg_swap',20,20)}<span>Swap ${x.name}</span></button>`).join('')}</span>`:`<span class="ar-rx add" aria-hidden="true">${KI('tg_add',14,14)}</span>`}</div>`;};
   // version 5 player card (Figma 6481-93781): crest, name and position on top, jersey and number, frosted panel with odds for the
   // selected stat's line and the last 5 values; the + / ✓ corner is part of the card (tap the card to add or remove)
@@ -4745,7 +4874,7 @@ function make(v,root,host){
       <span class="a5-bg" aria-hidden="true">${KI('ar5_brand',176,230)}</span>
       <span class="a5-hd"><span class="a5-cr">${KI(vi?'logoHome':'logoBarca',20,20,'png')}</span><b>${p.name}</b><i>${arPos(p)}</i></span>
       <span class="a5-j" aria-hidden="true">${KI(vi?'jerseyVilla':'jerseyBarca',120,120,'png')}</span><b class="a5-nu" aria-hidden="true">${p.num}</b>
-      <span class="a5-ct" aria-hidden="true"><span class="a5-od"><b>${od}</b><span>${ok?`+${ln} ${lab}`:`No ${lab.toLowerCase()} line`}</span></span>${ok?`<span class="a5-l5">${l5.map((n,k)=>`<i${k===4?' class="cu"':''}>${n}</i>`).join('')}</span>`:''}</span>
+      <span class="a5-ct" aria-hidden="true"><span class="a5-od"><b>${od}</b><span>${ok?`${lab} +${ln}`:`No ${lab.toLowerCase()} line`}</span></span>${ok?`<span class="a5-lw"><span class="a5-l5">${l5.map((n,k)=>`<i${k===4?' class="cu"':''}>${n}</i>`).join('')}</span><span class="a5-l5c">Last 5</span></span>`:''}</span>
       <span class="a5-pl" aria-hidden="true"></span></div>`;};
   const arCard=(p,i)=>{ if(p.tg) return arTgCard(p,i); if(AR2()) return arCard5(p,i); const vi=p.team==='villa', on=pSel().includes(p.id);
     return `<div class="ar-c ${vi?'vi':'ba'}${on?' on':''}" style="--i:${i}" data-i="${i}" data-id="${p.id}" role="option" aria-selected="${on}" aria-label="${p.name}, ${arPos(p)}, ${TEAMS[p.team].name}">
@@ -4866,6 +4995,8 @@ function make(v,root,host){
       switch(b.dataset.ar){case 'close':act('mNBack',{});break; case 'go':if(pSel().length>=MIN){ if(AR2()) arStep('tg'); else act('pCont',{}); } break;
         case 'go1':if(TG()) arStep('pick');break;
         case 'swap':{const q=byId[b.dataset.id]; arStep('pick'); const i=arList().findIndex(x=>x.id===b.dataset.id); if(i>=0) arGo(i); if(q) arSay(`Swap ${q.name}: tap the card to remove them, then pick another player`); break;} // back to the squad with that player centred
+        case 'vtog':S.vcol=S.vcol||{}; S.vcol[b.dataset.id]=!S.vcol[b.dataset.id]; arRefresh(); break;
+        case 'rs1':if(tgt(b.dataset.id)){glSet(b.dataset.id,mdn(b.dataset.id)); arRefresh(); arSay(`${stat(b.dataset.id).name} reset to ${mdn(b.dataset.id)}+`);} break;
         case 'tm':arTgStep(b.dataset.id,-1);break; case 'tp':arTgStep(b.dataset.id,1);break;
         case 'trm':arTgRm({id:b.dataset.id,tg:1,name:stat(b.dataset.id).name},arW.querySelector(`.ar-c[data-id="${b.dataset.id}"]`));break;
         case 'slip':if(S.targets.length){S.arStep=null; S.squad=[...pSel()]; S.pcont=true; S.step='goals'; render(); act('slip',{}); act('mSlip',{});}break; case 'prev':arGo(arI-1);break; case 'jump':{const r=b.closest('.ar-rl'); if(r){r._u=false; clearTimeout(r._st);} arGo(+b.dataset.i); break;} case 'next':arGo(arI+1);break;
@@ -5127,13 +5258,15 @@ function make(v,root,host){
       case 'editGoals':S.done=false;S.slip=false;S.placed=false;S.step=G?'goals':'goals';break;
       case 'tAddToggle':S.adding=!S.adding;break;
       case 'tAdd':{if((M&&S.elig==='grey'&&naFor(d.id).length))return;const p=presets(d.id);S.targets.push({id:d.id,line:K?Math.max(1,mdn(d.id)):(p[1]||p[0])[1]});S.adding=false;S.done=false;if(M&&naFor(d.id).length&&S.errStyle==='sheet')S.modal={t:'build',id:d.id};break;}
+      case 'vTog':S.vcol=S.vcol||{};S.vcol[d.id]=!S.vcol[d.id];break;
+      case 'gResetOne':glSet(d.id,mdn(d.id));break;
       case 'gStep':{const id=d.id; glSet(id,glLine(id)+(+d.d)*stp(id)); break;}
       case 'gAdd':glFlip();glSet(d.id,glLine(d.id));break;
       case 'gReset':glFlip();S.targets=[];S.done=false;break;
       case 'gTog':S.gcol=S.gcol||{};S.gcol[d.id]=!S.gcol[d.id];break;
       case 'mLive':window.setLive(d.v==='live');return;
       case 'arFl':window.__ARFL=d.v; try{localStorage.setItem('sb:arfl',d.v);}catch(x){} document.querySelectorAll('[data-act="arFl"]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===d.v))); window.__arFl&&window.__arFl(); return;
-      case 'arTheme':window.__ARTH=d.v; try{localStorage.setItem('sb:arth',d.v);}catch(x){} document.querySelectorAll('.ar-w.v2c').forEach(w=>w.classList.toggle('lt',d.v==='light')); document.querySelectorAll('[data-act="arTheme"]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===d.v))); return;
+      case 'arTheme':window.__ARTH=d.v; try{localStorage.setItem('sb:arth2',d.v);}catch(x){} document.querySelectorAll('.ar-w.v2c').forEach(w=>w.classList.toggle('lt',d.v==='light')); document.querySelectorAll('[data-act="arTheme"]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===d.v))); return;
       case 'tRm':glFlip();S.targets=S.targets.filter(t=>t.id!==d.id);S.done=false;if(M&&S.modal&&S.modal.t==='slip'&&!S.targets.length){S.modal=null;S.slip=false;}break;
       case 'tStep':{const t=tgt(d.id);t.line=Math.min(maxL(t.id),Math.max(M?LR(t.id).min:1,t.line+(+d.d)*stp(t.id)));break;}
       case 'tSet':tgt(d.id).line=+d.val;break;
