@@ -2818,6 +2818,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone.lv :is(#squad-p,#squad-o) .pf-cta:focus-visible{outline-color:#f5f7fa}
 /* ===== Version 4 = version 2 + 3D arena picker (#phone.ar). Full-screen overlay on #phone, dark in pre-event and live.
    Contrast: body text #f5f7fa / #cfd9ed / #a5b3cf on #0b0e17–#151923 (all ≥ 7:1); Continue and Add use the light button (#0f121a on #f5f7fa). */
+/* Carousel: Squad builder is a market tab next to Popular (like 3.1 / 3.2); it opens the full-screen carousel */
+#phone.ar2 #squad-p .k-tab[data-tab="Squad builder"]{display:inline-flex;align-items:center;gap:4px;position:relative;overflow:visible;padding:8px 12px;font-family:var(--font-brand);font-weight:500;font-size:14px;line-height:18px;letter-spacing:0;text-transform:uppercase;background:transparent}
+#phone.ar2 #squad-p .k-tab[data-tab="Squad builder"] .o-sq{color:var(--sem-text-headline,#ff3c00)}
+/* new-tab ring: a gradient stroke runs around the tab 3 times, then fades (same as 3.1 / 3.2) */
+@property --sbr{syntax:'<angle>';inherits:false;initial-value:0deg}
+#phone.ar2:not(.sbr-done) #squad-p .k-tab[data-tab="Squad builder"]::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;pointer-events:none;z-index:1;background:conic-gradient(from var(--sbr),transparent 0deg,transparent 200deg,rgba(255,60,0,.15) 250deg,var(--sem-bg-primary,#ff3c00) 330deg,#ffb38f 350deg,transparent 360deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:sbRing 1.6s linear 3,sbRingOut .4s ease 4.8s forwards}
+@keyframes sbRing{to{--sbr:360deg}}
+@keyframes sbRingOut{to{opacity:0}}
+@media (prefers-reduced-motion:reduce){#phone #phone.ar2 #squad-p .k-tab[data-tab="Squad builder"]::before{display:none}}
+#phone.ar2 #squad-p .k-tab[data-tab="Squad builder"] .o-bd{color:var(--sem-text-gray-emphasis,#151923)}
+#phone.ar2 #squad-p .k-tab[data-tab="Squad builder"][aria-selected="true"]{background:var(--sem-bg-off-black-pale,#2a3046)}
+#phone.ar2 #squad-p .k-tab[data-tab="Squad builder"][aria-selected="true"] .o-bd{color:var(--sem-text-gray-inverted,#fff)}
+#phone.lv.ar2 #squad-p .k-tab[data-tab="Squad builder"] .o-bd{color:#f5f7fa}
+#phone.ar2 #squad-p .k-tab .m-tnew{position:absolute;top:-5px;right:0;display:inline-flex;align-items:center;padding:1px 4px;border-radius:8px;background:#37a25c;color:#fff;font:700 9px/12px 'Ubuntu',sans-serif;pointer-events:none}
 .ar-w{position:absolute;inset:0;z-index:60;display:none;flex-direction:column;overflow:hidden;border-radius:inherit;color:#f5f7fa;font-family:'Ubuntu Sans','Ubuntu',sans-serif;background:#0b0e17;user-select:none;-webkit-user-select:none}
 .ar-w.open,.ar-w.shut{display:flex}
 .ar-w.open{animation:arIn .3s ease-out both}
@@ -3407,8 +3421,8 @@ html:not(.pw-ok) body{visibility:hidden}
 #phone.ar2 #squad-p .gl-ls .gl-r.set .gl-c .gl-b:last-child{border-left:1px solid var(--sem-border-gray-soft,#d1d9eb)}
 #phone.ar2 #squad-p .gl-ls .gl-r.set .gl-c .gl-b img{width:14px;height:14px}
 #phone.ar2 #squad-p .gl-ls .gl-r.set .gl-c .gl-in{box-sizing:border-box;width:36px;height:32px;padding:0;margin:0;border:0;border-radius:0;background:var(--sem-bg-container-lowest,#fff);box-shadow:none;outline:0;text-align:center;font-family:var(--font-ui);font-weight:700;font-size:14px;line-height:20px;color:var(--sem-text-gray-emphasis,#151923)}
-#phone.ar2 #squad-p .gl-ls .gl-r.set>.gl-x{flex:none;align-self:center;margin:0;box-sizing:border-box;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:6px;background:var(--sem-bg-gray-emphasis-active,#2a3046)}
-#phone.ar2 #squad-p .gl-ls .gl-r.set>.gl-x img{width:16px;height:16px;filter:none}
+#phone.ar2 #squad-p .gl-ls :is(.gl-r.set,.gl-r.gl-tap)>.gl-x{flex:none;align-self:center;margin:0;box-sizing:border-box;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:6px;background:var(--sem-bg-gray-emphasis-active,#2a3046)}
+#phone.ar2 #squad-p .gl-ls :is(.gl-r.set,.gl-r.gl-tap)>.gl-x img{width:16px;height:16px;filter:none}
 #phone.ar2.lv #squad-p .gl-ls .gl-r.set :is(.gl-ri,.gl-c,.gl-c .gl-b,.gl-c .gl-in){background:transparent;border-color:rgba(255,255,255,.3)}
 #phone.ar2.lv #squad-p .gl-ls .gl-r.set .gl-c .gl-in{color:#f5f7fa}
 #phone.ar2.lv #squad-p .gl-ls .gl-r.set :is(.gl-ri,.gl-c .gl-b) img{filter:brightness(0) invert(1)}
@@ -3447,13 +3461,20 @@ html:not(.pw-ok) body{visibility:hidden}
 :is(#phone.lv :is(#squad-v,#squad-x,#squad-w,#squad-p),.ar-w:not(.lt)) .v-pl .gp-c{background:rgba(239,239,250,.16);color:#f5f7fa}
 :is(#phone.lv :is(#squad-v,#squad-x,#squad-w,#squad-p),.ar-w:not(.lt)) .v-pl .gp-c.last{border-bottom-color:#f5f7fa}
 /* carousel team filter: crest chips on the counter row (same behaviour as the List and Cards) */
-.ar-w .ar-tf{position:relative;z-index:3;display:flex;justify-content:center;gap:4px;align-self:center} /* team chips centred above the counter */
+.ar-w .ar-tf{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;gap:4px;align-self:center}
+.ar-w .ar-tf .ar-tc{margin:0} /* team chips centred above the counter */
 .ar-w .ar-tc{box-sizing:border-box;width:32px;height:24px;display:grid;place-items:center;padding:0;border:1px solid rgba(255,255,255,.3);border-radius:8px;background:transparent;cursor:pointer}
 .ar-w .ar-tc img{display:block;width:16px;height:16px;object-fit:contain}
 .ar-w .ar-tc[aria-pressed="true"]{border-color:#f5f7fa;box-shadow:inset 0 0 0 1px #f5f7fa}
 .ar-w.lt .ar-tc{border-color:var(--sem-border-gray-strong,#a5b3cf);background:var(--sem-bg-container-lowest,#fff)}
 .ar-w.lt .ar-tc[aria-pressed="true"]{border-color:var(--sem-bg-gray-emphasis,#151923);box-shadow:inset 0 0 0 1px var(--sem-bg-gray-emphasis,#151923)}
 .ar-w .ar-tc:focus-visible{outline:2px solid #ff3c00;outline-offset:2px}
+.ar-w .ar-tc.ar-tl{width:auto;margin:0;padding:0 8px;font-family:var(--font-ui,'Ubuntu Sans',sans-serif);font-weight:550;font-size:12px;line-height:16px;color:#f5f7fa;white-space:nowrap}
+.ar-w .ar-tc.ar-tl[aria-pressed="true"]{background:#f5f7fa;color:#151923;box-shadow:none}
+.ar-w.lt .ar-tc.ar-tl{color:var(--sem-text-gray-emphasis,#151923)}
+.ar-w.lt .ar-tc.ar-tl[aria-pressed="true"]{background:var(--sem-bg-gray-emphasis,#151923);border-color:var(--sem-bg-gray-emphasis,#151923);color:#fff;box-shadow:none}
+.ar-w .ar-tsp{flex:none;align-self:center;width:1px;height:16px;margin:0 2px;background:rgba(255,255,255,.3)}
+.ar-w.lt .ar-tsp{background:var(--sem-border-gray-strong,#a5b3cf)}
 </style>
 <script>
 (function(){
@@ -3550,7 +3571,8 @@ const MOCK = {
 /* ============ SHELL LOGIC ============ */
 const SCREENS = []; // { id, name, meta }
 // Version 3 (squad-p3) has no screen of its own: it is version 2's screen (squad-p) with the glossy frosted skin (#phone.fx)
-const SKIN={'squad-p3':'squad-p','squad-p4':'squad-p','squad-p5':'squad-p'}; const realId=id=>SKIN[id]||id;
+const SKIN={'squad-p3':'squad-p','squad-p4':'squad-p','squad-p5':'squad-p'};
+document.addEventListener('animationend',e=>{ if(e.animationName==='sbRingOut') document.getElementById('phone').classList.add('sbr-done'); }); /* the new-tab ring plays once per visit */ const realId=id=>SKIN[id]||id;
 function showScreen(id){ const rid=realId(id);
   document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===rid));
   document.querySelectorAll('.screen-item').forEach(b=>b.setAttribute('aria-current',String(b.dataset.id===id)));
@@ -4559,7 +4581,7 @@ function make(v,root,host){
     const ou=`<div class="card mcard pcard" style="margin-top:0"><div class="mtitle" style="align-items:flex-start"><span class="tname">Over/Under Total Goals</span>${K.ACCA}${K.CHEV_UP}</div>
       <div class="cols"><div class="col">${sb('Over 1.5','1.30')}${sb('Over 2.5','1.85')}${sb('Over 3.5','3.10')}</div><div class="col">${sb('Under 1.5','3.40')}${sb('Under 2.5','1.95')}${sb('Under 3.5','1.33')}</div></div>
       <button class="showall">SHOW ALL</button><span class="bb-ind">BB</span></div>`;
-    return `<div class="m-pop-page">${c1}${P&&(S.pent==='cta'&&!AR()||AR2())?pEcta():''}${c2}${prompts}${ou}</div>`;}
+    return `<div class="m-pop-page">${c1}${P&&S.pent==='cta'&&!AR()?pEcta():''}${c2}${prompts}${ou}</div>`;}
   // D entry point B (Figma 6319-56137): "Build your squad" CTA card under Match Result on Popular
   function pEcta(){ const av=i=>`<span class="pe-a" aria-hidden="true">${KI('ep_ring',30,30)}<span class="pe-j">${KI('ep_jersey',25,30,'png')}</span></span>`;
     return `<button class="pe-cta" data-act="mNOpen" aria-label="Build your squad: open Squad Builder"><span class="pe-sw" aria-hidden="true">${KI('ep_swoosh',231,61)}</span><span class="pe-t">BUILD YOUR SQUAD</span><span class="pe-av">${av()}${av()}${av()}<span class="pe-a pe-p" aria-hidden="true">${KI('ep_ring2',30,30,'png')}<span class="pe-pl">${KI('ep_plus',27.5,27.5)}</span></span></span></button>`;}
@@ -4715,7 +4737,7 @@ function make(v,root,host){
     const sub=g?'All targets must be met':'Squad ready';
     const showBar=((H&&g)||(M&&((S.mode==='A'&&(g||S.targets.length>0&&sOK))||(S.mode==='B'&&S.slip))))?false:g?k>0:(sOK&&S.view==='list'), enter=showBar&&!S.barWas; S.barWas=showBar;
     const bar=!showBar?'':`<div class="d-bar ${enter?'enter':''}"><div class="d-sum"><b>${n} player${n!==1?'s':''}${g?` · ${k} target${k!==1?'s':''}`:' selected'}</b></div>${g&&k?`<div class="d-odds"><span>Odds</span><b>${fo(total())}</b></div>`:''}
-      <button class="${K?'k-btn neu':'cta'}" data-act="${g?'confirm':'step'}" data-s="goals">${g?'Save squad':'Save players'}</button></div>`;
+      <button class="${K?'k-btn neu':'cta'}" data-act="${g?(AR()?'vSlipOpen':'confirm'):'step'}" data-s="goals">${g?(AR()?'Add to betslip':'Save squad'):'Save players'}</button></div>`;
     return `<div class="sq d" data-v="${v}">${intro}${showProg?progD():''}${s0}${s1}${M&&n&&!(P&&S.pcont)?gsCard():''}${s2}${bar}</div>`;
   }
   const kSquadEdit=()=>`<div class="d-mini k-edit">${sq().map(p=>`<span class="k-mp ${M&&(S.targets.some(t=>p.no.includes(t.id))||S.offP===p.id)?'m-blk':''}" ${M&&S.targets.some(t=>p.no.includes(t.id))?`title="${p.name} won't count towards ${S.targets.filter(t=>p.no.includes(t.id)).map(t=>stat(t.id).name).join(', ')}"`:''}><span class="k-mj">${KJ(p,28)}${S.squad.length>MIN?`<button class="k-mx" data-act="rm" data-id="${p.id}" aria-label="Remove ${p.name}">${KI('squadRm',22,22)}</button>`:''}</span><i>${p.name}</i></span>`).join('')}${S.squad.length<MAX?`<button class="k-madd" data-act="slot" aria-label="Add a player"><span>+</span><i>Add</i></button>`:''}</div>${S.squad.length<=MIN?`<p class="k-mnote">Minimum ${MIN} players — add someone before removing.</p>`:''}`;
@@ -4834,14 +4856,15 @@ function make(v,root,host){
   if(N){ document.getElementById('phone').addEventListener('click',e=>{ if(!e.target.closest('.k-back')) return; if(!(sc&&sc.classList.contains('active'))||!S.npage) return; act('mNBack',{}); }); }
   if(M&&!N&&sc){ document.addEventListener('screenchange',()=>setTimeout(()=>{ if(sc.classList.contains('active')&&!S._gT&&!S.glowDone) render(); },0)); }
   if(M&&sc){ sc.addEventListener('click',e=>{const t=e.target.closest('.k-tab[data-tab]'); if(!t) return; const tb=t.dataset.tab; if(tb!=='Popular'&&tb!=='Squad builder') return;
+      if(AR2()){ if(tb==='Squad builder') act('mNOpen',{}); return; } /* Carousel: the Squad builder tab opens the full-screen carousel */
       S.mtab=tb==='Popular'?'popular':null; const y=sc.scrollTop; sc.querySelectorAll('.k-tab[data-tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t))); render(); sc.scrollTop=y; }); }
   /* Version 4 (squad-p4 = squad-p with #phone.ar): the banner opens a full-screen 3D arena instead of the card list.
      A tilted pitch holds 5 player slots; a 3D carousel of player cards sits in front. Swipe sideways to browse,
      drag the centre card up to add it, down to remove it. Buttons and arrow keys do the same. Picks live in S.psel like version 2. */
   const AR=()=>v==='p'&&document.getElementById('phone').classList.contains('ar');
   const AR_SLOT=[[32,34],[68,34],[16,70],[50,64],[84,70]]; // % of the pitch: 2 up front, 3 behind
-  const arBase=()=>[...KORD,...SUBS.map(p=>p.id)].map(id=>byId[id]).filter(p=>p.pos!=='GK'&&(!S.arteam||S.arteam==='all'||p.team===S.arteam)); /* team filter, as in the List and Cards */
-  const arTeams=()=>`<div class="ar-tf" role="group" aria-label="Team">${[['villa','logoHome'],['juve','logoBarca']].map(([t,l])=>`<button type="button" class="ar-tc" data-ar="team" data-t="${t}" aria-pressed="${S.arteam===t}" aria-label="${TEAMS[t].name}">${KI(l,16,16,'png')}</button>`).join('')}</div>`;
+  const arBase=()=>[...KORD,...SUBS.map(p=>p.id)].map(id=>byId[id]).filter(p=>p.pos!=='GK'&&(!S.arteam||S.arteam==='all'||p.team===S.arteam)&&(!S.arlu||(S.arlu==='xi'?XI.has(p.id):!XI.has(p.id)))); /* team filter, as in the List and Cards */
+  const arTeams=()=>`<div class="ar-tf" role="group" aria-label="Team">${[['villa','logoHome'],['juve','logoBarca']].map(([t,l])=>`<button type="button" class="ar-tc" data-ar="team" data-t="${t}" aria-pressed="${S.arteam===t}" aria-label="${TEAMS[t].name}">${KI(l,16,16,'png')}</button>`).join('')}<i class="ar-tsp" aria-hidden="true"></i>${[['xi',S.lu==='conf'?'Confirmed':'Expected'],['sub','Substitutes']].map(([k,n])=>`<button type="button" class="ar-tc ar-tl" data-ar="arlu" data-l="${k}" aria-pressed="${S.arlu===k}">${n}</button>`).join('')}</div>`; /* lineup filters next to the teams */
   /* Version 5 (squad-p5 = version 4's arena with #phone.ar2): version 2's player cards with 3 stats, and a thumb stat dial that ranks the carousel */
   const AR2=()=>v==='p'&&(document.getElementById('phone').classList.contains('ar2')||/squad-p5/.test(location.hash));
   const AR_DIAL=[['goals','Goals'],['assists','Assists'],['shots','Shots'],['sot','Shots on target'],['tackles','Tackles'],['fouls','Fouls'],['cards','Cards']]; // version 5 stat filters (no Lineup)
@@ -5008,8 +5031,10 @@ function make(v,root,host){
         case 'trm':arTgRm({id:b.dataset.id,tg:1,name:stat(b.dataset.id).name},arW.querySelector(`.ar-c[data-id="${b.dataset.id}"]`));break;
         case 'slip':if(S.targets.length){S.arStep=null; S.squad=[...pSel()]; S.pcont=true; S.step='goals'; render(); act('slip',{}); act('mSlip',{});}break; case 'prev':arGo(arI-1);break; case 'jump':{const r=b.closest('.ar-rl'); if(r){r._u=false; clearTimeout(r._st);} arGo(+b.dataset.i); break;} case 'next':arGo(arI+1);break;
         case 'st':arSetSt(b.dataset.s,true);break;
-        case 'team':{ const t=b.dataset.t; S.arteam=S.arteam===t?'all':t; arW.querySelectorAll('.ar-tc').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.t===S.arteam)));
+        case 'team':{ const t=b.dataset.t; S.arteam=S.arteam===t?'all':t; arW.querySelectorAll('.ar-tc[data-t]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.t===S.arteam)));
           const car=arW.querySelector('.ar-car'); car.innerHTML=arList().map(arCard).join(''); arRlFill(); arI=0; arLay(0,false); arSay(S.arteam==='all'?'Showing both teams':`Showing ${TEAMS[S.arteam].name} players`); break;}
+        case 'arlu':{ const l=b.dataset.l; S.arlu=S.arlu===l?null:l; arW.querySelectorAll('.ar-tl').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.l===S.arlu)));
+          const car=arW.querySelector('.ar-car'); car.innerHTML=arList().map(arCard).join(''); arRlFill(); arI=0; arLay(0,false); arSay(!S.arlu?'Showing all players':S.arlu==='xi'?`Showing the ${S.lu==='conf'?'confirmed':'expected'} lineup`:'Showing substitutes'); break;}
         case 'tog':pSel().includes(p.id)?arRm(p,card):arAdd(p,card);break; case 'rm':{const q=byId[b.dataset.id]; arRm(q,arW.querySelector(`.ar-c[data-id="${q.id}"]`));break;}}});
     arW.addEventListener('keydown',e=>{ if(e.key==='Escape'){act('mNBack',{});return;}
       if(e.target.closest('.ar-wh,.ar-fs')&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){e.preventDefault(); const n=AR_DIAL[Math.max(0,Math.min(AR_DIAL.length-1,arWi()+(e.key==='ArrowLeft'?-1:1)))]; arSetSt(n[0],true); arW.querySelector(`:is(.ar-wd,.ar-fs) [data-s="${n[0]}"]`)?.focus(); return;}
@@ -5070,6 +5095,7 @@ function make(v,root,host){
     const top=sc?sc.scrollTop:0, sb=host.querySelector('.sh-body'), sbt=sb?sb.scrollTop:0, ae=document.activeElement, inSheet=ae&&host.contains(ae)&&ae.matches('.d-search input, .d-search-in'), cpos=inSheet?ae.selectionStart:0;
     if(O) S.view='pitch';
     if(sc) sc.classList.toggle('n-sb',N&&!!S.npage);
+    if(AR2()&&sc){ const x=sc.querySelector('.k-tab[data-tab="Squad builder"]'); if(x&&!x.querySelector('.o-sq')) x.innerHTML='<span class="o-sq">SQUAD</span><span class="o-bd">BUILDER</span><span class="m-tnew">NEW</span>'; sc.querySelectorAll('.k-tab[data-tab]').forEach(t=>t.setAttribute('aria-selected',String(t.dataset.tab===(S.npage?'Squad builder':'Popular')))); }
     if(P&&sc){const bs=sc.querySelector('.p-bnslot'); if(bs){bs.innerHTML=S.npage||(S.pent==='cta'&&!AR())||AR2()?'':nCta(); if(!bs._on){bs._on=1; bs.addEventListener('click',onClick);}}}
     if(P&&S.npage&&S.pcont&&(S.step==='squad'||S.squad.length<MIN)){S.pcont=false;S.psel=[...S.squad];} /* never show A's pitch step in D/E/F/G: fall back to the picker */
     {const _h=P&&S.npage&&!S.pcont?pPage():(N&&S.npage?nHead():'')+(v==='a'?renderA():v==='b'?renderB():FREE?renderD():renderC()); root.innerHTML=(window.__LV&&O&&S.mtab!=='popular')?`<div class="lv-lt">${_h}</div>`:_h;}
@@ -5223,6 +5249,7 @@ function make(v,root,host){
       case 'mBk':S.modal={t:'bk',pid:d.id};break;
       case 'mBkSet':S.bk[d.id]=d.b?d.b:null;S.modal=null;mToast(d.b?`${byId[d.b].name} is ${byId[d.id].name}'s backup`:`No backup for ${byId[d.id].name}`);break;
       case 'mSlip':S.modal={t:'slip'};S.bsTab=null;S.bsAnim=true;break;
+      case 'vSlipOpen':S.slip=true;if(M){S.slipSig=sig();}bumpSlip(null);S.modal={t:'slip'};S.bsTab=null;S.bsAnim=true;break; /* carousel: Add to betslip opens the betslip straight away */
       case 'mSlipCtl':if(d.sc==='open'){if(S.squad.length>=MIN&&S.targets.length){S.modal={t:'slip'};S.bsTab=null;S.bsAnim=true;}else{mToast('Pick 3 players and a target first');return;}}else{if(S.comb==='none'){mToast("Squad Builder can't be combined");return;}if(S.other){S.other=false;S.bsTab=null;}else if(S.squad.length>=MIN&&S.targets.length){S.other=true;S.modal={t:'slip'};S.bsTab=null;S.bsAnim=true;}else{mToast('Pick 3 players and a target first');return;}}break;
             case 'mTab':S.bsTab=d.tb;break;
       case 'mBsExp':S.bsExp=!S.bsExp;break;
@@ -5593,6 +5620,46 @@ const BUILD='2026-11-11T15:30:00Z'; // stamped on every change
 /* @@SCREEN-JS-END@@ */
 fit();
 (function(){ applyVis(); const DEFAULT_SCREEN=allV?'squad-m':'squad-p'; let id=location.hash.slice(1)||DEFAULT_SCREEN; if(vHidden(id)) id='squad-p'; if(!document.getElementById(realId(id))) id=document.querySelector('.screen')?.id; if(id) showScreen(id); })();
+</script>
+<!-- phone view: on a real phone (≤600px wide) show only the prototype, full screen; the version list + controls open from the "Versions" pill -->
+<style>
+.mob-btn{display:none}.mob-btn[hidden]{display:none!important}
+@media (max-width:600px){
+  html,body{height:100%;overflow:hidden}
+  .stage,html.embed .stage,.stage.with-ctl,html.embed .stage.with-ctl{display:block;height:100dvh}
+  .stage>.screen-list,.stage>.m-side{display:none}
+  .stage-main{position:fixed;inset:0;display:block}
+  .phone-scale{position:absolute;left:0;top:0;transform-origin:0 0}
+  .phone{border-radius:0;box-shadow:none;height:var(--mob-h,812px)}
+  .mob-btn{display:flex;align-items:center;gap:6px;position:fixed;z-index:2147483000;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);height:28px;padding:0 12px;border-radius:99px;border:0;background:rgba(9,13,21,.72);color:#fff;font:600 12px/1 var(--font-ui,system-ui);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  html.embed .mob-btn{left:auto;right:10px;transform:none}
+  .stage.mob-open{position:fixed;inset:0;overflow:auto;z-index:2147482000;background:var(--panel-bg,#fff);padding-top:48px}
+  .stage.mob-open>.screen-list{display:flex;overflow:visible;border:0}
+  .stage.mob-open>.m-side:not([hidden]){display:flex;height:auto;box-shadow:none;border-top:1px solid #e2e8f8}
+  .stage.mob-open>.stage-main{display:none}
+}
+</style>
+<script>
+(function(){
+  const mq=matchMedia('(max-width:600px)'), stage=document.querySelector('.stage');
+  if(!stage) return;
+  const emb=document.documentElement.classList.contains('embed');
+  {
+    const b=document.createElement('button'); b.type='button'; b.className='mob-btn'; b.setAttribute('aria-expanded','false');
+    const lbl=()=>{const o=stage.classList.contains('mob-open'); b.textContent=o?'✕ Close':(emb?'Controls':'☰ Versions'); b.setAttribute('aria-expanded',String(o));};
+    b.addEventListener('click',()=>{stage.classList.toggle('mob-open'); lbl(); if(!stage.classList.contains('mob-open')) mfit();});
+    document.body.appendChild(b); lbl();
+    document.addEventListener('click',e=>{ if(e.target.closest('.screen-list .screen-item')&&stage.classList.contains('mob-open')){ stage.classList.remove('mob-open'); lbl(); setTimeout(mfit,0);} });
+    /* inside the main page's frame the pill only opens this page's own controls, so hide it when there are none */
+    if(emb){ const chk=()=>{ b.hidden=!document.querySelector('.m-side:not([hidden])'); }; document.addEventListener('screenchange',()=>setTimeout(chk,50)); setTimeout(chk,300); }
+  }
+  function mfit(){
+    const sc=document.getElementById('phoneScale'), ph=document.getElementById('phone'); if(!sc||!ph) return;
+    if(!mq.matches){ ph.style.removeProperty('--mob-h'); if(typeof fit==='function') fit(); return; }
+    const k=innerWidth/375; ph.style.setProperty('--mob-h',Math.round(innerHeight/k)+'px'); sc.style.transform='scale('+k+')';
+  }
+  addEventListener('resize',mfit); mq.addEventListener('change',mfit); document.addEventListener('screenchange',()=>setTimeout(mfit,0)); mfit(); setTimeout(mfit,0);
+})();
 </script>
 </body>
 </html>
