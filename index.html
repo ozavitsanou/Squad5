@@ -3607,6 +3607,30 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone :is(#squad-x,#squad-v) .gl-card{--tb-hi:#1f9d55;--tb-md:#151923;--tb-lo:#e0303f}
 #phone.lv :is(#squad-x,#squad-v) .gl-card{--tb-hi:#3fbf74;--tb-md:#f5f7fa;--tb-lo:#ff5a69}
 #phone :is(#squad-x,#squad-v) .tb-r:not(.na) .tb-p.tb-p{color:var(--c)}
+/* Cards · Carousel: soft colour glow behind the cards, as in the Carousel prototype (ar-sky) */
+#phone.v-car #squad-v .p-pg{isolation:isolate}
+#phone.v-car #squad-v .p-pg::after{content:'';position:absolute;left:-60px;right:-60px;top:-20px;height:560px;z-index:-1;pointer-events:none;background:radial-gradient(300px 300px at 10% 40%,#9a1f52,rgba(154,31,82,0) 72%),radial-gradient(300px 300px at 92% 58%,#36a85c,rgba(54,168,92,0) 72%);filter:blur(34px) saturate(1.3);opacity:.62;animation:vcDrift 12s ease-in-out infinite alternate}
+#phone.lv.v-car #squad-v .p-pg::after{opacity:.85}
+@keyframes vcDrift{to{translate:20px 16px;scale:1.06}}
+@media (prefers-reduced-motion:reduce){#phone.v-car #squad-v .p-pg::after{animation:none}}
+/* Cards · Carousel filters: same sizes and styles as the Carousel prototype (ar-tf / ar-tc / ar-tl / ar-fs) */
+#phone.v-car #squad-v .vc-f.vc-f{gap:10px}
+#phone.v-car #squad-v .vc-r1.vc-r1{gap:4px;padding:0 16px}
+#phone.v-car #squad-v .vc-r1.vc-r1 button{box-sizing:border-box;height:24px;min-width:0;padding:0 8px;margin:0;border:1px solid #a5b3cf;border-radius:8px;background:var(--sem-bg-container-lowest,#fff);box-shadow:none;font-family:var(--font-ui,'Ubuntu Sans',sans-serif);font-weight:550;font-size:12px;line-height:16px;color:var(--sem-text-gray-emphasis,#151923);white-space:nowrap}
+#phone.v-car #squad-v .vc-r1.vc-r1 button.p-tf{width:32px;padding:0;display:grid;place-items:center}
+#phone.v-car #squad-v .vc-r1.vc-r1 button.p-tf img{display:block;width:16px;height:16px;object-fit:contain}
+#phone.v-car #squad-v .vc-r1.vc-r1 button.p-tf[aria-pressed="true"]{background:var(--sem-bg-container-lowest,#fff);border-color:#151923;box-shadow:inset 0 0 0 1px #151923;color:inherit}
+#phone.v-car #squad-v .vc-r1.vc-r1 button:not(.p-tf)[aria-pressed="true"]{background:#151923;border-color:#151923;color:#fff;box-shadow:none}
+#phone.v-car #squad-v .vc-r1.vc-r1 .vc-sp{flex:none;width:1px;height:16px;margin:0 2px;background:#a5b3cf}
+#phone.v-car #squad-v .vc-st.vc-st{gap:8px;padding:4px 16px 8px}
+#phone.v-car #squad-v .vc-st.vc-st button{flex:none;height:34px;padding:0 14px;border:0;border-radius:17px;background:#fff;box-shadow:inset 0 0 0 1px #d1d9eb;color:#2a3346;font-family:'Ubuntu',sans-serif;font-weight:700;font-size:13px;line-height:16px;white-space:nowrap;transition:background .2s,color .2s,box-shadow .2s}
+#phone.v-car #squad-v .vc-st.vc-st button[aria-pressed="true"]{background:#151923;color:#fff;box-shadow:none}
+#phone.lv.v-car #squad-v .vc-r1.vc-r1 button{background:transparent;border-color:rgba(255,255,255,.3);color:#f5f7fa}
+#phone.lv.v-car #squad-v .vc-r1.vc-r1 button.p-tf[aria-pressed="true"]{background:transparent;border-color:#f5f7fa;box-shadow:inset 0 0 0 1px #f5f7fa}
+#phone.lv.v-car #squad-v .vc-r1.vc-r1 button:not(.p-tf)[aria-pressed="true"]{background:#f5f7fa;border-color:#f5f7fa;color:#151923}
+#phone.lv.v-car #squad-v .vc-r1.vc-r1 .vc-sp{background:rgba(255,255,255,.3)}
+#phone.lv.v-car #squad-v .vc-st.vc-st button{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);color:#cfd9ed}
+#phone.lv.v-car #squad-v .vc-st.vc-st button[aria-pressed="true"]{background:#f5f7fa;color:#0f121a;box-shadow:none}
 </style>
 <!-- password screen: a light gate for sharing, not real security (the page source stays public) -->
 <style>
@@ -3783,7 +3807,7 @@ html:not(.pw-ok) body{visibility:hidden}
     document.body.appendChild(g);
     var f=g.querySelector('form'), inp=g.querySelector('input'), er=g.querySelector('.pw-err');
     f.addEventListener('submit',function(e){e.preventDefault();
-      if(sha256(inp.value)===H){try{sessionStorage.setItem(K,H);}catch(x){} document.documentElement.classList.add('pw-ok'); g.remove(); window.dispatchEvent(new Event('resize'));}
+      if(sha256(inp.value.replace(/\s+/g,'').toLowerCase())===H){try{sessionStorage.setItem(K,H);}catch(x){} document.documentElement.classList.add('pw-ok'); g.remove(); window.dispatchEvent(new Event('resize'));}
       else{er.textContent='Wrong password. Try again.'; inp.select();}});
     inp.focus();
   }
@@ -5116,7 +5140,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       <div class="p-sb u-sb${sel.length||(V&&!W)?'':' p-hide'}">${(X&&(S.pent||'tab')==='tab')||CAR()?sqHd():''}${FB?fbar:`<div class="u-bar"><div class="u-top"><span class="u-pk">Picks  (${sel.length}/${MAX})</span>${cta}</div><div class="p-sr">${av}</div></div>`}</div>
       ${PV?`<div class="p-vh${window.__LV?' p-sb2':''}">${window.__LV?(X?'':`<span class="p-vm p-sbd">${[['logoHome','Aston Villa'],['logoAway','Juventus']].map(([lg,n])=>`<span class="p-sr2"><i>${KI(lg,16,16,'png')}</i><span>${n}</span><b>0</b></span>`).join('')}</span>`):X?'':`<span class="p-vm"><span class="p-vt"><b>Aston Villa - Juventus</b></span></span>`}${V?'':`<div class="p-vs" role="group" aria-label="Players view"><button class="${S.pview==='table'?'':'on'}" data-act="pView" data-v="cards" aria-pressed="${S.pview!=='table'}" aria-label="Card view">${KI('vw_tiles',20,20)}</button><button class="${S.pview==='table'?'on':''}" data-act="pView" data-v="table" aria-pressed="${S.pview==='table'}" aria-label="Table view">${KI('vw_table',20,20)}</button></div>`}</div>`:''}
       ${vSl((V&&!W&&S.pcont)?vTgHTML():R?rList():(Q||(PV&&!V&&S.pview==='table'))?qTable():(CAR()?`<div class="p-tl v-car" role="list" aria-label="Players: swipe left or right">${pTiles()}</div>
-      <div class="vc-f"><div class="vc-r1" role="group" aria-label="Filters">${[['villa','logoHome'],['juve','logoAway']].map(([t,logo])=>`<button class="p-tf" data-act="pTeam" data-t="${t}" aria-pressed="${S.pteam===t}" aria-label="${TEAMS[t].name}">${KI(logo,20,20,'png')}</button>`).join('')}<i class="vc-sp" aria-hidden="true"></i>${[['exp','Expected'],['sub','Substitutes']].map(([k,l])=>`<button data-act="vcLu" data-l="${k}" aria-pressed="${S.vcLu===k}">${l}</button>`).join('')}</div>
+      <div class="vc-f"><div class="vc-r1" role="group" aria-label="Filters">${[['villa','logoHome'],['juve','logoAway']].map(([t,logo])=>`<button class="p-tf" data-act="pTeam" data-t="${t}" aria-pressed="${S.pteam===t}" aria-label="${TEAMS[t].name}">${KI(logo,16,16,'png')}</button>`).join('')}<i class="vc-sp" aria-hidden="true"></i>${[['exp','Expected'],['sub','Substitutes']].map(([k,l])=>`<button data-act="vcLu" data-l="${k}" aria-pressed="${S.vcLu===k}">${l}</button>`).join('')}</div>
       <div class="vc-ct" aria-live="polite"><span class="vc-n">1</span> / <span class="vc-t">–</span></div>
       <div class="vc-st" role="group" aria-label="Stat">${pStats.map(([id,l])=>`<button data-act="pStat" data-s="${id}" aria-pressed="${st===id}">${l}</button>`).join('')}</div></div>`
       :`<div class="p-so" role="group" aria-label="Filters">${DD?[['villa','logoHome'],['juve','logoAway']].map(([t,logo])=>`<button class="p-tf" data-act="pTeam" data-t="${t}" aria-pressed="${S.pteam===t}" aria-label="${TEAMS[t].name}">${KI(logo,16,16,'png')}</button>`).join('')+'<i class="p-sp" aria-hidden="true"></i>':''}${pStats.map(([id,l])=>`<button data-act="pStat" data-s="${id}" aria-pressed="${st===id}">${l}</button>`).join('')}</div>
