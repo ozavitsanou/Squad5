@@ -6002,13 +6002,18 @@ fit();
 <style>
 .mob-btn{display:none}.mob-btn[hidden]{display:none!important}
 @media (max-width:600px){
-  html,body{height:100%;overflow:hidden}
+  html,body{height:100%;overflow:hidden;overscroll-behavior:none}
+  /* lock the page itself so iOS can't scroll or bounce it; only the prototype's own screens scroll */
+  body{position:fixed;inset:0;width:100%}
   .stage,html.embed .stage,.stage.with-ctl,html.embed .stage.with-ctl{display:block;height:100dvh}
   .stage>.screen-list,.stage>.m-side{display:none}
   .stage-main{position:fixed;inset:0;display:block}
   /* no scaling: the phone frame is the real screen, so bottom bars sit on the screen's bottom edge whatever its height (dvh follows the browser toolbars) */
   .phone-scale{position:fixed;inset:0;transform:none!important}
   #phone.phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
+  /* follow the visible screen exactly (Safari toolbars grow and shrink), so the nav bar and bottom sheets always sit on the bottom edge */
+  html.vv .phone-scale{top:var(--vvt,0px);bottom:auto;height:var(--vvh,100dvh)}
+  html.vv #phone.phone{height:var(--vvh,100dvh)}
   .mob-btn{display:flex;align-items:center;gap:6px;position:fixed;z-index:2147483000;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);height:28px;padding:0 12px;border-radius:99px;border:0;background:rgba(9,13,21,.72);color:#fff;font:600 12px/1 var(--font-ui,system-ui);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
   /* sit in the header row, next to the back arrow, below the phone's own status bar so it stays visible */
   html:not(.embed) .mob-btn{top:96px;left:50%;transform:translateX(-50%);height:28px;padding:0 14px;gap:6px;background:#fff;color:#151923;font:700 13px/1 var(--font-ui,system-ui);letter-spacing:.2px;box-shadow:0 0 0 1px rgba(21,25,35,.08),0 6px 18px rgba(21,25,35,.28),0 2px 4px rgba(21,25,35,.18);-webkit-backdrop-filter:none;backdrop-filter:none}
@@ -6049,6 +6054,11 @@ fit();
     if(!mq.matches){ if(typeof fit==='function') fit(); return; }
     sc.style.transform='none';
   }
+  /* keep the phone frame the size of the visible screen */
+  const vv=window.visualViewport;
+  function vfit(){ const de=document.documentElement; if(!vv||!mq.matches){ de.classList.remove('vv'); return; } de.classList.add('vv'); de.style.setProperty('--vvh',Math.round(vv.height)+'px'); de.style.setProperty('--vvt',Math.round(vv.offsetTop)+'px'); }
+  if(vv){ vv.addEventListener('resize',vfit); vv.addEventListener('scroll',vfit); } addEventListener('resize',vfit); addEventListener('orientationchange',()=>setTimeout(vfit,250)); addEventListener('pageshow',vfit); document.addEventListener('visibilitychange',vfit); vfit(); let vLast=''; setInterval(()=>{ if(!vv) return; const k=vv.height+'|'+vv.offsetTop+'|'+mq.matches; if(k!==vLast){ vLast=k; vfit(); } },500);
+  mq.addEventListener('change',vfit);
   addEventListener('resize',mfit); mq.addEventListener('change',mfit); document.addEventListener('screenchange',()=>setTimeout(mfit,0)); mfit(); setTimeout(mfit,0);
 })();
 </script>
