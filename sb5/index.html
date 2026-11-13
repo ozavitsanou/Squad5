@@ -3884,7 +3884,7 @@ function kdsChrome(){
   const nav=[['home','Home'],['live','Live'],['sports','Sports',1],['bets','Bets'],['social','Social']];
   return `<div class="k-head"><div class="k-status">${KI('time',126,54)}<span class="grow"></span>${KI('items',126,54)}</div>
     <div class="k-bar"><button class="k-back" aria-label="Back">${KI('chevL',24,24)}</button><div class="grow"></div>
-      <div class="k-right">${KI('rewards',24,24)}${KI('searchAi',24,24)}<div class="k-bal">${KI('profile',24,24)}<b>0,00</b><b>$</b><span class="k-dep">DEPOSIT</span></div></div></div></div>
+      <div class="k-right">${KI('rewards',24,24)}${KI('searchAi',24,24)}<div class="k-bal">${KI('profile',24,24)}<b>100,99</b><b>$</b><span class="k-dep">DEPOSIT</span></div></div></div></div>
   <div class="k-nav"><div class="k-items">${nav.map(([n,l,on])=>`<button class="k-ni ${on?'on':''}"><span class="k-nic">${KI('nav_'+n,24,24)}</span><span class="k-nl">${l}</span></button>`).join('')}
     <div class="k-casino">${KI('casino',40,40,'png','Casino')}</div></div><i class="k-ind"></i></div>`;
 }
@@ -3940,12 +3940,14 @@ function make(v,root,host){
   const misses=id=>sq().filter(p=>p.no.includes(id));
   /* mock odds: P(squad total >= line) with a Poisson model on the expected total; 7% margin */
   const prob=(id,line)=>{const l=exp(id); if(l<=0) return 0; let t=Math.exp(-l), c=0; for(let k=0;k<line;k++){c+=t; t*=l/(k+1);} return Math.max(0,1-c);};
-  const odds=(id,line)=>{const p=prob(id,line); return p<=0?50:Math.min(50,Math.max(1.05,0.93/p));};
+  const odds=(id,line)=>{const p=prob(id,line); return p<=0?15:Math.min(15,Math.max(1.05,0.93/p));}; /* one target tops out at 15 */
   const fo=x=>x.toFixed(2);
   const defLine=id=>{const p=presets(id);return (p[1]||p[0])[1];};
-  const pOdds=(p,id,line,mult)=>{const l=(pv(p,id)||0)*(mult||1); if(l<=0) return 50; let t=Math.exp(-l),c=0; for(let k=0;k<line;k++){c+=t;t*=l/(k+1);} const pr=Math.max(0,1-c); return pr<=0?50:Math.min(50,Math.max(1.05,0.93/pr));};
+  const pOdds=(p,id,line,mult)=>{const l=(pv(p,id)||0)*(mult||1); if(l<=0) return 50; let t=Math.exp(-l),c=0; for(let k=0;k<line;k++){c+=t;t*=l/(k+1);} const pr=Math.max(0,1-c); return pr<=0?15:Math.min(15,Math.max(1.05,0.93/pr));};
   const nG=()=>S.targets.length;
-  const raw=()=>nG()?S.targets.reduce((a,t)=>a*odds(t.id,t.line),1)*S.pt.reduce((a,t)=>a*pOdds(byId[t.pid],t.id,t.line),1):0, total=()=>raw();
+  /* mock combined odds: the targets are linked (more shots -> more shots on target), so after the biggest leg each extra leg adds only part of its price (like a same-game Bet Builder) */
+  const SG_K=0.45, sgComb=os=>{const o=[...os].sort((x,y)=>y-x); return o.length?o.slice(1).reduce((a,x)=>a*(1+(x-1)*SG_K),o[0]):0;};
+  const raw=()=>nG()?sgComb([...S.targets.map(t=>odds(t.id,t.line)),...S.pt.map(t=>pOdds(byId[t.pid],t.id,t.line))]):0, total=()=>raw();
   const oddsPill=(id,line,cls='')=>`<span class="odds ${cls}" aria-label="Odds ${fo(odds(id,line))}">${fo(odds(id,line))}</span>`;
   const totalTxt=()=>S.targets.length?`Total odds ${fo(total())}`:'';
   const warnP=p=>{const m=S.targets.filter(t=>p.no.includes(t.id));return m.length?`Won't add to ${m.map(t=>stat(t.id).name).join(', ')}`:'';};
