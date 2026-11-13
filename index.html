@@ -5724,7 +5724,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     root.addEventListener('scroll',e=>{const t=e.target; if(qBusy||!t.classList||!(t.classList.contains('q-hc')||t.classList.contains('q-od'))) return; qBusy=true; S.qx=t.scrollLeft; qAll().forEach(x=>{if(x!==t&&x.scrollLeft!==S.qx) x.scrollLeft=S.qx;}); qBusy=false;},true);
     new MutationObserver(()=>{if(!S.qx) return; qBusy=true; qAll().forEach(x=>{if(x.scrollLeft!==S.qx) x.scrollLeft=S.qx;}); qBusy=false;}).observe(root,{childList:true,subtree:true}); }
   if(U||DD){ const cancel=()=>{clearTimeout(uLpT);uLpT=0;}; /* long tap on a tile: extra statistics layer (H, D, C) */
-    root.addEventListener('pointerdown',e=>{const t=e.target.closest('.p-t[data-id]'); if(!t||e.button>0) return; uLpFired=false; uLpXY=[e.clientX,e.clientY]; cancel(); uLpT=setTimeout(()=>{uLpT=0; uLpFired=true; t.classList.add('u-lpd'); setTimeout(()=>t.classList.remove('u-lpd'),180); uLpOpen(t.dataset.id);},450);});
+    root.addEventListener('pointerdown',e=>{if(X||v==='v') return; /* List, Cards, Cards · Carousel: no long-press Last 5 layer */ const t=e.target.closest('.p-t[data-id]'); if(!t||e.button>0) return; uLpFired=false; uLpXY=[e.clientX,e.clientY]; cancel(); uLpT=setTimeout(()=>{uLpT=0; uLpFired=true; t.classList.add('u-lpd'); setTimeout(()=>t.classList.remove('u-lpd'),180); uLpOpen(t.dataset.id);},450);});
     root.addEventListener('pointermove',e=>{if(uLpT&&uLpXY&&Math.hypot(e.clientX-uLpXY[0],e.clientY-uLpXY[1])>8)cancel();});
     ['pointerup','pointercancel','pointerleave'].forEach(n=>root.addEventListener(n,cancel));
     root.addEventListener('contextmenu',e=>{if(e.target.closest('.p-t'))e.preventDefault();});
