@@ -3635,6 +3635,33 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone.lv.v-car #squad-v .vc-r1.vc-r1 .vc-sp{background:rgba(255,255,255,.3)}
 #phone.lv.v-car #squad-v .vc-st.vc-st button{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);color:#cfd9ed}
 #phone.lv.v-car #squad-v .vc-st.vc-st button[aria-pressed="true"]{background:#f5f7fa;color:#0f121a;box-shadow:none}
+#phone :is(#squad-x,#squad-v) .tb-ap{margin-right:2px;font-weight:500;opacity:.6}
+#phone .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* squad bottom: keep the edit pencil on the done Squad step even when Add to betslip is showing */
+#phone.sb-bot.sb-bot :is(#squad-x,#squad-v) .pf-bar.v-pc .u-top:has(.v-sadd) .vx-stp li.dn.dn img{display:block}
+#phone.sb-bot.sb-bot :is(#squad-x,#squad-v) .pf-bar.v-pc .u-top:has(.v-sadd) .vx-stp.vx-stp{gap:2px}
+#phone.sb-bot.sb-bot :is(#squad-x,#squad-v) .pf-bar.v-pc .u-top:has(.v-sadd) .vx-stp li.sep.sep{width:6px;min-width:6px;flex:0 0 6px}
+#phone :is(#squad-x,#squad-v) .tb-v .tb-cap{display:flex;align-items:flex-start;gap:6px}
+#phone :is(#squad-x,#squad-v) .tb-v .tb-cap>svg{flex:none;margin-top:1px}
+#phone :is(#squad-x,#squad-v) .tb-ct{flex:1 1 0;min-width:0;display:flex;flex-direction:column}
+#phone :is(#squad-x,#squad-v) .tb-ct b{font:650 12px/16px var(--font-ui);color:var(--sem-text-gray-emphasis,#151923)}
+#phone :is(#squad-x,#squad-v) .tb-ct span{font:450 11px/14px var(--font-ui);color:var(--sem-text-gray-subtle,#526789)}
+#phone :is(#squad-x,#squad-v) .tb-inf{flex:none;position:relative}
+#phone :is(#squad-x,#squad-v) .tb-inf summary{list-style:none;display:grid;place-items:center;width:28px;height:28px;margin:-6px -6px 0 0;border-radius:50%;cursor:pointer;color:var(--sem-text-gray-subtle,#526789)}
+#phone :is(#squad-x,#squad-v) .tb-inf summary::-webkit-details-marker{display:none}
+#phone :is(#squad-x,#squad-v) .tb-inf summary:focus-visible{outline:2px solid #ff3c00;outline-offset:1px}
+#phone :is(#squad-x,#squad-v) .tb-inf p{position:absolute;right:-4px;top:26px;z-index:5;width:220px;margin:0;padding:10px 12px;border-radius:10px;background:#151923;color:#fff;font:450 12px/16px var(--font-ui);box-shadow:0 8px 24px rgba(21,25,35,.25)}
+#phone :is(#squad-x,#squad-v) .tb-prog{margin:0;font:450 12px/16px var(--font-ui);color:var(--sem-text-gray-subtle,#526789)}
+#phone :is(#squad-x,#squad-v) .tb-prog b{font-weight:700;color:var(--sem-text-gray-emphasis,#151923)}
+#phone :is(#squad-x,#squad-v) .tb-lv .tb-tr i{background:linear-gradient(90deg,var(--c) 0 var(--sf),color-mix(in srgb,var(--c) 35%,transparent) var(--sf) 100%)}
+#phone :is(#squad-x,#squad-v) .tb-dn{display:block;font:450 10px/12px var(--font-ui);color:var(--sem-text-gray-subtle,#526789)}
+#phone :is(#squad-x,#squad-v) .tb-key{display:flex;align-items:center;gap:6px;margin:0;font:450 10px/12px var(--font-ui);color:var(--sem-text-gray-subtle,#526789)}
+#phone :is(#squad-x,#squad-v) .tb-key i{display:inline-block;width:14px;height:6px;border-radius:3px;background:#8f9bd8}
+#phone :is(#squad-x,#squad-v) .tb-key i.tb-k2{margin-left:8px;background:color-mix(in srgb,#8f9bd8 35%,transparent)}
+#phone :is(#squad-x,#squad-v) .tb-r.na .tb-p{white-space:normal;text-align:right;max-width:130px;line-height:13px}
+#phone.lv :is(#squad-x,#squad-v) .tb-ct b,#phone.lv :is(#squad-x,#squad-v) .tb-prog b{color:#f5f7fa}
+#phone.lv :is(#squad-x,#squad-v) :is(.tb-ct span,.tb-prog,.tb-dn,.tb-key,.tb-inf summary){color:#c0cce7}
+#phone.lv :is(#squad-x,#squad-v) .tb-inf p{background:#f5f7fa;color:#151923}
 </style>
 <!-- password screen: a light gate for sharing, not real security (the page source stays public) -->
 <style>
@@ -4509,10 +4536,22 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       const tx=V?`<div class="gl-tx"><b>${nm}</b></div>`:`<div class="gl-tx"><b>${nm}</b></div>`;
       /* 3: under each set target, the squad players with their stat, odds and last 5 */
       /* 3.x / 4: under each set target, the squad players (Figma 6633:63105) */
-      const tbView=()=>{const av=S.squad.map(pid=>byId[pid]).filter(Boolean), rs=av.map(p=>{const m=vMk(p,id); return m?Math.max(.5,m.l5.reduce((a,b)=>a+b,0)):0;}), tot=rs.reduce((a,b)=>a+b,0)||1;
-        const raw=rs.map(r=>r/tot*100), pc=raw.map(Math.floor); let rem=100-pc.reduce((a,b)=>a+b,0); raw.map((r,i)=>[r-Math.floor(r),i]).sort((a,b)=>b[0]-a[0]).forEach(([f,i])=>{if(rem>0&&rs[i]){pc[i]++;rem--;}});
-        return `<div class="v-pl tb-v" aria-label="${nm}: how much each player adds to the collective total"><p class="tb-cap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.2c2.4.2 4 1.8 4.5 4.8"/></svg>All players count towards one total</p><div class="tb-tr" aria-hidden="true">${av.map((p,i)=>rs[i]?`<i style="flex:${pc[i]||.5} 1 0;--c:var(--tb-c${S.squad.indexOf(p.id)%5})"></i>`:'').join('')}</div>
-        <div class="tb-lg">${av.map((p,i)=>`<div class="tb-r${rs[i]?'':' na'}" style="--c:var(--tb-c${S.squad.indexOf(p.id)%5})"><span class="tb-d" aria-hidden="true"></span><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><b class="tb-p">${rs[i]?pc[i]+'%':'Statistic not available'}</b></div>`).join('')}</div></div>`;};
+      const tbView=()=>{const LV=!!window.__LV, REM=.5; /* live mock: about half the match left */
+        const av=S.squad.map(pid=>byId[pid]).filter(Boolean).map(p=>{const m=vMk(p,id); if(!m) return {p,na:true,E:0,dn:0};
+          const rate=Math.max(.1,m.l5.reduce((a,b)=>a+b,0)/5), h=[...(p.id+id+'lv')].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7);
+          const dn=LV?(id==='goals'?Math.max(0,m.L-1):Math.floor(rate*((h%4)/3))):0; /* done so far (mock; goals match the live card wording) */
+          return {p,na:false,dn,E:dn+(LV?rate*REM:rate)};});
+        const tot=av.reduce((a,x)=>a+x.E,0)||1, raw=av.map(x=>x.E/tot*100), pc=raw.map(Math.floor); let rem=100-pc.reduce((a,b)=>a+b,0); raw.map((r,i)=>[r-Math.floor(r),i]).sort((a,b)=>b[0]-a[0]).forEach(([f,i])=>{if(rem>0&&!av[i].na){pc[i]++;rem--;}});
+        av.forEach((x,i)=>{x.pc=pc[i]; x.c=`var(--tb-c${S.squad.indexOf(x.p.id)%5})`;});
+        const ord=[...av].sort((a,b)=>(a.na-b.na)||(b.E-a.E)); /* biggest share first, not counted last */
+        const done=av.reduce((a,x)=>a+x.dn,0), ln=glLine(id), unit=(nm||'').toLowerCase();
+        return `<div class="v-pl tb-v${LV?' tb-lv':''}" aria-label="${nm}: likely share of the squad total for each player">
+        <div class="tb-cap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.2c2.4.2 4 1.8 4.5 4.8"/></svg><div class="tb-ct"><b>Likely share of the squad total</b></div>
+          <details class="tb-inf"><summary aria-label="How is this worked out?"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="7.6" r=".6" fill="currentColor"/></svg></summary><p>Estimated from each player's recent matches. All players' stats add up towards the target.</p></details></div>
+        ${LV?`<p class="tb-prog"><b>${done} of ${ln}</b> ${unit} so far</p>`:''}
+        <div class="tb-tr" aria-hidden="true">${ord.filter(x=>!x.na).map(x=>{const sf=x.E?Math.min(1,x.dn/x.E):0; return `<i style="flex:${x.pc||.5} 1 0;--c:${x.c};--sf:${(sf*100).toFixed(0)}%"></i>`;}).join('')}</div>
+        <div class="tb-lg">${ord.map(x=>`<div class="tb-r${x.na?' na':''}" style="--c:${x.c}"><span class="tb-d" aria-hidden="true"></span><span class="gp-j" aria-hidden="true">${KI(x.p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${x.p.num}</b></span><span class="gp-n">${x.p.name}${LV&&!x.na&&x.dn?`<small class="tb-dn">${x.dn} so far</small>`:''}</span><b class="tb-p">${x.na?'Not counted · statistic not available':`<span class="sr-only">approximately </span><span class="tb-ap" aria-hidden="true">≈</span>${x.pc}%`}</b></div>`).join('')}</div>
+        ${LV?`<p class="tb-key"><i class="tb-k1" aria-hidden="true"></i>Done so far<i class="tb-k2" aria-hidden="true"></i>Still expected</p>`:''}</div>`;};
       const vPl=(V&&t&&S.tgv==='bar')?tbView():(V&&t)?`<div class="v-pl">${S.squad.map(pid=>{const p=byId[pid], m=vMk(p,id); if(!m) return `<div class="v-pr gp-r na"><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><span class="gp-m"><i class="vx-pm">Statistic not available</i></span></div>`;
         return `<div class="v-pr gp-r" data-pid="${pid}" data-sid="${id}"><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><span class="gp-m gp-l5" aria-label="Last 5 matches">${m.l5.map((n,k)=>`<span class="gp-c${k===4?' last':''}">${n}</span>`).join('')}</span></div>`;}).join('')}</div>`:'';
       const sw=na.length?`<div class="gl-sw">${na.map(p=>`<button class="gl-swb" data-act="mSwap" data-id="${p.id}" data-g="${id}" aria-label="Swap ${p.name} to unlock ${nm}">${KI('swap_fg',20,20)}<span>Swap ${p.name}</span></button>`).join('')}</div>`:'';
