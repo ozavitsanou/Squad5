@@ -978,6 +978,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ===== Variant H: Betslip FAB (Figma 5598:65550) ===== */
 .k-fab{position:absolute;left:0;right:0;bottom:65px;z-index:24;filter:drop-shadow(0 0 4px rgba(35,43,54,.06)) drop-shadow(0 -3px 1.5px rgba(35,43,54,.1));transition:transform .3s cubic-bezier(.22,1,.36,1)}
+/* List / Cards: target chip flying into the betslip */
+#phone .tg-fly{position:absolute;left:0;top:0;z-index:9999;pointer-events:none;will-change:transform,opacity;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:#151923;color:#fff;font:700 13px/16px var(--font-body,"Ubuntu Sans",sans-serif);box-shadow:0 6px 16px rgba(21,25,35,.28)}
+#phone .k-fab.tg-hit{animation:tgHit .45s ease-out}
+@keyframes tgHit{0%{transform:scale(1)}35%{transform:scale(1.035)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){#phone .k-fab.tg-hit{animation:none}}
 .k-fab[hidden]{display:none}
 .k-fab.enter{animation:hFabIn .35s cubic-bezier(.22,1,.36,1)}
 @keyframes hFabIn{from{transform:translateY(100%);opacity:0}to{transform:none;opacity:1}}
@@ -3089,9 +3094,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone.lv :is(#squad-x,#squad-v) .k-tab[data-tab="Squad builder"] .o-bd{color:#f5f7fa}
 #phone.lv :is(#squad-x,#squad-v) .k-tab[data-tab="Squad builder"][aria-selected="true"] .o-bd{color:#fff}
 :is(#squad-x,#squad-v) .k-tab .m-tnew{position:absolute;top:-5px;right:0;display:inline-flex;align-items:center;padding:1px 4px;border-radius:8px;background:#37a25c;color:#fff;font:700 9px/12px 'Ubuntu',sans-serif;pointer-events:none}
-#phone.sb-bot:has(:is(#squad-x,#squad-v).active.x-sb) .bottom-nav{display:none}
-#phone.sb-bot:has(:is(#squad-x,#squad-v).active.x-sb) .k-chrome .k-nav{display:none}
-#phone.sb-bot:has(:is(#squad-x,#squad-v).active.x-sb) .k-fab{bottom:0}
 :is(#squad-x,#squad-v) .vx-l5c{display:block;margin-top:-2px;font-family:var(--font-ui);font-weight:450;font-size:10px;line-height:12px;color:var(--sem-text-gray-subtle,#526789);white-space:nowrap} /* small "Last 5" caption under the form chips */
 #phone.lv :is(#squad-x,#squad-v) .vx-l5c{color:#cfd9ed}
 #squad-x .p-vh:empty{display:none} /* 3.1: match name removed above the filters */
@@ -3372,9 +3374,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* filters, avatars and summary docked at the bottom (3.1 / 3.2) */
 .m-pos{margin-top:8px}
-#phone.sb-bot:has(:is(#squad-x,#squad-v).active.n-sb) .bottom-nav{display:none}
-#phone.sb-bot:has(:is(#squad-x,#squad-v).active.n-sb) .k-chrome .k-nav{display:none}
-#phone.sb-bot:has(:is(#squad-x,#squad-v).active.n-sb) .k-fab{bottom:0}
 /* 3.1/3.2 filters bottom — Figma 6677-88448 (empty) / 6672-88128 (picking): one light dock, the betslip bar becomes the Match Combo FAB */
 #phone.sb-bot :is(#squad-x,#squad-v){--v-fab:0px}
 #phone.sb-bot :is(#squad-x,#squad-v) .p-pg{padding-bottom:calc(var(--v-sbh,0px) + 160px)}
@@ -3473,6 +3472,141 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .v-bfab .v-bfc b{font-family:'Ubuntu',sans-serif;font-weight:700;font-size:14px;line-height:16px;color:var(--sem-text-absolute-white,#fff);white-space:nowrap}
 .v-bfab .v-bfc i{position:absolute;right:-2px;top:-2px;box-sizing:border-box;min-width:16px;padding:2px 4px;border-radius:8px;background:var(--sem-bg-secondary,#37a25c);font-style:normal;font-family:'Ubuntu',sans-serif;font-weight:700;font-size:11px;line-height:12px;color:var(--sem-fg-primary-neutral,#fff);text-align:center}
 .v-bfab:focus-visible{outline:2px solid var(--sem-border-gray-emphasis,#151923);outline-offset:2px;border-radius:36px}
+/* Cards: long player names wrap to two lines instead of being cut */
+#phone #squad-v .p-t .p-hd{height:auto;min-height:34px}
+#phone #squad-v .p-t:has(.p-lg) :is(.p-j,.p-nu){margin-top:10px}
+#phone #squad-v .p-t .p-nm b{white-space:normal;overflow:hidden;text-overflow:clip;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-height:18px;overflow-wrap:anywhere}
+/* List: long player names wrap to two lines */
+#phone #squad-x .vx-nm b{white-space:normal;text-overflow:clip;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow-wrap:anywhere;line-height:22px}
+/* List / Cards: "Last 5" sits to the left of the form chips */
+#phone #squad-x .vx-l5r{width:auto;align-items:center;gap:6px}
+#phone #squad-x .vx-l5r .vx-l5c{margin:0;order:-1}
+#phone #squad-v .p-t.v-t .v-l5w.v-l5w{flex-direction:row;align-items:center;gap:6px}
+#phone #squad-v .p-t.v-t .v-l5w .v-l5c.v-l5c{margin:0;white-space:nowrap;order:-1}
+/* Squad bottom: the nav bar stays; the squad bar sits right on top of it */
+#phone.sb-bot :is(#squad-x,#squad-v){--sb-nav:65px}
+#phone.sb-bot :is(#squad-x,#squad-v) .p-sb.u-sb.u-sb,#phone.sb-bot :is(#squad-x,#squad-v) .p-sb.p-sb{bottom:var(--sb-nav);border-radius:16px 16px 0 0;padding-bottom:12px}
+#phone.sb-bot :is(#squad-x,#squad-v) .p-pg.p-pg{padding-bottom:calc(var(--v-sbh,0px) + 160px + 65px)}
+#phone.sb-bot:has(:is(#squad-x,#squad-v).active) .k-fab.k-fab.k-fab{bottom:calc(var(--v-sbh,0px) + 65px + 12px)}
+#phone.sb-bot.v-qbs:has(:is(#squad-x,#squad-v).active) .k-fab.k-fab.k-fab{bottom:65px}
+/* squad bottom + betslip: nav bar, then the betslip bar, then My squad on top */
+#phone.sb-bot.v-qbs :is(#squad-x,#squad-v) .p-pg.p-pg.p-pg{padding-bottom:calc(var(--v-sbh,0px) + var(--qbs-h,92px) + 65px + 24px)}
+#phone.sb-bot.v-qbs :is(#squad-x,#squad-v) .p-sb.p-sb.p-sb{display:flex;bottom:calc(65px + var(--qbs-h,92px) - 12px)}
+#phone.sb-bot.v-qbs:has(:is(#squad-x,#squad-v).active) .k-fab.k-fab .h-body.h-body{padding-bottom:12px}
+#phone.sb-bot.v-qbs .k-fab .v-qed.v-qed{display:none}
+/* List / Cards: unavailable players pop-up and "swap" hint */
+#phone .m-modal .na-gl{list-style:none;margin:4px 0 12px;padding:0;display:flex;flex-direction:column;gap:8px}
+#phone .m-modal .na-gl li{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border-radius:8px;background:#fff4f0;border:1px solid #faa05a}
+#phone .m-modal .na-gl b{font-weight:700;font-size:14px;line-height:20px;color:#151923}
+#phone .m-modal .na-gl span{font-size:12px;line-height:16px;color:#b33b00}
+@keyframes naHi{0%,100%{transform:none}50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){@keyframes naHi{0%,100%{transform:none}}}
+/* Prototype controls: Scenarios section hidden */
+.m-side .m-sec.demo,.m-side .m-scn,.m-side .m-ex2,.m-side .m-more{display:none}
+/* List / Cards: player names under the My squad avatars */
+#phone :is(#squad-x,#squad-v) .p-sb .pf-a.pf-n{display:flex;flex-direction:column;align-items:center;gap:2px;flex:none;width:39px;min-width:39px;max-width:39px}
+#phone :is(#squad-x,#squad-v) .p-sb .pf-a.pf-n .pf-nm{display:block;width:100%;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-align:center;font-family:var(--font-ui);font-weight:550;font-size:10px;line-height:12px;color:var(--sem-text-gray-strong,#2a3346)}
+#phone.lv :is(#squad-x,#squad-v) .p-sb .pf-a.pf-n .pf-nm{color:#cfd9ed}
+/* Cards · Carousel: filters under the cards, as in the Carousel version (team crests | Expected / Substitutes, counter, stat pills) */
+#phone.v-car #squad-v .vc-f{display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 0 16px}
+#phone.v-car #squad-v .vc-r1{display:flex;align-items:center;justify-content:center;gap:8px;padding:0 16px}
+#phone.v-car #squad-v .vc-r1 button{display:flex;align-items:center;justify-content:center;height:34px;padding:0 14px;box-sizing:border-box;border-radius:8px;border:1px solid var(--sem-border-gray-soft,#c2cee5);background:var(--sem-bg-container-lowest,#fff);font-family:var(--font-ui);font-weight:550;font-size:15px;line-height:20px;color:var(--sem-text-gray-emphasis,#151923);cursor:pointer}
+#phone.v-car #squad-v .vc-r1 .p-tf{width:44px;padding:0}
+#phone.v-car #squad-v .vc-r1 button[aria-pressed="true"]{background:var(--sem-bg-gray-emphasis-default,#151923);border-color:var(--sem-bg-gray-emphasis-default,#151923);color:#fff}
+#phone.v-car #squad-v .vc-sp{width:1px;height:24px;background:var(--sem-border-gray-soft,#c2cee5)}
+#phone.v-car #squad-v .vc-ct{font-family:var(--font-ui);font-weight:450;font-size:13px;line-height:16px;color:var(--sem-text-gray-subtle,#526789)}
+#phone.v-car #squad-v .vc-st{display:flex;gap:10px;width:100%;overflow-x:auto;padding:4px 16px 6px;box-sizing:border-box;scrollbar-width:none}
+#phone.v-car #squad-v .vc-st::-webkit-scrollbar{display:none}
+#phone.v-car #squad-v .vc-st button{flex:none;height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--sem-border-gray-pale,#e2e8f8);background:var(--sem-bg-container-lowest,#fff);font-family:var(--font-ui);font-weight:700;font-size:15px;line-height:20px;color:var(--sem-text-gray-emphasis,#151923);box-shadow:0 1px 2px rgba(21,25,35,.06);cursor:pointer}
+#phone.v-car #squad-v .vc-st button[aria-pressed="true"]{background:#151923;border-color:#151923;color:#fff;box-shadow:0 0 0 2px #fff,0 0 0 4px #151923}
+#phone.v-car #squad-v :is(.vc-r1,.vc-st) button:focus-visible{outline:2px solid #ff3c00;outline-offset:2px}
+#phone.lv.v-car #squad-v :is(.vc-r1,.vc-st) button:not([aria-pressed="true"]){background:#1b2131;border-color:#41506c;color:#f5f7fa}
+#phone.lv.v-car #squad-v :is(.vc-r1,.vc-st) button[aria-pressed="true"]{background:#f5f7fa;border-color:#f5f7fa;color:#151923;box-shadow:none}
+#phone.lv.v-car #squad-v .vc-ct{color:#cfd9ed}
+/* Cards · Carousel: enough page height for the Squad Builder tab + My squad to pin under the header, like List */
+#phone.v-car #squad-v.x-sb .p-pg.p-pg{min-height:760px;box-sizing:border-box}
+#phone .tg-fly img.tg-fi{display:block;width:14px;height:14px;filter:brightness(0) invert(1)}
+#phone .tg-fly svg.tg-fi{display:block}
+/* Cards · Carousel: the Carousel prototype's card (light; dark in live) and its easing */
+#phone.v-car #squad-v .p-tl.v-car{--c5-base:#f7f9fc;--c5-tx:#151923;--c5-sub:#2a3346;--c5-ov:rgba(239,239,250,.4);--c5-ind:rgba(239,239,250,.4);--c5-bd:rgba(21,25,35,.12);--c5-bdc:rgba(21,25,35,.22);--c5-ink:#151923}
+#phone.lv.v-car #squad-v .p-tl.v-car{--c5-base:#1f2536;--c5-tx:#f5f7fa;--c5-sub:#cfd9ed;--c5-ov:rgba(11,14,23,.5);--c5-ind:rgba(255,255,255,.1);--c5-bd:rgba(184,197,224,.28);--c5-bdc:rgba(255,255,255,.55);--c5-ink:#f5f7fa}
+#phone.v-car #squad-v .p-tl.v-car>.p-t.vca{--c5-team:#7a1840;width:176px;height:200px;top:24px;padding:0;margin:0;border:0;border-radius:12px;overflow:hidden;display:block;text-align:left;color:var(--c5-tx);background:linear-gradient(180deg,rgba(184,197,224,.15) 0%,var(--c5-team) 100%),var(--c5-base);box-shadow:0 8px 20px rgba(21,25,35,.14);transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s,box-shadow .2s;outline:0}
+#phone.v-car #squad-v .p-tl.v-car>.p-t.vca.ba{--c5-team:#2f8a4e}
+#phone.v-car #squad-v .p-tl.v-car>.p-t.vca:not(.v-cur){opacity:.9}
+#phone.v-car #squad-v .p-tl.v-car>.p-t.vca.v-cur{box-shadow:0 14px 30px rgba(21,25,35,.2)}
+#phone.v-car #squad-v .p-tl.v-car>.p-t.vca.p-on,#phone.v-car #squad-v .p-tl.v-car>.p-t.vca.p-on.v-cur{box-shadow:0 10px 24px rgba(255,60,0,.22)}
+#phone.lv.v-car #squad-v .p-tl.v-car>.p-t.vca{box-shadow:0 10px 24px rgba(0,0,0,.5)}
+#phone.lv.v-car #squad-v .p-tl.v-car>.p-t.vca:not(.v-cur){opacity:1;filter:brightness(.85)}
+#phone.lv.v-car #squad-v .p-tl.v-car>.p-t.vca.v-cur{box-shadow:0 18px 40px rgba(0,0,0,.6)}
+#phone.v-car #squad-v .p-tl.v-car>.p-t.vca::after{content:'';position:absolute;inset:0;z-index:5;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--c5-bd);pointer-events:none;transition:box-shadow .2s}
+#phone.v-car #squad-v .p-tl.v-car>.p-t.vca.v-cur::after{box-shadow:inset 0 0 0 1px var(--c5-bdc)}
+#phone.v-car #squad-v .p-tl.v-car>.p-t.vca.p-on::after{box-shadow:inset 0 0 0 2px #ff3c00}
+#phone.v-car #squad-v .p-tl.v-car>.p-t.vca:focus-visible::after{box-shadow:inset 0 0 0 2px #ff3c00}
+#phone.v-car #squad-v .vca .a5-bg{position:absolute;inset:0;pointer-events:none}
+#phone.v-car #squad-v .vca .a5-bg img{display:block;width:100%;height:100%}
+#phone.v-car #squad-v .vca .a5-hd{position:absolute;left:7px;right:8px;top:7px;z-index:2;display:flex;align-items:center;gap:2px}
+#phone.v-car #squad-v .vca .a5-cr{flex:none;width:20px;height:20px;display:grid;place-items:center}
+#phone.v-car #squad-v .vca .a5-cr img{width:20px;height:20px;object-fit:contain}
+#phone.v-car #squad-v .vca .a5-hd b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;font-family:var(--font-brand);font-weight:700;font-size:16px;line-height:20px;text-transform:uppercase;color:var(--c5-tx)}
+#phone.v-car #squad-v .vca .a5-hd i{flex:none;padding:1px 8px;font-style:normal;font-weight:550;font-size:12px;line-height:16px;color:var(--c5-sub)}
+#phone.v-car #squad-v .vca .a5-j{position:absolute;left:calc(50% + 1.5px);top:36px;width:93px;height:92px;translate:-50% 0;display:grid;place-items:center;pointer-events:none}
+#phone.v-car #squad-v .vca .a5-j img{width:92px;height:92px;object-fit:contain}
+#phone.v-car #squad-v .vca .a5-nu{position:absolute;left:0;right:0;top:56.5px;z-index:2;text-align:center;font-weight:700;font-size:32px;line-height:40px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.35);pointer-events:none}
+#phone.v-car #squad-v .vca .a5-ct{position:absolute;left:-1px;right:-1px;bottom:-1px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px;border-radius:12px;background:var(--c5-ov);-webkit-backdrop-filter:blur(3.6px);backdrop-filter:blur(3.6px)}
+#phone.v-car #squad-v .vca .a5-od{display:flex;flex-direction:column;align-items:center}
+#phone.v-car #squad-v .vca .a5-od b{font-family:var(--font-brand);font-weight:700;font-size:20px;line-height:24px;color:var(--c5-tx)}
+#phone.v-car #squad-v .vca .a5-od span{font-weight:450;font-size:11px;line-height:14px;color:var(--c5-tx)}
+#phone.v-car #squad-v .vca .a5-lw{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+#phone.v-car #squad-v .vca .a5-l5{display:flex;gap:2px}
+#phone.v-car #squad-v .vca .a5-l5 i{min-width:18px;box-sizing:border-box;padding:3px 6px;border-radius:2px;background:var(--c5-ind);font-style:normal;font-weight:550;font-size:11px;line-height:14px;text-align:center;color:var(--c5-tx)}
+#phone.v-car #squad-v .vca .a5-l5 i.cu{box-shadow:inset 0 -2px 0 var(--c5-ink)}
+#phone.v-car #squad-v .vca .a5-l5c{font-weight:450;font-size:11px;line-height:14px;color:var(--sem-text-gray-subtle,#526789)}
+#phone.lv.v-car #squad-v .vca .a5-l5c{color:var(--c5-sub)}
+#phone.v-car #squad-v .vca .a5-pl{position:absolute;right:0;bottom:0;z-index:4;width:24px;height:24px;border-radius:9px 0 11px 0;display:grid;place-items:center;background:#ff3c00;color:#fff;transition:background .2s,color .2s}
+#phone.v-car #squad-v .vca .a5-pl::before{content:'+';font-size:17px;font-weight:700;line-height:1}
+#phone.v-car #squad-v .vca.p-on .a5-pl{background:var(--c5-ink);color:var(--c5-base)}
+#phone.v-car #squad-v .vca.p-on .a5-pl::before{content:'✓';font-size:12px}
+@media (prefers-reduced-motion:reduce){#phone.v-car #squad-v .p-tl.v-car>.p-t.vca{transition:none}}
+/* unavailable players: centred dialog, container / lowest / default background */
+#phone .sheet.m-modal.m-dlg{left:16px;right:16px;top:50%;bottom:auto;height:auto;max-height:80%;translate:0 -50%;transform:none;border-radius:16px;padding:20px 16px 16px;background:var(--sem-bg-container-lowest,#fff);box-shadow:0 16px 48px rgba(9,13,21,.3);animation:dlgIn .22s cubic-bezier(.2,.8,.2,1);transition:none}
+#phone .sheet.m-modal.m-dlg .m-mb{padding:0}
+#phone .sheet.m-modal.m-dlg h4{margin-top:0}
+@keyframes dlgIn{from{opacity:0;scale:.94}to{opacity:1;scale:1}}
+@media (prefers-reduced-motion:reduce){#phone .sheet.m-modal.m-dlg{animation:none}}
+#phone .p-sb .tg-hit{animation:tgHit .45s ease-out}
+/* squad bottom: avatars 8px apart */
+#phone.sb-bot :is(#squad-x,#squad-v) .p-sb .pf-av.pf-av{gap:8px}
+#phone.sb-bot :is(#squad-x,#squad-v) .p-sb .pf-a.pf-n.pf-n{width:42px;min-width:42px;max-width:42px}
+#phone ~ * .m-sec.alt,.m-side .m-sec.alt,.m-sec.alt{display:none!important}
+#phone.lv:not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb.u-sb.u-sb{background:rgba(21,25,35,.72);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 4px 16px rgba(0,0,0,.32)}
+#phone :is(#squad-x,#squad-v) .gl-card{--tb-c0:#151923;--tb-c1:#ff3c00;--tb-c2:#8f9bd8;--tb-c3:#f2b33d;--tb-c4:#2f8a4e}
+#phone.lv :is(#squad-x,#squad-v) .gl-card{--tb-c0:#f5f7fa;--tb-c1:#ff6a3d;--tb-c2:#8f9bd8;--tb-c3:#f2b33d;--tb-c4:#3fb06a}
+#phone :is(#squad-x,#squad-v) .tg-seg{display:flex;gap:2px;padding:2px;margin:8px 0 4px;border-radius:999px;background:var(--sem-bg-gray-subtle-default,#eaeefb)}
+#phone :is(#squad-x,#squad-v) .tg-seg button{flex:1 1 0;min-height:32px;border:0;border-radius:999px;background:transparent;font:650 13px/16px var(--font-ui);color:var(--sem-text-gray-subtle,#526789);cursor:pointer}
+#phone :is(#squad-x,#squad-v) .tg-seg button[aria-pressed="true"]{background:var(--sem-bg-container-lowest,#fff);color:var(--sem-text-gray-emphasis,#151923);box-shadow:0 1px 3px rgba(21,25,35,.14)}
+#phone.lv :is(#squad-x,#squad-v) .tg-seg{background:rgba(239,239,250,.12)}
+#phone.lv :is(#squad-x,#squad-v) .tg-seg button{color:#c0cce7}
+#phone.lv :is(#squad-x,#squad-v) .tg-seg button[aria-pressed="true"]{background:#3a4258;color:#f5f7fa;box-shadow:none}
+#phone :is(#squad-x,#squad-v) .v-pl.tb-v{gap:8px;padding-top:10px}
+#phone :is(#squad-x,#squad-v) .tb-cap{display:flex;align-items:center;gap:6px;margin:0;font:550 11px/14px var(--font-ui);color:var(--sem-text-gray-subtle,#526789)}
+#phone :is(#squad-x,#squad-v) .tb-cap img{flex:0 0 auto}
+#phone :is(#squad-x,#squad-v) .tb-tr{display:flex;gap:2px;height:10px;border-radius:999px;overflow:hidden}
+#phone :is(#squad-x,#squad-v) .tb-tr i{display:block;min-width:4px;background:var(--c)}
+#phone :is(#squad-x,#squad-v) .tb-lg{display:flex;flex-direction:column;gap:4px}
+#phone :is(#squad-x,#squad-v) .tb-r{display:flex;align-items:center;gap:6px;min-height:28px}
+#phone :is(#squad-x,#squad-v) .tb-d{flex:0 0 auto;width:4px;height:18px;border-radius:2px;background:var(--c)}
+#phone :is(#squad-x,#squad-v) .tb-r .gp-j{position:relative;flex:0 0 auto;width:25px;height:25px;display:block}
+#phone :is(#squad-x,#squad-v) .tb-r .gp-n{flex:1 1 0;min-width:0}
+#phone :is(#squad-x,#squad-v) .tb-p{flex:0 0 auto;font:700 13px/16px var(--font-ui);color:var(--sem-text-gray-emphasis,#151923)}
+#phone :is(#squad-x,#squad-v) .tb-r.na{opacity:.5}
+#phone :is(#squad-x,#squad-v) .tb-r.na .tb-p{font-weight:450;font-size:11px}
+#phone :is(#squad-x,#squad-v) .tb-r.na .tb-d{background:var(--sem-border-gray-pale,#e2e8f8)}
+#phone.lv :is(#squad-x,#squad-v) .tb-cap{color:#c0cce7}
+#phone.lv :is(#squad-x,#squad-v) .tb-p{color:#f5f7fa}
+#phone .vc-f .vc-ct.vc-ct{display:none}
+#phone :is(#squad-x,#squad-v) .gl-card{--tb-hi:#1f9d55;--tb-md:#151923;--tb-lo:#e0303f}
+#phone.lv :is(#squad-x,#squad-v) .gl-card{--tb-hi:#3fbf74;--tb-md:#f5f7fa;--tb-lo:#ff5a69}
+#phone :is(#squad-x,#squad-v) .tb-r:not(.na) .tb-p.tb-p{color:var(--c)}
 </style>
 <!-- password screen: a light gate for sharing, not real security (the page source stays public) -->
 <style>
@@ -3899,7 +4033,7 @@ SUBS.forEach(p=>byId[p.id]=p);
 const stat=id=>STATS.find(s=>s.id===id);
 /* ===== Squad Builder 3: Liverpool in place of Juventus (mock names and numbers); versions 1 and 2 keep Juventus ===== */
 const TEAMSL={villa:TEAMS.villa,juve:{name:'Liverpool',short:'LIV'}};
-const LIVMAP={j29:['Alisson',1],j4:['Konaté',5],j3:['Van Dijk',4],j27:['Robertson',26],j6:['Gomez',2],j5:['Mac Allister',10],j8:['Szoboszlai',8],j7:['Gravenberch',38],j10:['Wirtz',7],j9:['Salah',11],j19:['Gakpo',18],
+const LIVMAP={j29:['Alisson',1],j4:['Konaté',5],j3:['Virgil van Dijk',4],j27:['Robertson',26],j6:['Gomez',2],j5:['Alexis Mac Allister',10],j8:['Dominik Szoboszlai',8],j7:['Gravenberch',38],j10:['Wirtz',7],j9:['Mohamed Salah Hamed Ghaly',11],j19:['Cody Mathès Gakpo',18],
  js1:['Kelleher',62],js15:['Tsimikas',21],js37:['Quansah',78],js26:['Jones',17],js21:['Endo',3],js16:['Elliott',19],js11:['Ekitike',22],js51:['Isak',9]};
 const PLL=PL.map(p=>LIVMAP[p.id]?{...p,name:LIVMAP[p.id][0],num:LIVMAP[p.id][1]}:p);
 const byIdL=Object.fromEntries(PLL.map(p=>[p.id,p]));
@@ -4034,15 +4168,15 @@ window.lvoToggle=function(on){ window.__lvoOn=on==null?!window.__lvoOn:!!on; cle
   document.querySelectorAll('.m-lvo').forEach(b=>b.setAttribute('aria-pressed',String(window.__lvoOn))); };
 /* Filters position: top (default) or docked at the bottom with the squad summary; the bottom nav is hidden and the dock sits above the betslip bar */
 /* Cards · Carousel: the carousel prototype's looping 3D ring (sb5 arLay/arT: 150px apart, -120px deep, up to 62° turn), drag or swipe to spin */
-window.vCarLay=function(t,anim){ const cs=[...t.children].filter(c=>c.classList.contains('p-t')), N=cs.length; if(!N) return; const pos=t._pos||0, cur=((Math.round(pos)%N)+N)%N;
+window.vCarLay=function(t,anim){ const cs=[...t.children].filter(c=>c.classList.contains('p-t')), N=cs.length; if(!N) return; const pos=t._pos||0, cur=((Math.round(pos)%N)+N)%N; {const pg=t.closest('.p-pg'), n_=pg&&pg.querySelector('.vc-n'), t_=pg&&pg.querySelector('.vc-t'); if(n_) n_.textContent=cur+1; if(t_) t_.textContent=N;}
   cs.forEach((c,i)=>{ let d=i-pos; if(N>2){ d=((d%N)+N)%N; if(d>N/2) d-=N; } const a=Math.abs(d);
     c.style.transition=anim?'':'none'; c.style.transform=`translate(-50%,0) translateX(${d*150}px) translateZ(${-a*120}px) rotateY(${Math.max(-62,Math.min(62,-d*34))}deg)`;
     c.style.opacity=a>3.2?'0':'1'; c.style.zIndex=String(100-Math.round(a*10)); c.style.pointerEvents=a>3.2?'none':''; c.classList.toggle('v-cur',i===cur); c.setAttribute('aria-hidden',String(a>3.2)); }); };
 window.vCarGo=function(t,p){ t._pos=p; window.vCarLay(t,true); };
 (function(){ let q=false; const run=()=>{ q=false; document.querySelectorAll('.p-tl.v-car').forEach(t=>{ if(!t._fx){ t._fx=1; t._pos=0; t.tabIndex=0; let x0=null,p0=0,mv=false,pid=null;
-    t.addEventListener('pointerdown',e=>{ x0=e.clientX; p0=t._pos||0; mv=false; pid=e.pointerId; });
-    t.addEventListener('pointermove',e=>{ if(x0==null||e.pointerId!==pid) return; const k=(t.getBoundingClientRect().width/t.offsetWidth)||1, dx=(e.clientX-x0)/k; if(!mv&&Math.abs(dx)>6){ mv=true; try{t.setPointerCapture(pid);}catch(_){} } if(mv){ t._pos=p0-dx/150; window.vCarLay(t,false); } });
-    const up=()=>{ if(x0==null) return; x0=null; if(mv) window.vCarGo(t,Math.round(t._pos)); };
+    t.addEventListener('pointerdown',e=>{ x0=e.clientX; p0=t._pos||0; mv=false; pid=e.pointerId; t._vs=[[performance.now(),e.clientX]]; });
+    t.addEventListener('pointermove',e=>{ if(x0==null||e.pointerId!==pid) return; const k=(t.getBoundingClientRect().width/t.offsetWidth)||1, dx=(e.clientX-x0)/k; if(t._vs){ t._vs.push([performance.now(),e.clientX]); if(t._vs.length>6) t._vs.shift(); } if(!mv&&Math.abs(dx)>8){ mv=true; try{t.setPointerCapture(pid);}catch(_){} } if(mv){ t._pos=p0-dx/150; window.vCarLay(t,false); } });
+    const up=()=>{ if(x0==null) return; x0=null; let fl=0; const vs=t._vs; t._vs=null; if(vs&&vs.length>1){ const a=vs[0], z=vs[vs.length-1], dt=z[0]-a[0], k=(t.getBoundingClientRect().width/t.offsetWidth)||1; if(dt>0&&performance.now()-z[0]<80){ const vel=(z[1]-a[1])/k/dt; if(Math.abs(vel)>.5) fl=Math.max(-8,Math.min(8,Math.round(-vel*220/150))); } } /* a quick flick throws the carousel further, as in the Carousel prototype */ if(mv) window.vCarGo(t,Math.round(t._pos)+fl); };
     t.addEventListener('pointerup',up); t.addEventListener('pointercancel',up);
     t.addEventListener('click',e=>{ if(mv){ e.stopPropagation(); e.preventDefault(); mv=false; return; } const c=e.target.closest('.p-t'); if(!c||c.classList.contains('v-cur')) return; /* tap a side card: bring it to the front */
       e.stopPropagation(); e.preventDefault(); const cs=[...t.children].filter(x=>x.classList.contains('p-t')), N=cs.length, i=cs.indexOf(c); let d=i-(t._pos||0); d=((d%N)+N)%N; if(d>N/2) d-=N; window.vCarGo(t,Math.round((t._pos||0)+d)); },true);
@@ -4054,7 +4188,7 @@ document.addEventListener('animationend',e=>{ if(e.animationName==='sbRingOut') 
 window.sbDock=function(){ const sb=document.querySelector('.screen.active .p-sb'); if(sb===__sbEl) return; if(__sbRO) __sbRO.disconnect(); __sbEl=sb;
   const ph=document.getElementById('phone'); if(!sb){ ph.style.setProperty('--v-sbh','0px'); return; }
   ph.style.setProperty('--v-sbh',sb.offsetHeight+'px'); if(window.ResizeObserver){ __sbRO=new ResizeObserver(()=>ph.style.setProperty('--v-sbh',sb.offsetHeight+'px')); __sbRO.observe(sb); } };
-window.sbPos=function(bot){ window.__sbBot=!!bot; document.getElementById('phone').classList.toggle('sb-bot',!!bot);
+window.sbPos=function(bot){ window.__sbBot=!!bot; document.getElementById('phone').classList.toggle('sb-bot',!!bot); if(bot) ['x','v'].forEach(k=>{const q=window.__squads&&window.__squads[k]; if(q&&q.S.slip&&!q.S.placed){ q.S.slip=false; q.render(); }}); /* squad bottom always starts at the Add to betslip step */
   document.querySelectorAll('.m-pos button').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.v==='bot')===!!bot))); __sbEl=null; window.sbDock(); document.dispatchEvent(new Event('sbpos')); };
 (function(){ let q=false; new MutationObserver(()=>{ if(q) return; q=true; requestAnimationFrame(()=>{ q=false; window.sbDock(); }); }).observe(document.getElementById('phone')||document.body,{childList:true,subtree:true}); })();
 window.setLive=function(on){ window.__LV=!!on; if(!on){ window.lvoToggle(false); window.__lvo={}; } const ph=document.getElementById('phone'); ph.classList.toggle('lv',!!on);
@@ -4342,31 +4476,35 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     let od0=id==='rcard'?pOdds(p,'cards',L,.12):pOdds(p,id==='ycard'?'cards':id,L); const ov=window.__LV&&window.__lvo&&window.__lvo[p.id+'|'+id]; if(ov){ od0=ov.od; if(ov.L!=null){ L=ov.L; lb=lb.replace(/\d+\+/,ov.L+'+'); } }
     return {L,lb,od:fo(od0),l5:[0,1,2,3,4].map(i=>Math.max(0,Math.round(r*(.3+(((h>>>(i*3))%9)/5)))))};};
   const glSection=()=>{const k=S.targets.length;
-    return `<section class="d-sec d-goals"><div class="gl-card"><div class="gl-top"><b>Set squad targets</b><span class="gl-cnt">${k} Target${k!==1?'s':''}</span>${V?'':`<button class="gl-rst" data-act="gReset" ${k?'':'disabled'}>Reset</button>`}</div>
+    return `<section class="d-sec d-goals"><div class="gl-card"><div class="gl-top"><b>Set collective targets</b><span class="gl-cnt">${k} Target${k!==1?'s':''}</span>${V?'':`<button class="gl-rst" data-act="gReset" ${k?'':'disabled'}>Reset</button>`}</div>
     <div class="gl-ls">${glOrder().map(id=>{const t=tgt(id), na=naFor(id), ln=glLine(id), mn=LR(id).min, mx=maxL(id), nm=stat(id).name;
-      const tx=V?`<div class="gl-tx"><b>${nm}</b><span>avg ${fmtV(exp(id))}/game</span></div>`:`<div class="gl-tx"><b>${nm}</b><span>${W?'':'Median '+mdn(id)+' · '}avg ${fmtV(exp(id))}/game</span></div>`;
+      const tx=V?`<div class="gl-tx"><b>${nm}</b></div>`:`<div class="gl-tx"><b>${nm}</b></div>`;
       /* 3: under each set target, the squad players with their stat, odds and last 5 */
       /* 3.x / 4: under each set target, the squad players (Figma 6633:63105) */
-      const vPl=(V&&t)?`<div class="v-pl">${S.squad.map(pid=>{const p=byId[pid], m=vMk(p,id); if(!m) return `<div class="v-pr gp-r na"><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><span class="gp-m"><i class="vx-pm">Not available</i></span></div>`;
+      const tbView=()=>{const av=S.squad.map(pid=>byId[pid]).filter(Boolean), rs=av.map(p=>{const m=vMk(p,id); return m?Math.max(.5,m.l5.reduce((a,b)=>a+b,0)):0;}), tot=rs.reduce((a,b)=>a+b,0)||1;
+        const raw=rs.map(r=>r/tot*100), pc=raw.map(Math.floor); let rem=100-pc.reduce((a,b)=>a+b,0); raw.map((r,i)=>[r-Math.floor(r),i]).sort((a,b)=>b[0]-a[0]).forEach(([f,i])=>{if(rem>0&&rs[i]){pc[i]++;rem--;}});
+        return `<div class="v-pl tb-v" aria-label="${nm}: how much each player adds to the collective total"><p class="tb-cap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.2c2.4.2 4 1.8 4.5 4.8"/></svg>All players count towards one total</p><div class="tb-tr" aria-hidden="true">${av.map((p,i)=>rs[i]?`<i style="flex:${pc[i]||.5} 1 0;--c:var(--tb-${pc[i]>50?'hi':pc[i]<10?'lo':'md'})"></i>`:'').join('')}</div>
+        <div class="tb-lg">${av.map((p,i)=>`<div class="tb-r${rs[i]?'':' na'}" style="--c:var(--tb-${pc[i]>50?'hi':pc[i]<10?'lo':'md'})"><span class="tb-d" aria-hidden="true"></span><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><b class="tb-p">${rs[i]?pc[i]+'%':'Not available'}</b></div>`).join('')}</div></div>`;};
+      const vPl=(V&&t&&S.tgv==='bar')?tbView():(V&&t)?`<div class="v-pl">${S.squad.map(pid=>{const p=byId[pid], m=vMk(p,id); if(!m) return `<div class="v-pr gp-r na"><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><span class="gp-m"><i class="vx-pm">Not available</i></span></div>`;
         return `<div class="v-pr gp-r" data-pid="${pid}" data-sid="${id}"><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><span class="gp-m gp-l5" aria-label="Last 5 matches">${m.l5.map((n,k)=>`<span class="gp-c${k===4?' last':''}">${n}</span>`).join('')}</span></div>`;}).join('')}</div>`:'';
-      const sw=na.length?`<div class="gl-sw">${na.map(p=>`<button class="gl-swb" data-act="mSwap" data-id="${p.id}" data-g="${id}" aria-label="Swap ${p.name} to unlock ${nm}">${KI('tg_swap',20,20)}<span>Swap ${p.name}</span></button>`).join('')}</div>`:'';
-      if(t) return `<div class="gl-r set${V&&(S.vcol||{})[id]?' v-col':''}" data-id="${id}">${V?`<div class="gl-tx v-tt" data-act="vTog" data-id="${id}" role="button" tabindex="0" aria-expanded="${!(S.vcol||{})[id]}"><b>${nm}</b><span>avg ${fmtV(exp(id))}/game</span></div>`:tx}<div class="gl-c"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="-1" ${ln<=mn?'disabled':''} aria-label="Decrease ${nm}">${KI('tg_minus',14,14)}</button><input class="gl-in" data-id="${id}" type="text" inputmode="none" readonly autocomplete="off" value="${ln}${V?'+':''}" aria-label="${nm} line (${mn} to ${mx})"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="1" ${ln>=mx?'disabled':''} aria-label="Increase ${nm}">${KI('tg_plus',14,14)}</button></div><button class="gl-ri" data-act="gResetOne" data-id="${id}" ${ln===mdn(id)?'disabled':''} aria-label="Reset ${nm} to the default">${KI('tg_reset',16,16)}</button><button class="gl-x" data-act="tRm" data-id="${id}" aria-label="Remove ${nm} target">${KI('tg_trash',14,14)}</button>${sw}${vPl}</div>`;
+      const sw=na.length?`<div class="gl-sw">${na.map(p=>`<button class="gl-swb" data-act="mSwap" data-id="${p.id}" data-g="${id}" aria-label="Swap ${p.name} to unlock ${nm}">${KI('swap_fg',20,20)}<span>Swap ${p.name}</span></button>`).join('')}</div>`:'';
+      if(t) return `<div class="gl-r set${V&&(S.vcol||{})[id]?' v-col':''}" data-id="${id}">${V?`<div class="gl-tx v-tt" data-act="vTog" data-id="${id}" role="button" tabindex="0" aria-expanded="${!(S.vcol||{})[id]}"><b>${nm}</b></div>`:tx}<div class="gl-c"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="-1" ${ln<=mn?'disabled':''} aria-label="Decrease ${nm}">${KI('tg_minus',14,14)}</button><input class="gl-in" data-id="${id}" type="text" inputmode="none" readonly autocomplete="off" value="${ln}${V?'+':''}" aria-label="${nm} line (${mn} to ${mx})"><button class="gl-b" data-act="gStep" data-id="${id}" data-d="1" ${ln>=mx?'disabled':''} aria-label="Increase ${nm}">${KI('tg_plus',14,14)}</button></div><button class="gl-ri" data-act="gResetOne" data-id="${id}" ${ln===mdn(id)?'disabled':''} aria-label="Reset ${nm} to the default">${KI('tg_reset',16,16)}</button><button class="gl-x" data-act="tRm" data-id="${id}" aria-label="Remove ${nm} target">${KI('tg_trash',14,14)}</button>${sw}${vPl}</div>`;
       if(na.length) return `<div class="gl-r na" data-id="${id}">${tx}${sw}</div>`;
       return `<div class="gl-r gl-tap" data-act="gAdd" data-id="${id}" role="button" tabindex="0" aria-label="Add ${nm} target">${tx}<span class="gl-x" aria-hidden="true">${KI('tg_add',14,14)}</span></div>`;}).join('')}</div></div></section>`;};
   const pGoal=t=>{const id=t.id, mx=sMax(id), mn=LR(id).min; t.line=Math.min(mx,Math.max(mn,t.line)); const st=stp(id)>1?stp(id):1, n=Math.max(2,Math.round((mx-mn)/st)+1), i=Math.min(n-1,Math.max(0,Math.round((t.line-mn)/st))), open=true, warn=false; // targets always open (no collapse)
     const lab=Array.from({length:n},(_,k)=>(n<=10||k===0||k===n-1)?mn+k*st:'');
-    return `<div class="sg-row p-gr k-goal ${open?'':'p-cl'} ${warn?'m-att':''}" data-id="${id}"><div class="p-gw"><div class="p-gh"><span class="sg-tx"><b>${stat(id).name}</b><span>${W?'':'Median '+mdn(id)+' · '}avg ${fmtV(exp(id))}/game</span>${id==='cards'?`<em class="m-cardn">2nd yellow + red = 3 cards</em>`:''}${naFor(id).length&&S.ack[id]?`<em class="kg-na m-na-ack">${naFor(id).map(p=>p.name).join(', ')} won't count</em>`:''}</span></div><button class="p-gx" data-act="tRm" data-id="${id}" aria-label="Remove ${stat(id).name} target">${KI('sg_close',16,16)}</button></div>
+    return `<div class="sg-row p-gr k-goal ${open?'':'p-cl'} ${warn?'m-att':''}" data-id="${id}"><div class="p-gw"><div class="p-gh"><span class="sg-tx"><b>${stat(id).name}</b>${id==='cards'?`<em class="m-cardn">2nd yellow + red = 3 cards</em>`:''}${naFor(id).length&&S.ack[id]?`<em class="kg-na m-na-ack">${naFor(id).map(p=>p.name).join(', ')} won't count</em>`:''}</span></div><button class="p-gx" data-act="tRm" data-id="${id}" aria-label="Remove ${stat(id).name} target">${KI('sg_close',16,16)}</button></div>
       ${open?`<div class="p-gb"><div class="p-sc"><div class="p-sw" style="--n:${n};--i:${i}">${Array.from({length:n},()=>'<i class="p-sg"></i>').join('')}<i class="p-th"></i><input type="range" class="kg-sl p-rn" data-id="${id}" min="${mn}" max="${mx}" step="${st}" value="${t.line}" aria-label="${stat(id).name} line"></div><div class="p-lbs">${lab.map(x=>`<span>${x}</span>`).join('')}</div></div>
       <div class="p-st"><button data-act="tStep" data-id="${id}" data-d="-1" ${t.line<=mn?'disabled':''} aria-label="Decrease ${stat(id).name}">−</button><span class="sg-val" aria-live="polite">${t.line}</span><button data-act="tStep" data-id="${id}" data-d="1" ${t.line>=maxL(id)?'disabled':''} aria-label="Increase ${stat(id).name}">+</button></div></div>`:''}</div>`;};
   // Goal row with stepper + slider (Figma SB / Goal row 5543:846)
   const sgRow=t=>{if(P||O) return pGoal(t); const id=t.id, mx=sMax(id), mn=LR(id).min, st=stp(id), fr=v=>Math.min(1,Math.max(0,(v-mn)/Math.max(1,mx-mn))), warn=naFor(id).length&&!S.ack[id];
-    return `<div class="sg-row k-goal ${warn?'m-att':''}" data-id="${id}"><div class="sg-top"><div class="sg-tx"><b>${stat(id).name}</b><span>${W?'':'Median '+mdn(id)+' · '}avg ${fmtV(exp(id))}/game</span>${t.line<=mn?`<em class="m-lim">Minimum line</em>`:t.line>=maxL(id)?`<em class="m-lim">Maximum line</em>`:''}${id==='cards'?`<em class="m-cardn">2nd yellow + red = 3 cards</em>`:''}${naFor(id).length?(S.ack[id]?`<em class="kg-na m-na-ack">${KI('warnOutlined',14,14)} ${naFor(id).map(p=>p.name).join(', ')} won't count</em>`:''):naNote(id)}</div>
+    return `<div class="sg-row k-goal ${warn?'m-att':''}" data-id="${id}"><div class="sg-top"><div class="sg-tx"><b>${stat(id).name}</b>${t.line<=mn?`<em class="m-lim">Minimum line</em>`:t.line>=maxL(id)?`<em class="m-lim">Maximum line</em>`:''}${id==='cards'?`<em class="m-cardn">2nd yellow + red = 3 cards</em>`:''}${naFor(id).length?(S.ack[id]?`<em class="kg-na m-na-ack">${KI('warnOutlined',14,14)} ${naFor(id).map(p=>p.name).join(', ')} won't count</em>`:''):naNote(id)}</div>
       <div class="sg-st"><button class="sg-sb" data-act="tStep" data-id="${id}" data-d="-1" ${t.line<=mn?'disabled':''} aria-label="Decrease ${stat(id).name}">${KI('sg_minus',12,12)}</button><span class="sg-val" aria-live="polite">${t.line}+</span><button class="sg-sb" data-act="tStep" data-id="${id}" data-d="1" ${t.line>=maxL(id)?'disabled':''} aria-label="Increase ${stat(id).name}">${KI('sg_plus',12,12)}</button></div>
       <button class="sg-x" data-act="tRm" data-id="${id}" aria-label="Remove ${stat(id).name}">${KI('sg_close',16,16)}</button></div>
       <div class="sg-sw" style="--p:${fr(t.line)};--m:${fr(mdn(id))}"><i class="sg-trk"></i><i class="sg-fill"></i><i class="sg-tick" title="Median ${mdn(id)}"></i><input type="range" class="kg-sl sg-in" data-id="${id}" min="${mn}" max="${mx}" step="${st>1?st:1}" value="${t.line}" aria-label="${stat(id).name} line"></div></div>`;};
   function kGoalSel(t){const id=t.id, warn=M&&naFor(id).length&&!S.ack[id];
     if(M) return warn&&!(P||O)?`<div class="m-stack">${sgRow(t)}${mInline(t)}</div>`:sgRow(t);
-    const card=`<div class="qcard sel g-row k-goal ${warn?'m-att':''}" role="button" tabindex="0" data-act="tRm" data-id="${id}" aria-label="Remove ${stat(id).name}"><div class="kg-top"><div class="ct"><b>${stat(id).name}</b><span>${M?`Squad avg ${fmtV(exp(id))}/game`:`${W?'':'Median '+mdn(id)+' · '}avg ${fmtV(exp(id))}/game`}</span>${M&&id==='cards'?`<em class="m-cardn">2nd yellow + red = 3 cards</em>`:''}${M&&naFor(id).length?(S.ack[id]?`<em class="kg-na m-na-ack">${KI('warnOutlined',14,14)} ${naFor(id).map(p=>p.name).join(', ')} won't count</em>`:''):naNote(id)}</div>${stepper(t)}<button class="pbtn on" data-act="tRm" data-id="${id}" aria-label="Remove ${stat(id).name}">${CK_}</button></div>${M?'':kSlider(id,t.line)}${M?mPre(t):''}</div>`;
+    const card=`<div class="qcard sel g-row k-goal ${warn?'m-att':''}" role="button" tabindex="0" data-act="tRm" data-id="${id}" aria-label="Remove ${stat(id).name}"><div class="kg-top"><div class="ct"><b>${stat(id).name}</b>${M&&id==='cards'?`<em class="m-cardn">2nd yellow + red = 3 cards</em>`:''}${M&&naFor(id).length?(S.ack[id]?`<em class="kg-na m-na-ack">${KI('warnOutlined',14,14)} ${naFor(id).map(p=>p.name).join(', ')} won't count</em>`:''):naNote(id)}</div>${stepper(t)}<button class="pbtn on" data-act="tRm" data-id="${id}" aria-label="Remove ${stat(id).name}">${CK_}</button></div>${M?'':kSlider(id,t.line)}${M?mPre(t):''}</div>`;
     return warn?`<div class="m-stack">${card}${mInline(t)}</div>`:card;}
   const PRICED=()=>S.targets.some(t=>S.squad.length-naFor(t.id).length>=MIN);
   function mInline(t){const id=t.id, ps=naFor(id); if(!ps.length||S.ack[id]) return '';
@@ -4491,15 +4629,16 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
 
       ${sec('alt','Design A vs B','Open design decisions to compare')}
       ${row('Add to betslip',kChips([['A','A · Auto-add'],['B','B · Add button']],S.mode,'mMode','m'),S.mode==='A'?'The squad goes into the betslip automatically once there are 3 players and 1 goal; every edit updates it.':'Build the full squad and goals, save squad, then Add to Betslip. Edits after adding mark the betslip as out of date.')}
-      ${P?row('Entry point',kChips(X?[['tab','Squad Builder tab'],['banner','Banner'],['cta','Popular CTA']]:[['banner','Banner'],['cta','Popular CTA']],S.pent||(X?'tab':'banner'),'pEnt','pe'),(X&&(S.pent||'tab')==='tab')?'The Squad Builder tab next to Popular in the Markets tabs shows the builder in place, like Squad Builder 1.':S.pent==='cta'?'A "Build your squad" card under Match Result on Popular opens the Squad Builder page.':'The Squad Builder banner above the Markets tabs opens the Squad Builder page.'):N?row('Entry point','<p class="m-ex2" style="margin:0">N: a Squad Builder CTA banner on the event page (Popular) opens a dedicated Squad Builder page; back (page or app header) returns to the event page at the same scroll position.</p>'):row('Entry point',kChips([['tab','Markets tab'],['cards','Player cards']],S.entry,'mEntryMode','en'),S.entry==='tab'?'Today\'s entry: the Squad Builder chip in the Markets tab.':'Event-page redesign: "Players to watch" cards with Build a squad, which opens Squad Builder with that player added.')}
+      <div hidden><!-- Entry point hidden from Prototype controls -->${P?row('Entry point',kChips(X?[['tab','Squad Builder tab'],['banner','Banner'],['cta','Popular CTA']]:[['banner','Banner'],['cta','Popular CTA']],S.pent||(X?'tab':'banner'),'pEnt','pe'),(X&&(S.pent||'tab')==='tab')?'The Squad Builder tab next to Popular in the Markets tabs shows the builder in place, like Squad Builder 1.':S.pent==='cta'?'A "Build your squad" card under Match Result on Popular opens the Squad Builder page.':'The Squad Builder banner above the Markets tabs opens the Squad Builder page.'):N?row('Entry point','<p class="m-ex2" style="margin:0">N: a Squad Builder CTA banner on the event page (Popular) opens a dedicated Squad Builder page; back (page or app header) returns to the event page at the same scroll position.</p>'):row('Entry point',kChips([['tab','Markets tab'],['cards','Player cards']],S.entry,'mEntryMode','en'),S.entry==='tab'?'Today\'s entry: the Squad Builder chip in the Markets tab.':'Event-page redesign: "Players to watch" cards with Build a squad, which opens Squad Builder with that player added.')}</div>
+      ${(V&&!W)?row('Set targets',kChips([['l5','Last 5'],['bar','Bar']],S.tgv==='bar'?'bar':'l5','tgView','v'),S.tgv==='bar'?'Each target shows one bar split by how much each player adds to the shared total.':'Each target lists the players with their last 5 matches.'):''}
       ${row('Lineups',kChips([['none','Not published'],['exp','Expected'],['conf','Confirmed']],S.lu||'none','mLu','lu'),(V&&!W)?{none:'No lineup yet: one player list.',exp:'The list splits into Expected lineups (expected XI) and Substitute lineups.',conf:'About 1h before kick-off the heading changes to ✓ Confirmed lineups; the rest stay under Substitute lineups.'}[S.lu||'none']:{none:'No lineup yet: no lineup tag on players.',exp:'Expected lineups: players in the expected XI get an "In expected XI" tag.',conf:'About 1h before kick-off: players in the confirmed XI get an "In confirmed XI" tag.'}[S.lu||'none'])}
-      ${row('Availability timing',kChips([['open','Available now'],['window','Opens 24h before'],['realtime','Real-time pricing']],S.avail,'mAvail','av'),{open:'Squad Builder is fully priced and open.',window:'A locked card with a countdown until the window opens (24 or 48h before kick-off).',realtime:'Players and goals appear as they\'re priced; the rest show "Pricing soon".'}[S.avail])}
+      <div hidden><!-- Availability timing + Business rules hidden from Prototype controls -->${row('Availability timing',kChips([['open','Available now'],['window','Opens 24h before'],['realtime','Real-time pricing']],S.avail,'mAvail','av'),{open:'Squad Builder is fully priced and open.',window:'A locked card with a countdown until the window opens (24 or 48h before kick-off).',realtime:'Players and goals appear as they\'re priced; the rest show "Pricing soon".'}[S.avail])}
 
       ${sec('rule','Business rules','Set by product, trading and compliance')}
       ${row('Combinability',kChips([['any','Any market'],['one','1 per betslip'],['none','Not combinable']],S.comb,'mComb','cb'),{any:'Can be one leg of a Bet Builder, a match combo or an acca.',one:'Only one Squad Builder per betslip; building another replaces it.',none:'Always a single; Multiples is greyed out.'}[S.comb])}
       ${S.comb!=='none'?row('Combine with','<p class="m-ex2" style="margin:0">Tap any odds on the Popular tab (same match: joins the Squad Builder in a Bet Builder) or add the other-match selection above (Real Madrid - Manchester United, Over/Under Total Goals 1.32). The drawer then offers Single (each placed individually), Multiple (Bet Builder plus other matches as one bet) and System (every selection in every combination).'):''}
       ${row('Golden Sub',kChips([['void','Available (M1)'],['off','Not available']],S.gs==='off'?'off':'void','mGs','gs'),S.gs==='off'?'Not offered for this market or competition: no badge, banner or betslip note. A non-starter still voids the bet.':'M1: if any selected player doesn\'t start, the whole bet is voided and the stake returned. No recalculation.'+(S.live?' Hidden while In play.':''))}
-      ${row('Operator markets',kChips([['all','All allowed'],['cards','Cards not allowed'],['none','Not supported']],S.op,'mOp','op'),{all:'Every market behind the six goals is allowed.',cards:'“Player to receive a card” isn\'t allowed, so Cards is removed.',none:'The allowed offering isn\'t enough, so Squad Builder isn\'t supported.'}[S.op])}
+      ${row('Operator markets',kChips([['all','All allowed'],['cards','Cards not allowed'],['none','Not supported']],S.op,'mOp','op'),{all:'Every market behind the six goals is allowed.',cards:'“Player to receive a card” isn\'t allowed, so Cards is removed.',none:'The allowed offering isn\'t enough, so Squad Builder isn\'t supported.'}[S.op])}</div>
 
       <details class="m-more beyond" ${(window.__mBey??(S.ms==='live'||S.srch==='on'||S.gs==='combine'||S.gs==='pick'))?'open':''} ontoggle="window.__mBey=this.open"><summary>Beyond M1 · explorations</summary>
         ${row('In play',kChips([['pre','Pre-match'],['live',"In play 54'"]],S.ms,'mMs','mt'),S.ms==='live'?'In-play combined odds are still open. Live stats, Goals/Cards cap lifted, non-starters can\'t be picked, Golden Sub hidden.':'Pre-match: season stats; Goals and Cards capped at 3 per player.')}
@@ -4740,7 +4879,11 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     if(md.t==='co') return `<div class="scrim" data-act="mClose"></div><div class="sheet m-modal" role="alertdialog" aria-modal="true"><div class="k-grab"><i></i></div><div class="m-mb"><h4>Cash Out ${eur(md.v)}?</h4><p>You'll get ${eur(md.v)} now instead of potential winnings of ${eur((+S.stake||0)*mTot())}. This can't be undone.</p><div class="m-acts"><button class="k-btn" data-act="mCoOk">Cash Out ${eur(md.v)}</button><button class="tiny" data-act="mClose">Cancel</button></div></div></div>`;
     const why=p=>p.pos==='GK'?'goalkeepers aren\'t credited for it':'this market isn\'t offered for this player';
     let body='';
-    if(md.t==='build'){const st=stat(md.id), ps=naFor(md.id);
+    if(md.t==='naGate'){ const L=vNaList(md.ids); const one=L.length===1;
+      body=`<h4 id="naGateT">${one?`${L[0].p.name} is`:`${L.length} players are`} unavailable for some targets</h4><p>${one?`${L[0].p.name} won't`:"They won't"} count towards ${one?'these targets':'the targets listed'}. You can set your targets now and still swap later, or swap ${one?L[0].p.name:'them'} right away.</p>
+      <ul class="na-gl">${L.map(x=>`<li><b>${x.p.name}</b><span>Not available for ${x.ts.map(t=>t.name).join(', ')}</span></li>`).join('')}</ul>
+      <div class="m-acts"><button class="k-btn" data-act="pCont" data-force="1">Set targets</button><button class="k-btn out" data-act="naStay">Swap players</button></div>`;}
+    else if(md.t==='build'){const st=stat(md.id), ps=naFor(md.id);
       body=`<h4>${ps.map(p=>p.name).join(' & ')} won't count towards ${st.name}</h4><p>${ps.length>1?'They can stay in your squad, but add':`${ps[0].name} can stay in your squad, but adds`} nothing to this goal (${why(ps[0])}). The other players need to hit it.</p>
       <div class="m-acts">${ps.map(p=>`<button class="k-btn" data-act="mSwap" data-id="${p.id}">Change ${p.name}</button>`).join('')}<button class="k-btn out" data-act="mDropGoal" data-id="${md.id}">Change target</button><button class="tiny" data-act="mClose">Keep anyway</button></div>`;}
     else {body=`<h4>We couldn't place your bet</h4><p>Fix these and try again:</p><div class="m-errs">${md.items.map(it=>{const p=byId[it.pid];
@@ -4748,6 +4891,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
         return it.k==='out'?`<div class="m-err"><b>${p.name} was ruled out of the matchday squad</b><span>Replace ${p.name} to keep this squad.</span><div><button class="tiny" data-act="mSwap" data-id="${p.id}">Replace ${p.name}</button></div></div>`
         :`<div class="m-err"><b>${p.name} blocks ${stat(it.goal).name} ${it.line}+</b><span>${p.name}: ${why(p)}.</span><div><button class="tiny" data-act="mSwap" data-id="${p.id}">Change ${p.name}</button><button class="tiny" data-act="mDropGoal" data-id="${it.goal}">Change target</button></div></div>`;}).join('')}</div>
       <div class="m-acts"><button class="k-btn out" data-act="mClose">Close</button></div>`;}
+    if(md.t==='naGate') return `<div class="scrim" data-act="mClose"></div><div class="sheet m-modal m-dlg" role="alertdialog" aria-modal="true" aria-labelledby="naGateT"><div class="m-mb">${body}</div></div>`; /* unavailable players: a centred dialog, not a bottom sheet */
     return `<div class="scrim" data-act="mClose"></div><div class="sheet m-modal" role="alertdialog" aria-modal="true"><div class="k-grab"><i></i></div><div class="m-mb">${body}</div></div>`;}
   function myBetsHTML(){
     const st=S.mbState, ts=S.targets, stk=+S.stake||0, n=S.squad.length;
@@ -4834,11 +4978,20 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     // 3 · new card (Figma 6481-93589): container-lowest + team-colour gradient + brand graphic, odds and last 5 on a blurred panel
     const vNames={goals:'Goals',shots:'Shots',sot:'Shots on target',assists:'Assists',tackles:'Tackles',cards:'Cards'};
     const vCol={villa:'#89CFF0',juve:'#37A25C'};
-    const vCard=pl=>{const on=sel.includes(pl.id), dis=!on&&sel.length>=MAX, vi=pl.team==='villa', id=st||'goals', m=vMk(pl,id);
-      return `<button class="p-t v-t${on?' p-on':''}" data-act="pPick" data-id="${pl.id}" aria-pressed="${on}"${dis?' aria-disabled="true"':''} style="--vg:${vCol[pl.team]}"><span class="v-gr" aria-hidden="true"></span><img class="v-vec" src="${KA}v3_brand.svg" alt="" aria-hidden="true" draggable="false"><span class="p-hd"><span class="p-nm">${KI(vi?'logoHome':'logoAway',20,20,'png')}<b>${pl.name}</b></span><i>${({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[pl.pos]||pl.pos}</i></span><span class="p-j">${KI(vi?'jerseyVilla':'jerseyJuve',118,118,'png')}</span><b class="p-nu">${pl.num}</b><span class="v-gl">${m?(v==='v'?`<b class="v-od" aria-label="Odds ${m.od}">${m.od}</b><span class="v-ln">${m.lb}</span><span class="v-l5w"><span class="v-l5" aria-label="Last 5 matches">${m.l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span><span class="v-l5c">Last 5</span></span>`:`<b class="v-od" aria-label="Odds ${m.od}"><small>Odds</small>${m.od}</b><span class="v-ln">${m.lb}</span><span class="v-l5c">Last 5 · Champions League</span><span class="v-l5" aria-label="Last 5 matches">${m.l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span>`):`<span class="v-ln">Not available</span>`}</span></button>`};
+    /* Cards · Carousel: the exact card from the Carousel prototype (version 5, Figma 6481-93781 / 6658-86476): brand "thunder" vector, crest + name + position, jersey and number, frosted panel with odds, line and last 5, + corner */
+    const A5L={goals:'Goals',shots:'Shots',sot:'Shots on target',assists:'Assists',tackles:'Tackles',cards:'Cards',ycard:'Cards',rcard:'Red cards'};
+    const vcaCard=pl=>{const on=sel.includes(pl.id), dis=!on&&sel.length>=MAX, vi=pl.team==='villa', id=st||'goals', m=vMk(pl,id), lab=A5L[id]||(stat(id)||{}).name||id, od=m?m.od:'–';
+      return `<button class="p-t vca ${vi?'vi':'ba'}${on?' p-on':''}" data-act="pPick" data-id="${pl.id}" aria-pressed="${on}"${dis?' aria-disabled="true"':''} aria-label="${pl.name}, ${({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[pl.pos]||pl.pos}${m?`, ${lab} ${m.L} or more, odds ${od}`:''}${on?', in your squad':''}">
+      <span class="a5-bg" aria-hidden="true">${KI('ar5_brand',176,230)}</span>
+      <span class="a5-hd"><span class="a5-cr">${KI(vi?'logoHome':'logoAway',20,20,'png')}</span><b>${pl.name}</b><i>${({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[pl.pos]||pl.pos}</i></span>
+      <span class="a5-j" aria-hidden="true">${KI(vi?'jerseyVilla':'jerseyJuve',120,120,'png')}</span><b class="a5-nu" aria-hidden="true">${pl.num}</b>
+      <span class="a5-ct" aria-hidden="true"><span class="a5-od"><b>${od}</b><span>${m?`${lab} +${m.L}`:`No ${lab.toLowerCase()} line`}</span></span>${m?`<span class="a5-lw"><span class="a5-l5">${m.l5.map((n,k)=>`<i${k===4?' class="cu"':''}>${n}</i>`).join('')}</span><span class="a5-l5c">Last 5</span></span>`:''}</span>
+      <span class="a5-pl" aria-hidden="true"></span></button>`;};
+    const vCard=pl=>{const on=sel.includes(pl.id), dis=!on&&sel.length>=MAX, vi=pl.team==='villa', id=st||'goals', m=vMk(pl,id); if(CAR()) return vcaCard(pl);
+      return `<button class="p-t v-t${on?' p-on':''}" data-act="pPick" data-id="${pl.id}" aria-pressed="${on}"${dis?' aria-disabled="true"':''} style="--vg:${vCol[pl.team]}"><span class="v-gr" aria-hidden="true"></span><img class="v-vec" src="${KA}v3_brand.svg" alt="" aria-hidden="true" draggable="false"><span class="p-hd${pl.name.length>15?' p-lg':''}"><span class="p-nm">${KI(vi?'logoHome':'logoAway',20,20,'png')}<b>${pl.name}</b></span><i>${({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[pl.pos]||pl.pos}</i></span><span class="p-j">${KI(vi?'jerseyVilla':'jerseyJuve',118,118,'png')}</span><b class="p-nu">${pl.num}</b><span class="v-gl">${m?(v==='v'?`<b class="v-od" aria-label="Odds ${m.od}">${m.od}</b><span class="v-ln">${m.lb}</span><span class="v-l5w"><span class="v-l5" aria-label="Last 5 matches">${m.l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span><span class="v-l5c">Last 5</span></span>`:`<b class="v-od" aria-label="Odds ${m.od}"><small>Odds</small>${m.od}</b><span class="v-ln">${m.lb}</span><span class="v-l5c">Last 5 · Champions League</span><span class="v-l5" aria-label="Last 5 matches">${m.l5.map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span>`):`<span class="v-ln">Not available</span>`}</span></button>`};
     // 3.1 · list row, Figma 6579-85176 (.Player row · list (3.1))
     const vRow=pl=>{const on=sel.includes(pl.id), dis=!on&&sel.length>=MAX, vi=pl.team==='villa', id=st||'goals', m=vMk(pl,id);
-      return `<button class="p-t vx-r${on?' p-on':''}${m?'':' vx-na'}" data-act="pPick" data-id="${pl.id}" aria-pressed="${on}"${dis?' aria-disabled="true"':''} style="--vg:${vCol[pl.team]};--vm:${vi?'#670E36':'#37A25C'}${vi?'':';--vs:#E3F4E9'}"><span class="vx-j">${KI(vi?'jerseyVilla':'jerseyJuve',48,48,'png')}<i class="vx-cr">${KI(vi?'logoHome':'logoAway',18,18,'png')}</i><b class="vx-nu">${pl.num}</b></span><span class="vx-t"><span class="vx-nm"><b>${pl.name}</b><em>${({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[pl.pos]||pl.pos}</em></span><span class="vx-l5r"><span class="v-l5" aria-label="Last 5 matches">${(m?m.l5:[0,0,0,0,0]).map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span></span><span class="vx-l5c">Last 5</span></span><span class="vx-o">${m?`<span class="vx-or" aria-label="Odds ${m.od}"><b>${m.od}</b><small>Odds</small></span><span class="vx-ln">${m.lb}</span>`:`<span class="vx-ln">Not available</span>`}</span></button>`};
+      return `<button class="p-t vx-r${on?' p-on':''}${m?'':' vx-na'}" data-act="pPick" data-id="${pl.id}" aria-pressed="${on}"${dis?' aria-disabled="true"':''} style="--vg:${vCol[pl.team]};--vm:${vi?'#670E36':'#37A25C'}${vi?'':';--vs:#E3F4E9'}"><span class="vx-j">${KI(vi?'jerseyVilla':'jerseyJuve',48,48,'png')}<i class="vx-cr">${KI(vi?'logoHome':'logoAway',18,18,'png')}</i><b class="vx-nu">${pl.num}</b></span><span class="vx-t"><span class="vx-nm"><b>${pl.name}</b><em>${({FWD:'FW',MID:'MF',DEF:'DF',GK:'GK'})[pl.pos]||pl.pos}</em></span><span class="vx-l5r"><span class="v-l5" aria-label="Last 5 matches">${(m?m.l5:[0,0,0,0,0]).map((n,i)=>`<span class="v-m${i===4?' last':''}">${n}</span>`).join('')}</span><span class="vx-l5c">Last 5</span></span></span><span class="vx-o">${m?`<span class="vx-or" aria-label="Odds ${m.od}"><b>${m.od}</b><small>Odds</small></span><span class="vx-ln">${m.lb}</span>`:`<span class="vx-ln">Not available</span>`}</span></button>`};
     // 4 · compact card (Figma 6575-1982): container-lowest to the team's soft colour, brand graphic over it, jersey + number + crest + name + position, stats and last 5 on a blurred panel
     const W4_BR='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc2IiBoZWlnaHQ9IjEzNyIgdmlld0JveD0iMCAwIDE3NiAxMzciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik00MS42MzIgMTM1LjI5TDM5Ljk5MDUgMTM3SDUuNjcxODhMNDEuNjMyIDEzNS4yOVoiIGZpbGw9IiNFRkVGRkEiIGZpbGwtb3BhY2l0eT0iMC4xNSIvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTc2IDEzMi44OTNIMTYzLjA0N0wxNzUuODUyIDExOS41NTNMMTM3LjQyNiAxMjEuMzgyTDIyLjY2OTcgMTI2Ljc0MUwzOS4zMTQ4IDEwOS4zOTlMMCAxMTEuMjdWODYuMzM5NUw0MS42MzE5IDg0LjM1OTlMMjQuOTg0MyAxMDEuNzAxTDEzNy40NzcgOTYuMzM5N0wxNzYuNDc2IDk0LjQ4MTVMMTU5LjIwNyAxMTIuNDcyTDE3NiAxMTEuNjc3VjEzMi44OTNaIiBmaWxsPSIjRUZFRkZBIiBmaWxsLW9wYWNpdHk9IjAuMTUiLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTIyLjY2OTcgMjUuMjIwNUwzOS4zMTQ4IDcuODc5MDhMMCA5Ljc0OTNWMEgyMS42MDc5SDI1LjE1NzRIMjguNzc4MkgzMi4xMDg4SDE2OS43MThMMTU5LjIwNyAxMC45NTE2TDE3NiAxMC4xNTYzVjM0LjU3ODdMMTU5LjIwNyAzNS4zNzRMMTc1Ljg1MiAxOC4wMzE3TDEzNy40MjYgMTkuODYxNUwyMi42Njk3IDI1LjIyMDVaIiBmaWxsPSIjRUZFRkZBIiBmaWxsLW9wYWNpdHk9IjAuMTUiLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE1OS4yMDcgNjEuODk1MUwxNzYgNjEuMDk5NlY4NS41MjEzTDE1OS4yMDcgODYuMzE2NkwxNzUuODUyIDY4Ljk3NTJMMTM3LjQyNiA3MC44MDQxTDIyLjY2OTcgNzYuMTY0TDM5LjMxNDggNTguODIyNkwwIDYwLjY5MjhWMzUuNzYyOEw0MS42MzE5IDMzLjc4MjJMMjQuOTg0MyA1MS4xMjM2TDEzNy40NzcgNDUuNzYyTDE3Ni40NzYgNDMuOTA0N0wxNTkuMjA3IDYxLjg5NTFaIiBmaWxsPSIjRUZFRkZBIiBmaWxsLW9wYWNpdHk9IjAuMTUiLz48L3N2Zz4=';
     const w4Cd=c=>`<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.25 2C2.25 1.44772 2.69772 1 3.25 1H8.75C9.30228 1 9.75 1.44772 9.75 2V10C9.75 10.5523 9.30228 11 8.75 11H3.25C2.69772 11 2.25 10.5523 2.25 10V2Z" fill="${c}"/></svg>`;
@@ -4863,6 +5016,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
         const cf=S.lu==='conf', hd=(t,on)=>`<div class="vx-lu${on?' on':''}" role="heading" aria-level="3">${on?'<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m2.5 6.2 2.3 2.3 4.7-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}<span>${t}</span><i aria-hidden="true"></i></div>`;
         const a=ord.filter(p=>XI.has(p.id)), b=ord.filter(p=>!XI.has(p.id));
         return (a.length?hd(cf?'Confirmed lineups':'Expected lineups',cf)+a.map(mk).join(''):'')+(b.length?hd('Substitute lineups',false)+b.map(mk).join(''):''); }
+      if(CAR()&&S.vcLu){ const f=S.vcLu==='exp'; return ord.filter(p=>XI.has(p.id)===f).map(mk).join(''); } /* Cards · Carousel: Expected / Substitutes filter */
       return ord.map(mk).join(''); }
     return grp(KORD,22,S.announced?'ANNOUNCED':'EXPECTED',' LINEUPS',S.announced)+grp(SUBS.map(p=>p.id),16,'SUBSTITUTE',' LINEUPS')+naSec();
   };
@@ -4906,6 +5060,11 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
   const pTxt=n=>n?`· ${S.targets.length} targets`:`0 players · ${S.targets.length} targets`;
   /* targeted update on tap: tiles, avatars and bar change in place so transitions can play and scroll positions survive */
   /* 3.1 / 3.2: a picked player flies from its card or row up into the summary bar */
+  const V_TG=['goals','shots','assists','sot','tackles','cards'];
+  const vNaList=ids=>ids.map(id=>byId[id]).filter(Boolean).map(p=>({p,ts:V_TG.filter(k=>p.no&&p.no.includes(k)).map(k=>stat(k)).filter(Boolean)})).filter(x=>x.ts.length);
+  const vNaHi=()=>{ let st=document.getElementById('naHi-'+v); if(!st){ st=document.createElement('style'); st.id='naHi-'+v; document.head.appendChild(st); }
+    const ids=S.naHi||[]; const sel=ids.map(id=>`#squad-${v} .pf-a:has(.pf-x[data-id="${id}"])`).join(','); st.textContent=ids.length?`${ids.map(id=>`#squad-${v} .pf-a:has(.pf-x[data-id="${id}"]) .pf-b`).join(',')}{position:relative;border-radius:50%;box-shadow:0 0 0 2px #fff,0 0 0 4px #e5484d;animation:naHi 1s ease-in-out 3}${ids.map(id=>`#squad-${v} .pf-a:has(.pf-x[data-id="${id}"]) .pf-b::after`).join(',')}{content:'!';position:absolute;left:-4px;bottom:-2px;width:16px;height:16px;border-radius:50%;background:#e5484d;color:#fff;font:700 11px/16px var(--font-ui,sans-serif);text-align:center;box-shadow:0 0 0 2px #fff;pointer-events:none}`:''; 
+    root.classList.toggle('na-stay',!!ids.length&&(S.psel||[]).some(id=>ids.includes(id))); };
   const vFly=(id,el)=>{ const ph=document.getElementById('phone'), tile=root.querySelector('.p-t[data-id="'+id+'"]');
     if(!ph||!tile||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const jm=tile.querySelector('.vx-j>img,.p-j img')||tile, a=jm.getBoundingClientRect(); if(!a.width) return;
@@ -4929,7 +5088,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     root.querySelectorAll('.p-t,.q-r,.r-r').forEach(b=>{const on=sel.includes(b.dataset.id), dis=!on&&sel.length>=MAX; b.classList.toggle('p-on',on); b.setAttribute('aria-pressed',String(on)); if(dis) b.setAttribute('aria-disabled','true'); else b.removeAttribute('aria-disabled');});
     av.querySelectorAll(AS+':not(.out)').forEach(a=>{ if(!sel.includes(a.dataset.id)){ a.classList.add('out'); setTimeout(()=>a.remove(),200); } });
     const have=new Set([...av.querySelectorAll(AS+':not(.out)')].map(a=>a.dataset.id)), plus=av.querySelector((V&&!W)?'.vx-ph':X?'.vx-ghs':'.p-pl'); let added=false;
-    sel.forEach(id=>{ if(!have.has(id)){ const t=document.createElement('div'); t.innerHTML=FB?pAvF(byId[id],'pRemove',false):pAvH(byId[id]); const el=t.firstElementChild; el.classList.add('in'); av.insertBefore(el,plus); added=true; if(V&&!W) vFly(id,el); } });
+    sel.forEach(id=>{ if(!have.has(id)){ const t=document.createElement('div'); t.innerHTML=FB?pAvF(byId[id],'pRemove',X||v==='v'):pAvH(byId[id]); const el=t.firstElementChild; el.classList.add('in'); av.insertBefore(el,plus); added=true; if(V&&!W) vFly(id,el); } });
     bar.classList.toggle('p-e',!sel.length);
     if(V&&!W){ const h=bar.parentNode.querySelector('.vx-sth'), k=sel.length; /* open spots as + placeholders after the avatars; the hint sits under the row until the first pick */
       av.querySelectorAll('.vx-ph').forEach(e=>e.remove()); av.insertAdjacentHTML('beforeend',VX_PH(MAX-k));
@@ -4951,13 +5110,17 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     const cta=`<button class="p-cta${sel.length>=MIN?' on':''}" data-act="pCont" ${sel.length>=MIN?'':'disabled'}>${V?'Set targets':'Targets'}${GARW}</button>`, av=`<div class="p-av">${sel.map(id=>pAvH(byId[id])).join('')}</div>`;
     /* 3.1 Squad Builder tab: the market tab row lives INSIDE the sticky My squad card (Figma 6687-64258), so tabs + My squad stick as one block */
     const sqHd=()=>`<div class="sq-hd"><div class="k-tabs" role="tablist">${K_TABS.map(t=>t==='Squad Builder'?`<button class="sec-tab k-tab" role="tab" data-tab="Squad builder" aria-selected="true"><span class="o-sq">SQUAD</span><span class="o-bd">BUILDER</span><span class="m-tnew">NEW</span></button>`:`<button class="sec-tab k-tab" role="tab" data-tab="${t}" aria-selected="false">${t}</button>`).join('')}<i class="k-grad"></i></div><div class="k-sel"><span class="k-cardic">${KI('cardIcon',24,24)}</span>${KI('bbSwitch',54,30,'png','Bet Builder off')}</div></div>`;
-    const fbar=`<div class="pf-bar${V&&!W&&S.pcont?' v-pc':''}"><div class="u-top">${V?`<span class="v-pkw"><span class="u-pk">My squad<span class="v-bd">${sel.length} of ${MAX}</span></span>${GSON()?`<button class="m-gsp" data-act="mSettle" aria-label="Golden Sub: how it works">${KI('goldenSub32',24,24)}</button>`:''}</span>${V&&!W?`<ol class="vx-stp" aria-label="Steps">${S.pcont?`<li class="dn"><button type="button" data-act="pBackPick" aria-label="Step 1, Squad, done. Edit squad"><i aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="m2.5 6.2 2.3 2.3 4.7-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span>Squad</span>${KI('fab_edit',12,12)}</button></li>`:`<li class="on" aria-current="step"><i aria-hidden="true">1</i><span>Squad</span></li>`}<li class="sep" aria-hidden="true"></li><li class="${S.pcont?'on':''}"${S.pcont?' aria-current="step"':''}><i aria-hidden="true">2</i><span>Targets</span>${S.pcont?`<b class="vx-stn" aria-label="${S.targets.length} target${S.targets.length===1?'':'s'} set">${S.targets.length}</b>`:''}</li></ol>${S.pcont?'':`<button type="button" class="pf-cta v-stg" data-act="pCont"${sel.length>=MIN?'':' disabled'}>Targets</button>`}${S.pcont&&S.targets.length&&!S.slip?`<button type="button" class="pf-cta v-sadd" data-act="vSlipOpen" aria-label="Add to betslip, odds ${fo(M?mTot():total())}"><span class="v-sao">${fo(M?mTot():total())}</span><b>Add to betslip</b></button>`:''}`:''}`:`<span class="u-pk">Picks  (${sel.length}/${MAX})</span>`}</div><div class="pf-sr">${V&&!W&&GSON()?`<button class="m-gsp vx-gsp" data-act="mSettle" aria-label="Golden Sub: how it works">${KI('goldenSub32',24,24)}</button>`:''}<div class="pf-av">${sel.map(id=>pAvF(byId[id],(V&&!W&&S.pcont)?'rm':'pRemove',false)).join('')}${V&&!W?VX_PH(MAX-sel.length):''}</div><button class="pf-cta${sel.length>=MIN?' on':''}${V&&!W&&sel.length<MIN?' v-hide':''}${vgoPop?' v-pop':''}" data-act="${(V&&!W&&S.pcont)?'pBackPick':'pCont'}" ${sel.length>=MIN?'':'disabled'}>${(V&&!W&&S.pcont)?'Edit squad':(V&&!W)?'Set targets':'Continue'}</button></div>${V&&!W?VX_HINT:''}</div>`;
+    const fbar=`<div class="pf-bar${V&&!W&&S.pcont?' v-pc':''}"><div class="u-top">${V?`<span class="v-pkw"><span class="u-pk">My squad<span class="v-bd">${sel.length} of ${MAX}</span></span>${GSON()?`<button class="m-gsp" data-act="mSettle" aria-label="Golden Sub: how it works">${KI('goldenSub32',24,24)}</button>`:''}</span>${V&&!W?`<ol class="vx-stp" aria-label="Steps">${S.pcont?`<li class="dn"><button type="button" data-act="pBackPick" aria-label="Step 1, Squad, done. Edit squad"><i aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="m2.5 6.2 2.3 2.3 4.7-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span>Squad</span>${KI('fab_edit',12,12)}</button></li>`:`<li class="on" aria-current="step"><i aria-hidden="true">1</i><span>Squad</span></li>`}<li class="sep" aria-hidden="true"></li><li class="${S.pcont?'on':''}"${S.pcont?' aria-current="step"':''}><i aria-hidden="true">2</i><span>Targets</span>${S.pcont?`<b class="vx-stn" aria-label="${S.targets.length} target${S.targets.length===1?'':'s'} set">${S.targets.length}</b>`:''}</li></ol>${S.pcont?'':`<button type="button" class="pf-cta v-stg" data-act="pCont"${sel.length>=MIN?'':' disabled'}>Targets</button>`}${S.pcont&&S.targets.length&&!S.slip?`<button type="button" class="pf-cta v-sadd" data-act="vSlipOpen" aria-label="Add to betslip, odds ${fo(M?mTot():total())}"><span class="v-sao">${fo(M?mTot():total())}</span><b>Add to betslip</b></button>`:''}`:''}`:`<span class="u-pk">Picks  (${sel.length}/${MAX})</span>`}</div><div class="pf-sr">${V&&!W&&GSON()?`<button class="m-gsp vx-gsp" data-act="mSettle" aria-label="Golden Sub: how it works">${KI('goldenSub32',24,24)}</button>`:''}<div class="pf-av">${sel.map(id=>pAvF(byId[id],(V&&!W&&S.pcont)?'rm':'pRemove',X||v==='v')).join('')}${V&&!W?VX_PH(MAX-sel.length):''}</div><button class="pf-cta${sel.length>=MIN?' on':''}${V&&!W&&sel.length<MIN?' v-hide':''}${vgoPop?' v-pop':''}" data-act="${(V&&!W&&S.pcont)?'pBackPick':'pCont'}" ${sel.length>=MIN?'':'disabled'}>${(V&&!W&&S.pcont)?'Edit squad':(V&&!W)?'Set targets':'Continue'}</button></div>${V&&!W?VX_HINT:''}</div>`;
     return `<div class="p-pg">
-      ${X?'':`<div class="p-in"${sel.length?' hidden':''}><div class="p-tt"><b>Squad</b><span class="p-tr"><b>Builder</b>${KI('d_trail',237,38)}</span></div><p class="p-it"${sel.length?' hidden':''}>Pick players, then set targets they must hit together.</p></div>`}
-      <div class="p-sb u-sb${sel.length||(V&&!W)?'':' p-hide'}">${X&&(S.pent||'tab')==='tab'?sqHd():''}${FB?fbar:`<div class="u-bar"><div class="u-top"><span class="u-pk">Picks  (${sel.length}/${MAX})</span>${cta}</div><div class="p-sr">${av}</div></div>`}</div>
+      ${X||CAR()?'':`<div class="p-in"${sel.length?' hidden':''}><div class="p-tt"><b>Squad</b><span class="p-tr"><b>Builder</b>${KI('d_trail',237,38)}</span></div><p class="p-it"${sel.length?' hidden':''}>Pick players, then set targets they must hit together.</p></div>`}
+      <div class="p-sb u-sb${sel.length||(V&&!W)?'':' p-hide'}">${(X&&(S.pent||'tab')==='tab')||CAR()?sqHd():''}${FB?fbar:`<div class="u-bar"><div class="u-top"><span class="u-pk">Picks  (${sel.length}/${MAX})</span>${cta}</div><div class="p-sr">${av}</div></div>`}</div>
       ${PV?`<div class="p-vh${window.__LV?' p-sb2':''}">${window.__LV?(X?'':`<span class="p-vm p-sbd">${[['logoHome','Aston Villa'],['logoAway','Juventus']].map(([lg,n])=>`<span class="p-sr2"><i>${KI(lg,16,16,'png')}</i><span>${n}</span><b>0</b></span>`).join('')}</span>`):X?'':`<span class="p-vm"><span class="p-vt"><b>Aston Villa - Juventus</b></span></span>`}${V?'':`<div class="p-vs" role="group" aria-label="Players view"><button class="${S.pview==='table'?'':'on'}" data-act="pView" data-v="cards" aria-pressed="${S.pview!=='table'}" aria-label="Card view">${KI('vw_tiles',20,20)}</button><button class="${S.pview==='table'?'on':''}" data-act="pView" data-v="table" aria-pressed="${S.pview==='table'}" aria-label="Table view">${KI('vw_table',20,20)}</button></div>`}</div>`:''}
-      ${vSl((V&&!W&&S.pcont)?vTgHTML():R?rList():(Q||(PV&&!V&&S.pview==='table'))?qTable():`<div class="p-so" role="group" aria-label="Filters">${DD?[['villa','logoHome'],['juve','logoAway']].map(([t,logo])=>`<button class="p-tf" data-act="pTeam" data-t="${t}" aria-pressed="${S.pteam===t}" aria-label="${TEAMS[t].name}">${KI(logo,16,16,'png')}</button>`).join('')+'<i class="p-sp" aria-hidden="true"></i>':''}${pStats.map(([id,l])=>`<button data-act="pStat" data-s="${id}" aria-pressed="${st===id}">${l}</button>`).join('')}</div>
-      <div class="p-tl${CAR()?' v-car':''}"${CAR()?' role="list" aria-label="Players: swipe left or right"':''}>${pTiles()}</div>`)}
+      ${vSl((V&&!W&&S.pcont)?vTgHTML():R?rList():(Q||(PV&&!V&&S.pview==='table'))?qTable():(CAR()?`<div class="p-tl v-car" role="list" aria-label="Players: swipe left or right">${pTiles()}</div>
+      <div class="vc-f"><div class="vc-r1" role="group" aria-label="Filters">${[['villa','logoHome'],['juve','logoAway']].map(([t,logo])=>`<button class="p-tf" data-act="pTeam" data-t="${t}" aria-pressed="${S.pteam===t}" aria-label="${TEAMS[t].name}">${KI(logo,20,20,'png')}</button>`).join('')}<i class="vc-sp" aria-hidden="true"></i>${[['exp','Expected'],['sub','Substitutes']].map(([k,l])=>`<button data-act="vcLu" data-l="${k}" aria-pressed="${S.vcLu===k}">${l}</button>`).join('')}</div>
+      <div class="vc-ct" aria-live="polite"><span class="vc-n">1</span> / <span class="vc-t">–</span></div>
+      <div class="vc-st" role="group" aria-label="Stat">${pStats.map(([id,l])=>`<button data-act="pStat" data-s="${id}" aria-pressed="${st===id}">${l}</button>`).join('')}</div></div>`
+      :`<div class="p-so" role="group" aria-label="Filters">${DD?[['villa','logoHome'],['juve','logoAway']].map(([t,logo])=>`<button class="p-tf" data-act="pTeam" data-t="${t}" aria-pressed="${S.pteam===t}" aria-label="${TEAMS[t].name}">${KI(logo,16,16,'png')}</button>`).join('')+'<i class="p-sp" aria-hidden="true"></i>':''}${pStats.map(([id,l])=>`<button data-act="pStat" data-s="${id}" aria-pressed="${st===id}">${l}</button>`).join('')}</div>
+      <div class="p-tl">${pTiles()}</div>`))}
     </div>`;
   };
   /* ---- 4 · 3D pitch page: pitch on top (players stand upright on it), pick from the cards below, targets follow in the same page ---- */
@@ -5105,7 +5268,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
         ${k?`<div class="stack">${S.targets.map(t=>K?kGoalSel(t):`<div class="qcard sel g-row" role="button" tabindex="0" data-act="tRm" data-id="${t.id}" aria-label="Remove ${stat(t.id).name}"><span class="sicon">${ico(stat(t.id).d)}</span><div class="ct"><b>${stat(t.id).name}</b>${oddsPill(t.id,t.line,'sm')}</div>${stepper(t)}<button class="pbtn on" data-act="tRm" data-id="${t.id}" aria-label="Remove ${stat(t.id).name}">${CK_}</button></div>`).join('')}</div>`:''}
                 ${k&&!GD?ti('Add more targets'):''}
         ${K?'':`<div class="chips2" role="group" aria-label="Target category">${cats.map(c=>`<button class="chip2" data-act="cat" data-c="${c}" aria-pressed="${S.cat===c}">${c}</button>`).join('')}</div>`}
-        <div class="stack">${rest.map(x=>K?(M&&S.avail==='realtime'&&GSOON.has(x.id)?`<div class="qcard g-row m-grey" role="group" aria-disabled="true"><div class="ct"><b>${x.name}</b><span>Odds coming soon — this target appears once it has odds</span></div></div>`:M&&S.elig==='grey'&&naFor(x.id).length?mGreyGoal(x):`<button class="qcard g-row" data-act="tAdd" data-id="${x.id}" aria-label="Add ${x.name}"><div class="ct"><b>${x.name}</b><span>${GD?`${W?'':'Median '+mdn(x.id)+' · '}avg ${fmtV(exp(x.id))}/game`:M?`Squad avg ${fmtV(exp(x.id))} / game`:`Squad median ${mdn(x.id)} · avg ${fmtV(exp(x.id))} / game`}</span>${naNote(x.id)}</div>${P||O?'':`<span class="pbtn">${PL_}</span>`}</button>`):`<button class="qcard g-row" data-act="tAdd" data-id="${x.id}" aria-label="Add ${x.name}"><span class="sicon">${ico(x.d)}</span><div class="ct"><b>${x.name}</b><span>${defLine(x.id)}+${E?` · in ${SPOP[x.id]}% of squads`:''}</span></div>${oddsPill(x.id,defLine(x.id))}<span class="pbtn">${PL_}</span></button>`).join('')||'<div class="hint">All targets are added.</div>'}</div></section>`;
+        <div class="stack">${rest.map(x=>K?(M&&S.avail==='realtime'&&GSOON.has(x.id)?`<div class="qcard g-row m-grey" role="group" aria-disabled="true"><div class="ct"><b>${x.name}</b><span>Odds coming soon — this target appears once it has odds</span></div></div>`:M&&S.elig==='grey'&&naFor(x.id).length?mGreyGoal(x):`<button class="qcard g-row" data-act="tAdd" data-id="${x.id}" aria-label="Add ${x.name}"><div class="ct"><b>${x.name}</b>${naNote(x.id)}</div>${P||O?'':`<span class="pbtn">${PL_}</span>`}</button>`):`<button class="qcard g-row" data-act="tAdd" data-id="${x.id}" aria-label="Add ${x.name}"><span class="sicon">${ico(x.d)}</span><div class="ct"><b>${x.name}</b><span>${defLine(x.id)}+${E?` · in ${SPOP[x.id]}% of squads`:''}</span></div>${oddsPill(x.id,defLine(x.id))}<span class="pbtn">${PL_}</span></button>`).join('')||'<div class="hint">All targets are added.</div>'}</div></section>`;
     }
     const sub=g?'All targets must be met':'Squad ready';
     const showBar=((H&&g)||(M&&((S.mode==='A'&&(g||S.targets.length>0&&sOK))||(S.mode==='B'&&S.slip))))?false:g?k>0:(sOK&&S.view==='list'), enter=showBar&&!S.barWas; S.barWas=showBar;
@@ -5223,7 +5386,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     const ae=document.activeElement, typing=ae&&fab.contains(ae)&&ae.matches('input');
     if(show){ if(!typing) fab.innerHTML=LVT(fabHTML()); else {const tt=fab.querySelector('.h-tt'); if(tt) tt.outerHTML=fabHTML().match(/<div class="h-tt">[\s\S]*?<\/div>/)[0]; const o=fab.querySelector('.h-odds b'); if(o) o.textContent=fo(total());}
       if(!fabOn){fab.classList.remove('min'); fab.classList.add('enter'); setTimeout(()=>fab.classList.remove('enter'),400);} }
-    document.getElementById('phone').classList.toggle('v-qbs',!!(V&&!W&&window.__sbBot&&act&&show&&S.pcont&&!S._vadd)); /* filters bottom, targets step: the quick betslip drawer replaces the dock (Figma 6679-90549) */
+    document.getElementById('phone').classList.toggle('v-qbs',!!(V&&!W&&window.__sbBot&&act&&show&&sbOn&&S.slip&&S.pcont&&!S._vadd)); /* squad bottom: the betslip bar only after Add to betslip */ {const ph_=document.getElementById('phone'), mq_=()=>{ if(ph_.classList.contains('v-qbs')&&fab.offsetHeight) ph_.style.setProperty('--qbs-h',fab.offsetHeight+'px'); }; mq_(); setTimeout(mq_,0); setTimeout(mq_,450);} /* filters bottom, targets step: the quick betslip drawer replaces the dock (Figma 6679-90549) */
     fab.hidden=!show; fabOn=show; if(scr) scr.classList.toggle('has-fab',show); document.getElementById('phone').classList.toggle('fab-on',show);
   }
   if(v==='v') document.addEventListener('screenchange',()=>setTimeout(()=>{ const sc2=root.closest('.screen'); if(sc2&&sc2.classList.contains('active')&&(sc2.classList.contains('x-tabmode')!==CAR()||!!sc2.querySelector('.p-tl.v-car')!==CAR())){ if(!CAR()&&S.npage&&!S.mtab) S.npage=null; render(); } },0));
@@ -5231,6 +5394,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
   if(V&&!W){ const sc2=root.closest('.screen'); sc2&&sc2.addEventListener('click',e=>{ if(!window.__sbBot||!S.pcont) return; const a=e.target.closest('.p-sb .pf-a'); if(!a||e.target.closest('.pf-x')) return; act('pBackPick',{}); }); } /* filters bottom, targets: tap a player to edit the squad */
   if(V&&fab&&window.ResizeObserver) new ResizeObserver(()=>document.getElementById('phone').style.setProperty('--v-fab',fab.offsetHeight+'px')).observe(fab); /* 3: the targets sheet stops above the betslip bar */
   const sc=root.closest('.screen');
+  if((X||v==='v')&&sc) sc.addEventListener('click',e=>{ if(S.naHi&&e.target.closest('.pf-x,[data-act="pPick"],.p-t')) setTimeout(vNaHi,0); });
   if(N){ document.getElementById('phone').addEventListener('click',e=>{ if(!e.target.closest('.k-back')) return; if(!(sc&&sc.classList.contains('active'))||!S.npage) return; act('mNBack',{}); }); }
   if(M&&!N&&sc){ document.addEventListener('screenchange',()=>setTimeout(()=>{ if(sc.classList.contains('active')&&!S._gT&&!S.glowDone) render(); },0)); }
   if(M&&sc){ sc.addEventListener('click',e=>{const t=e.target.closest('.k-tab[data-tab]'); if(!t) return; const tb=t.dataset.tab; if(tb!=='Popular'&&tb!=='Squad builder'&&tb!=='Line ups'&&tb!=='Players') return;
@@ -5258,13 +5422,32 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     root.addEventListener('pointercancel',e=>{ if(dg&&e.pointerId===dg.id){ dg.c.classList.remove('v-dhold'); finish(false); } },true);
     root.addEventListener('touchmove',e=>{ if(dg&&(dg.armed||dg.on)) e.preventDefault(); },{passive:false}); /* once held, the finger drags the player instead of scrolling */
     root.addEventListener('click',e=>{ if(sc._vdgClick&&e.target.closest('.p-t')){ sc._vdgClick=false; e.stopPropagation(); e.preventDefault(); } },true); }
+  /* List / Cards: tapping a target flies a "Goals 3+" chip into the betslip, like the jersey into My squad */
+  if((X||v==='v')&&sc){ sc.addEventListener('click',e=>{ const b=e.target.closest('[data-act="gAdd"][data-id]'); if(!b||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const id=b.dataset.id, nmEl=b.querySelector('.gl-tx b')||b, a=nmEl.getBoundingClientRect(); if(!a.width) return;
+      setTimeout(()=>{ const ph=document.getElementById('phone'); if(!ph) return;
+        const vis=x=>x&&x.offsetParent&&x.getBoundingClientRect().width&&getComputedStyle(x).visibility!=='hidden';
+        const fab0=[...ph.querySelectorAll('.k-fab')].find(f=>!f.hidden&&f.offsetParent&&getComputedStyle(f).display!=='none'&&f.getBoundingClientRect().height);
+        const dock=root.querySelector('.p-sb .v-sadd')||root.querySelector('.p-sb .vx-stp li.on')||root.querySelector('.p-sb .vx-stp'); /* squad bottom: no betslip bar yet, so the target lands in My squad's Add to betslip step */
+        const fdst=fab0&&[fab0.querySelector('.h-tt span'),fab0.querySelector('.v-bfab'),fab0].find(vis);
+        const dst=fdst||(vis(dock)?dock:null), fab=fdst?fab0:dst; if(!dst) return;
+        const row=root.querySelector('.gl-r.set[data-id="'+id+'"]'), vi=row&&row.querySelector('.gl-in'), val=vi?vi.value.trim():'';
+        const c=document.createElement('span'); c.className='tg-fly'; c.setAttribute('aria-hidden','true'); const TI={goals:'st_goals16',shots:'st_shots16',sot:'st_sot',assists:'st_assist',tackles:'st_tackle'}; const ico=TI[id]?`<img class="tg-fi" src="${KA}${TI[id]}.svg" width="14" height="14" alt="" aria-hidden="true" draggable="false">`:(id==='cards'?'<svg class="tg-fi" width="14" height="14" viewBox="0 0 12 12" aria-hidden="true"><rect x="2.5" y="1" width="7" height="10" rx="1" fill="#f6c343"/></svg>':''); c.innerHTML=ico+'<span></span>'; c.lastChild.textContent=nmEl.textContent.trim()+(val?' '+val:''); ph.appendChild(c);
+        const pr=ph.getBoundingClientRect(), k=pr.width/ph.offsetWidth||1, w=c.offsetWidth, h=c.offsetHeight;
+        const sx=a.left+Math.min(a.width,w*k)/2, sy=a.top+a.height/2, t0=performance.now(), D=640, ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+        const land=()=>{ if(!c.isConnected) return; c.remove(); fab.classList.remove('tg-hit'); void fab.offsetWidth; fab.classList.add('tg-hit'); setTimeout(()=>fab.classList.remove('tg-hit'),450); };
+        const step=now=>{ if(!c.isConnected) return; const t=Math.min(1,(now-t0)/D), ez=ease(t), r=dst.getBoundingClientRect(), tx=r.left+Math.min(r.width,60*k)/2, ty=r.top+r.height/2;
+          const cx=sx+(tx-sx)*ez, cy=sy+(ty-sy)*ez-Math.sin(Math.PI*t)*40, s=1-.35*ez;
+          c.style.transform='translate('+((cx-pr.left)/k-w/2)+'px,'+((cy-pr.top)/k-h/2)+'px) scale('+s+')'; c.style.opacity=String(t<.85?1:Math.max(0,(1-t)/.15));
+          if(t<1) requestAnimationFrame(step); else land(); };
+        step(t0); requestAnimationFrame(step); setTimeout(land,D+200); },0); },true); }
   if((V&&!W)&&sc){ sc.addEventListener('click',e=>{ if(!e.target.closest('.vx-ghs,.vx-ph')) return; const l=root.querySelector('.p-so')||root.querySelector('.p-tl'); if(!l) return; /* 3.1: + in My squad takes you to the player list */
       const k=(sc.getBoundingClientRect().height/sc.offsetHeight)||1, sb=root.querySelector('.p-sb'), off=(sb?sb.offsetHeight:0)+8;
       const y0=sc.scrollTop, y1=Math.max(0,Math.min(sc.scrollHeight-sc.clientHeight,y0+(l.getBoundingClientRect().top-sc.getBoundingClientRect().top)/k-off));
       if(matchMedia('(prefers-reduced-motion: reduce)').matches){ sc.scrollTop=y1; return; }
       const t0=performance.now(), D=420, step=now=>{ const t=Math.min(1,(now-t0)/D), e=1-Math.pow(1-t,3); sc.scrollTop=y0+(y1-y0)*e; if(t<1) requestAnimationFrame(step); }; requestAnimationFrame(step); }); }
   if((X||v==='v')&&sc){ sc.addEventListener('click',e=>{const t=e.target.closest('.k-tab[data-tab]'); if(!t||(X?(S.pent||'tab')!=='tab':!CAR())) return; const tb=t.dataset.tab;
-      if(tb==='Squad builder'){ if(S.npage) return; S.npage='sb'; S.mtab=null; }
+      if(tb==='Squad builder'){ S.npage='sb'; S.mtab=null; }
       else if(tb==='Popular'||(X&&(tb==='Line ups'||tb==='Players'))){ S.npage=null; S.mtab=tb==='Line ups'?'lineups':tb==='Players'?'players':'popular'; }
       else return;
       const y=sc.scrollTop; render(); sc.scrollTop=y; const row=t.parentElement; if(row) row.scrollTo({left:Math.max(0,t.offsetLeft-row.offsetLeft-24),behavior:'smooth'});
@@ -5364,7 +5547,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       case 'tPop':{const t=tgt(d.id);if(t&&t.line===+d.val)S.targets=S.targets.filter(x=>x.id!==d.id);else if(t)t.line=+d.val;else S.targets.push({id:d.id,line:+d.val});S.done=false;break;}
       case 'premade':{const m=PREMADE[+d.i];S.squad=[...m.squad];S.targets=m.goals.map(([id,line])=>({id,line}));S.step='goals';S.done=false;S.slip=false;S.cat='All';S.focus='.d-goals';break;}
       case 'slip':S.slip=true;if(M){S.slipSig=sig();}bumpSlip(null);break;
-      case 'vSlipOpen':S.slip=true;if(M){S.slipSig=sig();}bumpSlip(null);S.modal={t:'slip'};S.bsTab=null;S.bsAnim=true;break; /* filters bottom: Add to betslip opens the betslip straight away */
+      case 'vSlipOpen':S.slip=true;if(M){S.slipSig=sig();}bumpSlip(null);if(!(V&&!W&&window.__sbBot)){S.modal={t:'slip'};S.bsTab=null;S.bsAnim=true;}break; /* squad bottom: no sheet, the betslip bar appears above the nav bar */ /* filters bottom: Add to betslip opens the betslip straight away */
       case 'mMode':S.mode=d.m;S.slip=false;S.slipSig='';S.bumped=false;break;
       case 'mComb':S.comb=d.cb;if(S.comb==='none')S.combo=false;break;
       case 'mStats':S.live=d.st==='live';break;
@@ -5372,20 +5555,24 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       case 'mSort':S.sort=d.so;break;
       case 'mSync':S.slipSig=sig();break;
       case 'mCombo':if(S.comb!=='none')S.combo=!S.combo;break;
+      case 'naStay':{ const ids=(S.modal&&S.modal.ids)||[]; S.modal=null; S.naHi=ids; render(); vNaHi(); setTimeout(()=>{ const sb=root.querySelector('.p-sb'); const av=root.querySelector('.pf-a.na-hi'); (av||sb)&&(av||sb).scrollIntoView&&0; },0); return;} /* List / Cards: stay and swap — highlight the players to remove */
       case 'mClose':if((P||O)&&S.modal&&S.modal.t==='build')S.ack[S.modal.id]=true;if(S.modal&&(S.modal.t==='slip'||S.modal.t==='receipt'||S.modal.t==='rc1')){bsClose();return;}S.modal=S.modal&&S.modal.back?{t:'slip'}:null;break;
       case 'mSettle':S.modal={t:'settle',back:!!(S.modal&&S.modal.t==='slip')};break;
       case 'mElig':S.elig=d.el;S.bub=null;break;
       case 'mGs':S.gs=d.gs;break;
       case 'pBackPick':{const y=sc?sc.scrollTop:0;S._wdir='b';S.pcont=false;S.psel=[...S.squad];S.sheet=false;render();if(sc&&(!V||!W))sc.scrollTop=X?(S._pkY!=null?S._pkY:y):0;return;}
-      case 'pCont':{const a=S.psel||[]; if(a.length<MIN) return; const y=sc?sc.scrollTop:0; if(X) S._pkY=y; S._wdir='f'; S.squad=[...a]; S.targets=S.targets||[]; S.step='goals'; S.pcont=true; S.done=false; S.slip=false; S.adding=false; render(); if(sc&&(!V||!W)){ if(window.__sbBot&&V){ /* filters bottom: Targets starts at the top of the list (the tab stays stuck if it was) */ const sm=sc.querySelector('.sec-menu'); sc.scrollTop=sm?Math.min(y,sm.offsetTop):0; } else sc.scrollTop=X?y:0; } return;}
+      case 'pCont':{const a=S.psel||[]; if(a.length<MIN) return;
+        if((X||v==='v')&&!d.force){ const naP=vNaList(a); if(naP.length){ S.modal={t:'naGate',ids:naP.map(x=>x.p.id)}; render(); return; } } /* List / Cards: warn before targets when a player can't count towards some of them */
+        if(X||v==='v'){ S.naHi=null; vNaHi(); if(S.modal&&S.modal.t==='naGate') S.modal=null; } const y=sc?sc.scrollTop:0; if(X) S._pkY=y; S._wdir='f'; S.squad=[...a]; S.targets=S.targets||[]; S.step='goals'; S.pcont=true; S.done=false; S.slip=false; S.adding=false; render(); if(sc&&(!V||!W)){ if(window.__sbBot&&V){ /* filters bottom: Targets starts at the top of the list (the tab stays stuck if it was) */ const sm=sc.querySelector('.sec-menu'); sc.scrollTop=sm?Math.min(y,sm.offsetTop):0; } else sc.scrollTop=X?y:0; } return;}
       case 'pPick':{if(O){const a=S.squad,i=a.indexOf(d.id); if(i>=0)a.splice(i,1); else{const r=reason(byId[d.id]); if(r&&r.k!=='in') return; if(a.length<MAX)a.push(d.id);} S.done=false; break;}
         const a=S.psel||(S.psel=[]),i=a.indexOf(d.id); if(i>=0)a.splice(i,1); else if(a.length<MAX)a.push(d.id); pSync(); return;}
       case 'pRemove':{const a=S.psel||[],i=a.indexOf(d.id); if(i>=0)a.splice(i,1); pSync(); return;}
       case 'rStat':{S.rstat=d.s; const rw=root.querySelector('.r-rows'); if(!rw) break; root.querySelectorAll('.r-so').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.s===d.s))); rw.innerHTML=rRows(); return;}
       case 'qTeam':{S.qteam=S.qteam===d.t?null:d.t; const rw=root.querySelector('.q-rows'); if(!rw) break; root.querySelectorAll('.q-fl .q-ch').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.t===S.qteam))); rw.innerHTML=qRows(); return;}
       case 'qSort':{const c=d.c, cur=S.qsort; S.qsort=cur&&cur.id===c?{id:c,dir:cur.dir==='asc'?'desc':'asc'}:{id:c,dir:'asc'}; const rw=root.querySelector('.q-rows'); if(!rw) break; root.querySelectorAll('.q-hi').forEach(b=>{const on=b.dataset.c===c; b.className='q-hi'+(on?' on '+S.qsort.dir:'');}); rw.innerHTML=qRows(); return;}
-      case 'pTeam':{S.pteam=S.pteam===d.t?'all':d.t;if(DD){const tl=root.querySelector('.p-tl'); if(!tl) break; root.querySelectorAll('.p-so [data-t]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.t===S.pteam))); const fp={}; tl.querySelectorAll('.p-t').forEach(e=>{const r=e.getBoundingClientRect(); fp[e.dataset.id]=[r.left,r.top];}); tl.innerHTML=pTiles(); if(!matchMedia('(prefers-reduced-motion: reduce)').matches) tl.querySelectorAll('.p-t').forEach(e=>{const o=fp[e.dataset.id]; if(!o) return; const r=e.getBoundingClientRect(), dx=o[0]-r.left, dy=o[1]-r.top; if(!dx&&!dy) return; e.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'none'}],{duration:450,easing:'cubic-bezier(.2,.8,.2,1)'});}); return;} const rw=root.querySelector('.q-rows,.r-rows'); if(!rw) break; root.querySelectorAll('.q-ch').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.t===S.pteam))); rw.innerHTML=R?rRows():qRows(); return;}
-      case 'pStat':{S.pstat=V?d.s:(S.pstat===d.s?null:d.s); const tl=root.querySelector('.p-tl'); if(!tl) break; root.querySelectorAll('.p-so button[data-s]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.s===S.pstat))); const fp={}; tl.querySelectorAll('.p-t').forEach(e=>{const r=e.getBoundingClientRect(); fp[e.dataset.id]=[r.left,r.top];}); tl.innerHTML=pTiles(); if(!matchMedia('(prefers-reduced-motion: reduce)').matches) tl.querySelectorAll('.p-t').forEach(e=>{const o=fp[e.dataset.id]; if(!o) return; const r=e.getBoundingClientRect(), dx=o[0]-r.left, dy=o[1]-r.top; if(!dx&&!dy) return; e.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'none'}],{duration:450,easing:'cubic-bezier(.2,.8,.2,1)'});}); return;}
+      case 'vcLu':S.vcLu=S.vcLu===d.l?null:d.l;break;
+      case 'pTeam':{S.pteam=S.pteam===d.t?'all':d.t;if(DD){const tl=root.querySelector('.p-tl'); if(!tl) break; root.querySelectorAll('.p-so [data-t],.vc-r1 [data-t]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.t===S.pteam))); const fp={}; tl.querySelectorAll('.p-t').forEach(e=>{const r=e.getBoundingClientRect(); fp[e.dataset.id]=[r.left,r.top];}); tl.innerHTML=pTiles(); if(!matchMedia('(prefers-reduced-motion: reduce)').matches) tl.querySelectorAll('.p-t').forEach(e=>{const o=fp[e.dataset.id]; if(!o) return; const r=e.getBoundingClientRect(), dx=o[0]-r.left, dy=o[1]-r.top; if(!dx&&!dy) return; e.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'none'}],{duration:450,easing:'cubic-bezier(.2,.8,.2,1)'});}); return;} const rw=root.querySelector('.q-rows,.r-rows'); if(!rw) break; root.querySelectorAll('.q-ch').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.t===S.pteam))); rw.innerHTML=R?rRows():qRows(); return;}
+      case 'pStat':{S.pstat=V?d.s:(S.pstat===d.s?null:d.s); const tl=root.querySelector('.p-tl'); if(!tl) break; root.querySelectorAll('.p-so button[data-s],.vc-st button[data-s]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.s===S.pstat))); const fp={}; tl.querySelectorAll('.p-t').forEach(e=>{const r=e.getBoundingClientRect(); fp[e.dataset.id]=[r.left,r.top];}); tl.innerHTML=pTiles(); if(!matchMedia('(prefers-reduced-motion: reduce)').matches) tl.querySelectorAll('.p-t').forEach(e=>{const o=fp[e.dataset.id]; if(!o) return; const r=e.getBoundingClientRect(), dx=o[0]-r.left, dy=o[1]-r.top; if(!dx&&!dy) return; e.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'none'}],{duration:450,easing:'cubic-bezier(.2,.8,.2,1)'});}); return;}
       case 'mNOpen':S._evY=sc?sc.scrollTop:0;S.npage='sb';S.pcont=false;render();if(sc)sc.scrollTop=0;return;
       case 'mNBack':if(P&&S.pcont){const y=sc?sc.scrollTop:0;S.pcont=false;S.sheet=false;S.psel=[...S.squad];render();if(sc)sc.scrollTop=X?(S._pkY!=null?S._pkY:y):0;return;}S.npage=null;S.sheet=false;render();if(sc)sc.scrollTop=S._evY||0;return;
       case 'mPk':{ if(S.comb==='none'){mToast("Squad Builder can't be combined with other selections");return;}
@@ -5393,7 +5580,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
         if(ix>=0) S.sels.splice(ix,1); else S.sels.push({n:d.l,m:d.m,o:+d.o,t:'Aston Villa - Juventus FC'});
         S.bsTab=null;
         break;}
-      case 'mRcClose':bsClose(()=>{mReset();});return;
+      case 'mRcClose':bsClose(()=>{mReset(); if(X||v==='v'){ S.npage='sb'; S.mtab=null; S._pkY=0; if(X){ const sc_=document.getElementById('squad-'+v); sc_&&sc_.querySelectorAll('.k-tab[data-tab]').forEach(t=>t.setAttribute('aria-selected',String(t.dataset.tab==='Squad builder'))); } setTimeout(()=>{ const sc_=document.getElementById('squad-'+v); if(!sc_) return; const sm=sc_.querySelector('.sec-menu'); sc_.scrollTop=0; if(X&&sm) sc_.scrollTop=sm.offsetTop; },0); }});return; /* List / Cards: Close on the receipt goes back to the start of Squad Builder */
       case 'mRc1Close':bsClose(()=>{S.sels=[];});return;
       case 'mRc1Keep':bsClose(()=>mToast('Your selection is kept in the betslip'));return;
       case 'mRcKeep':bsClose(()=>{S.placed=false;S.done=false;if(S.mode==='B'){S.slip=true;S.slipSig=sig();}mToast('Your selections are kept in the betslip');});return;
@@ -5481,12 +5668,13 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       case 'gAdd':glFlip();glSet(d.id,glLine(d.id));break;
       case 'gResetOne':glSet(d.id,mdn(d.id));break;
       case 'gReset':glFlip();S.targets=[];S.done=false;break;
+      case 'tgView':S.tgv=d.v;break;
       case 'vTog':S.vcol=S.vcol||{};S.vcol[d.id]=!S.vcol[d.id];break;
       case 'gTog':S.gcol=S.gcol||{};S.gcol[d.id]=!S.gcol[d.id];break;
       case 'mLive':window.setLive(d.v==='live');return;
       case 'mLvo':window.lvoToggle();return;
-      case 'mPos':window.sbPos(d.v==='bot');return;
-      case 'tRm':glFlip();S.targets=S.targets.filter(t=>t.id!==d.id);S.done=false;if(M&&S.modal&&S.modal.t==='slip'&&!S.targets.length){S.modal=null;S.slip=false;}break;
+      case 'mPos':(window.__sbPosBy=window.__sbPosBy||{})[window.__curScr||'']=d.v==='bot';window.sbPos(d.v==='bot');return;
+      case 'tRm':glFlip();S.targets=S.targets.filter(t=>t.id!==d.id);S.done=false;if(M&&S.modal&&S.modal.t==='slip'&&!S.targets.length){S.modal=null;S.slip=false;}if(V&&!W&&window.__sbBot&&!S.targets.length)S.slip=false;break;
       case 'tStep':{const t=tgt(d.id);t.line=Math.min(maxL(t.id),Math.max(M?LR(t.id).min:1,t.line+(+d.d)*stp(t.id)));break;}
       case 'tSet':tgt(d.id).line=+d.val;break;
       case 'confirm':S.done=true;break;
@@ -5759,9 +5947,9 @@ const BUILD='2026-11-06T17:00:00Z'; // stamped on every change
   const v32=nav.querySelector('.screen-item[data-id="squad-v"]'); v32?v32.after(b5):nav.insertBefore(b5,foot);
   const bvc=document.createElement('button'); bvc.className='screen-item'; bvc.dataset.id='squad-vc'; bvc.innerHTML='<span class="name">Squad Builder - Cards · Carousel</span><span class="meta">3.2 with the player cards in a carousel</span>'; b5.before(bvc); SCREENS.push({id:'squad-vc',name:'Squad Builder - Cards · Carousel',meta:'3.2 with the player cards in a carousel'}); SCREENS.push({id:'squad-5',name:'Squad Builder - Carousel',meta:'2 + 4 · 3D pitch, cards from 2, thumb stat dial'});
   const wrap=document.createElement('div'); wrap.className='sb5-wrap'; wrap.id='squad-5'; main.appendChild(wrap);
-  const OLD=['squad-o','squad-p','squad-w','squad-vc'];
+  const OLD=['squad-o','squad-p','squad-w','squad-5'];
   const grp=document.createElement('div'); grp.className='sl-grp';
-  grp.innerHTML='<button type="button" class="sl-tog" aria-expanded="false" aria-controls="slOld">Earlier versions · 1, 2, 4, Cards carousel<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="sl-body" id="slOld" hidden></div>';
+  grp.innerHTML='<button type="button" class="sl-tog" aria-expanded="false" aria-controls="slOld">Earlier versions · 1, 2, 4, Carousel<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="sl-body" id="slOld" hidden></div>';
   const body=grp.querySelector('.sl-body'), tog=grp.querySelector('.sl-tog');
   OLD.forEach(id=>{const it=nav.querySelector(`.screen-item[data-id="${id}"]`); if(it) body.appendChild(it);});
   nav.insertBefore(grp,foot);
@@ -5770,6 +5958,9 @@ const BUILD='2026-11-06T17:00:00Z'; // stamped on every change
   tog.addEventListener('click',()=>setOpen(body.hidden));
   document.addEventListener('screenchange',e=>{
     const id=e.detail, on=id==='squad-5';
+    /* squad position per prototype: Cards · Carousel starts with the squad at the bottom */
+    const sid=id==='squad-v'&&document.getElementById('phone').classList.contains('v-car')?'squad-vc':id; window.__curScr=sid; const pb=window.__sbPosBy=window.__sbPosBy||{'squad-vc':true}; if('squad-vc' in pb===false) pb['squad-vc']=true;
+    if(/^squad-(x|v|vc)$/.test(sid)&&window.sbPos){ const want=!!pb[sid]; if(want!==!!window.__sbBot){ window.sbPos(want); const q=window.__squads&&window.__squads[id==='squad-x'?'x':'v']; q&&q.render&&q.render(); } }
     if(OLD.includes(id)&&window.__slReady) setOpen(true); /* collapsed by default; opens when you pick an earlier version */
     if(on&&!wrap.firstChild){const f=document.createElement('iframe'); f.title='Squad Builder - Carousel prototype'; let k=''; try{k=sessionStorage.getItem('sb:pw')||'';}catch(x){} f.src='sb5/index.html?embed=1&t='+Date.now()+(k?'&pw='+k:'')+'#squad-p5'; wrap.appendChild(f);}
     wrap.classList.toggle('on',on);
