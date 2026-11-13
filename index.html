@@ -1371,6 +1371,23 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .m-bs .bs-lh .bs-x{width:16px;height:16px;border:0;background:none}
 .m-bs .bs-mk{padding-left:36px;padding-right:12px;font-size:13px;line-height:18px;color:#526789}
 .m-bs .bs-tm{padding-left:36px;padding-right:12px;font-size:13px;line-height:18px;color:#151923}
+.m-bs .sbs{display:flex;flex-direction:column;gap:8px;align-self:flex-start;max-width:calc(100% - 46px);margin:4px 12px 0 34px;padding:8px;box-sizing:border-box;border:1px solid var(--sem-border-absolute-alpha-gray,rgba(184,197,224,.2));border-radius:22px;background:linear-gradient(180deg,var(--sem-bg-container-low-default,#f7f9fc),var(--sem-bg-container-lowest-default,#fff))}
+.m-bs .bs-leg .sbs{margin:4px 0 0}
+.m-bs .bs-leg .bs-legs.gl{padding:6px 0 0}
+.m-bs .sbs-r{display:flex;align-items:center;gap:8px}
+.m-bs .sbs-j{display:flex;align-items:center;height:24px;padding-right:4px}
+.m-bs .sbs-d{flex:none;width:24px;height:24px;margin-right:-4px;box-sizing:border-box;display:grid;place-items:center;overflow:hidden;border-radius:12px;border:1px solid var(--sem-border-container-lowest,#e2e8f8);background:var(--sem-bg-container-low-default,#f7f9fc)}
+.m-bs .sbs-e{flex:none;height:24px;padding:0 8px;border-radius:12px;border:1px solid var(--sem-border-off-white-pale,#c2cee5);background:var(--sem-bg-off-gray-subtle-default,#f7f9fc);font-family:inherit;font-weight:550;font-size:11px;line-height:14px;color:var(--sem-text-gray-strong,#2a3346);cursor:pointer;white-space:nowrap}
+.m-bs .sbs-g{display:flex;flex-direction:column;gap:8px;padding:0 8px}
+.m-bs .sbs-g p{margin:0;font-size:13px;line-height:18px;color:var(--sem-text-gray-subtle,#526789);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.m-bs .bs-teams{display:flex;flex-direction:column;gap:4px;padding:4px 12px 4px 34px}
+.m-bs .bs-team{display:flex;align-items:center;gap:8px;font-size:14px;line-height:20px;color:#151923}
+.m-bs .bs-team img{flex:none;width:20px;height:20px;object-fit:contain;border-radius:50%}
+.m-bs .bs-leg.plain::before{display:none}
+.m-bs .bs-leg.plain .bs-lh b{font-weight:400;font-size:13px;line-height:18px;color:var(--sem-text-gray-subtle,#526789);overflow:hidden;text-overflow:ellipsis;white-space:nowrap} /* Selection-Name/12px (Figma 6410-128519) */
+.m-bs .bs-leg.plain .bs-lh{justify-content:flex-start}
+.m-bs .bs-leg.plain .bs-dot{padding-top:7px}
+.m-bs .bs-bl{display:block;width:5px;height:5px;border-radius:50%;background:var(--sem-text-gray-emphasis,#151923)}
 .m-bs .bs-legs{display:flex;flex-direction:column;padding:4px 10px 0 34px}
 .m-bs .bs-leg{position:relative;display:flex;gap:8px;padding-bottom:8px}
 .m-bs .bs-leg .bs-dot{flex:none;width:8px;display:flex;justify-content:center;padding-top:5px;font-style:normal}
@@ -2475,6 +2492,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone.lv .m-bs .bs-x{background-color:#212536;border-color:#2d374d}
 #phone.lv .m-bs .bs-mk{color:#c0cce7}
 #phone.lv .m-bs .bs-tm{color:#f5f7fa}
+#phone.lv .m-bs .bs-team{color:#f5f7fa}
+#phone.lv .m-bs .bs-bl{background:#f5f7fa}
+#phone.lv .m-bs .bs-leg.plain .bs-lh b{color:#c0cce7}
+#phone.lv .m-bs .sbs{background:linear-gradient(180deg,#2a3046,#212536);border-color:#2d374d}
+#phone.lv .m-bs .sbs-d{background:#2a3046;border-color:#2d374d}
+#phone.lv .m-bs .sbs-e{background:#2a3046;border-color:#3b4863;color:#cfd9ed}
 #phone.lv .m-bs .bs-lh b{color:#f5f7fa}
 #phone.lv .m-bs .bs-lt > span{color:#c0cce7}
 #phone.lv .m-bs .bs-sub{background-color:#2a3046}
@@ -2566,6 +2589,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone.lv #squad-o .oc-ct{background:linear-gradient(179.68deg,#212536 1px,rgba(9,9,21,.01) 92px)}
 #phone.lv :is(:is(#squad-p,:is(#squad-v,#squad-x)),#squad-o) .pf-rg,#phone.lv :is(:is(#squad-p,#squad-w),#squad-o) .pf-rg{background:#2a3046}
 #phone.lv :is(:is(#squad-p,:is(#squad-v,#squad-x)),#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .gl-x img,#phone.lv :is(:is(#squad-p,#squad-w),#squad-q,#squad-r,#squad-s,#squad-u,#squad-o) .gl-x img{filter:brightness(0)}
+#phone.lv :is(#squad-v,#squad-x,#squad-w) .gl-x{background:var(--sem-bg-gray-emphasis-default,#f7f9fc);border:0} /* dark-mode neutral button (Figma 6694-85977): light fill, dark icon */
 #phone.lv .m-lev .m-levi{color:#fff}
 #phone.lv :is(.m-bs,.m-mbp) .sqv{background:radial-gradient(120% 140% at 0% 0%,rgba(255,110,50,.18),transparent 55%),radial-gradient(120% 160% at 100% 100%,rgba(110,130,255,.16),transparent 60%),linear-gradient(135deg,#2a3046,#212536);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 0 0 1px rgba(255,90,30,.22),0 6px 16px -8px rgba(255,60,0,.35)}
 #phone.lv :is(.m-bs,.m-mbp) .sqv::after{background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.12) 48%,rgba(255,255,255,0) 62%)}
@@ -3512,6 +3536,9 @@ html:not(.pw-ok) body{visibility:hidden}
 #phone.lv :is(#squad-v,#squad-x,#squad-w) .gl-ls .gl-r.set :is(.gl-ri,.gl-c,.gl-c .gl-b,.gl-c .gl-in){background:transparent;border-color:rgba(255,255,255,.3)}
 #phone.lv :is(#squad-v,#squad-x,#squad-w) .gl-ls .gl-r.set .gl-c .gl-in{color:#f5f7fa}
 #phone.lv :is(#squad-v,#squad-x,#squad-w) .gl-ls .gl-r.set :is(.gl-ri,.gl-c .gl-b) img{filter:brightness(0) invert(1)}
+/* dark-mode neutral button (Figma 6694-85977): bg/gray/emphasis (light) with a dark icon, on the bin and the add-target plus */
+#phone.lv :is(#squad-v,#squad-x,#squad-w) .gl-ls :is(.gl-r.set,.gl-r.gl-tap)>.gl-x{background:var(--sem-bg-gray-emphasis-default,#f7f9fc)}
+#phone.lv :is(#squad-v,#squad-x,#squad-w) .gl-ls :is(.gl-r.set,.gl-r.gl-tap)>.gl-x img{filter:brightness(0)}
 .m-bs .bs-gsi{flex:none;display:grid;place-items:center;width:20px;height:20px;padding:0;margin:0 0 0 -2px;border:0;background:none;cursor:pointer}
 .m-bs .bs-gsi img{width:20px;height:20px}
 /* 3.2 Cards: shorter card, smaller jersey, "Last 5" under the form (Figma 6658-86476) */
@@ -3569,6 +3596,27 @@ html:not(.pw-ok) body{visibility:hidden}
 #phone.lv :is(#squad-v,#squad-x) .pf-bar>.vx-sth span,#phone.lv :is(#squad-v,#squad-x) .pf-bar>.vx-sth span b{color:#cfd9ed}
 /* 3.1 List + 3.2 Cards: no orange gradient on the My squad band (the header right above already has one) */
 #phone :is(#squad-v,#squad-x) .p-sb.u-sb{background:rgba(239,239,250,.72)}
+/* 3.1 Squad Builder tab (Figma 6687-64258, Event Market Menu): ONE sticky card. Row 1 = market tabs, then My squad (title + count, Golden Sub,
+   avatars, hint) inside the same card, so the whole section stays visible while scrolling. The page's own tab row is hidden to avoid a duplicate. */
+.sq-hd{display:none}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .sec-menu{display:none}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb.u-sb{top:0;margin:0 8px 8px;padding:0;gap:0;border-radius:var(--sem-radius-12,12px);overflow:hidden;max-height:none;background:var(--sem-overlay-gray-pale-medium,rgba(255,255,255,.4));-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);box-shadow:none}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb.stuck .p-sb.u-sb{box-shadow:inset 0 0 0 1px rgba(255,255,255,.65),0 4px 16px rgba(21,25,35,.08)}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .sq-hd{display:flex;align-items:center;justify-content:space-between;padding-left:8px}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-bar{margin:0;padding:0 8px 8px;border-radius:0;background:none;box-shadow:none}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-a{--u:30px}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .vx-ph{width:30px;height:30px;font-size:16px}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-av{gap:8px}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-bar{gap:4px}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-bar:not(:has(.pf-a)) :is(.v-bd,.m-gsp){display:none} /* empty squad: no count, no Golden Sub */
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-bar{display:grid;grid-template-columns:auto 1fr;column-gap:8px;row-gap:4px;align-items:center}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-bar>.u-top{grid-column:1;grid-row:1}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-bar>.vx-sth{grid-column:2;grid-row:1;margin:0}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-bar>.vx-sth,#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-bar>.vx-sth span,#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-bar>.vx-sth em{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px;line-height:14px}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-bar>.vx-sth b{display:none} /* just "Pick 3 to 5 players…", next to the title */
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .pf-bar>.pf-sr{grid-column:1/-1;grid-row:2}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .u-pk{font-weight:750;font-size:14px;line-height:20px;color:var(--sem-text-gray-strong,#2a3346)}
+#phone:not(.lv):not(.sb-bot) :is(#squad-x,#squad-v).x-tabmode.x-sb .p-sb .u-pk .v-bd{padding:1px 6px;border-radius:6px;background:var(--sem-bg-gray-subtle-default,#eaeefb);font-weight:750;font-size:12px;line-height:16px;color:var(--sem-text-gray-strong,#2a3346)}
 </style>
 <script>
 (function(){
@@ -4641,7 +4689,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     const amt=(cls='')=>`<div class="bs-amt ${cls}"><label class="bs-in"><input inputmode="decimal" aria-label="Stake in euro" value="${eur(stk)}">${KI('fab_edit',12,12)}</label>${[['1','+1'],['5','+5'],['10','+10'],['max','MAX']].map(([v,l])=>`<button class="bs-q" data-act="mStk" data-v="${v}">${l}</button>`).join('')}</div>`;
     const trash=(a,lab,extra='')=>`<button class="bs-x" data-act="${a}" ${extra} aria-label="${lab}">${KI('bs_trash',16,16)}</button>`;
     // goals as removable vertical bullets
-    const goalLegs=(sub)=>S.targets.map(t=>`<div class="bs-leg ${sub?'sub':''}"><i class="bs-dot">${sub?KI('bs_dot_sm',6,6):KI('bs_dot',8,8)}</i><div class="bs-lt"><div class="bs-lh"><b>${stat(t.id).name} ${t.line}+</b>${trash('tRm','Remove '+stat(t.id).name+' goal',`data-id="${t.id}"`)}</div><span>Squad total</span></div></div>`).join('');
+    const goalLegs=(sub,plain)=>S.targets.map(t=>`<div class="bs-leg ${sub?'sub':''}${plain?' plain':''}"><i class="bs-dot">${plain?'<s class="bs-bl"></s>':sub?KI('bs_dot_sm',6,6):KI('bs_dot',8,8)}</i><div class="bs-lt"><div class="bs-lh"><b>${stat(t.id).name} ${t.line}+</b></div></div></div>`).join('');
     /* Golden Sub: icon next to the Squad Builder title instead of the betslip banner */
     const gsIc=()=>!GSON()?'':`<button class="bs-gsi" data-act="mSettle" aria-label="Golden Sub: bet settlement info">${KI('goldenSub32',20,20)}</button>`;
     const sel=(title,pill,odds,rmAct,rmLab,ex='')=>`<div class="bs-sel">${KI('bs_soccer',22,22)}<b>${title}</b>${title==='Squad Builder'?gsIc():''}${pill!=null?`<span class="bs-pill">${pill}</span>`:''}<div class="grow"></div><span class="bs-odds">${fo(odds)}</span>${trash(rmAct,rmLab,ex)}</div>`;
@@ -4650,23 +4698,25 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     const gsStrip=''; // Golden Sub banner removed from the betslip: the icon sits next to the Squad Builder title
     const EVT={villa:{id:'avj',n:'Aston Villa - Juventus FC',t:'16/06 · 21:00'},juve:{id:'avj',n:'Aston Villa - Juventus FC',t:'16/06 · 21:00'}};
     const evs=[...new Map(sq().map(p=>[EVT[p.team].id,EVT[p.team]])).values()];
-    const match=evs.map(e=>{const c=sq().filter(p=>EVT[p.team].id===e.id).length; return `<div class="bs-tm">${e.n}</div><div class="bs-dt">${e.t} · ${c} player${c!==1?'s':''}</div>`;}).join('');
+    const match=`<div class="bs-teams">${[['logoHome','Aston Villa'],['logoAway','Juventus FC']].map(([lg,nm])=>`<div class="bs-team">${KI(lg,20,20,'png')}<span>${nm}</span></div>`).join('')}</div>`; /* teams stacked with their logos, no date (as in the Bet Builder header) */
     // squad preview strip: jersey stack, count, names, Edit squad
     const sqViz=(mini)=>{const ps=sq(), an=AN;
       return `<div class="sqv ${mini?'mini':''} ${an?'anim':''}" role="group" aria-label="${n} players: ${names}">
         <div class="sqv-jr" aria-hidden="true">${ps.map((p,i)=>`<span class="sqv-p" style="--i:${i};z-index:${10-i}" title="${p.name}">${KJ(p,mini?18:20)}</span>`).join('')}<span class="sqv-n" style="--i:${ps.length}">${n}</span></div>
         <span class="sqv-nm" aria-hidden="true">${names}</span>
         ${mini?'':`<button class="sqv-ed sm" data-act="mBsEdit">Edit Squad</button>`}</div>`;};
+    /* Squad strip (Figma 6410-128651): jerseys + Edit Squad, then the targets, all inside one rounded frame */
+    const sbStrip=()=>`<div class="sbs" role="group" aria-label="${n} players: ${names}. ${k} squad goals"><div class="sbs-r"><div class="sbs-j" aria-hidden="true">${sq().map(p=>`<span class="sbs-d" title="${p.name}">${KJ(p,20)}</span>`).join('')}</div><button class="sbs-e" data-act="mBsEdit">Edit Squad</button></div></div><div class="bs-legs gl" aria-label="${k} squad goals">${goalLegs(false,true)}</div>`;
     // Squad Builder as a single selection
     const sbCard=(withAmt)=>`<div class="bs-card">${sel('Squad Builder',null,total(),'mSbRm','Remove Squad Builder')}
-      ${match}${sqViz(false)}<div class="bs-legs gl" aria-label="${k} squad goals">${goalLegs(false)}</div>${withAmt?amt():''}${gsStrip}${howLink}</div>`;
+      ${match}${sbStrip()}${withAmt?amt():''}${gsStrip}${howLink}</div>`;
     const legCard=(withAmt,x,ix)=>`<div class="bs-card">${sel(x.n,null,x.o,'mLegRm','Remove '+x.n,`data-i="${ix}"`)}<div class="bs-mk">${x.m}</div><div class="bs-tm">${x.t}</div>${withAmt?amt():''}</div>`;
     // same-match Bet Builder: single market + Squad Builder as one bet
     const bbCard=(withAmt)=>`<div class="bs-card">${sel('Bet Builder',1+SM.length,bbO(),'fabClearBs','Remove Bet Builder')}
       ${match}
       <div class="bs-legs">
         ${SM.map((x,ix)=>`<div class="bs-leg"><i class="bs-dot">${KI('bs_dot',8,8)}</i><div class="bs-lt"><div class="bs-lh"><b>${x.n}</b>${trash('mLegRm','Remove '+x.n,`data-i="${ix}"`)}</div><span>${x.m}</span></div></div>`).join('')}
-        <div class="bs-leg sb"><i class="bs-dot">${KI('bs_dot',8,8)}</i><div class="bs-lt"><div class="bs-lh"><b>Squad Builder</b>${gsIc()}<span class="grow"></span><button class="sqv-ed sm" data-act="mBsEdit">${KI('fab_edit',12,12)}Edit Squad</button>${trash('mSbRm','Remove Squad Builder')}</div>${sqViz(true)}<div class="bs-sub">${goalLegs(true)}</div></div></div>
+        <div class="bs-leg sb"><i class="bs-dot">${KI('bs_dot',8,8)}</i><div class="bs-lt"><div class="bs-lh"><b>Squad Builder</b>${gsIc()}<span class="grow"></span>${trash('mSbRm','Remove Squad Builder')}</div>${sbStrip()}</div></div>
       </div>${withAmt?amt():''}${gsStrip}${howLink}</div>`;
     const note=S.comb==='none'?`<div class="bs-note">${KI('warnOutlined',16,16)}<span>Squad Builder can't be combined with other selections. It's always placed as a single.</span></div>`
       :S.comb==='one'?`<div class="bs-note">${KI('warnOutlined',16,16)}<span>1 Squad Builder per betslip. Building another one replaces this.</span></div>`:'';
@@ -4899,10 +4949,12 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     const vdir=(V&&!W)?S._wdir:null; if(V&&!W) S._wdir=null; const vgoPop=V&&!W&&!S._vgo&&sel.length>=MIN&&!S.pcont; if(V&&!W) S._vgo=sel.length>=MIN;
     const vSl=h=>vdir?h.replace(/class="(v-tg|p-so|p-tl)"/g,(m,c)=>`class="${c} ${vdir==='f'?'v-slf':'v-slb'}"`):h;
     const cta=`<button class="p-cta${sel.length>=MIN?' on':''}" data-act="pCont" ${sel.length>=MIN?'':'disabled'}>${V?'Set targets':'Targets'}${GARW}</button>`, av=`<div class="p-av">${sel.map(id=>pAvH(byId[id])).join('')}</div>`;
+    /* 3.1 Squad Builder tab: the market tab row lives INSIDE the sticky My squad card (Figma 6687-64258), so tabs + My squad stick as one block */
+    const sqHd=()=>`<div class="sq-hd"><div class="k-tabs" role="tablist">${K_TABS.map(t=>t==='Squad Builder'?`<button class="sec-tab k-tab" role="tab" data-tab="Squad builder" aria-selected="true"><span class="o-sq">SQUAD</span><span class="o-bd">BUILDER</span><span class="m-tnew">NEW</span></button>`:`<button class="sec-tab k-tab" role="tab" data-tab="${t}" aria-selected="false">${t}</button>`).join('')}<i class="k-grad"></i></div><div class="k-sel"><span class="k-cardic">${KI('cardIcon',24,24)}</span>${KI('bbSwitch',54,30,'png','Bet Builder off')}</div></div>`;
     const fbar=`<div class="pf-bar${V&&!W&&S.pcont?' v-pc':''}"><div class="u-top">${V?`<span class="v-pkw"><span class="u-pk">My squad<span class="v-bd">${sel.length} of ${MAX}</span></span>${GSON()?`<button class="m-gsp" data-act="mSettle" aria-label="Golden Sub: how it works">${KI('goldenSub32',24,24)}</button>`:''}</span>${V&&!W?`<ol class="vx-stp" aria-label="Steps">${S.pcont?`<li class="dn"><button type="button" data-act="pBackPick" aria-label="Step 1, Squad, done. Edit squad"><i aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="m2.5 6.2 2.3 2.3 4.7-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span>Squad</span>${KI('fab_edit',12,12)}</button></li>`:`<li class="on" aria-current="step"><i aria-hidden="true">1</i><span>Squad</span></li>`}<li class="sep" aria-hidden="true"></li><li class="${S.pcont?'on':''}"${S.pcont?' aria-current="step"':''}><i aria-hidden="true">2</i><span>Targets</span>${S.pcont?`<b class="vx-stn" aria-label="${S.targets.length} target${S.targets.length===1?'':'s'} set">${S.targets.length}</b>`:''}</li></ol>${S.pcont?'':`<button type="button" class="pf-cta v-stg" data-act="pCont"${sel.length>=MIN?'':' disabled'}>Targets</button>`}${S.pcont&&S.targets.length&&!S.slip?`<button type="button" class="pf-cta v-sadd" data-act="vSlipOpen" aria-label="Add to betslip, odds ${fo(M?mTot():total())}"><span class="v-sao">${fo(M?mTot():total())}</span><b>Add to betslip</b></button>`:''}`:''}`:`<span class="u-pk">Picks  (${sel.length}/${MAX})</span>`}</div><div class="pf-sr">${V&&!W&&GSON()?`<button class="m-gsp vx-gsp" data-act="mSettle" aria-label="Golden Sub: how it works">${KI('goldenSub32',24,24)}</button>`:''}<div class="pf-av">${sel.map(id=>pAvF(byId[id],(V&&!W&&S.pcont)?'rm':'pRemove',false)).join('')}${V&&!W?VX_PH(MAX-sel.length):''}</div><button class="pf-cta${sel.length>=MIN?' on':''}${V&&!W&&sel.length<MIN?' v-hide':''}${vgoPop?' v-pop':''}" data-act="${(V&&!W&&S.pcont)?'pBackPick':'pCont'}" ${sel.length>=MIN?'':'disabled'}>${(V&&!W&&S.pcont)?'Edit squad':(V&&!W)?'Set targets':'Continue'}</button></div>${V&&!W?VX_HINT:''}</div>`;
     return `<div class="p-pg">
       ${X?'':`<div class="p-in"${sel.length?' hidden':''}><div class="p-tt"><b>Squad</b><span class="p-tr"><b>Builder</b>${KI('d_trail',237,38)}</span></div><p class="p-it"${sel.length?' hidden':''}>Pick players, then set targets they must hit together.</p></div>`}
-      <div class="p-sb u-sb${sel.length||(V&&!W)?'':' p-hide'}">${FB?fbar:`<div class="u-bar"><div class="u-top"><span class="u-pk">Picks  (${sel.length}/${MAX})</span>${cta}</div><div class="p-sr">${av}</div></div>`}</div>
+      <div class="p-sb u-sb${sel.length||(V&&!W)?'':' p-hide'}">${X&&(S.pent||'tab')==='tab'?sqHd():''}${FB?fbar:`<div class="u-bar"><div class="u-top"><span class="u-pk">Picks  (${sel.length}/${MAX})</span>${cta}</div><div class="p-sr">${av}</div></div>`}</div>
       ${PV?`<div class="p-vh${window.__LV?' p-sb2':''}">${window.__LV?(X?'':`<span class="p-vm p-sbd">${[['logoHome','Aston Villa'],['logoAway','Juventus']].map(([lg,n])=>`<span class="p-sr2"><i>${KI(lg,16,16,'png')}</i><span>${n}</span><b>0</b></span>`).join('')}</span>`):X?'':`<span class="p-vm"><span class="p-vt"><b>Aston Villa - Juventus</b></span></span>`}${V?'':`<div class="p-vs" role="group" aria-label="Players view"><button class="${S.pview==='table'?'':'on'}" data-act="pView" data-v="cards" aria-pressed="${S.pview!=='table'}" aria-label="Card view">${KI('vw_tiles',20,20)}</button><button class="${S.pview==='table'?'on':''}" data-act="pView" data-v="table" aria-pressed="${S.pview==='table'}" aria-label="Table view">${KI('vw_table',20,20)}</button></div>`}</div>`:''}
       ${vSl((V&&!W&&S.pcont)?vTgHTML():R?rList():(Q||(PV&&!V&&S.pview==='table'))?qTable():`<div class="p-so" role="group" aria-label="Filters">${DD?[['villa','logoHome'],['juve','logoAway']].map(([t,logo])=>`<button class="p-tf" data-act="pTeam" data-t="${t}" aria-pressed="${S.pteam===t}" aria-label="${TEAMS[t].name}">${KI(logo,16,16,'png')}</button>`).join('')+'<i class="p-sp" aria-hidden="true"></i>':''}${pStats.map(([id,l])=>`<button data-act="pStat" data-s="${id}" aria-pressed="${st===id}">${l}</button>`).join('')}</div>
       <div class="p-tl${CAR()?' v-car':''}"${CAR()?' role="list" aria-label="Players: swipe left or right"':''}>${pTiles()}</div>`)}
@@ -5217,7 +5269,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       else return;
       const y=sc.scrollTop; render(); sc.scrollTop=y; const row=t.parentElement; if(row) row.scrollTo({left:Math.max(0,t.offsetLeft-row.offsetLeft-24),behavior:'smooth'});
       if(tb==='Squad builder'){ /* List: bring the tabs up right under the orange header */
-        const sm=sc.querySelector('.sec-menu'); if(!sm) return; sc.scrollTop=0; const y1=Math.min(sc.scrollHeight-sc.clientHeight,sm.offsetTop); sc.scrollTop=y;
+        let sm=sc.querySelector('.sec-menu'); if(sm&&!sm.offsetHeight) sm=sc.querySelector('.p-pg')||sm; /* the tabs now live in the My squad card */ if(!sm) return; sc.scrollTop=0; const y1=Math.min(sc.scrollHeight-sc.clientHeight,sm.offsetTop); sc.scrollTop=y;
         if(Math.abs(y1-y)<2) return; if(matchMedia('(prefers-reduced-motion: reduce)').matches){ sc.scrollTop=y1; return; }
         const t0=performance.now(), D=380, step=now=>{ const p=Math.min(1,(now-t0)/D), ez=1-Math.pow(1-p,3); sc.scrollTop=y+(y1-y)*ez; if(p<1) requestAnimationFrame(step); }; requestAnimationFrame(step); setTimeout(()=>{ if(performance.now()-t0>=D) sc.scrollTop=y1; },D+80); } }); }
   function render(){
@@ -5484,8 +5536,8 @@ window.__squads={};
   window.__squads[k]=make(k,document.getElementById('sqroot-'+k),host);
   if(k==='n'||k==='p'||k==='q'||k==='r'||k==='s'||k==='u'||(k==='v'||k==='w'||k==='x')){const sc=document.getElementById('squad-'+k); sc.querySelectorAll('.k-tab[data-tab]').forEach(t=>t.setAttribute('aria-selected',String(t.dataset.tab==='Popular')));}
   if(k==='m'||k==='n'||k==='o'||k==='p'||k==='q'||k==='r'||k==='s'||k==='u'||(k==='v'||k==='w'||k==='x')){const sc=document.getElementById('squad-'+k), sm=sc.querySelector('.sec-menu');
-    const upd=()=>{sc.style.setProperty('--sm-h',sm.offsetHeight+'px');sc.classList.toggle('stuck',sc.scrollTop>=sm.offsetTop-1);};
-    sc.addEventListener('scroll',upd,{passive:true}); document.addEventListener('screenchange',()=>setTimeout(upd,0)); setTimeout(upd,0);}
+    const upd=()=>{sc.style.setProperty('--sm-h',sm.offsetHeight+'px');const rf=sm.offsetHeight?sm:(sc.querySelector('.p-pg')||sm); sc.classList.toggle('stuck',sc.scrollTop>=rf.offsetTop-1);};
+    sc.addEventListener('scroll',upd,{passive:true}); document.addEventListener('screenchange',()=>setTimeout(upd,0)); setTimeout(upd,0); if(window.ResizeObserver) new ResizeObserver(upd).observe(sm);}
 });
 {const ph=document.getElementById('phone'); const ch=document.createElement('div'); ch.className='k-chrome'; ch.innerHTML=kdsChrome(); ph.appendChild(ch); /* balance: 100,99 in 3.1, 3.2, Cards carousel and 4; versions 1 and 2 keep 0,00 */ const bal=id=>{const b=ch.querySelector('.k-bal b'); if(b) b.textContent=['squad-x','squad-v','squad-w'].includes(realId(id||location.hash.slice(1)))?'100,99':'0,00';}; document.addEventListener('screenchange',e=>bal(e.detail)); bal();
  const sync=id=>{const c=realId(id||location.hash.slice(1)); ph.classList.toggle('kds',['squad-m','squad-n','squad-o','squad-p','squad-q','squad-r','squad-s','squad-u','squad-x','squad-v','squad-w'].includes(c));};
