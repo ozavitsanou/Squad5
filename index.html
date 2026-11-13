@@ -6010,6 +6010,11 @@ fit();
   .phone-scale{position:fixed;inset:0;transform:none!important}
   #phone.phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
   .mob-btn{display:flex;align-items:center;gap:6px;position:fixed;z-index:2147483000;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);height:28px;padding:0 12px;border-radius:99px;border:0;background:rgba(9,13,21,.72);color:#fff;font:600 12px/1 var(--font-ui,system-ui);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  /* sit in the header row, next to the back arrow, below the phone's own status bar so it stays visible */
+  html:not(.embed) .mob-btn{top:96px;left:50%;transform:translateX(-50%);height:28px;padding:0 14px;gap:6px;background:#fff;color:#151923;font:700 13px/1 var(--font-ui,system-ui);letter-spacing:.2px;box-shadow:0 0 0 1px rgba(21,25,35,.08),0 6px 18px rgba(21,25,35,.28),0 2px 4px rgba(21,25,35,.18);-webkit-backdrop-filter:none;backdrop-filter:none}
+  html:not(.embed) .mob-btn:active{transform:translateX(-50%) scale(.96)}
+  html:not(.embed) .mob-btn[aria-expanded="true"]{top:60px;background:#151923;color:#fff}
+  html:not(.embed) .stage.mob-open{padding-top:104px}
   html.embed .mob-btn{left:auto;right:10px;transform:none}
   .stage.mob-open{position:fixed;inset:0;overflow:auto;z-index:2147482000;background:var(--panel-bg,#fff);padding-top:48px}
   .stage.mob-open>.screen-list{display:flex;overflow:visible;border:0}
