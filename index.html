@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Squad Builder">
+<meta name="theme-color" content="#ff3c00">
 <title>Squad Builder Prototype · 3D Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans:wght@100..800&family=Ubuntu:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
@@ -3606,7 +3611,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone .vc-f .vc-ct.vc-ct{display:none}
 #phone :is(#squad-x,#squad-v) .gl-card{--tb-hi:#1f9d55;--tb-md:#151923;--tb-lo:#e0303f}
 #phone.lv :is(#squad-x,#squad-v) .gl-card{--tb-hi:#3fbf74;--tb-md:#f5f7fa;--tb-lo:#ff5a69}
-#phone :is(#squad-x,#squad-v) .tb-r:not(.na) .tb-p.tb-p{color:var(--c)}
 /* Cards · Carousel: soft colour glow behind the cards, as in the Carousel prototype (ar-sky) */
 #phone.v-car #squad-v .p-pg{isolation:isolate}
 #phone.v-car #squad-v .p-pg::after{content:'';position:absolute;left:-60px;right:-60px;top:-20px;height:560px;z-index:-1;pointer-events:none;background:radial-gradient(300px 300px at 10% 40%,#9a1f52,rgba(154,31,82,0) 72%),radial-gradient(300px 300px at 92% 58%,#36a85c,rgba(54,168,92,0) 72%);filter:blur(34px) saturate(1.3);opacity:.62;animation:vcDrift 12s ease-in-out infinite alternate}
@@ -4507,8 +4511,8 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       /* 3.x / 4: under each set target, the squad players (Figma 6633:63105) */
       const tbView=()=>{const av=S.squad.map(pid=>byId[pid]).filter(Boolean), rs=av.map(p=>{const m=vMk(p,id); return m?Math.max(.5,m.l5.reduce((a,b)=>a+b,0)):0;}), tot=rs.reduce((a,b)=>a+b,0)||1;
         const raw=rs.map(r=>r/tot*100), pc=raw.map(Math.floor); let rem=100-pc.reduce((a,b)=>a+b,0); raw.map((r,i)=>[r-Math.floor(r),i]).sort((a,b)=>b[0]-a[0]).forEach(([f,i])=>{if(rem>0&&rs[i]){pc[i]++;rem--;}});
-        return `<div class="v-pl tb-v" aria-label="${nm}: how much each player adds to the collective total"><p class="tb-cap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.2c2.4.2 4 1.8 4.5 4.8"/></svg>All players count towards one total</p><div class="tb-tr" aria-hidden="true">${av.map((p,i)=>rs[i]?`<i style="flex:${pc[i]||.5} 1 0;--c:var(--tb-${pc[i]>50?'hi':pc[i]<10?'lo':'md'})"></i>`:'').join('')}</div>
-        <div class="tb-lg">${av.map((p,i)=>`<div class="tb-r${rs[i]?'':' na'}" style="--c:var(--tb-${pc[i]>50?'hi':pc[i]<10?'lo':'md'})"><span class="tb-d" aria-hidden="true"></span><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><b class="tb-p">${rs[i]?pc[i]+'%':'Not available'}</b></div>`).join('')}</div></div>`;};
+        return `<div class="v-pl tb-v" aria-label="${nm}: how much each player adds to the collective total"><p class="tb-cap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.2c2.4.2 4 1.8 4.5 4.8"/></svg>All players count towards one total</p><div class="tb-tr" aria-hidden="true">${av.map((p,i)=>rs[i]?`<i style="flex:${pc[i]||.5} 1 0;--c:var(--tb-c${S.squad.indexOf(p.id)%5})"></i>`:'').join('')}</div>
+        <div class="tb-lg">${av.map((p,i)=>`<div class="tb-r${rs[i]?'':' na'}" style="--c:var(--tb-c${S.squad.indexOf(p.id)%5})"><span class="tb-d" aria-hidden="true"></span><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><b class="tb-p">${rs[i]?pc[i]+'%':'Not available'}</b></div>`).join('')}</div></div>`;};
       const vPl=(V&&t&&S.tgv==='bar')?tbView():(V&&t)?`<div class="v-pl">${S.squad.map(pid=>{const p=byId[pid], m=vMk(p,id); if(!m) return `<div class="v-pr gp-r na"><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><span class="gp-m"><i class="vx-pm">Not available</i></span></div>`;
         return `<div class="v-pr gp-r" data-pid="${pid}" data-sid="${id}"><span class="gp-j" aria-hidden="true">${KI(p.team==='villa'?'jerseyVilla':'jerseyJuve',25,25,'png')}<b>${p.num}</b></span><span class="gp-n">${p.name}</span><span class="gp-m gp-l5" aria-label="Last 5 matches">${m.l5.map((n,k)=>`<span class="gp-c${k===4?' last':''}">${n}</span>`).join('')}</span></div>`;}).join('')}</div>`:'';
       const sw=na.length?`<div class="gl-sw">${na.map(p=>`<button class="gl-swb" data-act="mSwap" data-id="${p.id}" data-g="${id}" aria-label="Swap ${p.name} to unlock ${nm}">${KI('swap_fg',20,20)}<span>Swap ${p.name}</span></button>`).join('')}</div>`:'';
@@ -5422,7 +5426,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
   if(N){ document.getElementById('phone').addEventListener('click',e=>{ if(!e.target.closest('.k-back')) return; if(!(sc&&sc.classList.contains('active'))||!S.npage) return; act('mNBack',{}); }); }
   if(M&&!N&&sc){ document.addEventListener('screenchange',()=>setTimeout(()=>{ if(sc.classList.contains('active')&&!S._gT&&!S.glowDone) render(); },0)); }
   if(M&&sc){ sc.addEventListener('click',e=>{const t=e.target.closest('.k-tab[data-tab]'); if(!t) return; const tb=t.dataset.tab; if(tb!=='Popular'&&tb!=='Squad builder'&&tb!=='Line ups'&&tb!=='Players') return;
-      S.mtab=tb==='Popular'?'popular':tb==='Line ups'?'lineups':tb==='Players'?'players':null; const y=sc.scrollTop; sc.querySelectorAll('.k-tab[data-tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t))); render(); sc.scrollTop=y; const row=t.parentElement; if(row) row.scrollTo({left:Math.max(0,t.offsetLeft-row.offsetLeft-24),behavior:'smooth'}); }); }
+      S.mtab=tb==='Popular'?'popular':tb==='Line ups'?'lineups':tb==='Players'?'players':null; const y=sc.scrollTop; sc.querySelectorAll('.k-tab[data-tab]').forEach(x=>x.setAttribute('aria-selected',String(x===t))); render(); sc.scrollTop=y; const row=t.parentElement; if(row) (()=>{const l=t.offsetLeft-row.offsetLeft, r=l+t.offsetWidth, a=row.scrollLeft, b=a+row.clientWidth; if(l>=a+8&&r<=b-8) return; row.scrollTo({left:Math.max(0,l<a+8?l-16:r-row.clientWidth+16),behavior:'smooth'});})(); }); }
   if((V&&!W)&&sc){ /* 3.1 / 3.2 / Cards carousel: drag a player onto the squad section to add them (touch: hold, then drag; mouse: just drag; 3D carousel: drag up or down) */
     let dg=null; const HOLD=220;
     const k_=()=>(sc.getBoundingClientRect().height/sc.offsetHeight)||1;
@@ -5474,7 +5478,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       if(tb==='Squad builder'){ S.npage='sb'; S.mtab=null; }
       else if(tb==='Popular'||(X&&(tb==='Line ups'||tb==='Players'))){ S.npage=null; S.mtab=tb==='Line ups'?'lineups':tb==='Players'?'players':'popular'; }
       else return;
-      const y=sc.scrollTop; render(); sc.scrollTop=y; const row=t.parentElement; if(row) row.scrollTo({left:Math.max(0,t.offsetLeft-row.offsetLeft-24),behavior:'smooth'});
+      const y=sc.scrollTop; render(); sc.scrollTop=y; const row=t.parentElement; if(row) (()=>{const l=t.offsetLeft-row.offsetLeft, r=l+t.offsetWidth, a=row.scrollLeft, b=a+row.clientWidth; if(l>=a+8&&r<=b-8) return; row.scrollTo({left:Math.max(0,l<a+8?l-16:r-row.clientWidth+16),behavior:'smooth'});})();
       if(tb==='Squad builder'){ /* List: bring the tabs up right under the orange header */
         let sm=sc.querySelector('.sec-menu'); if(sm&&!sm.offsetHeight) sm=sc.querySelector('.p-pg')||sm; /* the tabs now live in the My squad card */ if(!sm) return; sc.scrollTop=0; const y1=Math.min(sc.scrollHeight-sc.clientHeight,sm.offsetTop); sc.scrollTop=y;
         if(Math.abs(y1-y)<2) return; if(matchMedia('(prefers-reduced-motion: reduce)').matches){ sc.scrollTop=y1; return; }
@@ -6011,6 +6015,9 @@ fit();
   .stage.mob-open>.screen-list{display:flex;overflow:visible;border:0}
   .stage.mob-open>.m-side:not([hidden]){display:flex;height:auto;box-shadow:none;border-top:1px solid #e2e8f8}
   .stage.mob-open>.stage-main{display:none}
+  /* real phone: no fake 9:41 bar or home indicator; keep only the real notch / home-bar safe areas */
+  #phone .k-status>*,#phone .app-header .status-bar>*{visibility:hidden}
+  #phone .k-nav .k-ind{visibility:hidden}
 }
 </style>
 <script>
