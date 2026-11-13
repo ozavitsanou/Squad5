@@ -6015,6 +6015,11 @@ fit();
   html:not(.embed) .mob-btn:active{transform:translateX(-50%) scale(.96)}
   html:not(.embed) .mob-btn[aria-expanded="true"]{top:60px;background:#151923;color:#fff}
   html:not(.embed) .stage.mob-open{padding-top:104px}
+  /* phone menu: Prototype controls first, the version list below them */
+  .stage.mob-open{display:flex!important;flex-direction:column;height:auto;min-height:100dvh}
+  .stage.mob-open>.m-side:not([hidden]){order:-1;flex:none;height:auto!important;max-height:none!important;overflow:visible!important;position:static!important;border-top:0;border-bottom:1px solid #e2e8f8}
+  .stage.mob-open>.screen-list{flex:none;height:auto;overflow:visible}
+  .stage.mob-open>.screen-list{order:0}
   html.embed .mob-btn{left:auto;right:10px;transform:none}
   .stage.mob-open{position:fixed;inset:0;overflow:auto;z-index:2147482000;background:var(--panel-bg,#fff);padding-top:48px}
   .stage.mob-open>.screen-list{display:flex;overflow:visible;border:0}
