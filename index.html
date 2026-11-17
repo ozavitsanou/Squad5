@@ -6164,7 +6164,7 @@ const BUILD='2026-11-06T17:00:00Z'; // stamped on every change
 })();
 /* @@SCREEN-JS-END@@ */
 fit();
-(function(){ applyVis(); const DEFAULT_SCREEN='squad-x'; /* open on 3.1 List so the Earlier versions group starts collapsed */ let id=location.hash.slice(1)||DEFAULT_SCREEN; if(vHidden(id)) id='squad-p'; if(!document.getElementById(realId(id))) id=document.querySelector('.screen')?.id; if(id) showScreen(id); })();
+(function(){ applyVis(); const DEFAULT_SCREEN='squad-x'; /* open on 3.1 List so the Earlier versions group starts collapsed */ let id=DEFAULT_SCREEN; /* always land on the top version in the sidebar (List - feedback 16 November), whatever link was used */ if(vHidden(id)) id='squad-p'; if(!document.getElementById(realId(id))) id=document.querySelector('.screen')?.id; if(id) showScreen(id); })();
 </script>
 <!-- phone view: on a real phone (≤600px wide) show only the prototype, full screen; the version list + controls open from the "Versions" pill -->
 <style>
