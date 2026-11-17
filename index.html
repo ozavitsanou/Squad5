@@ -5900,7 +5900,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
 
 const TABS=['Popular','Squad builder','Goals','Players','Corner kicks','Statistics','Half Time'];
 window.__squads={};
-[['m','A ★','Pitch & list view · full requirements'],['n','B','New page · CTA banner entry, own page'],['o','1','Pitch view only · no list option'],['p','2','Player cards'],['s','F','Cards with stat icons'],['q','E','Like 2 · players as a table'],['r','G','Like E · player rows with stat pills'],['u','H','Like 2 · new card and summary bar'],['x','- List - feedback 5 November','Like 3.2 · players as two-line rows'],['v','- Cards - feedback 5 November','Like 2 · Liverpool, new card, cards only'],['w','4','3D pitch · pick from cards, targets in the same page']].forEach(([k,L,meta])=>{
+[['m','A ★','Pitch & list view · full requirements'],['n','B','New page · CTA banner entry, own page'],['o','1','Pitch view only · no list option'],['p','2','Player cards'],['s','F','Cards with stat icons'],['q','E','Like 2 · players as a table'],['r','G','Like E · player rows with stat pills'],['u','H','Like 2 · new card and summary bar'],['x','- List - feedback 16 November','Like 3.2 · players as two-line rows'],['v','- Cards - feedback 16 November','Like 2 · Liverpool, new card, cards only'],['w','4','3D pitch · pick from cards, targets in the same page']].forEach(([k,L,meta])=>{
   registerScreen('squad-'+k,(k==='x'||k==='v'?'Squad Builder ':'Squad Builder · ')+L,meta,
     (k==='m'||k==='n'||k==='o'||k==='p'||k==='q'||k==='r'||k==='s'||k==='u'||(k==='v'||k==='w'||k==='x')?((k==='v'||k==='w'||k==='x')?LVX:(x=>x))(kdsTop(k==='p'||k==='q'||k==='r'||k==='s'||k==='u'||(k==='v'||k==='w'||k==='x'))):matchHeader('markets',false)+secMenu(TABS,TABS[1]))+`<div id="sqroot-${k}"></div>`);
   const host=document.createElement('div'); host.className='sheet-host'; host.id='sqhost-'+k; document.getElementById('phone').appendChild(host);
@@ -6130,12 +6130,25 @@ const BUILD='2026-11-06T17:00:00Z'; // stamped on every change
   const v32=nav.querySelector('.screen-item[data-id="squad-v"]'); v32?v32.after(b5):nav.insertBefore(b5,foot);
   const bvc=document.createElement('button'); bvc.className='screen-item'; bvc.dataset.id='squad-vc'; bvc.innerHTML='<span class="name">Squad Builder - Cards · Carousel</span><span class="meta">3.2 with the player cards in a carousel</span>'; b5.before(bvc); SCREENS.push({id:'squad-vc',name:'Squad Builder - Cards · Carousel',meta:'3.2 with the player cards in a carousel'}); SCREENS.push({id:'squad-5',name:'Squad Builder - Carousel',meta:'2 + 4 · 3D pitch, cards from 2, thumb stat dial'});
   const wrap=document.createElement('div'); wrap.className='sb5-wrap'; wrap.id='squad-5'; main.appendChild(wrap);
+  /* Feedback 5 November: the versions shared on Friday 13 Nov, kept as they were (feedback-5-november.html, embedded) */
+  const F5=[['f5-x','squad-x','Squad Builder - List','As shared on Friday 13 Nov'],['f5-v','squad-v','Squad Builder - Cards','As shared on Friday 13 Nov'],['f5-vc','squad-vc','Squad Builder - Cards · Carousel','As shared on Friday 13 Nov']];
+  const f5w=document.createElement('div'); f5w.className='sb5-wrap'; f5w.id='f5'; main.appendChild(f5w);
+  const f5g=document.createElement('div'); f5g.className='sl-grp';
+  f5g.innerHTML='<button type="button" class="sl-tog" aria-expanded="false" aria-controls="slF5">Feedback 5 November · shared Fri 13 Nov<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="sl-body" id="slF5" hidden></div>';
+  const f5b=f5g.querySelector('.sl-body'), f5t=f5g.querySelector('.sl-tog');
+  F5.forEach(([id,,n,m])=>{ SKIN[id]='f5'; SCREENS.push({id,name:n,meta:m}); const b=document.createElement('button'); b.className='screen-item'; b.dataset.id=id; b.innerHTML=`<span class="name">${n}</span><span class="meta">${m}</span>`; f5b.appendChild(b); });
+  f5t.addEventListener('click',()=>{const on=f5b.hidden; f5t.setAttribute('aria-expanded',String(on)); f5b.hidden=!on;});
+  let f5cur='';
+  document.addEventListener('screenchange',e=>{ const on=e.detail==='f5'; f5w.classList.toggle('on',on); if(!on) return;
+    const cur=(document.querySelector('.screen-item[aria-current="true"]')||{}).dataset; const id=cur&&cur.id||'f5-x'; f5t.setAttribute('aria-expanded','true'); f5b.hidden=false;
+    if(id===f5cur&&f5w.firstChild) return; f5cur=id; const hash=(F5.find(x=>x[0]===id)||F5[0])[1];
+    let k=''; try{k=sessionStorage.getItem('sb:pw')||'';}catch(x){} f5w.innerHTML=''; const f=document.createElement('iframe'); f.title='Feedback 5 November version, as shared on Friday'; f.src='feedback-5-november.html?embed=1&t='+Date.now()+(k?'&pw='+k:'')+'#'+hash; f5w.appendChild(f); });
   const OLD=['squad-o','squad-p','squad-w','squad-5'];
   const grp=document.createElement('div'); grp.className='sl-grp';
   grp.innerHTML='<button type="button" class="sl-tog" aria-expanded="false" aria-controls="slOld">Earlier versions · 1, 2, 4, Carousel<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="sl-body" id="slOld" hidden></div>';
   const body=grp.querySelector('.sl-body'), tog=grp.querySelector('.sl-tog');
   OLD.forEach(id=>{const it=nav.querySelector(`.screen-item[data-id="${id}"]`); if(it) body.appendChild(it);});
-  nav.insertBefore(grp,foot);
+  nav.insertBefore(f5g,foot); nav.insertBefore(grp,foot);
   setTimeout(()=>{window.__slReady=true;},0);
   const setOpen=on=>{tog.setAttribute('aria-expanded',String(on)); body.hidden=!on;};
   tog.addEventListener('click',()=>setOpen(body.hidden));
