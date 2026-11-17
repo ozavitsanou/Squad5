@@ -3153,11 +3153,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :is(#squad-v,#squad-x) .vk-pc .vk-add{display:flex;align-items:stretch;gap:8px;height:32px;padding:0;margin:0;border:0;background:none;cursor:pointer}
 :is(#squad-v,#squad-x) .vk-pc .vk-al{display:flex;align-items:center;padding:0 8px;font-family:Ubuntu,var(--font-ui);font-weight:700;font-size:12px;line-height:12px;text-transform:uppercase;color:var(--sem-text-gray-emphasis,#151923)}
 :is(#squad-v,#squad-x) .vk-pc .vk-ot{display:flex;align-items:stretch;width:64px;height:32px;transform-origin:70% 50%}
-@keyframes vkPulse{0%{transform:scale(1)}35%{transform:scale(1.14)}70%{transform:scale(.97)}100%{transform:scale(1)}}
-:is(#squad-v,#squad-x) .vk-pc .vk-ot.vk-pl{animation:vkPulse .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes vkPulse{0%{transform:scale(1)}40%{transform:scale(1.05)}100%{transform:scale(1)}}
+/* tap pulse: a soft halo of the odds expands and fades out behind it */
+:is(#squad-v,#squad-x) .vk-pc .vk-ot{position:relative;isolation:isolate}
+:is(#squad-v,#squad-x) .vk-pc .vk-ot::after{content:'';position:absolute;inset:0;z-index:-1;border-radius:4px 8px 8px 4px;background:var(--sem-bg-primary,#ff3c00);opacity:0;pointer-events:none}
+:is(#squad-v,#squad-x) .vk-pc .vk-ot.vk-pl::after{animation:vkRing .8s cubic-bezier(.2,.7,.3,1)}
+@keyframes vkRing{0%{opacity:.5;transform:scale(1)}100%{opacity:0;transform:scale(1.3,1.5)}}
+:is(#squad-v,#squad-x) .vk-pc .vk-ot.vk-pl{animation:vkPulse .6s ease-out}
 :is(#squad-v,#squad-x) .vk-pc .vk-ot.vk-pl b{animation:vkGlow .45s ease-out}
 @keyframes vkGlow{0%,100%{filter:none}35%{filter:brightness(1.15) drop-shadow(0 0 6px rgba(255,60,0,.55))}}
-@media (prefers-reduced-motion:reduce){:is(#squad-v,#squad-x) .vk-pc .vk-ot.vk-pl,:is(#squad-v,#squad-x) .vk-pc .vk-ot.vk-pl b{animation:none}}
+@media (prefers-reduced-motion:reduce){:is(#squad-v,#squad-x) .vk-pc .vk-ot.vk-pl,:is(#squad-v,#squad-x) .vk-pc .vk-ot.vk-pl b,:is(#squad-v,#squad-x) .vk-pc .vk-ot.vk-pl::after{animation:none}}
 :is(#squad-v,#squad-x) .vk-pc .vk-ot img{flex:none;width:10px;height:32px}
 :is(#squad-v,#squad-x) .vk-pc .vk-ot b{flex:1 1 0;display:flex;align-items:center;justify-content:center;padding:0 8px 0 4px;background:var(--sem-bg-primary,#ff3c00);border-radius:0 8px 8px 0;font-family:var(--font-ui);font-weight:750;font-size:14px;line-height:20px;color:#fff}
 #phone :is(#squad-v,#squad-x) .p-sb .vk-pc~.vx-sth{display:none}
@@ -3762,6 +3767,24 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone.lv :is(#squad-x,#squad-v) .tb-ct b,#phone.lv :is(#squad-x,#squad-v) .tb-prog b{color:#f5f7fa}
 #phone.lv :is(#squad-x,#squad-v) :is(.tb-ct span,.tb-prog,.tb-dn,.tb-key,.tb-inf summary){color:#c0cce7}
 #phone.lv :is(#squad-x,#squad-v) .tb-inf p{background:#f5f7fa;color:#151923}
+/* summary card: Add to betslip strip keeps 8px from the card's left and right edges */
+#phone :is(#squad-x,#squad-v) .p-sb .pf-bar.vk-pc>.vk-ft.vk-ft{margin:0 8px!important;border-radius:8px}
+/* targets step: no "N Targets" count next to Set collective targets */
+#phone :is(#squad-x,#squad-v) .gl-top .gl-cnt{display:none}
+/* placed bet (My Bets): the expand chevron sits in front of the first jersey */
+#phone .sqv.kd-strip.kd-strip{padding:0 8px 0 6px}
+#phone .sqv.kd-strip .kd-chv{order:-1;margin:0 -2px 0 0}
+/* betslip: chevron in front of the jerseys expands the squad into a list (jersey + name) */
+#phone .m-bs .sbs .sbs-tg{flex:none;display:grid;place-items:center;width:24px;height:24px;margin:0 -2px 0 -4px;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer}
+#phone .m-bs .sbs .sbs-tg img{display:block;width:14px;height:14px;transform:rotate(-90deg);transition:transform .2s}
+#phone .m-bs .sbs.sbs-op .sbs-tg img{transform:none}
+#phone .m-bs .sbs .sbs-tg:focus-visible{outline:2px solid #ff3c00;outline-offset:1px}
+#phone .m-bs .sbs-ls{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+#phone .m-bs .sbs-ls li{display:flex;align-items:center;gap:8px;font:450 14px/20px var(--font-ui);color:var(--sem-text-gray-emphasis,#151923)}
+#phone .m-bs .sbs-ls li::before{content:none}
+#phone.lv .m-bs .sbs .sbs-tg img{filter:invert(1) brightness(1.15)}
+#phone.lv .m-bs .sbs-ls li{color:#f5f7fa}
+@media (prefers-reduced-motion:reduce){#phone .m-bs .sbs .sbs-tg img{transition:none}}
 </style>
 <!-- password screen: a light gate for sharing, not real security (the page source stays public) -->
 <style>
@@ -5014,7 +5037,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
         <span class="sqv-nm" aria-hidden="true">${names}</span>
         ${mini?'':`<button class="sqv-ed sm" data-act="mBsEdit">Edit Squad</button>`}</div>`;};
     /* Squad strip (Figma 6410-128651): jerseys + Edit Squad, then the targets, all inside one rounded frame */
-    const sbStrip=()=>`<div class="sbs" role="group" aria-label="${n} players: ${names}. ${k} squad goals"><div class="sbs-r"><div class="sbs-j" aria-hidden="true">${sq().map(p=>`<span class="sbs-d" title="${p.name}">${KJ(p,20)}</span>`).join('')}</div><button class="sbs-e" data-act="mBsEdit">Edit Squad</button></div></div><div class="bs-legs gl" aria-label="${k} squad goals">${goalLegs(false,true)}</div>`;
+    const sbStrip=()=>`<div class="sbs${S.bsSq?' sbs-op':''}" role="group" aria-label="${n} players: ${names}. ${k} squad goals"><div class="sbs-r"><button type="button" class="sbs-tg" data-act="bsSqTog" aria-expanded="${!!S.bsSq}" aria-label="${S.bsSq?'Hide':'Show'} the players"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gPGcgaWQ9Imljb24iPiA8cGF0aCBpZD0idmVjdG9yIiBkPSJNMTAuMzI3MyA0LjgwNTE0QzEwLjQ5MjQgNC42MjkwNCAxMC43Njk2IDQuNjE5NzEgMTAuOTQ1OSA0Ljc4NDY0QzExLjEyMiA0Ljk0OTY0IDExLjEzMTEgNS4yMjY5MyAxMC45NjY0IDUuNDAzMjlMNy40OTIwOCA5LjExODA1QzcuNDMwNDMgOS4xODQgNy4zNTUyMyA5LjIzNzg2IDcuMjcxMDUgOS4yNzUyOEM3LjE4NjM2IDkuMzEyODYgNy4wOTM4NiA5LjMzMjc0IDcuMDAwNDYgOS4zMzI4MUM2LjkwNzA2IDkuMzMyNzcgNi44MTQ1NyA5LjMxMjgzIDYuNzI5ODcgOS4yNzUyOEM2LjY2NjkzIDkuMjQ3MjcgNi42MDg2NiA5LjIwOTkxIDYuNTU3ODMgOS4xNjUzM0w2LjUwOTQxIDkuMTE4MDVMMy4wMzUwNSA1LjQwMzI5TDMuMDA1OTkgNS4zNjkxMUMyLjg3MTYzIDUuMTkyNzEgMi44OTAxOCA0LjkzOTQgMy4wNTU1NSA0Ljc4NDY0QzMuMjIwOTggNC42MzAxOSAzLjQ3NDc3IDQuNjI4NjkgMy42NDE3MyA0Ljc3NDM4TDMuNjc0MjEgNC44MDUxNEw3LjAwMDQ2IDguMzYyMTFMMTAuMzI3MyA0LjgwNTE0WiIgZmlsbD0iIzE1MTkyMyIvPiA8L2c+IDwvc3ZnPiA=" width="14" height="14" alt="" aria-hidden="true" draggable="false"></button><div class="sbs-j" aria-hidden="true">${sq().map(p=>`<span class="sbs-d" title="${p.name}">${KJ(p,20)}</span>`).join('')}</div><button class="sbs-e" data-act="mBsEdit">Edit Squad</button></div>${S.bsSq?`<ul class="sbs-ls" aria-label="Players in your squad">${sq().map(p=>`<li>${KJ(p,24)}<span>${p.name}</span></li>`).join('')}</ul>`:''}</div><div class="bs-legs gl" aria-label="${k} squad goals">${goalLegs(false,true)}</div>`;
     // Squad Builder as a single selection
     const sbCard=(withAmt)=>`<div class="bs-card">${sel('Squad Builder',null,total(),'mSbRm','Remove Squad Builder')}
       ${match}${sbStrip()}${withAmt?amt():''}${gsStrip}${howLink}</div>`;
@@ -5288,7 +5311,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     const vkLive=(id,ln)=>{const nm=((stat(id)||{}).name||id).toLowerCase(), P=sq().filter(p=>vMk(p,id)), hs=p=>[...(p.id+id+'live')].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7), top=new Set([...P].sort((a,b)=>hs(a)%97-hs(b)%97).slice(0,3).map(p=>p.id)), unit=id==='goals'||id==='assists'||id==='cards'?1:2;
       const rows=P.map(p=>({p,n:top.has(p.id)?1+hs(p)%(unit+1):hs(p)%2})).sort((a,b)=>b.n-a.n), done=rows.reduce((a,r)=>a+r.n,0), pc=Math.min(100,Math.round(done/Math.max(1,ln)*100)), hit=done>=ln;
       return `<div class="vk-lv">${rows.filter(r=>r.n>0).map(r=>`<div class="vk-lp"><span class="vk-lpn">${r.p.name}</span><b>${r.n}</b></div>`).join('')}</div>`;};
-    const VK_NOTE=`<p class="vk-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="7.6" r=".6" fill="currentColor"/></svg><span>${X?'Each player shows the odds for this market':'Cards show the odds for this market'}. Filters sort players by the highest stat.</span></p>`; /* 3.1 / 3.2: info under the filters */
+    const VK_NOTE=`<p class="vk-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="7.6" r=".6" fill="currentColor"/></svg><span>Odds for this market, sorted by top stat</span></p>`; /* 3.1 / 3.2: info under the filters */
     const vkTs=()=>`<div class="vk-ts" role="list" aria-label="Squad targets">${S.targets.map(t=>{const id=t.id, nm=(stat(id)||{}).name||id, ln=glLine(id), mn=LR(id).min, mx=maxL(id), op=!!(S.vko||{})[id], ms=sq().map(p=>vMk(p,id)).filter(Boolean), c5=[0,1,2,3,4].map(k=>ms.reduce((a,m)=>a+(m.l5[k]||0),0)); /* Figma 6775:155532 (open, chevron down) / 6775:155601 (closed, chevron right); collective last 5 = squad total per match */
       return `<div class="vk-tr${op?' vk-op':''}" role="listitem" data-id="${id}"><div class="vk-nb"><button type="button" class="vk-tg" data-act="vkTog" data-id="${id}" aria-expanded="${op}" aria-label="${nm}: ${op?'hide':'show'} the collective last 5"><img class="vk-cv" src="${VK_CHEV}" width="14" height="14" alt="" aria-hidden="true" draggable="false"><b class="vk-tn">${nm}</b></button>${op?`<div class="vk-lw"><div class="vk-l5"><span class="vk-c5" aria-label="Collective last 5 matches: ${c5.join(', ')}">${c5.map((n,k)=>`<i${k===4?' class="last"':''}>${n}</i>`).join('')}</span><span class="vk-c5l">Collective last 5</span>${window.__LV?vkLive(id,ln):''}</div></div>`:''}</div><div class="vk-st"><button class="vk-sb" data-act="gStep" data-id="${id}" data-d="-1" ${ln<=mn?'disabled':''} aria-label="Decrease ${nm}">${KI('tg_minus',14,14)}</button><span class="vk-sv" aria-label="${nm} line">${ln}+</span><button class="vk-sb" data-act="gStep" data-id="${id}" data-d="1" ${ln>=mx?'disabled':''} aria-label="Increase ${nm}">${KI('tg_plus',14,14)}</button></div><button class="vk-rm" data-act="tRm" data-id="${id}" aria-label="Remove ${nm} target"><img src="${VK_BIN}" width="14" height="14" alt="" aria-hidden="true" draggable="false"></button></div>`;}).join('')}</div>`;
     const vkPc=()=>`<div class="pf-bar v-pc vk-pc"><div class="vk-top"><div class="vk-hd"><b>My targets</b><span class="vk-cn">${S.targets.length} of ${glOrder().length}</span></div><div class="pf-sr vk-sq"><div class="pf-av">${sel.map(id=>pAvF(byId[id],'rm',true)).join('')}</div><button type="button" class="pf-cta on vk-ed" data-act="pBackPick">Edit Squad</button></div></div>${S.targets.length?vkTs():''}${S.targets.length?`<div class="vk-ft"><button type="button" class="vk-add" data-act="vSlipOpen" aria-label="Add to betslip, odds ${fo(M?mTot():total())}"><span class="vk-al">Add to betslip</span><span class="vk-ot">${KI('fab_sub',10,32)}<b>${fo(M?mTot():total())}</b></span></button></div>`:''}</div>`;
@@ -5605,7 +5628,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     root.addEventListener('touchmove',e=>{ if(dg&&(dg.armed||dg.on)) e.preventDefault(); },{passive:false}); /* once held, the finger drags the player instead of scrolling */
     root.addEventListener('click',e=>{ if(sc._vdgClick&&e.target.closest('.p-t')){ sc._vdgClick=false; e.stopPropagation(); e.preventDefault(); } },true); }
   /* List / Cards: tapping a target flies a "Goals 3+" chip into the betslip, like the jersey into My squad */
-  if((X||v==='v')&&sc){ sc.addEventListener('click',e=>{ const b=e.target.closest('[data-act="gAdd"][data-id]'); if(!b||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(false&&(X||v==='v')&&sc){ /* off: the flying "target → betslip" chip read as the betslip opening; the target row now moves into My targets instead */ sc.addEventListener('click',e=>{ const b=e.target.closest('[data-act="gAdd"][data-id]'); if(!b||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const id=b.dataset.id, nmEl=b.querySelector('.gl-tx b')||b, a=nmEl.getBoundingClientRect(); if(!a.width) return;
       setTimeout(()=>{ const ph=document.getElementById('phone'); if(!ph) return;
         const vis=x=>x&&x.offsetParent&&x.getBoundingClientRect().width&&getComputedStyle(x).visibility!=='hidden';
@@ -5824,6 +5847,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       case 'fabClearBs':S.targets=[];S.slip=false;S.modal=null;break;
       case 'mLegRm':{const ix=+d.i, sm=SAMEL().length; if(ix<sm) S.sels.splice(ix,1); else S.other=false; S.bsTab=null; break;}
       case 'mSbRm':S.targets=[];S.slip=false;S.modal=null;break;
+      case 'bsSqTog':S.bsSq=!S.bsSq;S.bsAnim=false;break;
       case 'mBsEdit':bsClose(()=>{S.done=false;S.placed=false;S.page=null;S.sheet=false;S.adding=false;S.q='';S.step='squad'; /* same as 'edit': back to the first step of the flow */
         if(N){if(!S.npage){S._evY=sc?sc.scrollTop:0;S.npage='sb';} if(P){S.pcont=false;S.psel=[...S.squad];}} else S.mtab=null;
         if(O)S.focus='.oc-hd'; setTimeout(()=>{if(sc)sc.scrollTop=0},0);});return;
