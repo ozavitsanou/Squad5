@@ -3940,6 +3940,29 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone #squad-v .v-k.vk-av .vk-od .mk-l.vk-xl{flex:none;margin-right:4px;font-style:normal;font-family:var(--font-ui);font-size:var(--global-typography-font-size-1-375x,11px);line-height:var(--global-typography-line-height-1-75x,14px);font-weight:450;color:var(--sem-text-gray-emphasis,#151923)}
 #phone.lv #squad-v .v-k.vk-av .vk-od .mk-l.vk-xl{color:#f5f7fa}
 #phone #squad-v .v-k.vk-av .vk-od .mk-ob{display:flex;align-items:center;justify-content:center;flex:none}
+/* Lineup labels (Figma 6821:107919 / 6821:107881, 18 Nov): pill aligned with the rows/cards, 4px above and below */
+#phone :is(#squad-x,#squad-v) .p-tl>.vx-lu.vx-lu{flex:0 0 100%;display:flex;align-items:center;gap:0;margin:-4px 0;padding:0}
+#phone :is(#squad-x,#squad-v) .p-tl>.vx-lu.vx-lu:first-child{margin-top:0}
+#phone :is(#squad-x,#squad-v) .vx-lu .vx-lp{display:inline-flex;align-items:center;gap:4px;padding:6px 8px 6px 6px;border-radius:8px;background:var(--sem-color-overlay-gray-inverted-low,rgba(9,13,21,.15));color:var(--sem-color-text-gray-emphasis,#151923);font:400 11px/12px Ubuntu,var(--font-ui);white-space:nowrap}
+#phone :is(#squad-x,#squad-v) .vx-lu .vx-lp b{font-weight:700}
+#phone :is(#squad-x,#squad-v) .vx-lu .vx-lp svg{flex:none;width:12px;height:12px}
+#phone :is(#squad-x,#squad-v) .vx-lu.on .vx-lp{padding-left:4px;background:var(--sem-color-overlay-primary-low,rgba(255,60,0,.2));color:var(--sem-color-text-gray-strong,#2a3346)}
+#phone.lv :is(#squad-x,#squad-v) .vx-lu .vx-lp{background:rgba(255,255,255,.12);color:#f5f7fa}
+#phone.lv :is(#squad-x,#squad-v) .vx-lu.on .vx-lp{background:rgba(255,60,0,.24);color:#f5f7fa}
+/* Add to betslip (Figma 6822:109191, 18 Nov): soft transparent bar, centred label, odds tag on the right */
+#phone :is(#squad-x,#squad-v) .p-sb .pf-bar.vk-pc>.vk-ft.vk-ft.vk-ft{border:0;border-radius:var(--sem-border-radius-12,12px);padding:6px 8px;background:var(--sem-color-bg-transparent-low-default,rgba(184,197,224,.15))}
+#phone.lv :is(#squad-x,#squad-v) .p-sb .pf-bar.vk-pc>.vk-ft.vk-ft.vk-ft{background:rgba(184,197,224,.15)}
+#phone :is(#squad-x,#squad-v) .vk-pc .vk-add.vk-add.vk-add{flex:1 1 auto;display:grid;grid-template-columns:64px minmax(0,1fr) 64px;align-items:center;gap:var(--sem-spacing-4,4px);height:40px}
+#phone :is(#squad-x,#squad-v) .vk-pc .vk-add.vk-add.vk-add::before{content:"";width:64px;height:32px}
+#phone :is(#squad-x,#squad-v) .vk-pc .vk-al.vk-al.vk-al{height:40px;justify-content:center;padding:var(--sem-spacing-8,8px) var(--sem-spacing-12,12px);font:750 14px/20px var(--font-ui);text-transform:none;white-space:nowrap}
+#phone :is(#squad-x,#squad-v) .vk-pc .vk-ot.vk-ot b{font:750 14px/20px var(--font-ui)}
+#phone :is(#squad-x,#squad-v) .p-sb .pf-bar.vk-pc>.vk-ft.vk-ft.vk-ft.vk-ft{margin:0 12px 12px!important} /* 18 Nov: 12px left, right and bottom */
+#phone :is(#squad-x,#squad-v) .p-sb .pf-bar.vk-pc>.vk-ft.vk-ft.vk-ft.vk-ft{padding:6px;border:1px solid var(--sem-border-container-lowest,#e2e8f8)} /* 18 Nov: padding 6 all round, border/container/lowest */
+#phone.lv :is(#squad-x,#squad-v) .p-sb .pf-bar.vk-pc>.vk-ft.vk-ft.vk-ft.vk-ft{border-color:#343f56;background:rgba(184,197,224,.08)}
+#phone :is(#squad-x,#squad-v) .vk-pc .vk-add .vk-al.vk-al.vk-al{padding:0;width:auto;justify-self:center} /* 18 Nov: label hugs its text, no padding */
+#phone :is(#squad-x,#squad-v) .vk-pc .vk-add .vk-al.vk-al.vk-al{height:auto;line-height:20px} /* 18 Nov: hug height too */
+#phone :is(#squad-x,#squad-v) .vk-pc .vk-add.vk-add.vk-add.vk-add{height:auto}
+#phone :is(#squad-x,#squad-v) .vk-pc .vk-add .vk-al.vk-al.vk-al.vk-al{padding:0 var(--sem-spacing-12,12px);height:auto;border-radius:var(--sem-border-radius-8,8px);background:var(--sem-color-bg-transparent-none-default,rgba(255,255,255,.01));font:750 14px/20px var(--font-ui)} /* Figma 6822:109562 */
 </style>
 <!-- password screen: a light gate for sharing, not real security (the page source stays public) -->
 <style>
@@ -5377,7 +5400,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
       const tmf=S.pteam&&S.pteam!=='all'?S.pteam:null, all=[...KORD,...SUBS.map(p=>p.id)].map(id=>byId[id]).filter(p=>p.pos!=='GK'&&(!tmf||p.team===tmf)&&(!W||!S.q||norm(p.name).includes(norm(S.q))||String(p.num).startsWith(norm(S.q))));
       const sk=st==='ycard'||st==='rcard'?'cards':st, ord=[...all.filter(p=>pv(p,sk)!=null).sort((a,b)=>pv(b,sk)-pv(a,sk)),...all.filter(p=>pv(p,sk)==null)], mk=W?w4Card:X?vRow:vCard;
       if(!W&&S.lu&&S.lu!=='none'&&!CAR()){ /* 3.1/3.2: lineup sections (Figma 6679-91836/91840/91837), switched by Prototype controls → Lineups */
-        const cf=S.lu==='conf', hd=(t,on)=>`<div class="vx-lu${on?' on':''}" role="heading" aria-level="3">${on?'<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m2.5 6.2 2.3 2.3 4.7-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}<span>${t}</span><i aria-hidden="true"></i></div>`;
+        const cf=S.lu==='conf', hd=(t,on)=>{const w=t.split(' ')[0], k=on?'Announced':w; return `<div class="vx-lu${on?' on':''}" role="heading" aria-level="3"><span class="vx-lp">${on?'<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path fill="currentColor" d="M9.94458 4.77583C9.85958 4.61083 9.68458 4.50083 9.49958 4.50083H6.57458L6.99458 1.57083C7.02458 1.34083 6.89958 1.12083 6.68958 1.03583C6.47458 0.950831 6.23458 1.02083 6.09958 1.20583L2.09458 6.70583C1.98458 6.85583 1.96958 7.06083 2.05458 7.22583C2.13958 7.39083 2.31458 7.50083 2.49958 7.50083H5.42458L5.00458 10.4308C4.97458 10.6608 5.09958 10.8808 5.30958 10.9658C5.36958 10.9908 5.43458 11.0008 5.49958 11.0008C5.65458 11.0008 5.80958 10.9258 5.90458 10.7958L9.90458 5.29583C10.0146 5.14583 10.0296 4.94083 9.94458 4.77583Z"/></svg>':'<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M6.5 8C6.5 8.276 6.276 8.5 6 8.5C5.724 8.5 5.5 8.276 5.5 8V5.5C5.5 5.224 5.724 5 6 5C6.276 5 6.5 5.224 6.5 5.5V8ZM6.5 4C6.5 4.276 6.276 4.5 6 4.5C5.724 4.5 5.5 4.276 5.5 4C5.5 3.724 5.724 3.5 6 3.5C6.276 3.5 6.5 3.724 6.5 4ZM6 2C8.2055 2 10 3.7945 10 6C10 8.2055 8.2055 10 6 10C3.7945 10 2 8.2055 2 6C2 3.7945 3.7945 2 6 2ZM6 11C8.7615 11 11 8.7615 11 6C11 3.2385 8.7615 1 6 1C3.2385 1 1 3.2385 1 6C1 8.7615 3.2385 11 6 11Z"/></svg>'}<span><b>${k.toUpperCase()}</b> LINEUPS</span></span></div>`;}; /* Figma 6821:107919 (expected/substitute) and 6821:107881 (announced) */
         const a=ord.filter(p=>XI.has(p.id)), b=ord.filter(p=>!XI.has(p.id));
         return (a.length?hd(cf?'Confirmed lineups':'Expected lineups',cf)+a.map(mk).join(''):'')+(b.length?hd('Substitute lineups',false)+b.map(mk).join(''):''); }
       if(CAR()&&S.vcLu){ const f=S.vcLu==='exp'; return ord.filter(p=>XI.has(p.id)===f).map(mk).join(''); } /* Cards · Carousel: Expected / Substitutes filter */
