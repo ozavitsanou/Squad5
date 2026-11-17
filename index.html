@@ -3785,6 +3785,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone.lv .m-bs .sbs .sbs-tg img{filter:invert(1) brightness(1.15)}
 #phone.lv .m-bs .sbs-ls li{color:#f5f7fa}
 @media (prefers-reduced-motion:reduce){#phone .m-bs .sbs .sbs-tg img{transition:none}}
+/* Sticky player filters: stick right under the sticky squad card (List + Cards) */
+#phone :is(#squad-x,#squad-v) .p-pg>.p-so{position:sticky;top:calc(var(--psb-h,0px) + 8px);z-index:5;background:#eff2fa;box-shadow:0 -8px 0 #eff2fa,0 8px 0 #eff2fa;padding-top:0;padding-bottom:0}
+#phone.lv :is(#squad-x,#squad-v) .p-pg>.p-so,html.dark #phone :is(#squad-x,#squad-v) .p-pg>.p-so{background:var(--sem-bg-page,#0f1218);box-shadow:0 -8px 0 var(--sem-bg-page,#0f1218),0 8px 0 var(--sem-bg-page,#0f1218)}
 </style>
 <!-- password screen: a light gate for sharing, not real security (the page source stays public) -->
 <style>
@@ -6254,5 +6257,9 @@ fit();
   addEventListener('resize',mfit); mq.addEventListener('change',mfit); document.addEventListener('screenchange',()=>setTimeout(mfit,0)); mfit(); setTimeout(mfit,0);
 })();
 </script>
+<script>/* sticky filters: expose the squad card height as --psb-h on .p-pg */
+(function(){if(!window.ResizeObserver)return;const ro=new ResizeObserver(es=>{for(const e of es){const pg=e.target.parentElement;if(pg)pg.style.setProperty('--psb-h',e.target.offsetHeight+'px')}});
+const scan=()=>document.querySelectorAll('#squad-x .p-pg>.p-sb,#squad-v .p-pg>.p-sb').forEach(el=>{if(!el.__ro){el.__ro=1;ro.observe(el)}});
+new MutationObserver(scan).observe(document.body,{childList:true,subtree:true});scan();})();</script>
 </body>
 </html>
