@@ -4343,6 +4343,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone.lv :is(#squad-v .v-k,#squad-x .vx-r) .vk-pm.vk-pm.vk-pm{background:var(--sem-bg-gray-medium,#3b4863)!important;color:#f5f7fa!important}
 #phone :is(#squad-v,#squad-x) .p-pg.p-pg{min-height:760px;box-sizing:border-box}
 #phone .sbs-ls.sbs-ls:not(.mbf-ls) li>span:first-child{width:auto!important;height:auto!important;flex:0 1 auto!important}
+
+/* 19 Nov: filters -> info text -> lineup badge 12px apart; 8px from the badge to the first row; rows stay 8px */
+#phone :is(#squad-x,#squad-v) .p-tl>.vk-note.vk-note:first-child{margin:4px 0 0!important}
+#phone :is(#squad-x,#squad-v) .p-tl>.vk-note:first-child+.vx-lu{margin:4px 0 0!important}
+#phone :is(#squad-x,#squad-v) .p-tl>.vx-lu:first-child{margin:4px 0 0!important}
+#phone #squad-v .p-tl>.vk-note.vk-note:first-child{margin-top:0!important}
+#phone #squad-v .p-tl>.vx-lu:first-child{margin-top:0!important}
 </style>
 <!-- password screen: a light gate for sharing, not real security (the page source stays public) -->
 <style>
@@ -5219,7 +5226,7 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
   const glInd=m=>m&&m.g?`<i class="gl-ind" role="img" aria-label="${m.g} goal${m.g>1?'s':''} scored"><span>${m.g}x</span><img src="${GL_BALL}" width="12" height="12" alt=""></i>`:''; /* Figma 6783:79686 goal indicator */
   const noteTx=id=>{const k=id||'goals', nm=({ycard:'Yellow cards',rcard:'Red cards',cards:'Cards'})[k]||(stat(k)||{}).name||mkName(k), tot=/^(goals|cards|ycard|rcard)$/.test(k); /* 19 Nov copy: odds = per-player line; average = last 5 + season average / total */ if(window.__avg) return `Last 5 matches and season ${tot?'total':'average'} per player`; /* 19 Nov: Stats variation copy (Goals, Cards = total; others = average) */ return k==='goals'?`<b>Goal odds:</b> Anytime, 2+, Hat-trick, Next Goal`:`<b>${nm}</b> odds for each player’s line`;};
   const vkNoteH=st=>window.__sw?(!window.__avg&&(st||'goals')==='goals'?`<p class="vk-note"><span>${noteTx('goals')}</span></p>`:''):`<p class="vk-note"><span>${noteTx(st)}</span></p>`; /* 19 Nov: with the switch, only Goals odds keep the info text */
-  const vkNoteIn=(t,st)=>{const N=vkNoteH(st); let i=t.indexOf('class="vx-lu"'); if(i<0) return N+t; i=t.indexOf('</div>',i)+6; return t.slice(0,i)+N+t.slice(i);};
+  const vkNoteIn=(t,st)=>vkNoteH(st)+t; /* 19 Nov: the info text sits on top again, above the lineup badge */
   const mkName=id=>({goals:'Goalscorer Anytime',assists:'Assists',shots:'Shots',sot:'Shots on Target',tackles:'Tackles',cards:'To receive a card',ycard:'To receive a card',rcard:'To get a red card'})[id||'goals']||((stat(id)||{}).name||'This market'); /* market name for the info note */
   const vMk=(p,id)=>{const r=pv(p,id==='ycard'||id==='rcard'?'cards':id); if(r==null) return null; let G=0; const h=[...(p.id+id)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7); let L=1+(h%3), lb=`${({goals:'Goals',shots:'Shots',sot:'Shots On Target',assists:'Assists',tackles:'Tackles',cards:'Cards'})[id]||(stat(id)||{}).name} ${L}+`;
     if(id==='goals'){const sc=window.__LV?(h%8===0?1:h%8===1?2:h%8===2?3:0):0; G=sc; L=sc+1; lb=sc===0?'Goalscorer Anytime':sc===1?'Score 2+ goals':sc===2?'Score Hat-Trick':'Next goalscorer';}
