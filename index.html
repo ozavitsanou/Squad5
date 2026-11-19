@@ -4308,6 +4308,26 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* 19 Nov: all 5 picked players fit next to Continue: no horizontal scroll, nothing cut */
 #phone :is(#squad-x,#squad-v) .pf-bar .pf-sr>.pf-av.pf-av{gap:4px!important;overflow:visible!important;min-width:0}
+
+/* 19 Nov: Cards = Figma 6826:112103 (114 x 162): header pt6 px4, 65px jersey at y43, panel 6826:112107 (y96, h66, odds pt2, no divider), plus 6891:52881 absolute in the inner corner */
+#phone #squad-v .p-t.v-k.vk-av.vk-av{height:162px!important;min-height:162px!important;box-sizing:border-box}
+#phone #squad-v .v-k.vk-av .vk-hd.vk-hd.vk-hd{padding:5px 4px 4px 4px!important;gap:0!important;align-items:flex-start}
+#phone #squad-v .v-k.vk-av .vk-cr.vk-cr{width:16px;height:16px;align-items:flex-start}
+#phone #squad-v .v-k.vk-av .vk-nm.vk-nm{flex:1 1 0;min-width:0;margin:0 2px 0 0!important;padding:0!important}
+#phone #squad-v .v-k.vk-av .vk-po.vk-po{line-height:14px!important;height:14px}
+#phone #squad-v .v-k.vk-av .vk-j.vk-j.vk-j{width:65px!important;height:65px!important;top:42px!important;left:calc(50% + 1.5px)!important;transform:translateX(-50%)!important}
+#phone #squad-v .v-k.vk-av .vk-j.vk-j.vk-j>img{width:65px!important;height:65px!important}
+#phone #squad-v .v-k.vk-av .vk-j.vk-j.vk-j .vk-nu{top:9px!important;width:45px!important;font:700 18px/36px var(--font-ui)!important}
+#phone #squad-v .v-k.vk-av .vk-ct.vk-ct.vk-ct{height:66px!important;padding:0 8px!important;gap:0!important}
+#phone #squad-v .v-k.vk-av .vk-ct.vk-ct.vk-ct:has(.mk-cc){height:auto!important;padding-bottom:4px!important}
+#phone #squad-v .v-k.vk-av .vk-ct .vk-od.vk-od.vk-od{padding:2px 4px 0!important;border-bottom:0!important;min-height:22px;box-sizing:border-box}
+#phone #squad-v .v-k .vk-pm.vk-pm.vk-pm{display:flex!important;right:0!important;bottom:0!important;width:20px;height:20px;padding:2px;box-sizing:border-box;border-radius:8px 0 0 0}
+
+/* 19 Nov: card header: 8px padding; crest, name and position centred on the name's (first) line */
+#phone #squad-v .v-k.vk-av .vk-hd.vk-hd.vk-hd.vk-hd{padding:7px 7px 4px 7px!important;gap:4px!important;align-items:flex-start}
+#phone #squad-v .v-k.vk-av .vk-cr.vk-cr.vk-cr{height:18px;align-items:center}
+#phone #squad-v .v-k.vk-av .vk-po.vk-po.vk-po{height:18px;line-height:18px!important;display:flex;align-items:center}
+#phone #squad-v .v-k.vk-av .vk-nm.vk-nm.vk-nm{margin-right:0!important;word-break:normal!important;overflow-wrap:break-word!important;hyphens:none}
 </style>
 <!-- password screen: a light gate for sharing, not real security (the page source stays public) -->
 <style>
