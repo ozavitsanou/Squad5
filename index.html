@@ -4305,6 +4305,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* 19 Nov: stacked card odds: both card icons in one left-aligned column, odds right-aligned */
 #phone :is(#squad-x,#squad-v) .mk-ob.mk-cc.mk-cc{align-items:stretch!important}
 #phone :is(#squad-x,#squad-v) .mk-cc.mk-cc>span{justify-content:space-between;gap:6px}
+
+/* 19 Nov: all 5 picked players fit next to Continue: no horizontal scroll, nothing cut */
+#phone :is(#squad-x,#squad-v) .pf-bar .pf-sr>.pf-av.pf-av{gap:4px!important;overflow:visible!important;min-width:0}
 </style>
 <!-- password screen: a light gate for sharing, not real security (the page source stays public) -->
 <style>
