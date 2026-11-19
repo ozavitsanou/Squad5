@@ -4220,6 +4220,78 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #phone.lv #squad-v .v-k.vk-av .vk-ct .vk-ch i{background:rgba(255,255,255,.12)!important;color:#f5f7fa!important}
 #phone.lv #squad-v .v-k.vk-av .vk-ct .vk-ch i.last{border-bottom-color:#f5f7fa!important}
 #phone.lv #squad-v .v-k.vk-av .vk-ct .vk-l5c{color:#cfd9ed!important}
+
+/* 19 Nov: betslip squad for List + Cards = Figma 6900:117124 / 6900:117125: squad section (chevron, 16px shirts, Edit), players when open, then the legs with dots and a line */
+#phone .m-bs .sbs.sbs-f{gap:8px;align-self:stretch;max-width:none;margin:4px 12px 0;padding:8px;border:0;border-radius:20px;background:linear-gradient(180deg,var(--sem-bg-container-low-default,#f7f9fc),var(--sem-bg-container-lowest-default,#fff))}
+#phone .m-bs .sbs.sbs-f .sbs-r{gap:4px}
+#phone .m-bs .sbs.sbs-f .sbs-tg{width:14px;height:14px;margin:0}
+#phone .m-bs .sbs.sbs-f .sbs-j{gap:4px;height:16px;padding:0}
+#phone .m-bs .sbs.sbs-f .sbs-d{width:16px;height:16px;margin:0;border:0;border-radius:0;background:none;overflow:visible}
+#phone .m-bs .sbs.sbs-f .sbs-d>*{width:16px;height:16px}
+#phone .m-bs .sbs.sbs-f .sbs-e{height:24px;padding:0 8px;border-radius:12px}
+#phone .m-bs .sbs.sbs-f .sbs-edl{margin-left:4px}
+#phone .m-bs .sbs.sbs-f .sbs-ls{margin:0;gap:8px;padding-right:8px}
+#phone .m-bs .sbs.sbs-f .sbs-ls li{gap:4px;min-width:0;font:450 12px/16px 'Ubuntu Sans',Ubuntu,var(--font-ui);color:var(--sem-text-gray-strong,#2a3346)}
+#phone .m-bs .sbs.sbs-f .sbs-ls li>:first-child{flex:none;width:16px;height:16px}
+#phone .m-bs .sbs.sbs-f .sbs-ls li span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#phone .m-bs .sbl{list-style:none;display:flex;flex-direction:column;gap:2px;margin:7px 0 0;padding:0 12px 0 24px}
+#phone .m-bs .sbl li{position:relative;display:flex;align-items:flex-start;gap:4px;height:30px;padding-right:8px}
+#phone .m-bs .sbl li::before{content:none}
+#phone .m-bs .sbl li>i{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;width:8px;height:100%;padding-top:6px;box-sizing:border-box;font-style:normal}
+#phone .m-bs .sbl li>i>*{flex:none;width:8px;height:8px;display:block}
+#phone .m-bs .sbl li>i::after{content:'';flex:1 1 0;width:1px;background:var(--sem-border-off-white-pale,#c2cee5)}
+#phone .m-bs .sbl li:last-child>i::after{content:none}
+#phone .m-bs .sbl li>span{flex:1 1 0;min-width:0;font:400 13px/18px Ubuntu,var(--font-ui);color:var(--sem-text-gray-strong,#2a3346);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#phone.lv .m-bs .sbs.sbs-f{background:linear-gradient(180deg,#2a3046,#212536)}
+#phone.lv .m-bs .sbs.sbs-f .sbs-ls li,#phone.lv .m-bs .sbl li>span{color:#f5f7fa}
+#phone.lv .m-bs .sbl li>i::after{background:#3b4863}
+#phone.lv .m-bs .sbl li>i>img{filter:invert(1) brightness(1.15)}
+
+#phone .m-bs .sbl li>i{color:var(--sem-text-gray-emphasis,#151923)}
+#phone.lv .m-bs .sbl li>i{color:#f5f7fa}
+
+/* 19 Nov: My Bets squad for List + Cards (Figma 6900:117125 section, 6860:108603 player targets, 6860:108639 counter) */
+.m-mbp .sbs.sbs-f.mbf{display:flex;flex-direction:column;gap:8px;margin:8px 12px 0;padding:8px;box-sizing:border-box;border-radius:20px;background:linear-gradient(180deg,var(--sem-bg-container-low-default,#f7f9fc),var(--sem-bg-container-lowest-default,#fff))}
+.m-mbp .mbf .sbs-r{display:flex;align-items:center;gap:4px}
+.m-mbp .mbf .sbs-tg{flex:none;display:grid;place-items:center;width:14px;height:14px;padding:0;border:0;background:none;color:#151923;cursor:pointer}
+.m-mbp .mbf .sbs-tg svg{transform:rotate(-90deg);transition:transform .2s}
+.m-mbp .mbf.sbs-op .sbs-tg svg{transform:none}
+.m-mbp .mbf .sbs-j{display:flex;gap:4px;height:16px}
+.m-mbp .mbf :is(.sbs-d,.mbf-j){flex:none;width:16px;height:16px;display:grid;place-items:center}
+.m-mbp .mbf :is(.sbs-d,.mbf-j)>*{width:16px;height:16px}
+.m-mbp .mbf-ls{list-style:none;margin:0;padding:0 8px 0 0;display:flex;flex-direction:column;gap:8px}
+.m-mbp .mbf-ls li{display:flex;align-items:flex-start;gap:4px;min-width:0}
+.m-mbp .mbf-ls li::before{content:none}
+.m-mbp .mbf-i{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:4px}
+.m-mbp .mbf-n{font:450 12px/16px 'Ubuntu Sans',Ubuntu,var(--font-ui);color:var(--sem-text-gray-strong,#2a3346);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.m-mbp .mbf-t{display:flex;align-items:center;gap:2px;flex-wrap:wrap}
+.m-mbp .mbf-tg{display:inline-flex;align-items:center;gap:2px;padding:2px;color:var(--sem-text-gray-strong,#2a3346)}
+.m-mbp .mbf-tg b{font:450 12px/16px 'Ubuntu Sans',Ubuntu,var(--font-ui)}
+.m-mbp .mbf-tg .avg-ic{flex:none;width:12px;height:12px;margin:0;vertical-align:0}
+.m-mbp .mbf-tg .avg-m{display:inline-block;background-color:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
+.m-mbp .sbl.mbf-l{list-style:none;display:flex;flex-direction:column;gap:2px;margin:11px 0 0;padding:0 12px 0 24px}
+.m-mbp .mbf-l li{position:relative;display:flex;align-items:flex-start;gap:4px;height:30px;padding-right:8px}
+.m-mbp .mbf-l li::before{content:none}
+.m-mbp .mbf-l li>i{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;width:8px;height:100%;padding-top:6px;box-sizing:border-box;font-style:normal;color:#151923}
+.m-mbp .mbf-l li>i>svg{flex:none;display:block}
+.m-mbp .mbf-l li>i::after{content:'';flex:1 1 0;width:1px;background:var(--sem-border-off-white-pale,#c2cee5)}
+.m-mbp .mbf-l li:last-child>i::after{content:none}
+.m-mbp .mbf-l li>span:not(.mbf-c){flex:1 1 0;min-width:0;font:400 13px/18px Ubuntu,var(--font-ui);color:var(--sem-text-gray-subtle,#526789);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.m-mbp .mbf-c{flex:none;min-width:30px;width:34px;display:flex;flex-direction:column;align-items:center}
+.m-mbp .mbf-c b{height:15px;display:flex;align-items:center;font:700 13px/18px Ubuntu,var(--font-ui);color:var(--sem-text-gray-strong,#2a3346)}
+.m-mbp .mbf-c s{position:relative;display:block;width:34px;height:3px;border-radius:2px;background:var(--sem-overlay-gray-inverted-low,rgba(9,13,21,.15));overflow:hidden;text-decoration:none}
+.m-mbp .mbf-c s i{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:var(--sem-fg-gray-strong,#2a3346)}
+#phone.lv .m-mbp .sbs.sbs-f.mbf{background:linear-gradient(180deg,#2a3046,#212536)}
+#phone.lv .m-mbp .mbf .sbs-tg,#phone.lv .m-mbp .mbf-l li>i{color:#f5f7fa}
+#phone.lv .m-mbp :is(.mbf-n,.mbf-tg,.mbf-c b){color:#f5f7fa}
+#phone.lv .m-mbp .mbf-l li>span:not(.mbf-c){color:#cfd9ed}
+#phone.lv .m-mbp .mbf-l li>i::after{background:#3b4863}
+#phone.lv .m-mbp .mbf-c s{background:rgba(255,255,255,.18)}
+#phone.lv .m-mbp .mbf-c s i{background:#f5f7fa}
+
+/* 19 Nov: List + Cards My Bets: Golden Sub as the icon next to the title (as in the betslip), no banner */
+.m-mbp .kd-gsi{flex:none;display:grid;place-items:center;width:20px;height:20px;padding:0;margin:0 0 0 2px;border:0;background:none;cursor:pointer}
+.m-mbp .kd-gsi img{width:20px;height:20px}
 </style>
 <!-- password screen: a light gate for sharing, not real security (the page source stays public) -->
 <style>
@@ -5447,11 +5519,15 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
     const sp=ts.map((t,i)=>split(t,i));
     const C=S.gs==='combine', p0=sq()[0], sb=C&&p0?subFor(p0):null;
     const lineup=sq().map((p,pi)=>`<div class="kd-pl">${KJ(p,24)}<span><b>${p.name}${pi===0&&sb?` <em class="m-subb">${KI('goldenSub32',12,12)}+ ${sb.name} · on 64'</em>`:''}</b><small>${ts.map((t,i)=>pv(p,t.id)==null?`${SIXL[t.id]||stat(t.id).name} n/a`:`${sp[i][pi]} ${SIXL[t.id]||stat(t.id).name}`).join(' · ')}</small></span></div>`).join('');
-    const gsNote=GSON()&&canCo&&!bkIn?`<p class="kd-gs">${KI('goldenSub32',16,16)}<span>${st==='pre'?'Golden Sub active: if a player doesn\'t start, your stake is returned.':`Golden Sub not triggered: all ${n} players started.`}</span></p>`:'';
-    const ev=`<div class="kd-ev"><div class="kd-sel"><span class="kd-sl">${KI('mb_soccer',22,22)}<b>Squad Builder</b></span><span class="kd-odds">${fo(total())}</span></div>
-      <div class="kd-mk">${n} players · ${ts.length} squad target${ts.length!==1?'s':''}</div>
+    /* 19 Nov: List + Cards: squad section like the betslip (Figma 6900:117124/125); open players show the targets they have hit with stat icons (Figma 6860:108603); legs carry a counter + progress bar (Figma 6860:108639) */
+    const mbSqF=()=>{const pls=sq().map((p,pi)=>{const hs=ts.map((t,i)=>({id:t.id,n:sp[i][pi]||0})).filter(x=>x.n>0); return `<li><span class="mbf-j">${KJ(p,16)}</span><span class="mbf-i"><span class="mbf-n">${p.name}${pi===0&&sb?` <em class="m-subb">${KI('goldenSub32',12,12)}+ ${sb.name} · on 64'</em>`:''}</span>${hs.length?`<span class="mbf-t">${hs.map(x=>`<span class="mbf-tg" aria-label="${x.n} ${stat(x.id).name}">${avgIc(x.id)}<b>${x.n}</b></span>`).join('')}</span>`:''}</span></li>`;}).join('');
+      return `<div class="sbs sbs-f mbf${S.luOpen?' sbs-op':''}"><div class="sbs-r"><button type="button" class="sbs-tg" data-act="mLineup" aria-expanded="${!!S.luOpen}" aria-label="${S.luOpen?'Hide':'Show'} the players"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3.5 5.25 7 8.75l3.5-3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="sbs-j" aria-hidden="true">${sq().map(p=>`<span class="sbs-d" title="${p.name}">${KJ(p,16)}</span>`).join('')}</div></div>${S.luOpen?`<ul class="sbs-ls mbf-ls" aria-label="Players in your squad">${pls}</ul>`:''}</div>
+      <ul class="sbl mbf-l" aria-label="${ts.length} squad targets">${ts.map((t,i)=>{const c=cur(t,i), pc=Math.min(100,c/t.line*100), ok=c>=t.line, lost=st==='lost'&&!ok; return `<li class="${ok?'ok':''}${lost?' ko':''}"><i aria-hidden="true"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.1" stroke="currentColor" stroke-width="1.6"/></svg></i><span>${stat(t.id).name} ${t.line}+</span><span class="mbf-c" aria-label="${c} of ${t.line}"><b>${c}</b><s><i style="width:${pc}%"></i></s></span></li>`;}).join('')}</ul>`;};
+    const gsNote=(v==='x'||v==='v')?'':GSON()&&canCo&&!bkIn?`<p class="kd-gs">${KI('goldenSub32',16,16)}<span>${st==='pre'?'Golden Sub active: if a player doesn\'t start, your stake is returned.':`Golden Sub not triggered: all ${n} players started.`}</span></p>`:'';
+    const ev=`<div class="kd-ev"><div class="kd-sel"><span class="kd-sl">${KI('mb_soccer',22,22)}<b>Squad Builder</b>${(v==='x'||v==='v')&&GSON()?`<button class="bs-gsi kd-gsi" data-act="mSettle" aria-label="Golden Sub: bet settlement info">${KI('goldenSub32',20,20)}</button>`:''}</span><span class="kd-odds">${fo(total())}</span></div>
+      ${(v==='x'||v==='v')?'':`<div class="kd-mk">${n} players · ${ts.length} squad target${ts.length!==1?'s':''}</div>`}
       <div class="kd-tm"><span class="kd-teams"><span>${LOGO('villa')}Aston Villa</span><span>${LOGO('juve')}Juventus FC</span></span><span class="kd-time">${time}</span></div>
-      ${voided?`<div class="kd-void"><b>${lastP.name} didn't start</b><span>The bet was voided and your stake of ${eur(stk)} returned.</span></div>`:`<button class="sqv kd-strip" data-act="mLineup" aria-expanded="${!!S.luOpen}" aria-label="My lineup: ${sq().map(p=>p.name).join(', ')}"><span class="sqv-jr" aria-hidden="true">${sq().map((p,i)=>`<span class="sqv-p" style="z-index:${10-i}">${KJ(p,20)}</span>`).join('')}<span class="sqv-n">${n}</span></span><span class="sqv-nm"><b>My lineup</b> · ${sq().map(p=>p.name).join(', ')}</span><i class="kd-chv ${S.luOpen?'up':''}"></i></button>${S.luOpen?`<div class="kd-lus">${lineup}</div>`:''}
+      ${voided?`<div class="kd-void"><b>${lastP.name} didn't start</b><span>The bet was voided and your stake of ${eur(stk)} returned.</span></div>`:(v==='x'||v==='v')?mbSqF():`<button class="sqv kd-strip" data-act="mLineup" aria-expanded="${!!S.luOpen}" aria-label="My lineup: ${sq().map(p=>p.name).join(', ')}"><span class="sqv-jr" aria-hidden="true">${sq().map((p,i)=>`<span class="sqv-p" style="z-index:${10-i}">${KJ(p,20)}</span>`).join('')}<span class="sqv-n">${n}</span></span><span class="sqv-nm"><b>My lineup</b> · ${sq().map(p=>p.name).join(', ')}</span><i class="kd-chv ${S.luOpen?'up':''}"></i></button>${S.luOpen?`<div class="kd-lus">${lineup}</div>`:''}
       <div class="kd-goals">${goalRows}</div>`}
       ${bkIn?`<p class="m-subn">${KI('goldenSub32',24,24)}<span class="m-gst"><b>Golden Sub!</b><span>${lastP.name} didn't start. Your backup ${bkIn.name} took his place — the bet stands.</span></span></p>`:''}
       ${sb?`<p class="m-subn">${KI('goldenSub32',24,24)}<span class="m-gst"><b>Golden Sub!</b><span>${p0.name} went off 64'. ${sb.name}'s stats now count with his.</span></span></p>`:''}${gsNote}</div>`;
@@ -5490,7 +5566,8 @@ function make(v,root,host,_PL=PL,_byId=byId,_TEAMS=TEAMS,_KI=KI){
         <span class="sqv-nm" aria-hidden="true">${names}</span>
         ${mini?'':`<button class="sqv-ed sm" data-act="mBsEdit">Edit Squad</button>`}</div>`;};
     /* Squad strip (Figma 6410-128651): jerseys + Edit Squad, then the targets, all inside one rounded frame */
-    const sbStrip=()=>`<div class="sbs${S.bsSq?' sbs-op':''}${S.vEdit?' sbs-edit':''}" role="group" aria-label="${n} players: ${names}. ${k} squad goals${S.vEdit?'. Editing: tap to continue editing':''}"${S.vEdit?' data-act="mVkGoEdit"':''}><div class="sbs-r"><button type="button" class="sbs-tg" data-act="bsSqTog" aria-expanded="${!!S.bsSq}" aria-label="${S.bsSq?'Hide':'Show'} the players"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gPGcgaWQ9Imljb24iPiA8cGF0aCBpZD0idmVjdG9yIiBkPSJNMTAuMzI3MyA0LjgwNTE0QzEwLjQ5MjQgNC42MjkwNCAxMC43Njk2IDQuNjE5NzEgMTAuOTQ1OSA0Ljc4NDY0QzExLjEyMiA0Ljk0OTY0IDExLjEzMTEgNS4yMjY5MyAxMC45NjY0IDUuNDAzMjlMNy40OTIwOCA5LjExODA1QzcuNDMwNDMgOS4xODQgNy4zNTUyMyA5LjIzNzg2IDcuMjcxMDUgOS4yNzUyOEM3LjE4NjM2IDkuMzEyODYgNy4wOTM4NiA5LjMzMjc0IDcuMDAwNDYgOS4zMzI4MUM2LjkwNzA2IDkuMzMyNzcgNi44MTQ1NyA5LjMxMjgzIDYuNzI5ODcgOS4yNzUyOEM2LjY2NjkzIDkuMjQ3MjcgNi42MDg2NiA5LjIwOTkxIDYuNTU3ODMgOS4xNjUzM0w2LjUwOTQxIDkuMTE4MDVMMy4wMzUwNSA1LjQwMzI5TDMuMDA1OTkgNS4zNjkxMUMyLjg3MTYzIDUuMTkyNzEgMi44OTAxOCA0LjkzOTQgMy4wNTU1NSA0Ljc4NDY0QzMuMjIwOTggNC42MzAxOSAzLjQ3NDc3IDQuNjI4NjkgMy42NDE3MyA0Ljc3NDM4TDMuNjc0MjEgNC44MDUxNEw3LjAwMDQ2IDguMzYyMTFMMTAuMzI3MyA0LjgwNTE0WiIgZmlsbD0iIzE1MTkyMyIvPiA8L2c+IDwvc3ZnPiA=" width="14" height="14" alt="" aria-hidden="true" draggable="false"></button><div class="sbs-j" aria-hidden="true">${sq().map(p=>`<span class="sbs-d" title="${p.name}">${KJ(p,20)}</span>`).join('')}</div>${S.vEdit?'<span class="sbs-edl">Editing</span>':''}<button class="sbs-e" data-act="mBsEdit"${S.vEdit?' disabled aria-disabled="true" tabindex="-1"':''}>Edit Squad</button></div>${S.bsSq?`<ul class="sbs-ls" aria-label="Players in your squad">${sq().map(p=>`<li>${KJ(p,24)}<span>${p.name}</span></li>`).join('')}</ul>`:''}</div><div class="bs-legs gl" aria-label="${k} squad goals">${goalLegs(false,true)}</div>`;
+    const SBF=X||v==='v'; /* 19 Nov: List + Cards betslip squad = Figma 6900:117124 (closed) / 6900:117125 (open) */
+    const sbStrip=()=>`<div class="sbs${SBF?' sbs-f':''}${S.bsSq?' sbs-op':''}${S.vEdit?' sbs-edit':''}" role="group" aria-label="${n} players: ${names}. ${k} squad goals${S.vEdit?'. Editing: tap to continue editing':''}"${S.vEdit?' data-act="mVkGoEdit"':''}><div class="sbs-r"><button type="button" class="sbs-tg" data-act="bsSqTog" aria-expanded="${!!S.bsSq}" aria-label="${S.bsSq?'Hide':'Show'} the players"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gPGcgaWQ9Imljb24iPiA8cGF0aCBpZD0idmVjdG9yIiBkPSJNMTAuMzI3MyA0LjgwNTE0QzEwLjQ5MjQgNC42MjkwNCAxMC43Njk2IDQuNjE5NzEgMTAuOTQ1OSA0Ljc4NDY0QzExLjEyMiA0Ljk0OTY0IDExLjEzMTEgNS4yMjY5MyAxMC45NjY0IDUuNDAzMjlMNy40OTIwOCA5LjExODA1QzcuNDMwNDMgOS4xODQgNy4zNTUyMyA5LjIzNzg2IDcuMjcxMDUgOS4yNzUyOEM3LjE4NjM2IDkuMzEyODYgNy4wOTM4NiA5LjMzMjc0IDcuMDAwNDYgOS4zMzI4MUM2LjkwNzA2IDkuMzMyNzcgNi44MTQ1NyA5LjMxMjgzIDYuNzI5ODcgOS4yNzUyOEM2LjY2NjkzIDkuMjQ3MjcgNi42MDg2NiA5LjIwOTkxIDYuNTU3ODMgOS4xNjUzM0w2LjUwOTQxIDkuMTE4MDVMMy4wMzUwNSA1LjQwMzI5TDMuMDA1OTkgNS4zNjkxMUMyLjg3MTYzIDUuMTkyNzEgMi44OTAxOCA0LjkzOTQgMy4wNTU1NSA0Ljc4NDY0QzMuMjIwOTggNC42MzAxOSAzLjQ3NDc3IDQuNjI4NjkgMy42NDE3MyA0Ljc3NDM4TDMuNjc0MjEgNC44MDUxNEw3LjAwMDQ2IDguMzYyMTFMMTAuMzI3MyA0LjgwNTE0WiIgZmlsbD0iIzE1MTkyMyIvPiA8L2c+IDwvc3ZnPiA=" width="14" height="14" alt="" aria-hidden="true" draggable="false"></button><div class="sbs-j" aria-hidden="true">${sq().map(p=>`<span class="sbs-d" title="${p.name}">${KJ(p,SBF?16:20)}</span>`).join('')}</div>${S.vEdit?'<span class="sbs-edl">Editing</span>':''}<button class="sbs-e" data-act="mBsEdit"${S.vEdit?' disabled aria-disabled="true" tabindex="-1"':''}${SBF?' aria-label="Edit squad"':''}>${SBF?'Edit':'Edit Squad'}</button></div>${S.bsSq?`<ul class="sbs-ls" aria-label="Players in your squad">${sq().map(p=>`<li>${KJ(p,SBF?16:24)}<span>${p.name}</span></li>`).join('')}</ul>`:''}</div>${SBF?`<ul class="sbl" aria-label="${k} squad goals">${S.targets.map(t=>`<li><i aria-hidden="true"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.1" stroke="currentColor" stroke-width="1.6"/></svg></i><span>${stat(t.id).name} ${t.line}+</span></li>`).join('')}</ul>`:`<div class="bs-legs gl" aria-label="${k} squad goals">${goalLegs(false,true)}</div>`}`;
     // Squad Builder as a single selection
     const sbCard=(withAmt)=>`<div class="bs-card">${sel('Squad Builder',null,total(),'mSbRm','Remove Squad Builder')}
       ${match}${sbStrip()}${withAmt?amt():''}${gsStrip}${howLink}</div>`;
